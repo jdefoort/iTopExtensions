@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-profiles-itil</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Profile: add Rcx user as profile]]></label>
+	<description><![CDATA[Adds Rcx User, with limited rights]]></description>
+	<version>2.4.171208</version>
+	<release_date>2018-01-19</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.4.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>

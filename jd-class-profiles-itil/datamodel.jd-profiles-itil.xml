@@ -3,10 +3,9 @@
   <classes/>
   <user_rights>
     <groups>
-      <group id="UserRequest" _delta="define">
+      <group id="UserRequest" _delta="merge">
         <classes>
-          <class id="UserRequest"/>
-		  <class id="RcxRequest"/>
+          <class id="RcxRequest" _delta="define"/>
         </classes>
       </group>
     </groups>
@@ -42,6 +41,7 @@
               <action id="action:delete">allow</action>
             </actions>
           </group>
+		  <!--
 		  <group id="class:RcxRequest">
             <actions>
               <action id="action:write">allow</action>
@@ -49,6 +49,7 @@
               <action id="action:delete">allow</action>
             </actions>
           </group>
+		  -->
 		  <group id="Ticketing">
             <actions>
               <action id="action:write">allow</action>
