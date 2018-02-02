@@ -2,17 +2,26 @@
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
 <menus>
    <menu id="ChangeManagement" xsi:type="MenuGroup" _delta="redefine">
-     <enable_class>Change</enable_class>
+     <rank>50</rank>
+	 <enable_class>Change</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
    <menu id="IncidentManagement" xsi:type="MenuGroup" _delta="redefine">
-     <enable_class>Incident</enable_class>
+     <rank>35</rank>
+	 <enable_class>Incident</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-   <!-- <menu id="UserRequest" xsi:type="MenuGroup" _delta="redefine">
+   <menu id="RequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>30</rank>
      <enable_class>UserRequest</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <!-- <menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="define">
+	 <rank>31</rank>
+     <enable_class>RcxRequest</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu> -->
