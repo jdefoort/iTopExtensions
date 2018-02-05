@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-class-profiles-itil/',
+        'jd-profiles-itil/',
         array(
                 // Identification
                 //
@@ -25,7 +25,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-class-profiles-itil.php'
+                        'model.jd-profiles-itil.php'
                 ),
                 'webservice' => array(
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
 	<constants>
-		<constant id="PORTAL_TYPE_TO_CLASS" xsi:type="string" _delta="redefine"><![CDATA[{"service_request":"UserRequest","incident":"Incident"}]]></constant>
+		<constant id="PORTAL_TYPE_TO_CLASS" xsi:type="string" _delta="redefine"><![CDATA[{"service_request":"RcxRequest","incident":"Incident"}]]></constant>
 		<constant id="PORTAL_RCXCREQUEST_PUBLIC_LOG" xsi:type="string" _delta="define"><![CDATA[public_log]]></constant>
 		<constant id="PORTAL_RCXREQUEST_USER_COMMENT" xsi:type="string" _delta="define"><![CDATA[user_comment]]></constant>
 		<constant id="PORTAL_RCXREQUEST_FORM_ATTRIBUTES" xsi:type="string" _delta="define"><![CDATA[title,description,impact]]></constant>
@@ -201,11 +201,11 @@
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="parent_request_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT UserRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
+					<filter><![CDATA[SELECT RcxRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
 					<dependencies>
 					</dependencies>
 					<sql>parent_request_id</sql>
-					<target_class>UserRequest</target_class>
+					<target_class>RcxRequest</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
@@ -246,7 +246,7 @@
 					<target_attcode>ref</target_attcode>
 				</field>
 				<field id="related_request_list" xsi:type="AttributeLinkedSet">
-					<linked_class>UserRequest</linked_class>
+					<linked_class>RcxRequest</linked_class>
 					<ext_key_to_me>parent_request_id</ext_key_to_me>
 					<edit_mode>add_remove</edit_mode>
 					<count_min>0</count_min>
@@ -819,7 +819,7 @@
     parent::DoCheckToWrite();
     if (!$this->IsNew() && ($this->Get('parent_request_id') == $this->GetKey()))
     {
-      $this->m_aCheckIssues[] = Dict::Format('Class:UserRequest/Error:CannotAssignParentRequestIdToSelf');
+      $this->m_aCheckIssues[] = Dict::Format('Class:RcxRequest/Error:CannotAssignParentRequestIdToSelf');
     }
   }]]></code>
 				</method>
@@ -848,17 +848,17 @@
 			if (MetaModel::IsValidClass('KnownError'))
 			{			
 				//Search for known errors
-				$oPage->SetCurrentTab(Dict::S('Class:UserRequest:KnownErrorList'));
+				$oPage->SetCurrentTab(Dict::S('Class:RcxRequest:KnownErrorList'));
 				$iTicketID = $this->GetKey();;
 				$oKnownErrorSet = new CMDBObjectSet(DBObjectSearch::FromOQL("SELECT KnownError AS ke JOIN lnkErrorToFunctionalCI AS l1 ON l1.error_id=ke.id JOIN FunctionalCI AS ci ON l1.functionalci_id=ci.id JOIN lnkFunctionalCIToTicket AS l2 ON l2.functionalci_id=ci.id WHERE l2.ticket_id=$iTicketID"));
 				$iNumberKE=$oKnownErrorSet->count();
 				if ($iNumberKE > 0)
 				{
-					$oPage->SetCurrentTab(Dict::S('Class:UserRequest:KnownErrorList')." ($iNumberKE)");
+					$oPage->SetCurrentTab(Dict::S('Class:RcxRequest:KnownErrorList')." ($iNumberKE)");
 				}
 				else
 				{
-					$oPage->SetCurrentTab(Dict::S('Class:UserRequest:KnownErrorList'));	
+					$oPage->SetCurrentTab(Dict::S('Class:RcxRequest:KnownErrorList'));	
 				}			
 				self::DisplaySet($oPage, $oKnownErrorSet, array ('menu' => false));
 			}
@@ -875,7 +875,7 @@
 					<code><![CDATA[	public function resolveChilds($sStimulusCode)
 	{
 				
-		$sOQL = "SELECT UserRequest WHERE parent_request_id=:ticket";
+		$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
 		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 						array(),
 						array(
@@ -891,7 +891,7 @@
 				$oRequest->set('team_id',$this->Get('team_id'));
 				$oRequest->set('agent_id',$this->Get('agent_id'));	
 				$oRequest->set('resolution_code',$this->Get('resolution_code'));
-				$oRequest->set('solution','Automatically resolved by request:[[UserRequest:'.$this->Get('ref').']]');
+				$oRequest->set('solution','Automatically resolved by request:[[RcxRequest:'.$this->Get('ref').']]');
 				$oRequest->ApplyStimulus('ev_autoresolve');
 				$oRequest->DBUpdate();
 			}
@@ -915,7 +915,7 @@
         static $aTickets = array(); // prevent infinite recursion
     
 		// Automatically resolve child requests
-		$sOQL = "SELECT UserRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
+		$sOQL = "SELECT RcxRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
 		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('ticket' => $this->GetKey()));
 		while($oRequest = $oChildRequestSet->Fetch())
 		{
@@ -962,7 +962,7 @@
 		$sLogPublic = $oLog->GetModifiedEntry('html');
 		if ($sLogPublic != '')
 		{
-			$sOQL = "SELECT UserRequest WHERE parent_request_id=:ticket";
+			$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
 			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 							array(),
 							array(
@@ -980,7 +980,7 @@
 		$sLogPrivate = $oLog->GetModifiedEntry('html');
 		if ($sLogPrivate != '')
 		{
-			$sOQL = "SELECT UserRequest WHERE parent_request_id=:ticket";
+			$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
 			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 							array(),
 							array(
@@ -1290,12 +1290,12 @@
 			</definition>
 		</menu>
 		<menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>30</rank>
+			<rank>31</rank>
 			<enable_stimulus/>
 		</menu>
 		<menu id="RcxRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
 			<rank>0</rank>
-			<parent>RequestManagement</parent>
+			<parent>RcxRequestManagement</parent>
 			<definition>
 				<layout>DashboardLayoutTwoCols</layout>
 				<title>UI:RequestMgmtMenuOverview:Title</title>
@@ -1377,17 +1377,17 @@
 		</menu>
 		<menu id="NewRcxRequest" xsi:type="NewObjectMenuNode" _delta="define">
 			<rank>1</rank>
-			<parent>RequestManagement</parent>
+			<parent>RcxRequestManagement</parent>
 			<class>RcxRequest</class>
 		</menu>
 		<menu id="SearchRcxRequests" xsi:type="SearchMenuNode" _delta="define">
 			<rank>2</rank>
-			<parent>RequestManagement</parent>
+			<parent>RcxRequestManagement</parent>
 			<class>RcxRequest</class>
 		</menu>
 		<menu id="RcxRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
 			<rank>3</rank>
-			<parent>RequestManagement</parent>
+			<parent>RcxRequestManagement</parent>
 			<template_file/>
 		</menu>
 		<menu id="RcxRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">

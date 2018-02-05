@@ -1,4 +1,4 @@
-<?php
+https://formulieren.izegem.be/educatief-aanbod/<?php
 // Copyright (C) 2010-2014 Combodo SARL
 //
 //   This file is part of iTop.
@@ -25,14 +25,14 @@
  */
 
 Dict::Add('EN US', 'English', 'English', array(
-	'Menu:RequestManagement' => 'Helpdesk',
-	'Menu:RequestManagement+' => 'Helpdesk',
+	'Menu:RcxRequestManagement' => 'Recreatex',
+	'Menu:RcxRequestManagement+' => 'Recreatex',
 	'Menu:RequestManagementProvider' => 'Helpdesk provider',
 	'Menu:RequestManagementProvider+' => 'Helpdesk provider',
 	'Menu:RcxRequest:Provider' => 'Open request transfered to provider',
 	'Menu:RcxRequest:Provider+' => 'Open request transfered to provider',
-	'Menu:RcxRequest:Overview' => 'Overview',
-	'Menu:RcxRequest:Overview+' => 'Overview',
+	'Menu:RcxRequest:Overview' => 'Rcx Overview',
+	'Menu:RcxRequest:Overview+' => 'Rcx Overview',
 	'Menu:NewRcxRequest' => 'New Rcx Request',
 	'Menu:NewRcxRequest+' => 'Create a new rcx request ticket',
 	'Menu:SearchRcxRequests' => 'Search for rcx requests',
