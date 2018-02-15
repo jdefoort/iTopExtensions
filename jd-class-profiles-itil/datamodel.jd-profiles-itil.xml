@@ -65,6 +65,7 @@
 			  <action id="action:delete">allow</action>
               <action id="action:bulk delete">allow</action>
 			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
             </actions>
 		  </group>	
 		 

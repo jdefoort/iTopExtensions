@@ -1400,7 +1400,7 @@
 		<menu id="RcxRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>2</rank>
 			<parent>RcxRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT RcxRequest WHERE status NOT IN ("closed")]]></oql>
+			<oql><![CDATA[SELECT RcxRequest WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
 		</menu>
