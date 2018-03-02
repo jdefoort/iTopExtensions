@@ -9,6 +9,14 @@
           <class id="RcxRequest"/>
         </classes>
       </group>
+	  
+	  
+		<group id="KnownErrors" _delta="define">
+			<classes>
+			  <class id="FAQ"/>
+			  <class id="FAQCategory"/>
+			</classes>
+		</group>
 	 
     </groups>
     <profiles>
@@ -68,16 +76,7 @@
 			  <action id="stimulus:ev_resolve">allow</action>
             </actions>
 		  </group>	
-		 
-            <!-- <actions>
-			  <action xsi:type="read">allow</action>
-			  <action xsi:type="bulk read">allow</action>
-			  <action xsi:type="write">allow</action>
-			  <action xsi:type="bulk write">allow</action>
-			  <action xsi:type="delete">allow</action>
-			  <action xsi:type="bulk delete">allow</action>
-            </actions> -->
-          
+		           
 		  <group id="Ticketing">
             <actions>
               <action id="action:read">allow</action>
@@ -88,16 +87,18 @@
               <action id="action:bulk delete">allow</action>
             </actions>
           </group>
-         <!-- <group id="*">
+         
+		  <group id="KnownErrors">
             <actions>
-              <action id="action:read">deny</action>
-              <action id="action:bulk read">deny</action>
-			  <action id="action:write">deny</action>
-              <action id="action:bulk write">deny</action>
-			  <action id="action:delete">deny</action>
-              <action id="action:bulk delete">deny</action>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
             </actions>
-          </group> -->
+          </group>
+		  
         </groups>
       </profile>
     </profiles>

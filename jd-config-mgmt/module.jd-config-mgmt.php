@@ -5,28 +5,30 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-profiles-itil/',
+        'jd-config-mgmt/2.4.0',
         array(
                 // Identification
                 //
-                'label' => 'Profile: add Rcx user as profile',
-                'category' => 'business',
+                'label' => 'Dont show softwarecatalog or ci groups in menu',
+				'category' => 'business',
 
                 // Setup
                 //
                 'dependencies' => array(
                         'itop-config-mgmt/2.4.0',
-                        'itop-request-mgmt-itil/2.4.0',
-                        'itop-knownerror-mgmt/2.4.0',
-						'jd-rcxrequest-mgmt-itil/2.4.0'
+                        'itop-service-mgmt/2.4.0',
+                        // we are not using service-mgmt-provider, so we can't depend on it
+						// 'itop-service-mgmt-provider/2.4.0',
+                        'itop-change-mgmt-itil/2.4.0'
                 ),
+
                 'mandatory' => false,
                 'visible' => true,
 
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-profiles-itil.php'
+                        'model.jd-config-mgmt.php'
                 ),
                 'webservice' => array(
 
