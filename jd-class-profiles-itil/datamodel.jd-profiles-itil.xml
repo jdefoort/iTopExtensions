@@ -17,6 +17,13 @@
 			  <class id="FAQCategory"/>
 			</classes>
 		</group>
+		
+		<group id="PrecannedReplies" _delta="define">
+			<classes>
+			  <class id="PrecannedReply"/>
+			  <class id="PrecannedReplyCategory"/>
+			</classes>
+		</group>
 	 
     </groups>
     <profiles>
@@ -99,6 +106,16 @@
             </actions>
           </group>
 		  
+		  <group id="PrecannedReplies">
+			<actions>
+			<action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
         </groups>
       </profile>
     </profiles>
