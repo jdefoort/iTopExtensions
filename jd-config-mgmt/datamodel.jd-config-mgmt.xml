@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
   <menus>
-    <menu id="Software" xsi:type="OQLMenuNode" _delta="merge">
+    <menu id="ConfigManagement" xsi:type="MenuGroup" _delta="redefine">
+      <rank>20</rank>
+    </menu>
+    <menu id="Software" xsi:type="OQLMenuNode" _delta="delete">
       <rank>7</rank>
-	  <enable_admin_only>1</enable_admin_only>
       <parent>ConfigManagement</parent>
       <oql>SELECT Software</oql>
       <do_search>1</do_search>
     </menu>
-    <menu id="Group" xsi:type="OQLMenuNode" _delta="merge">
+    <menu id="Group" xsi:type="OQLMenuNode" _delta="delete">
       <rank>8</rank>
-	  <enable_admin_only>1</enable_admin_only>
       <parent>ConfigManagement</parent>
       <oql>SELECT Group</oql>
       <do_search>1</do_search>
     </menu>
- </menus>
+   </menus>
 </itop_design>
