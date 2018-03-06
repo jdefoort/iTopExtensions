@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+  <menus>
+    <menu id="ServiceManagement" xsi:type="MenuGroup" _delta="redefine">
+      <rank>60</rank>
+    </menu>
+    <menu id="SLT" xsi:type="OQLMenuNode" _delta="delete">
+      <rank>7</rank>
+      <parent>ServiceManagement</parent>
+      <oql>SELECT SLT</oql>
+      <do_search>1</do_search>
+    </menu>
+  </menus>
+</itop_design>
