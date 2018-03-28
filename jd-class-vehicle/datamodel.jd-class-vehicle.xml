@@ -105,10 +105,10 @@
           <display_style>list</display_style>
         </field>
 		 <field id="vehiclepicture" xsi:type="AttributeImage">
-          <display_max_width>700</display_max_width>
-          <display_max_height>700</display_max_height>
-          <storage_max_width>1024</storage_max_width>
-          <storage_max_height>1024</storage_max_height>
+          <display_max_width>460</display_max_width>
+          <display_max_height>460</display_max_height>
+          <storage_max_width>520</storage_max_width>
+          <storage_max_height>520</storage_max_height>
           <default_image>images/silhouette.png</default_image>
           <is_null_allowed>true</is_null_allowed>
         </field>
@@ -290,10 +290,6 @@
 			<item id="payload">
 			  <rank>159</rank>
 			</item>
-			<item id="vehiclepicture">
-			  <rank>161</rank>
-			</item>
-			</item>
           </items>
         </search>
         <list>
@@ -351,9 +347,6 @@
 			</item>
 			<item id="payload">
 			  <rank>159</rank>
-			</item>
-			<item id="vehiclepicture">
-			  <rank>161</rank>
 			</item>
           </items>
         </list>
