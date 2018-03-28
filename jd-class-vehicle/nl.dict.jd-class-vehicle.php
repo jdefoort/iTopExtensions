@@ -20,6 +20,22 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Vehicle/Attribute:energysource/Value:electrical' => 'elektrisch',
 	'Class:Vehicle/Attribute:energysource/Value:twostroke' => 'tweetakt',
 	
+	'Class:Vehicle/Attribute:driverslicense' => 'Rijbewijs',
+	'Class:Vehicle/Attribute:driverslicense+' => 'Welk rijbewijs is vereist om met dit voertuig te rijden',
+	'Class:Vehicle/Attribute:energysource/Value:diesel' => 'diesel',
+	'Class:Vehicle/Attribute:energysource/Value:euro95' => 'euro 95',
+	'Class:Vehicle/Attribute:energysource/Value:euro98' => 'euro 98',
+	'Class:Vehicle/Attribute:energysource/Value:CNG' => 'CNG',
+	'Class:Vehicle/Attribute:energysource/Value:LPG' => 'LPG',
+	'Class:Vehicle/Attribute:energysource/Value:electrical' => 'elektrisch',
+	'Class:Vehicle/Attribute:energysource/Value:twostroke' => 'tweetakt',
+	
+	'Class:Vehicle/Attribute:maintenanceplace' => 'Onderhoudsplaats',
+	'Class:Vehicle/Attribute:maintenanceplace+' => 'Naar welke garage gaat dit voertuig',
+	'Class:Vehicle/Attribute:payload' => 'Laadvermogen',
+	'Class:Vehicle/Attribute:payload+' => 'Wat is het laadvermogen van dit voertuig',
+	'Class:Vehicle/Attribute:vehiclepicture' => 'Afbeelding voertuig',
+	'Class:Vehicle/Attribute:vehiclepicture+' => 'Plaats hier een duidelijke foto van het voertuig',
 	
 	'Class:Vehicle/Attribute:licenseplate' => 'Nummerplaat',
 	'Class:Vehicle/Attribute:licenseplate+' => 'Wat is de nummerplaat',
