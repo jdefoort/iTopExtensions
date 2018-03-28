@@ -55,13 +55,14 @@
         </field>
 		<field id="driverslicense" xsi:type="AttributeEnum">
           <values>
-            <value>a</value>
-            <value>b</value>
-			<value>c</value>
-			<value>d</value>
-			<value>g</value>
-			<value>xxx</value>
-			<value>voor je ma</value>
+            <value>AM</value>
+            <value>B</value>
+			<value>B + E</value>
+			<value>C</value>
+			<value>C1</value>
+			<value>C + E</value>
+			<value>C1 + E</value>
+			<value>G</value>
           </values>
           <sql>driverslicense</sql>
           <default_value/>
