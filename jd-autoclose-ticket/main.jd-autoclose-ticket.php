@@ -30,55 +30,31 @@ class AutoCloseTicket implements iBackgroundProcess
 
 	public function Process($iTimeLimit)
 	{
-
-      		$aReport = array();
-		if (MetaModel::IsValidClass('UserRequest'))
-		{
-			// Get Resolved user request to be closed automatically according to request_closure_delay set for the customer
-			$iAutoCloseDelay = MetaModel::GetModuleSetting('combodo-autoclose-ticket', 'userrequest_autoclose_delay', '');
-			$oSetUserRequest = new DBObjectSet(DBObjectSearch::FromOQL("SELECT UserRequest AS u WHERE u.status = 'resolved' AND u.resolution_date <= DATE_SUB(NOW(), INTERVAL $iAutoCloseDelay DAY)"));
-			$oSetUserRequest->OptimizeColumnLoad(array()); // Optimize the query, we'll do a reload for each ticket to actually process but it's peanuts
-			while ((time() < $iTimeLimit) && $oToClose = $oSetUserRequest->Fetch())
+		
+		$ticketTypes = array('Incident', 'RcxRequest', 'UserRequest');
+		$aReport = array();
+		
+		foreach( $ticketTypes as $ticketType ) {
+			
+			if (MetaModel::IsValidClass( $ticketType ))
 			{
-				$oToClose->ApplyStimulus('ev_close');
-				//$oToEscalate->Set('tto_escalation_deadline', null);
-				$oToClose->DBUpdate();
-				$aReport['reached Auto close deadline'][] = $oToClose->Get('ref');
+				// Get Resolved user request to be closed automatically according to request_closure_delay set for the customer
+				$iAutoCloseDelay = MetaModel::GetModuleSetting('jd-autoclose-ticket', strtolower($ticketType).'_autoclose_delay', '');
+				$oSetTicket = new DBObjectSet(DBObjectSearch::FromOQL("SELECT ".$ticketType." AS t WHERE t.status = 'resolved' AND t.resolution_date <= DATE_SUB(NOW(), INTERVAL ".$iAutoCloseDelay." DAY)"));
+				$oSetTicket->OptimizeColumnLoad(array()); // Optimize the query, we'll do a reload for each ticket to actually process but it's peanuts
+				while ((time() < $iTimeLimit) && $oToClose = $oSetTicket->Fetch())
+				{
+					$oToClose->ApplyStimulus('ev_close');
+					//$oToEscalate->Set('tto_escalation_deadline', null);
+					$oToClose->DBUpdate();
+					$aReport['reached Auto close deadline'][] = $oToClose->Get('ref');
+				}
 			}
-		}
-
-		      		$aReport = array();
-					
-		if (MetaModel::IsValidClass('RcxRequest'))
-		{
-			// Get Resolved user request to be closed automatically according to request_closure_delay set for the customer
-			$iAutoCloseDelay = MetaModel::GetModuleSetting('combodo-autoclose-ticket', 'rcxrequest_autoclose_delay', '');
-			$oSetRcxRequest = new DBObjectSet(DBObjectSearch::FromOQL("SELECT RcxRequest AS u WHERE u.status = 'resolved' AND u.resolution_date <= DATE_SUB(NOW(), INTERVAL $iAutoCloseDelay DAY)"));
-			$oSetRcxRequest->OptimizeColumnLoad(array()); // Optimize the query, we'll do a reload for each ticket to actually process but it's peanuts
-			while ((time() < $iTimeLimit) && $oToClose = $oSetRcxRequest->Fetch())
-			{
-				$oToClose->ApplyStimulus('ev_close');
-				//$oToEscalate->Set('tto_escalation_deadline', null);
-				$oToClose->DBUpdate();
-				$aReport['reached Auto close deadline'][] = $oToClose->Get('ref');
-			}
+			
 		}
 		
-		if (MetaModel::IsValidClass('Incident'))
-		{
-			// Get Resolved incident to be closed automatically according to incident_closure_delay set for the customer
-			$iAutoCloseDelay = MetaModel::GetModuleSetting('combodo-autoclose-ticket', 'incident_autoclose_delay', '');
-			$oSetIncident = new DBObjectSet(DBObjectSearch::FromOQL("SELECT Incident AS i WHERE i.status = 'resolved' AND i.resolution_date <= DATE_SUB(NOW(), INTERVAL $iAutoCloseDelay DAY)"));
-			$oSetIncident->OptimizeColumnLoad(array()); // Optimize the query, we'll do a reload for each ticket to actually process but it's peanuts
-			while ((time() < $iTimeLimit) && $oToClose = $oSetIncident->Fetch())
-			{
-				$oToClose->ApplyStimulus('ev_close');
-				//$oToEscalate->Set('tto_escalation_deadline', null);
-				$oToClose->DBUpdate();
-				$aReport['reached Auto close deadline'][] = $oToClose->Get('ref');
-			}
-		}
-		
+	
+		// Report back
 
 		$aStringReport = array();
 		foreach ($aReport as $sOperation => $aTicketRefs)
