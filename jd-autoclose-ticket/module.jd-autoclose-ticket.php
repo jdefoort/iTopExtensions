@@ -16,7 +16,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-autoclose-ticket/1.0.1',
+	'jd-autoclose-ticket/2.4.180504',
 	array(
 		// Identification
 		//
