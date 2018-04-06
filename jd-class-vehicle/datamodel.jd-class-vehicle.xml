@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
 
+
   <classes>
+  
+	<!-- Adds vehicle as a model type. Will allow users to define lots of vehicle models. -->
     <class id="Model"> 
 	<fields>
         <field id="type" xsi:type="AttributeEnum">
@@ -12,6 +15,136 @@
 	</fields>
 	</class>
 	
+	
+	<!-- Adds a driver's license class. In the end, this could give easy access to an overview of all vehicles requiring a certain kind of license; as well as contacts -->
+	<!-- Based on the original 'Brand' class -->
+    <class id="VehicleDriversLicense" _delta="define">
+      <parent>Typology</parent>
+      <properties>
+        <category>bizmodel,searchable</category>
+        <abstract>false</abstract>
+        <key_type>autoincrement</key_type>
+        <db_table>vehicledriverslicense</db_table>
+        <db_key_field>id</db_key_field>
+        <db_final_class_field/>
+        <naming>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </naming>
+        <display_template/>
+        <icon/>
+        <reconciliation>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </reconciliation>
+      </properties>
+      <fields>
+        <field id="vehicles_list" xsi:type="AttributeLinkedSet">
+          <linked_class>Vehicle</linked_class>
+          <ext_key_to_me>vehicledriverslicense_id</ext_key_to_me>
+          <edit_mode>add_only</edit_mode>
+          <count_min>0</count_min>
+          <count_max>0</count_max>
+          <duplicates/>
+        </field>
+      </fields>
+      <methods/>
+      <presentation>
+        <details>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+            <item id="vehicles_list">
+              <rank>20</rank>
+            </item>
+          </items>
+        </details>
+        <search>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </list>
+      </presentation>
+    </class>
+	
+	<!-- Adds a driver's license class. In the end, this could give easy access to an overview of all vehicles requiring a certain kind of license. -->
+	<!-- Based on the original 'Brand' class -->
+    <class id="VehicleEnergySource" _delta="define">
+      <parent>Typology</parent>
+      <properties>
+        <category>bizmodel,searchable</category>
+        <abstract>false</abstract>
+        <key_type>autoincrement</key_type>
+        <db_table>vehicleenergysource</db_table>
+        <db_key_field>id</db_key_field>
+        <db_final_class_field/>
+        <naming>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </naming>
+        <display_template/>
+        <icon/>
+        <reconciliation>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </reconciliation>
+      </properties>
+      <fields>
+        <field id="vehicles_list" xsi:type="AttributeLinkedSet">
+          <linked_class>Vehicle</linked_class>
+          <ext_key_to_me>vehicleenergysource_id</ext_key_to_me>
+          <edit_mode>add_only</edit_mode>
+          <count_min>0</count_min>
+          <count_max>0</count_max>
+          <duplicates/>
+        </field>
+      </fields>
+      <methods/>
+      <presentation>
+        <details>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+            <item id="vehicles_list">
+              <rank>20</rank>
+            </item>
+          </items>
+        </details>
+        <search>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </list>
+      </presentation>
+    </class>
+	
+	
+	
+	<!-- Adds vehicle -->
     <class id="Vehicle" _delta="define">
       <parent>PhysicalDevice</parent>
       <properties>
@@ -38,37 +171,20 @@
         </reconciliation>
       </properties>
       <fields>
-        <field id="energysource" xsi:type="AttributeEnum">
-          <values>
-            <value>diesel</value>
-            <value>euro95</value>
-			<value>euro98</value>
-			<value>CNG</value>
-			<value>LPG</value>
-			<value>electrical</value>
-			<value>twostroke</value>
-          </values>
-          <sql>energysource</sql>
-          <default_value/>
+        <field id="vehicleenergysource_id" xsi:type="AttributeExternalKey">
+          <sql>vehicleenergysource_id</sql>
+          <target_class>VehicleEnergySource</target_class>
           <is_null_allowed>true</is_null_allowed>
-          <display_style>list</display_style>
+          <on_target_delete>DEL_MANUAL</on_target_delete>
         </field>
-		<field id="driverslicense" xsi:type="AttributeEnum">
-          <values>
-            <value>AM</value>
-            <value>B</value>
-			<value>B + E</value>
-			<value>C</value>
-			<value>C1</value>
-			<value>C + E</value>
-			<value>C1 + E</value>
-			<value>G</value>
-          </values>
-          <sql>driverslicense</sql>
-          <default_value/>
+		
+        <field id="vehicledriverslicense_id" xsi:type="AttributeExternalKey">
+          <sql>vehicledriverslicense_id</sql>
+          <target_class>VehicleDriversLicense</target_class>
           <is_null_allowed>true</is_null_allowed>
-          <display_style>list</display_style>
+          <on_target_delete>DEL_MANUAL</on_target_delete>
         </field>
+		
 		 <field id="licenseplate" xsi:type="AttributeString">
           <sql>licenseplate</sql>
           <default_value/>
@@ -157,10 +273,10 @@
 					<item id="model_id">
 					  <rank>70</rank>
 					</item>
-					<item id="driverslicense">
+					<item id="vehicledriverslicense_id">
 					  <rank>75</rank>
 					</item>
-					<item id="energysource">
+					<item id="vehicleenergysource_id">
 					  <rank>75</rank>
 					</item>
 					<item id="licenseplate">
@@ -258,7 +374,7 @@
             <item id="model_id">
               <rank>70</rank>
             </item>
-            <item id="energysource">
+            <item id="vehicleenergysource_id">
               <rank>75</rank>
             </item>
             <item id="licenseplate">
@@ -315,8 +431,8 @@
             </item>
             <item id="model_id">
               <rank>70</rank>
-            </item>
-            <item id="energysource">
+            </item> 
+            <item id="vehicledriverslicense_id">
               <rank>75</rank>
             </item>
             <item id="licenseplate">
@@ -324,6 +440,9 @@
             </item>
 			 <item id="chassisnumber">
               <rank>77</rank>
+            </item>
+            <item id="vehicleenergysource_id">
+              <rank>78</rank>
             </item>
             <item id="move2production">
               <rank>100</rank>
@@ -357,6 +476,29 @@
   
 	
 	
-  <profiles>
-  </profiles>
+  <profiles/>
+  
+  
+  <!-- Add typology --> 
+  <menus>
+    <menu id="Typology" xsi:type="DashboardMenuNode">
+      <definition>
+        <cells>
+          <cell id="0">
+            <dashlets> 
+              <dashlet id="901" xsi:type="DashletBadge" _delta="define">
+                <rank>902</rank>
+                <class>VehicleDriversLicense</class>
+              </dashlet>
+              <dashlet id="902" xsi:type="DashletBadge" _delta="define">
+                <rank>903</rank>
+                <class>VehicleEnergySource</class>
+              </dashlet>
+            </dashlets>
+          </cell>
+        </cells>
+      </definition>
+    </menu>
+  </menus>
+  
 </itop_design>

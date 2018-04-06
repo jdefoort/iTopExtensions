@@ -7,21 +7,31 @@
  */
 
 Dict::Add('EN US', 'English', 'English', array(
+
+
+	// Typology: Vehicle Driver's License
+	'Class:VehicleDriversLicense' => 'Driver\'s licenses',
+	'Class:VehicleDriversLicense+' => 'Types of driver\'s licenses',
+	'Class:VehicleDriversLicense/Attribute:name' => 'Type',
+	'Class:VehicleDriversLicense/Attribute:vehicles_list' => 'Vehicles',
+	'Class:VehicleDriversLicense/Attribute:vehicles_list+' => 'Overview of vehicles requiring this type of driver\'s license',
+	
+	// Typology: Vehicle Energy Source
+	'Class:VehicleEnergySource' => 'Energy sources',
+	'Class:VehicleEnergySource+' => 'Types of energy',
+	'Class:VehicleEnergySource/Attribute:name' => 'Type',
+	'Class:VehicleEnergySource/Attribute:vehicles_list' => 'Vehicles',
+	'Class:VehicleEnergySource/Attribute:vehicles_list+' => 'Overview of vehicles requiring this type of energy source',
+	
+	
 	// Dictionary entries go here
 	'Class:Vehicle' => 'Vehicle',
 	'Class:Vehicle+' => 'Vehicles such as cars and trucks',
-	'Class:Vehicle/Attribute:energysource' => 'Energy source',
-	'Class:Vehicle/Attribute:energysource+' => 'Fuel or energy source',
-	'Class:Vehicle/Attribute:energysource/Value:diesel' => 'Diesel',
-	'Class:Vehicle/Attribute:energysource/Value:euro95' => 'Euro 95',
-	'Class:Vehicle/Attribute:energysource/Value:euro98' => 'Euro 98',
-	'Class:Vehicle/Attribute:energysource/Value:CNG' => 'CNG',
-	'Class:Vehicle/Attribute:energysource/Value:LPG' => 'LPG',
-	'Class:Vehicle/Attribute:energysource/Value:electrical' => 'Electrical',
-	'Class:Vehicle/Attribute:energysource/Value:twostroke' => 'Two-stroke',
+	'Class:Vehicle/Attribute:vehicleenergysource_id' => 'Energy source',
+	'Class:Vehicle/Attribute:vehicleenergysource_id+' => 'Fuel or energy source',
 	
-	'Class:Vehicle/Attribute:driverslicense' => 'Driver\'s license',
-	'Class:Vehicle/Attribute:driverslicense+' => 'Required driver\'s license to operate this vehicle',
+	'Class:Vehicle/Attribute:vehicledriverslicense_id' => 'Driver\'s license',
+	'Class:Vehicle/Attribute:vehicledriverslicense_id+' => 'Required driver\'s license to operate this vehicle',
 
 	
 	'Class:Vehicle/Attribute:maintenanceplace' => 'Maintenance place',
