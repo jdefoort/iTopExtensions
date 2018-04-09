@@ -54,6 +54,10 @@ SetupWebPage::AddModule(
 		// Default settings
 		//
 		'settings' => array(
+		
+			// List of supported ticket types 
+			'ticket_types' => array('Incident', 'UserRequest', 'RcxRequest'), 
+			
 			// Module specific settings go here, if any
 			'incident_autoclose_delay' => '7',
 			'userrequest_autoclose_delay' => '7',

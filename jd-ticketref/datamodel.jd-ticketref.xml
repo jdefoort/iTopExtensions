@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<classes>
+		<class id="Ticket">	
+			<methods>
+				<method id="MakeTicketRef"> 
+					<code _delta="redefine"><![CDATA[
+        protected function MakeTicketRef($iNextId)
+        {
+                switch(get_class($this))
+                {
+                        case 'UserRequest':
+                        $sFormat = 'R-%06d';
+                        break;
+
+                        case 'Incident':
+                        $sFormat = 'I-%06d';
+                        break;
+
+                        case 'Change':
+                        case 'RoutineChange':
+                        case 'EmergencyChange':
+                        case 'NormalChange':
+                        $sFormat = 'C-%06d';
+                        break;
+
+                        case 'Problem':
+                        $sFormat = 'P-%06d';
+                        break; 
+						
+						case 'RcxRequest':
+						$sFormat = 'RCX-%06d';
+						break;
+						
+						
+                        default:
+                        $sFormat = 'T-%06d';
+                }
+                return sprintf($sFormat, $iNextId);
+        }
+        ]]></code>
+				</method>
+			</methods>
+		</class>
+	</classes>
+</itop_design>
