@@ -18,7 +18,7 @@
 	
 	<!-- Adds a tooltype class. In the end, this could give easy access to an overview of all tools with a specific person responsible for it -->
 	<!-- Based on the original 'Brand' class -->
-    <class id="Tooltype" _delta="define">
+    <class id="ToolType" _delta="define">
       <parent>Typology</parent>
       <properties>
         <category>bizmodel,searchable</category>
@@ -104,7 +104,7 @@
         </reconciliation>
       </properties>
       <fields>
-        <field id="vehicles_list" xsi:type="AttributeLinkedSet">
+        <field id="tools_list" xsi:type="AttributeLinkedSet">
           <linked_class>Tools</linked_class>
           <ext_key_to_me>purpose_id</ext_key_to_me>
           <edit_mode>add_only</edit_mode>
@@ -120,7 +120,7 @@
             <item id="name">
               <rank>10</rank>
             </item>
-            <item id="purpose_list">
+            <item id="tools_list">
               <rank>20</rank>
             </item>
           </items>
@@ -171,23 +171,17 @@
         </reconciliation>
       </properties>
       <fields>
-        <field id="intern_id" xsi:type="AttributeExternalKey">
-          <sql>intern_id</sql>
-          <target_class>InternalNumber</target_class>
-          <is_null_allowed>true</is_null_allowed>
-          <on_target_delete>DEL_MANUAL</on_target_delete>
-        </field>
-        <field id="tooltype_id" xsi:type="AttributeString">
+        <field id="tooltype_id" xsi:type="AttributeExternalKey">
           <sql>tooltype_id</sql>
           <target_class>ToolType</target_class>
           <is_null_allowed>true</is_null_allowed>
-		   <display_style>list</display_style>
-        </field>
-		 <field id="serialnumber" xsi:type="AttributeString">
-          <sql>serialnumber</sql>
-          <default_value/>
+		  <on_target_delete>DEL_MANUAL</on_target_delete>
+		</field>
+		<field id="purpose_id" xsi:type="AttributeExternalKey">
+          <sql>purpose_id</sql>
+          <target_class>Purpose</target_class>
           <is_null_allowed>true</is_null_allowed>
-          <display_style>list</display_style>
+  		  <on_target_delete>DEL_MANUAL</on_target_delete>
         </field>
 		<field id="buildyear" xsi:type="AttributeString">
           <sql>buildyear</sql>
@@ -195,19 +189,19 @@
           <is_null_allowed>true</is_null_allowed>
           <display_style>list</display_style>
         </field>
-		<field id="purpose" xsi:type="AttributeString">
-          <sql>purpose</sql>
-          <default_value/>
-          <is_null_allowed>true</is_null_allowed>
-          <display_style>list</display_style>
-        </field>
-		<field id="responsible" xsi:type="AttributeString">
-          <sql>responsible</sql>
-          <default_value/>
-          <is_null_allowed>true</is_null_allowed>
-          <display_style>list</display_style>
-        </field>
-      </fields>
+		<field id="intern_id" xsi:type="AttributeString">
+          <sql>intern_id</sql>
+		<default_value/>
+		<is_null_allowed>true</is_null_allowed>
+		<display_style>list</display_style>
+		</field>
+		<field id="contact_id" xsi:type="AttributeExternalKey">
+					<sql>contact_id</sql>
+					<target_class>Contact</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+		</field>
+	  </fields>
       <methods/>
       <presentation>
         <details>
@@ -247,13 +241,13 @@
 					<item id="model_id">
 					  <rank>70</rank>
 					</item>
-					<item id="tooltype">
+					<item id="tooltype_id">
 					  <rank>75</rank>
 					</item>
 					<item id="serialnumber">
 					  <rank>76</rank>
 					</item>
-					<item id="purpose">
+					<item id="purpose_id">
 					  <rank>77</rank>
 					</item>
 					</items>
@@ -283,7 +277,7 @@
 				<item id="fieldset:Server:otherinfo">
 					<rank>20</rank>
 					<items>
-						<item id="responsible">
+						<item id="contact_id">
 						  <rank>158</rank>
 						</item>
 						<item id="description">
@@ -327,21 +321,24 @@
             <item id="location_id">
               <rank>50</rank>
             </item>
+			<item id="intern_id">
+			  <rank>51</rank>
+			</item>
             <item id="brand_id">
               <rank>60</rank>
             </item>
             <item id="model_id">
               <rank>70</rank>
             </item>
-            <item id="vehicleenergysource_id">
+            <item id="tooltype_id">
               <rank>75</rank>
             </item>
-            <item id="licenseplate">
-              <rank>76</rank>
-            </item>
-			 <item id="chassisnumber">
-              <rank>77</rank>
-            </item>
+            <item id="serialnumber">
+		      <rank>76</rank>
+			</item>
+			<item id="purpose_id">
+			  <rank>77</rank>
+			</item>
             <item id="move2production">
               <rank>100</rank>
             </item>
@@ -351,26 +348,14 @@
             <item id="end_of_warranty">
               <rank>120</rank>
             </item>
-			<item id="nextmaintenance">
-              <rank>121</rank>
-            </item>
-			<item id="nextinspection">
-              <rank>122</rank>
-            </item>
-			<item id="insuredtill">
-              <rank>123</rank>
-            </item>
-			<item id="maintenanceplace">
-			  <rank>158</rank>
-			</item>
-			<item id="payload">
-			  <rank>159</rank>
+			<item id="buildyear">
+			 <rank>121</rank>
 			</item>
           </items>
         </search>
         <list>
           <items>
-             <item id="name">
+            <item id="name">
               <rank>10</rank>
             </item>
             <item id="org_id">
@@ -385,24 +370,24 @@
             <item id="location_id">
               <rank>50</rank>
             </item>
+			<item id="intern_id">
+			  <rank>51</rank>
+			</item>
             <item id="brand_id">
               <rank>60</rank>
             </item>
             <item id="model_id">
               <rank>70</rank>
-            </item> 
-            <item id="vehicledriverslicense_id">
+            </item>
+            <item id="tooltype_id">
               <rank>75</rank>
             </item>
-            <item id="licenseplate">
-              <rank>76</rank>
-            </item>
-			 <item id="chassisnumber">
-              <rank>77</rank>
-            </item>
-            <item id="vehicleenergysource_id">
-              <rank>78</rank>
-            </item>
+            <item id="serialnumber">
+		      <rank>76</rank>
+			</item>
+			<item id="purpose_id">
+			  <rank>77</rank>
+			</item>
             <item id="move2production">
               <rank>100</rank>
             </item>
@@ -412,20 +397,8 @@
             <item id="end_of_warranty">
               <rank>120</rank>
             </item>
-			<item id="nextmaintenance">
-              <rank>121</rank>
-            </item>
-			<item id="nextinspection">
-              <rank>122</rank>
-            </item>
-			<item id="insuredtill">
-              <rank>123</rank>
-            </item>
-			<item id="maintenanceplace">
-			  <rank>158</rank>
-			</item>
-			<item id="payload">
-			  <rank>159</rank>
+			<item id="buildyear">
+			 <rank>121</rank>
 			</item>
           </items>
         </list>
@@ -438,19 +411,19 @@
   <profiles/>
   
   
-  <!-- Add typology --> 
+  <!-- Add typology   --> 
   <menus>
     <menu id="Typology" xsi:type="DashboardMenuNode">
       <definition>
         <cells>
           <cell id="0">
             <dashlets> 
-              <dashlet id="901" xsi:type="DashletBadge" _delta="define">
-                <rank>902</rank>
-                <class>Tooltype</class>
+              <dashlet id="904" xsi:type="DashletBadge" _delta="define">
+                <rank>904</rank>
+                <class>ToolType</class>
               </dashlet>
-              <dashlet id="902" xsi:type="DashletBadge" _delta="define">
-                <rank>903</rank>
+              <dashlet id="905" xsi:type="DashletBadge" _delta="define">
+                <rank>905</rank>
                 <class>Purpose</class>
               </dashlet>
             </dashlets>
@@ -459,5 +432,5 @@
       </definition>
     </menu>
   </menus>
-  
+
 </itop_design>
