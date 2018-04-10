@@ -9,51 +9,36 @@
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 
 
-	// Typology: Vehicle Driver's License
-	'Class:VehicleDriversLicense' => 'Rijbewijzen',
-	'Class:VehicleDriversLicense+' => 'Soorten rijbewijzen',
-	'Class:VehicleDriversLicense/Attribute:name' => 'Type',
-	'Class:VehicleDriversLicense/vehicles_list' => 'Voertuigen',
-	'Class:VehicleDriversLicense/Attribute:vehicles_list+' => 'Overzicht van de voertuigen waarvoor dit rijbewijs nodig is',
+	// Typology: ToolType
+	'Class:ToolType' => 'Type gereedschap',
+	'Class:ToolType+' => 'Welke soort van gereedschap is dit',
+	'Class:ToolType/Attribute:name' => 'Type machine',
+	'Class:ToolType/Attribute:tools_list' => 'Gereedschap per type',
+	'Class:ToolType/Attribute:tools_list+' => 'Overzicht van alle gereedschap per type',
 	
-	// Typology: Vehicle Energy Source
-	'Class:VehicleEnergySource' => 'Energiebronnen',
-	'Class:VehicleEnergySource+' => 'Soorten energie',
-	'Class:VehicleEnergySource/Attribute:name' => 'Type',
-	'Class:VehicleEnergySource/Attribute:vehicles_list' => 'Voertuigen',
-	'Class:VehicleEnergySource/Attribute:vehicles_list+' => 'Overzicht van de voertuigen die deze energiebron gebruiken',
+	// Typology: Purpose
+	'Class:Purpose' => 'Standplaats / Taak',
+	'Class:Purpose+' => 'Waar of door wie wordt dit gereedschap meestal gebruikt',
+	'Class:Purpose/Attribute:name' => 'Standplaats / Taak',
+	'Class:Purpose/Attribute:tools_list' => 'Gereedschap per standplaats / taak',
+	'Class:Purpose/Attribute:tools_list+' => 'Overzicht van alle gereedschap per standplaats / taak',
 	
-
-
+	
 	// Dictionary entries go here
-	'Class:Vehicle' => 'Voertuig',
-	'Class:Vehicle+' => 'Voertuigen zoals auto\'s of vrachtwagens',
+	'Class:Tools' => 'Gereedschap',
+	'Class:Tools+' => 'Gereedschap zoals boormachines en elektrisch gereedschap',
+	'Class:Tools/Attribute:tooltype_id' => 'Type arbeidsmiddel',
+	'Class:Tools/Attribute:tooltype_id+' => 'Welk type gereedschap is dit',
 	
-	'Class:Vehicle/Attribute:vehicleenergysource_id' => 'Energiebron',
-	'Class:Vehicle/Attribute:vehicleenergysource_id+' => 'Wat wordt gebruikt om het voertuig aan te drijven',
+	'Class:Tools/Attribute:purpose_id' => 'Standplaats / Taak',
+	'Class:Tools/Attribute:purpose_id+' => 'Wat is de standaard standplaats / taak van dit gereedschap',
 
-	
-	'Class:Vehicle/Attribute:vehicledriverslicense_id' => 'Rijbewijs',
-	'Class:Vehicle/Attribute:vehicledriverslicense_id+' => 'Welk rijbewijs is vereist om met dit voertuig te rijden',
-	
-	'Class:Vehicle/Attribute:maintenanceplace' => 'Onderhoudsplaats',
-	'Class:Vehicle/Attribute:maintenanceplace+' => 'Naar welke garage gaat dit voertuig',
-	'Class:Vehicle/Attribute:payload' => 'Laadvermogen',
-	'Class:Vehicle/Attribute:payload+' => 'Wat is het laadvermogen van dit voertuig',
-	'Class:Vehicle/Attribute:vehiclepicture' => 'Afbeelding voertuig',
-	'Class:Vehicle/Attribute:vehiclepicture+' => 'Plaats hier een duidelijke foto van het voertuig',
-	
-	'Class:Vehicle/Attribute:licenseplate' => 'Nummerplaat',
-	'Class:Vehicle/Attribute:licenseplate+' => 'Wat is de nummerplaat',
-	'Class:Vehicle/Attribute:chassisnumber' => 'Chassisnummer',
-	'Class:Vehicle/Attribute:chassisnumber+' => 'Wat is het chassisnummer van het voertuig',
-	
-	'Class:Vehicle/Attribute:nextmaintenance' => 'Volgend gepland onderhoud',
-	'Class:Vehicle/Attribute:nextmaintenance+' => 'Wanneer is het volgend gepland onderhoud',
-	'Class:Vehicle/Attribute:nextinspection' => 'Volgende keuring',
-	'Class:Vehicle/Attribute:nextinspection+' => 'Wanneer moet het voertuig nog eens naar de keuring',
-	'Class:Vehicle/Attribute:insuredtill' => 'Verzekering is geldig tot',
-	'Class:Vehicle/Attribute:insuredtill+' => 'Tot wanneer loopt de verzekering op dit voertuig',
+	'Class:Tools/Attribute:buildyear' => 'Bouwjaar',
+	'Class:Tools/Attribute:buildyear+' => 'Uit welk jaar komt dit gereedschap',
+	'Class:Tools/Attribute:intern_id' => 'Intern volgnummer',
+	'Class:Tools/Attribute:intern_id+' => 'Wat is het interne volgnummer',
+	'Class:Tools/Attribute:contact_id' => 'Verantwoordelijke',
+	'Class:Tools/Attribute:contact_id+' => 'Wie is verantwoordelijk voor dit gereedschap',
 
 ));
 
