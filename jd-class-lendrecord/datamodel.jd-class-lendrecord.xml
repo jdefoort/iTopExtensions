@@ -16,7 +16,7 @@
 		
 		<naming>
 			<attributes>
-				<attribute id="ref"/>
+				<attribute id="name"/>
 			</attributes>
 		</naming>
  
@@ -24,7 +24,7 @@
         <icon>images/lendrecord.png</icon>
         <reconciliation>
           <attributes>
-            <attribute id="ref"/>
+            <attribute id="name"/>
             <attribute id="id"/>
             <attribute id="org_id"/>
             <attribute id="organization_name"/>
@@ -34,25 +34,13 @@
 	  
 	  
       <fields>
-		
 		<field id="org_id" xsi:type="AttributeExternalKey">
 			<sql>org_id</sql>
 			<target_class>Organization</target_class>
 			<is_null_allowed>false</is_null_allowed>
 			<on_target_delete>DEL_AUTO</on_target_delete>
-		</field>
-		<field id="org_name" xsi:type="AttributeExternalField">
-			<extkey_attcode>org_id</extkey_attcode>
-			<target_attcode>name</target_attcode>
-		</field>
-		
-		<field id="ref" xsi:type="AttributeString">
-			<sql>ref</sql>
-			<default_value/>
-			<is_null_allowed>true</is_null_allowed>
-			<read_only>true</read_only>
-		</field>
-		
+		</field>	
+				
 		<field id="team_id" xsi:type="AttributeExternalKey">
 			<filter><![CDATA[SELECT Team ]]></filter>
 			<sql>team_id</sql>
@@ -64,27 +52,7 @@
 			<extkey_attcode>team_id</extkey_attcode>
 			<target_attcode>email</target_attcode>
 		</field>
-		
-		
-		<field id="agent_id" xsi:type="AttributeExternalKey">
-			<!-- Filter optional. -->
-			<filter><![CDATA[SELECT Person AS p JOIN lnkPersonToTeam AS l ON l.person_id=p.id JOIN Team AS t ON l.team_id=t.id WHERE t.id = :this->team_id]]></filter>
-			<sql>agent_id</sql>
-			<dependencies>
-				<attribute id="team_id"/>
-			</dependencies>
-			<target_class>Person</target_class>
-			<is_null_allowed>true</is_null_allowed>
-			<on_target_delete>DEL_AUTO</on_target_delete>
-			<allow_target_creation>false</allow_target_creation>
-		</field>
-		<field id="agent_name" xsi:type="AttributeExternalField">
-			<extkey_attcode>agent_id</extkey_attcode>
-			<target_attcode>name</target_attcode>
-		</field>
-		 
-		
-	  
+  
         <field id="date_in" xsi:type="AttributeDate">
           <sql>date_in</sql>
 		  <is_null_allowed>false</is_null_allowed>  
@@ -111,9 +79,21 @@
 		  <default_value/>
           <is_null_allowed>true</is_null_allowed> 
         </field>
-		 
 		
+		<field id="intern_id" xsi:type="AttributeString">
+          <sql>intern_id</sql>
+		<default_value/>
+		<is_null_allowed>true</is_null_allowed>
+		<display_style>list</display_style>
+		</field>
 		
+		<field id="contact_id" xsi:type="AttributeExternalKey">
+					<sql>contact_id</sql>
+					<target_class>Contact</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+		</field>
+			
       </fields> 
       <presentation>
         <details>
@@ -161,25 +141,25 @@
         </details>
         <search>
           <items>
+		    <item id="intern_id">
+              <rank>5</rank>
+            </item>
             <item id="org_id">
               <rank>10</rank>
             </item>
-            <item id="agent_id">
+            <item id="contact_id">
               <rank>20</rank>
             </item>
-            <item id="start">
-              <rank>30</rank>
-            </item>
-            <item id="end">
+            <item id="date_out">
               <rank>40</rank>
             </item>
-            <item id="type">
+            <item id="date_in">
               <rank>50</rank>
             </item>
-            <!-- <item id="description"> -->
-              <!-- <rank>60</rank> -->
-            <!-- </item> -->
-            <item id="ref">
+            <item id="reason">
+              <rank>60</rank>
+            </item>
+            <item id="remarks">
               <rank>70</rank>
             </item>
              
@@ -187,29 +167,25 @@
         </search>
         <list>
           <items>
-
-			<item id="org_id">
+			<item id="intern_id">
+              <rank>5</rank>
+            </item>
+            <item id="org_id">
               <rank>10</rank>
             </item>
-            <item id="team_id">
+            <item id="contact_id">
               <rank>20</rank>
             </item>
-            <item id="agent_id">
-              <rank>30</rank>
-            </item>
-            <item id="start">
+            <item id="date_out">
               <rank>40</rank>
             </item>
-            <item id="end">
+            <item id="date_in">
               <rank>50</rank>
             </item>
-            <item id="type">
+            <item id="reason">
               <rank>60</rank>
             </item>
-            <!-- <item id="description"> -->
-              <!-- <rank>60</rank> -->
-            <!-- </item> -->
-            <item id="ref">
+            <item id="remarks">
               <rank>70</rank>
             </item>
 			
@@ -217,61 +193,24 @@
         </list>
       </presentation>
 	  
-	  		<methods>
-				<method id="DBInsertNoReload">
-					<static>false</static>
-					<access>public</access>
-					<type>Overload-DBObject</type>
-					<code><![CDATA[
-    public function DBInsertNoReload()
-    {
-          $oMutex = new iTopMutex('Intervention_insert');
-          $oMutex->Lock();
-          $iNextId = MetaModel::GetNextKey(get_class($this));
-          $sRef = $this->MakeRef($iNextId);
-          $this->Set('ref', $sRef );
-          $iKey = parent::DBInsertNoReload();
-          $oMutex->Unlock();
-          return $iKey;
-    }
-        ]]></code>
-				</method>
-				<method id="MakeRef">
-					<static>false</static>
-					<access>protected</access>
-					<type>Overload-DBObject</type>
-					<code><![CDATA[
-        protected function MakeRef($iNextId)
-        {
-				// Leaving this in the data model, could easily be extended
-                switch(get_class($this))
-                {   
-					default:
-						$sFormat = '-%06d';
-                }
-                return sprintf($sFormat, $iNextId);
-        }
-        ]]></code>
-				</method>
-			</methods>
+			<methods/>
 			
 			
     </class>
   </classes>
   
-	<!-- Adds a link to the Helpdesk Overview -->
+	<!-- Adds a link to the ConfigManagement Overview -->
 	<menus>
 	 
-	  
-		<menu id="NewIntervention" xsi:type="NewObjectMenuNode" _delta="define">
+		<menu id="NewLendRecord" xsi:type="NewObjectMenuNode" _delta="define">
 			<rank>901</rank>
-			<parent>RequestManagement</parent>
-			<class>Intervention</class>
+			<parent>ConfigManagement</parent>
+			<class>LendRecord</class>
 		</menu>
-		<menu id="SearchInterventions" xsi:type="SearchMenuNode" _delta="define">
+		<menu id="SearchLendRecord" xsi:type="SearchMenuNode" _delta="define">
 			<rank>902</rank>
-			<parent>RequestManagement</parent>
-			<class>Intervention</class> 
+			<parent>ConfigManagement</parent>
+			<class>LendRecord</class> 
 		</menu> 
 	</menus>
 	
