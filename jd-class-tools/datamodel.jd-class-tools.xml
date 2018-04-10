@@ -201,6 +201,12 @@
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
 		</field>
+		<field id="team_id" xsi:type="AttributeExternalKey">
+					<sql>team_id</sql>
+					<target_class>Team</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+		</field>
 	  </fields>
       <methods/>
       <presentation>
@@ -277,6 +283,9 @@
 				<item id="fieldset:Server:otherinfo">
 					<rank>20</rank>
 					<items>
+						<item id="team_id">
+						  <rank>157</rank>
+						</item>
 						<item id="contact_id">
 						  <rank>158</rank>
 						</item>

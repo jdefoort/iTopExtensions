@@ -40,6 +40,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Tools/Attribute:intern_id+' => 'What is the following number we use in our organisation',
 	'Class:Tools/Attribute:contact_id' => 'Responsible person',
 	'Class:Tools/Attribute:contact_id+' => 'Who is responsible for this tool',
+	'Class:Tools/Attributes:team_id' => 'Team',
+	'Class:Tools/Attributes:team_id+' => 'Which team is responsible',
 
 ));
 
