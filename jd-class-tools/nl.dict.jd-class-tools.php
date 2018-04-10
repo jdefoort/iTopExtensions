@@ -39,8 +39,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Tools/Attribute:intern_id+' => 'Wat is het interne volgnummer',
 	'Class:Tools/Attribute:contact_id' => 'Verantwoordelijke',
 	'Class:Tools/Attribute:contact_id+' => 'Wie is verantwoordelijk voor dit gereedschap',
-	'Class:Tools/Attributes:team_id' => 'Dienst',
-	'Class:Tools/Attributes:team_id+' => 'Welke dienst is hiervoor verantwoordelijk',
+	'Class:Tools/Attribute:team_id' => 'Dienst',
+	'Class:Tools/Attribute:team_id+' => 'Welke dienst is hiervoor verantwoordelijk',
 
 ));
 
