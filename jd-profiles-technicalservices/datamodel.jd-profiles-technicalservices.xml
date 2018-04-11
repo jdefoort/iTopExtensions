@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+  <classes/>
+  <user_rights>
+    <groups>
+	 
+		<group id="ConfigManagement" _delta="define">
+			<classes>
+			  <class id="NewLendRecord"/>
+			  <class id="SearchLendRecord"/>
+			</classes>
+		</group>
+		
+	 
+    </groups>
+    <profiles>
+	  <profile id="101" _delta="define">
+        <name>TechnicalServices User</name>
+        <description>Person in charge of Technical services, uses stockmanagement and can add tools and vehicles</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+          <group id="Documentation">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+         
+		   <group id="ConfigManagement">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		  
+        </groups>
+      </profile>
+    </profiles>
+  </user_rights>
+</itop_design>

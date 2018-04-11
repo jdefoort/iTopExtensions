@@ -38,12 +38,12 @@
 			<on_target_delete>DEL_AUTO</on_target_delete>
 		</field>
 		
-        <field id="date_in" xsi:type="AttributeDate">
+        <field id="date_in" xsi:type="AttributeDateTime">
           <sql>date_in</sql>
 		  <is_null_allowed>true</is_null_allowed>  
         </field>
 		
-        <field id="date_out" xsi:type="AttributeDate">
+        <field id="date_out" xsi:type="AttributeDateTime">
           <sql>date_out</sql>
 		  <is_null_allowed>false</is_null_allowed>  
         </field>

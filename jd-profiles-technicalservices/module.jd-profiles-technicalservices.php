@@ -5,31 +5,27 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-menuhide-itil/2.4.0',
+        'jd-profiles-technicalservices/',
         array(
                 // Identification
                 //
-                'label' => 'Menuhide: Don\'t show the left menu-items which aren\'t modifiable for that user-profile',
+                'label' => 'Profile: add Technical Services user, this will only allow access to the tools/vehicles and lendrecord extension',
                 'category' => 'business',
 
                 // Setup
                 //
                 'dependencies' => array(
                         'itop-config-mgmt/2.4.0',
-                        'itop-service-mgmt/2.4.0',
-                        // we are not using service-mgmt-provider, so we can't depend on it
-						// 'itop-service-mgmt-provider/2.4.0',
-                        'itop-change-mgmt-itil/2.4.0',
-						'jd-rcxrequest-mgmt-itil/2.4.0'
+                        'itop-request-mgmt-itil/2.4.0',
+                        'itop-knownerror-mgmt/2.4.0',
                 ),
-
                 'mandatory' => false,
                 'visible' => true,
 
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-menuhide-itil.php'
+                        'model.jd-profiles-technicalservices.php'
                 ),
                 'webservice' => array(
 

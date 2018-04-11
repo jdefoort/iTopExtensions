@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-profiles-technicalservices</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Profile: Technicalservices]]></label>
+	<description><![CDATA[Profile: add Technical Services user, this will only allow access to the tools/vehicles and lendrecord extension]]></description>
+	<version>2.4.180309</version>
+	<release_date>2018-04-11</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.4.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>
