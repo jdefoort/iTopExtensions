@@ -18,6 +18,8 @@
         <name>TechnicalServices User</name>
         <description>Person in charge of Technical services, uses stockmanagement and can add tools and vehicles</description>
         <groups>
+		
+		<!-- you can not delete general, since otherwise you can't login --> 
           <group id="General">
             <actions>
 			  <action id="action:read">allow</action>
@@ -49,7 +51,7 @@
               <action id="action:bulk delete">allow</action>
             </actions>
           </group>
-		  
+		 
         </groups>
       </profile>
     </profiles>
