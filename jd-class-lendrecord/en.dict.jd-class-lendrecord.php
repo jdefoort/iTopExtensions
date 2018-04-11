@@ -8,48 +8,32 @@
 
 Dict::Add('EN US', 'English', 'English', array(
 	// Dictionary entries go here
-	'Class:Intervention' => 'Intervention',
-	'Class:Intervention+' => 'Logs an intervention.',
+	'Class:LendRecord' => 'Lend record',
+	'Class:LendRecord+' => 'Logs a new item that has been lent.',
 	
 	
-	'Class:Intervention/Attribute:ref' => 'Reference',
-	'Class:Intervention/Attribute:ref+' => 'The reference for this intervention',
+	'Class:LendRecord/Attribute:physicaldevice_id' => 'Name of tool/vehicle',
+	'Class:LendRecord/Attribute:physicaldevice_id+' => 'What is the name of the tool/vehicle you want to lend out',
 	
-	'Class:Intervention/Attribute:team_id' => 'Team ID',
-	'Class:Intervention/Attribute:team_id+' => 'The team who did the intervention',
-	'Class:Intervention/Attribute:team_name' => 'Team name',
-	'Class:Intervention/Attribute:team_name+' => 'The team who did the intervention',
+	'Class:LendRecord/Attribute:org_id' => 'Organisation',
+	'Class:LendRecord/Attribute:org_id+' => 'Which organisation',
+	'Class:LendRecord/Attribute:contact_id' => 'Who/Which team',
+	'Class:LendRecord/Attribute:contact_id+' => 'Who is using this tool/vehicle',
 	
-	'Class:Intervention/Attribute:agent_id' => 'Agent ID',
-	'Class:Intervention/Attribute:agent_id+' => 'The agent who did the intervention',
-	'Class:Intervention/Attribute:agent_name' => 'Agent name',
-	'Class:Intervention/Attribute:agent_name+' => 'The agent who did the intervention',
+	'Class:LendRecord/Attribute:date_out' => 'Date out',
+	'Class:LendRecord/Attribute:date_out+' => 'When does this item leave our stock',
+	'Class:LendRecord/Attribute:date_in' => 'Date in',
+	'Class:LendRecord/Attribute:date_in+' => 'When does this item return to our stock',
+		
+	'Class:LendRecord/Attribute:reason' => 'Reason',
+	'Class:LendRecord/Attribute:reason+' => 'Why is this item being lent',
+	'Class:LendRecord/Attribute:remarks' => 'Remarks',
+	'Class:LendRecord/Attribute:remarks+' => 'Did something get damaged, has something happened,...',
 	
-	
-	
-	'Class:Intervention/Attribute:org_id' => 'Client organization ID',
-	'Class:Intervention/Attribute:org_id+' => 'The organization for which you did the intervention',
-	'Class:Intervention/Attribute:org_name' => 'Client organization ID',
-	'Class:Intervention/Attribute:org_name+' => 'The organization for which you did the intervention',
-	
-	
-	'Class:Intervention/Attribute:start' => 'Start time',
-	'Class:Intervention/Attribute:start+' => 'The intervention started at ...',
-	
-	'Class:Intervention/Attribute:end' => 'End time',
-	'Class:Intervention/Attribute:end+' => 'The intervention ended at ...',
-	
-	'Class:Intervention/Attribute:type' => 'Type',
-	'Class:Intervention/Attribute:type/Value:on_site' => 'On-site',
-	'Class:Intervention/Attribute:type/Value:remote' => 'Remote', 
-	  
-	'Class:Intervention/Attribute:description' => 'Description',
-	'Class:Intervention/Attribute:description+' => 'Description of the intervention',
-	
-	'Menu:SearchInterventions' => 'Search for interventions',
-	'Menu:SearchInterventions+' => 'Search for interventions',
-	'Menu:NewIntervention' => 'New intervention',
-	'Menu:NewIntervention+' => 'Create a new intervention',
+	'Menu:SearchLendRecord' => 'Search for lend records',
+	'Menu:SearchLendRecord+' => 'Search for items being lent out',
+	'Menu:NewLendRecord' => 'New lend record',
+	'Menu:NewLendRecord+' => 'Log an item being lent out',
 ));
 
  

@@ -8,49 +8,34 @@
 
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// Dictionary entries go here
-	'Class:Intervention' => 'Intervention',
-	'Class:Intervention+' => 'Logs an intervention.',
+	'Class:LendRecord' => 'Item uitlenen',
+	'Class:LendRecord+' => 'Registreer een nieuwe uitlening van een item',
 	
 	
-	'Class:Intervention/Attribute:ref' => 'Reference',
-	'Class:Intervention/Attribute:ref+' => 'The reference for this intervention',
+	'Class:LendRecord/Attribute:physicaldevice_id' => 'Naam van het item',
+	'Class:LendRecord/Attribute:physicaldevice_id+' => 'Wat is de naam van het gereedschap/voertuig dat uitgeleend wordt',
 	
-	'Class:Intervention/Attribute:team_id' => 'Team ID',
-	'Class:Intervention/Attribute:team_id+' => 'The team who did the intervention',
-	'Class:Intervention/Attribute:team_name' => 'Team name',
-	'Class:Intervention/Attribute:team_name+' => 'The team who did the intervention',
+	'Class:LendRecord/Attribute:org_id' => 'Organisatie',
+	'Class:LendRecord/Attribute:org_id+' => 'Welke organisatie',
+	'Class:LendRecord/Attribute:contact_id' => 'Persoon / Groep',
+	'Class:LendRecord/Attribute:contact_id+' => 'Welke persoon of groep leent het item uit',
 	
-	'Class:Intervention/Attribute:agent_id' => 'Agent ID',
-	'Class:Intervention/Attribute:agent_id+' => 'The agent who did the intervention',
-	'Class:Intervention/Attribute:agent_name' => 'Agent name',
-	'Class:Intervention/Attribute:agent_name+' => 'The agent who did the intervention',
+	'Class:LendRecord/Attribute:date_out' => 'Datum uit',
+	'Class:LendRecord/Attribute:date_out+' => 'Vanaf wanneer wordt het item uitgeleend',
+	'Class:LendRecord/Attribute:date_in' => 'Datum in',
+	'Class:LendRecord/Attribute:date_in+' => 'Wanneer keert het item terug',
+		
+	'Class:LendRecord/Attribute:reason' => 'Reden',
+	'Class:LendRecord/Attribute:reason+' => 'Waarom wordt dit uitgeleend',
+	'Class:LendRecord/Attribute:remarks' => 'Opmerkingen',
+	'Class:LendRecord/Attribute:remarks+' => 'Is er iets beschadigd, is er iets kapot,...',
 	
-	
-	
-	'Class:Intervention/Attribute:org_id' => 'Client organization ID',
-	'Class:Intervention/Attribute:org_id+' => 'The organization for which you did the intervention',
-	'Class:Intervention/Attribute:org_name' => 'Client organization ID',
-	'Class:Intervention/Attribute:org_name+' => 'The organization for which you did the intervention',
-	
-	
-	'Class:Intervention/Attribute:start' => 'Start time',
-	'Class:Intervention/Attribute:start+' => 'The intervention started at ...',
-	
-	'Class:Intervention/Attribute:end' => 'End time',
-	'Class:Intervention/Attribute:end+' => 'The intervention ended at ...',
-	
-	'Class:Intervention/Attribute:type' => 'Type',
-	'Class:Intervention/Attribute:type/Value:on_site' => 'On-site',
-	'Class:Intervention/Attribute:type/Value:remote' => 'Remote', 
-	  
-	'Class:Intervention/Attribute:description' => 'Description',
-	'Class:Intervention/Attribute:description+' => 'Description of the intervention',
-	
-	'Menu:SearchInterventions' => 'Search for interventions',
-	'Menu:SearchInterventions+' => 'Search for interventions',
-	'Menu:NewIntervention' => 'New intervention',
-	'Menu:NewIntervention+' => 'Create a new intervention',
+	'Menu:SearchLendRecord' => 'Zoek uitgeleende items',
+	'Menu:SearchLendRecord+' => 'Zoek in de geschiedenis naar uitgeleende voertuigen/gereedschappen',
+	'Menu:NewLendRecord' => 'Nieuwe uitlening',
+	'Menu:NewLendRecord+' => 'Registreer dat er een item uitgeleend wordt',
 ));
+
 
  
 
