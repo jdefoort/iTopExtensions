@@ -3,11 +3,24 @@
   <classes/>
   <user_rights>
     <groups>
-	 
+	 <!-- name all the id's you made in your new extensions, so this profile gets read/write rights on everything from those extensions --> 
 		<group id="ConfigManagement" _delta="define">
 			<classes>
-			  <class id="NewLendRecord"/>
-			  <class id="SearchLendRecord"/>
+			<!-- lendrecord --> 
+			  <class id="LendRecord"/>
+			<!-- tools -->
+			  <class id="Tools"/>
+			  <class id="ToolType"/>
+			  <class id="Purpose"/>
+			<!-- vehicle -->
+			  <class id="Vehicle"/>
+			  <class id="VehicleDriversLicense"/>
+			  <class id="VehicleEnergySource"/>
+			<!-- general --> 
+			  <class id="PhysicalDevice"/>
+			  <class id="Brand"/>
+			  <class id="Model"/>
+			
 			</classes>
 		</group>
 		
