@@ -41,7 +41,8 @@
 	 <rank>70</rank>
 	 <enable_class>Organization</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
-	<enable_stimulus/>
+	 <enable_permission>UR_ALLOWED_NO</enable_permission> 
+     <enable_stimulus/>
    </menu>
 </menus>
 </itop_design>
