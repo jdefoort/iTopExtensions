@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<classes>
+		
+		<!-- Turns DocumentFile into an abstract class. -->
+		<class id="DocumentFile" >
+		 
+			<properties> 
+				<abstract _delta="redefine">true</abstract>
+			  </properties>
+		  <naming>
+			<attributes/>
+		</naming>
+		</class>
+		
+		
+		<!-- Extra DocumentFile types. Basically identical to DocumentFile (inherits everything), but we should be able to be more granular with rights. -->
+		<class id="DocumentFileRcx" _delta="define">
+		
+			<parent>DocumentFile</parent>
+			<properties>
+				<db_table>documentfilercx</db_table>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<naming>
+				<attributes/>
+				</naming>
+			  </properties>
+			  
+			<presentation/>
+			<methods/>
+		  
+		</class>
+		
+		<class id="DocumentFileTechnicalServices" _delta="define">
+		
+			<parent>DocumentFile</parent>
+			<properties>
+				<db_table>documentfiletechnicalservices</db_table>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<naming>
+				<attributes/>
+				</naming>
+			</properties>
+
+			<presentation/>
+			<methods/>
+		  
+		</class>
+		
+		
+	</classes>
+	<!-- Adds a link to the ConfigManagement Overview -->
+	<menus>
+	 
+		<menu id="NewDocument" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>6</rank>
+			<parent>ConfigManagement</parent>
+			<class>DocumentFile</class>
+		</menu>
+		
+	</menus>
+</itop_design>
+
+
+
