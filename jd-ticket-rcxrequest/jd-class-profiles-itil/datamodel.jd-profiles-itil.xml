@@ -7,6 +7,7 @@
 	<group id="RcxRequest" _delta="define">
 		<classes>
           <class id="RcxRequest"/>
+		  <class id="DocumentFileRcx"/>
         </classes>
       </group>
 	  
@@ -41,16 +42,7 @@
               <action id="action:bulk delete">allow</action>
             </actions>
           </group>
-          <group id="Documentation">
-            <actions>
-              <action id="action:read">allow</action>
-              <action id="action:bulk read">allow</action>
-			  <action id="action:write">allow</action>
-              <action id="action:bulk write">allow</action>
-			  <action id="action:delete">allow</action>
-              <action id="action:bulk delete">allow</action>
-            </actions>
-          </group>
+       
           <group id="Problem">
             <actions>
              <action id="action:read">allow</action>
