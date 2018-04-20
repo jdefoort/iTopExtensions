@@ -32,6 +32,9 @@
 						$sFormat = 'RCX-%06d';
 						break;
 						
+						case 'BuildingRequest':
+						$sFormat = 'OMV-%06d';
+						break;
 						
                         default:
                         $sFormat = 'T-%06d';

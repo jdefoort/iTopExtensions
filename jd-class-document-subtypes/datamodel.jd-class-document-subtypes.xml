@@ -49,6 +49,22 @@
 		  
 		</class>
 		
+		<class id="DocumentFileBuilding" _delta="define">
+		
+			<parent>DocumentFile</parent>
+			<properties>
+				<db_table>documentfilebuilding</db_table>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<naming>
+				<attributes/>
+				</naming>
+			</properties>
+
+			<presentation/>
+			<methods/>
+		  
+		</class>
 		
 	</classes>
 	<!-- Adds a link to the ConfigManagement Overview -->

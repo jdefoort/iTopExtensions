@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
 	<constants>
-		<constant id="PORTAL_TYPE_TO_CLASS" xsi:type="string" _delta="redefine"><![CDATA[{"service_request":"RcxRequest","incident":"Incident"}]]></constant>
-		<constant id="PORTAL_RCXREQUEST_PUBLIC_LOG" xsi:type="string" _delta="define"><![CDATA[public_log]]></constant>
-		<constant id="PORTAL_RCXREQUEST_USER_COMMENT" xsi:type="string" _delta="define"><![CDATA[user_comment]]></constant>
-		<constant id="PORTAL_RCXREQUEST_FORM_ATTRIBUTES" xsi:type="string" _delta="define"><![CDATA[title,description,impact]]></constant>
-		<constant id="PORTAL_RCXREQUEST_TYPE" xsi:type="string" _delta="define"><![CDATA[]]></constant>
-		<constant id="PORTAL_RCXREQUEST_LIST_ZLIST" xsi:type="string" _delta="define"><![CDATA[finalclass,title,start_date,status,servicesubcategory_id,,caller_id]]></constant>
-		<constant id="PORTAL_RCXREQUEST_CLOSED_ZLIST" xsi:type="string" _delta="define"><![CDATA[title,start_date,close_date,servicesubcategory_id]]></constant>
-		<constant id="PORTAL_RCXREQUEST_DETAILS_ZLIST" xsi:type="string" _delta="define"><![CDATA[{"col:left":["ref","caller_id","servicesubcategory_id","title","description","solution"],"col:right":["status","start_date","resolution_date","last_update","agent_id"]}]]></constant>
-		<constant id="PORTAL_RCXREQUEST_DISPLAY_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT RcxRequest WHERE org_id = :contact->org_id AND caller_id = :contact->id]]></constant>
-		<constant id="PORTAL_RCXREQUEST_DISPLAY_POWERUSER_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT RcxRequest WHERE org_id = :contact->org_id]]></constant>
+		<constant id="PORTAL_TYPE_TO_CLASS" xsi:type="string" _delta="redefine"><![CDATA[{"service_request":"BuildingRequest","incident":"Incident"}]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_PUBLIC_LOG" xsi:type="string" _delta="define"><![CDATA[public_log]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_USER_COMMENT" xsi:type="string" _delta="define"><![CDATA[user_comment]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_FORM_ATTRIBUTES" xsi:type="string" _delta="define"><![CDATA[title,description,impact]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_TYPE" xsi:type="string" _delta="define"><![CDATA[]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_LIST_ZLIST" xsi:type="string" _delta="define"><![CDATA[finalclass,title,start_date,status,servicesubcategory_id,,caller_id]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_CLOSED_ZLIST" xsi:type="string" _delta="define"><![CDATA[title,start_date,close_date,servicesubcategory_id]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_DETAILS_ZLIST" xsi:type="string" _delta="define"><![CDATA[{"col:left":["ref","caller_id","servicesubcategory_id","title","description","solution"],"col:right":["status","start_date","resolution_date","last_update","agent_id"]}]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_DISPLAY_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT BuildingRequest WHERE org_id = :contact->org_id AND caller_id = :contact->id]]></constant>
+		<constant id="PORTAL_BUILDINGREQUEST_DISPLAY_POWERUSER_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT BuildingRequest WHERE org_id = :contact->org_id]]></constant>
 	</constants>
 	<classes>
-		<class id="RcxRequest" _delta="define">
+		<class id="BuildingRequest" _delta="define">
 			<parent>Ticket</parent>
 			<properties>
 				<comment><![CDATA[/**
@@ -201,11 +201,11 @@
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="parent_request_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT RcxRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
+					<filter><![CDATA[SELECT BuildingRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
 					<dependencies>
 					</dependencies>
 					<sql>parent_request_id</sql>
-					<target_class>RcxRequest</target_class>
+					<target_class>BuildingRequest</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
@@ -246,7 +246,7 @@
 					<target_attcode>ref</target_attcode>
 				</field>
 				<field id="related_request_list" xsi:type="AttributeLinkedSet">
-					<linked_class>RcxRequest</linked_class>
+					<linked_class>BuildingRequest</linked_class>
 					<ext_key_to_me>parent_request_id</ext_key_to_me>
 					<edit_mode>add_remove</edit_mode>
 					<count_min>0</count_min>
@@ -819,7 +819,7 @@
     parent::DoCheckToWrite();
     if (!$this->IsNew() && ($this->Get('parent_request_id') == $this->GetKey()))
     {
-      $this->m_aCheckIssues[] = Dict::Format('Class:RcxRequest/Error:CannotAssignParentRequestIdToSelf');
+      $this->m_aCheckIssues[] = Dict::Format('Class:BuildingRequest/Error:CannotAssignParentRequestIdToSelf');
     }
   }]]></code>
 				</method>
@@ -848,17 +848,17 @@
 			if (MetaModel::IsValidClass('KnownError'))
 			{			
 				//Search for known errors
-				$oPage->SetCurrentTab(Dict::S('Class:RcxRequest:KnownErrorList'));
+				$oPage->SetCurrentTab(Dict::S('Class:BuildingRequest:KnownErrorList'));
 				$iTicketID = $this->GetKey();;
 				$oKnownErrorSet = new CMDBObjectSet(DBObjectSearch::FromOQL("SELECT KnownError AS ke JOIN lnkErrorToFunctionalCI AS l1 ON l1.error_id=ke.id JOIN FunctionalCI AS ci ON l1.functionalci_id=ci.id JOIN lnkFunctionalCIToTicket AS l2 ON l2.functionalci_id=ci.id WHERE l2.ticket_id=$iTicketID"));
 				$iNumberKE=$oKnownErrorSet->count();
 				if ($iNumberKE > 0)
 				{
-					$oPage->SetCurrentTab(Dict::S('Class:RcxRequest:KnownErrorList')." ($iNumberKE)");
+					$oPage->SetCurrentTab(Dict::S('Class:BuildingRequest:KnownErrorList')." ($iNumberKE)");
 				}
 				else
 				{
-					$oPage->SetCurrentTab(Dict::S('Class:RcxRequest:KnownErrorList'));	
+					$oPage->SetCurrentTab(Dict::S('Class:BuildingRequest:KnownErrorList'));	
 				}			
 				self::DisplaySet($oPage, $oKnownErrorSet, array ('menu' => false));
 			}
@@ -875,7 +875,7 @@
 					<code><![CDATA[	public function resolveChilds($sStimulusCode)
 	{
 				
-		$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
+		$sOQL = "SELECT BuildingRequest WHERE parent_request_id=:ticket";
 		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 						array(),
 						array(
@@ -891,7 +891,7 @@
 				$oRequest->set('team_id',$this->Get('team_id'));
 				$oRequest->set('agent_id',$this->Get('agent_id'));	
 				$oRequest->set('resolution_code',$this->Get('resolution_code'));
-				$oRequest->set('solution','Automatically resolved by request:[[RcxRequest:'.$this->Get('ref').']]');
+				$oRequest->set('solution','Automatically resolved by request:[[BuildingRequest:'.$this->Get('ref').']]');
 				$oRequest->ApplyStimulus('ev_autoresolve');
 				$oRequest->DBUpdate();
 			}
@@ -915,7 +915,7 @@
         static $aTickets = array(); // prevent infinite recursion
     
 		// Automatically resolve child requests
-		$sOQL = "SELECT RcxRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
+		$sOQL = "SELECT BuildingRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
 		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('ticket' => $this->GetKey()));
 		while($oRequest = $oChildRequestSet->Fetch())
 		{
@@ -962,7 +962,7 @@
 		$sLogPublic = $oLog->GetModifiedEntry('html');
 		if ($sLogPublic != '')
 		{
-			$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
+			$sOQL = "SELECT BuildingRequest WHERE parent_request_id=:ticket";
 			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 							array(),
 							array(
@@ -980,7 +980,7 @@
 		$sLogPrivate = $oLog->GetModifiedEntry('html');
 		if ($sLogPrivate != '')
 		{
-			$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
+			$sOQL = "SELECT BuildingRequest WHERE parent_request_id=:ticket";
 			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 							array(),
 							array(
@@ -1273,15 +1273,15 @@
 								<rank>0</rank>
 								<title>Menu:RequestManagement</title>
 								<icon>itop-welcome-itil/images/user-request-deadline.png</icon>
-								<subtitle>Menu:RcxRequest:OpenRequests</subtitle>
-								<query>SELECT RcxRequest WHERE status != "closed"</query>
+								<subtitle>Menu:BuildingRequest:OpenRequests</subtitle>
+								<query>SELECT BuildingRequest WHERE status != "closed"</query>
 								<group_by>status</group_by>
 								<values>new,assigned,resolved</values>
 							</dashlet>
 							<dashlet id="12" xsi:type="DashletObjectList">
 								<rank>1</rank>
 								<title>UI:WelcomeMenu:MyCalls</title>
-								<query>SELECT RcxRequest AS i WHERE i.agent_id = :current_contact_id AND status NOT IN ("closed", "resolved")</query>
+								<query>SELECT BuildingRequest AS i WHERE i.agent_id = :current_contact_id AND status NOT IN ("closed", "resolved")</query>
 								<menu>true</menu>
 							</dashlet>
 						</dashlets>
@@ -1289,13 +1289,13 @@
 				</cells>
 			</definition>
 		</menu>
-		<menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="define">
+		<menu id="BuildingRequestManagement" xsi:type="MenuGroup" _delta="define">
 			<rank>31</rank>
 			<enable_stimulus/>
 		</menu>
-		<menu id="RcxRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
+		<menu id="BuildingRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
 			<rank>0</rank>
-			<parent>RcxRequestManagement</parent>
+			<parent>BuildingRequestManagement</parent>
 			<definition>
 				<layout>DashboardLayoutTwoCols</layout>
 				<title>UI:RequestMgmtMenuOverview:Title</title>
@@ -1306,7 +1306,7 @@
 							<dashlet id="1" xsi:type="DashletGroupByPie">
 								<rank>0</rank>
 								<title>UI-RequestManagementOverview-RequestByType-last-14-days</title>
-								<query>SELECT RcxRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+								<query>SELECT BuildingRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
 								<group_by>request_type</group_by>
 								<style>pie</style>
 							</dashlet>
@@ -1318,7 +1318,7 @@
 							<dashlet id="2" xsi:type="DashletGroupByBars">
 								<rank>0</rank>
 								<title>UI-RequestManagementOverview-Last-14-days</title>
-								<query>SELECT RcxRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+								<query>SELECT BuildingRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
 								<group_by>start_date:day_of_month</group_by>
 								<style>bars</style>
 							</dashlet>
@@ -1330,7 +1330,7 @@
 							<dashlet id="3" xsi:type="DashletGroupByTable">
 								<rank>0</rank>
 								<title>UI-RequestManagementOverview-OpenRequestByStatus</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+								<query>SELECT BuildingRequest WHERE status NOT IN ('closed','rejected')</query>
 								<group_by>status</group_by>
 								<style>table</style>
 							</dashlet>
@@ -1342,7 +1342,7 @@
 							<dashlet id="4" xsi:type="DashletGroupByTable">
 								<rank>0</rank>
 								<title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+								<query>SELECT BuildingRequest WHERE status NOT IN ('closed','rejected')</query>
 								<group_by>agent_id</group_by>
 								<style>table</style>
 							</dashlet>
@@ -1354,7 +1354,7 @@
 							<dashlet id="5" xsi:type="DashletGroupByTable">
 								<rank>0</rank>
 								<title>UI-RequestManagementOverview-OpenRequestByType</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+								<query>SELECT BuildingRequest WHERE status NOT IN ('closed','rejected')</query>
 								<group_by>finalclass</group_by>
 								<style>table</style>
 							</dashlet>
@@ -1366,7 +1366,7 @@
 							<dashlet id="6" xsi:type="DashletGroupByTable">
 								<rank>0</rank>
 								<title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+								<query>SELECT BuildingRequest WHERE status NOT IN ('closed','rejected')</query>
 								<group_by>org_id</group_by>
 								<style>table</style>
 							</dashlet>
@@ -1375,39 +1375,39 @@
 				</cells>
 			</definition>
 		</menu>
-		<menu id="NewRcxRequest" xsi:type="NewObjectMenuNode" _delta="define">
+		<menu id="NewBuildingRequest" xsi:type="NewObjectMenuNode" _delta="define">
 			<rank>1</rank>
-			<parent>RcxRequestManagement</parent>
-			<class>RcxRequest</class>
+			<parent>BuildingRequestManagement</parent>
+			<class>BuildingRequest</class>
 		</menu>
-		<menu id="SearchRcxRequests" xsi:type="SearchMenuNode" _delta="define">
+		<menu id="SearchBuildingRequests" xsi:type="SearchMenuNode" _delta="define">
 			<rank>2</rank>
-			<parent>RcxRequestManagement</parent>
-			<class>RcxRequest</class>
+			<parent>BuildingRequestManagement</parent>
+			<class>BuildingRequest</class>
 		</menu>
-		<menu id="RcxRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
+		<menu id="BuildingRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
 			<rank>3</rank>
-			<parent>RcxRequestManagement</parent>
+			<parent>BuildingRequestManagement</parent>
 			<template_file/>
 		</menu>
-		<menu id="RcxRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
+		<menu id="BuildingRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>0</rank>
-			<parent>RcxRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT RcxRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
+			<parent>BuildingRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT BuildingRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
 			<do_search/>
 			<auto_reload>fast</auto_reload>
 		</menu>
-		<menu id="RcxRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
+		<menu id="BuildingRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>2</rank>
-			<parent>RcxRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT RcxRequest WHERE status NOT IN ("closed","resolved")]]></oql>
+			<parent>BuildingRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT BuildingRequest WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
 		</menu>
-		<menu id="RcxRequest:MySupportRequests" xsi:type="OQLMenuNode" _delta="define">
+		<menu id="BuildingRequest:MySupportRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>3</rank>
-			<parent>RcxRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT RcxRequest WHERE caller_id = :current_contact_id AND status NOT IN ("closed")]]></oql>
+			<parent>BuildingRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT BuildingRequest WHERE caller_id = :current_contact_id AND status NOT IN ("closed")]]></oql>
 			<do_search/>
 			<auto_reload>fast</auto_reload>
 		</menu>
@@ -1426,3 +1426,4 @@
 		</module_design>
 	</module_designs>
 </itop_design>
+
