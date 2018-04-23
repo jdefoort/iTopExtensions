@@ -28,7 +28,7 @@
 	 
     </groups>
     <profiles>
-	  <profile id="100" _delta="define">
+	  <profile id="102" _delta="define">
         <name>Building User</name>
         <description>Person in charge of Building, can write documentation, building requests,...</description>
         <groups>
