@@ -101,11 +101,18 @@
 						<value id="phone">phone</value>
 						<value id="portal">portal</value>
 						<value id="in_person">in_person</value>
+						<value id="letter">letter</value>
+						<value id="ticket_booth">ticket_booth</value>
 					</values>
 					<sql>origin</sql>
 					<default_value>phone</default_value>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
+				<field id="address_allotment" xsi:type="AttributeString">
+					<sql>address_allotment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+                </field>
 				<field id="approver_id" xsi:type="AttributeExternalKey">
 					<filter><![CDATA[SELECT Person WHERE org_id= :this->org_id]]></filter>
 					<dependencies>
@@ -601,6 +608,8 @@
 							<attribute id="caller_id">
 								<read_only/>
 							</attribute>
+							<attribute id="address_allotment">
+							</attribute>
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
@@ -1073,6 +1082,9 @@
 										<item id="title">
 											<rank>50</rank>
 										</item>
+										<item id="address_allotment">
+											<rank>60</rank>
+										</item>
 										<item id="description">
 											<rank>60</rank>
 										</item>
@@ -1207,6 +1219,9 @@
 						</item>
 						<item id="caller_id">
 							<rank>100</rank>
+						</item>
+						<item id="address_allotment">
+							<rank>105</rank>
 						</item>
 						<item id="origin">
 							<rank>110</rank>

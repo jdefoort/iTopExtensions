@@ -13,6 +13,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:DocumentFileRcx+' => 'Een nieuw document voor Recreatex aanmaken',
 	'Class:DocumentFileTechnicalServices' => 'Technisch document',
 	'Class:DocumentFileTechnicalServices+' => 'Een nieuw document voor de technische dienst aanmaken',
+	'Class:DocumentFileBuilding' => 'Omgeving document',
+	'Class:DocumentFileBuilding+' => 'Een nieuw document voor omgeving aanmaken',
 	
 	'Menu:NewDocument' => 'Nieuw document',
 	'Menu:NewDocument+' => 'Voeg een nieuw document toe',

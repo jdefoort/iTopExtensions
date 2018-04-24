@@ -14,6 +14,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:DocumentFileRcx+' => 'All documents for Recreatex instance',
 	'Class:DocumentFileTechnicalServices' => 'Document File Technical Services',
 	'Class:DocumentFileTechnicalServices+' => 'All documents for Technical Services instance',
+	'Class:DocumentFileBuilding' => 'Document File Building',
+	'Class:DocumentFileBuilding+' => 'All documents for Building instance',
 	
 	'Menu:NewDocument' => 'New document',
 	'Menu:NewDocument+' => 'Add a new document',
