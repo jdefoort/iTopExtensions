@@ -75,6 +75,12 @@
 			<parent>ConfigManagement</parent>
 			<class>DocumentFile</class>
 		</menu>
+		<menu id="Document" xsi:type="SearchMenuNode" _delta="redefine">
+			<rank>6</rank>
+			<parent>ConfigManagement</parent>
+			<class>Document</class>
+		</menu>
+   
 		
 	</menus>
 </itop_design>
