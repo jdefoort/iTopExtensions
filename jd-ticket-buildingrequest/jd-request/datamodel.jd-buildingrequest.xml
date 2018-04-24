@@ -336,9 +336,6 @@
 							<attribute id="approver_id">
 								<hidden/>
 							</attribute>
-							<attribute id="request_type">
-								<read_only/>
-							</attribute>
 							<attribute id="assignment_date">
 								<hidden/>
 							</attribute>
@@ -611,9 +608,6 @@
 							<attribute id="address_allotment">
 							</attribute>
 							<attribute id="origin">
-								<read_only/>
-							</attribute>
-							<attribute id="impact">
 								<read_only/>
 							</attribute>
 							<attribute id="service_id">
@@ -1106,17 +1100,6 @@
 						<item id="col:col2">
 							<rank>50</rank>
 							<items>
-								<item id="fieldset:Ticket:Type">
-									<rank>10</rank>
-									<items>
-										<item id="request_type">
-											<rank>10</rank>
-										</item>
-										<item id="impact">
-											<rank>20</rank>
-										</item>
-									</items>
-								</item>
 								<item id="fieldset:Ticket:contact">
 									<rank>20</rank>
 									<items>
@@ -1225,12 +1208,6 @@
 						</item>
 						<item id="origin">
 							<rank>110</rank>
-						</item>
-						<item id="request_type">
-							<rank>120</rank>
-						</item>
-						<item id="impact">
-							<rank>130</rank>
 						</item>
 						<item id="priority">
 							<rank>150</rank>
