@@ -31,7 +31,7 @@ class AutoCloseTicket implements iBackgroundProcess
 	public function Process($iTimeLimit)
 	{
 		
-		$ticketTypes = MetaModel::GetModuleSetting('jd-autoclose-ticket', strtolower($ticketType).'_ticket_types', array('Incident', 'UserRequest') );
+		$ticketTypes = MetaModel::GetModuleSetting('jd-autoclose-ticket', 'ticket_types', array('Incident', 'UserRequest') );
 		$aReport = array();
 		
 		foreach( $ticketTypes as $ticketType ) {
