@@ -33,7 +33,7 @@
 						break;
 						
 						case 'BuildingRequest':
-						$sFormat = 'OMV-%06d';
+						$sFormat = 'ROM-%06d';
 						break;
 						
                         default:

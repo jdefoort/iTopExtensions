@@ -5,18 +5,20 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-buildingrequest/2.4.0',
+        'jd-rcxrequest-profiles/',
         array(
                 // Identification
                 //
-                'label' => 'Class: BuildingRequest (ITIL) - Add requestform',
+                'label' => 'Profile: add Rcx user as profile',
                 'category' => 'business',
 
                 // Setup
                 //
                 'dependencies' => array(
                         'itop-config-mgmt/2.4.0',
-                        'itop-request-mgmt-itil/2.4.0'
+                        'itop-request-mgmt-itil/2.4.0',
+                        'itop-knownerror-mgmt/2.4.0',
+						'jd-rcxrequest-mgmt-itil/2.4.0'
                 ),
                 'mandatory' => false,
                 'visible' => true,
@@ -24,7 +26,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-buildingrequest.php'
+                        'model.jd-rcxrequest-profiles.php'
                 ),
                 'webservice' => array(
 

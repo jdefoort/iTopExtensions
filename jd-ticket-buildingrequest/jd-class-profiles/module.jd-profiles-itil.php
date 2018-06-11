@@ -18,7 +18,7 @@ SetupWebPage::AddModule(
                         'itop-config-mgmt/2.4.0',
                         'itop-request-mgmt-itil/2.4.0',
                         'itop-knownerror-mgmt/2.4.0',
-						'jd-buildingrequest/2.4.0'
+						'jd-buildingrequest-mgmt-itil/2.4.0'
 						
                 ),
                 'mandatory' => false,

@@ -25,7 +25,7 @@
 				<category>bizmodel,searchable,requestmgmt</category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
-				<db_table>ticket_request</db_table>
+				<db_table>ticket_rcxrequest</db_table>
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
