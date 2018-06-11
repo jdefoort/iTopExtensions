@@ -224,6 +224,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:RcxRequest/Attribute:related_request_list+' => 'Alle tickets die gelinkt zijn aan dit hoofdticket',
 	'Class:RcxRequest/Attribute:public_log' => 'Publiek commentaar',
 	'Class:RcxRequest/Attribute:public_log+' => '',
+	'Class:RcxRequest/Attribute:private_log' => 'Privé commentaar',
+	'Class:RcxRequest/Attribute:private_log+' => '',
 	'Class:RcxRequest/Attribute:user_satisfaction' => 'Gebruikerstevredenheid',
 	'Class:RcxRequest/Attribute:user_satisfaction+' => '',
 	'Class:RcxRequest/Attribute:user_satisfaction/Value:1' => 'Zeer tevreden',

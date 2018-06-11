@@ -230,6 +230,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:BuildingRequest/Attribute:related_request_list+' => 'Alle tickets die gelinkt zijn aan dit hoofdticket',
 	'Class:BuildingRequest/Attribute:public_log' => 'Publiek commentaar',
 	'Class:BuildingRequest/Attribute:public_log+' => '',
+	'Class:BuildingRequest/Attribute:private_log' => 'Privé commentaar',
+	'Class:BuildingRequest/Attribute:private_log+' => '',
 	'Class:BuildingRequest/Attribute:user_satisfaction' => 'Gebruikerstevredenheid',
 	'Class:BuildingRequest/Attribute:user_satisfaction+' => '',
 	'Class:BuildingRequest/Attribute:user_satisfaction/Value:1' => 'Zeer tevreden',
