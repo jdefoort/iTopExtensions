@@ -845,27 +845,7 @@
 	{
 		parent::DisplayBareRelations($oPage, $bEditMode);
 
-		if (!$bEditMode)
-		{
-
-			if (MetaModel::IsValidClass('KnownError'))
-			{			
-				//Search for known errors
-				$oPage->SetCurrentTab(Dict::S('Class:BuildingRequest:KnownErrorList'));
-				$iTicketID = $this->GetKey();;
-				$oKnownErrorSet = new CMDBObjectSet(DBObjectSearch::FromOQL("SELECT KnownError AS ke JOIN lnkErrorToFunctionalCI AS l1 ON l1.error_id=ke.id JOIN FunctionalCI AS ci ON l1.functionalci_id=ci.id JOIN lnkFunctionalCIToTicket AS l2 ON l2.functionalci_id=ci.id WHERE l2.ticket_id=$iTicketID"));
-				$iNumberKE=$oKnownErrorSet->count();
-				if ($iNumberKE > 0)
-				{
-					$oPage->SetCurrentTab(Dict::S('Class:BuildingRequest:KnownErrorList')." ($iNumberKE)");
-				}
-				else
-				{
-					$oPage->SetCurrentTab(Dict::S('Class:BuildingRequest:KnownErrorList'));	
-				}			
-				self::DisplaySet($oPage, $oKnownErrorSet, array ('menu' => false));
-			}
-		}
+		
 	}]]></code>
 				</method>
 				<method id="resolveChilds">
@@ -1369,7 +1349,7 @@
 			<class>BuildingRequest</class>
 		</menu>
 		<menu id="BuildingRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
-			<rank>3</rank>
+			<rank>3</rank>	
 			<parent>BuildingRequestManagement</parent>
 			<template_file/>
 		</menu>
