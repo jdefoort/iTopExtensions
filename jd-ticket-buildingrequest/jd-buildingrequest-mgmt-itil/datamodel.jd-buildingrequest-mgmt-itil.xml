@@ -188,20 +188,6 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="resolution_code" xsi:type="AttributeEnum">
-					<values>
-						<value id="assistance">assistance</value>
-						<value id="other">other</value>
-						<value id="software patch">software patch</value>
-						<value id="training">training</value>
-						<value id="hardware repair">hardware repair</value>
-						<value id="system update">system update</value>
-						<value id="bug fixed">bug fixed</value>
-					</values>
-					<sql>resolution_code</sql>
-					<default_value>assistance</default_value>
-					<is_null_allowed>true</is_null_allowed>
-				</field>
 				<field id="solution" xsi:type="AttributeText">
 					<sql>solution</sql>
 					<default_value/>
@@ -346,9 +332,6 @@
 								<hidden/>
 							</attribute>
 							<attribute id="time_spent">
-								<hidden/>
-							</attribute>
-							<attribute id="resolution_code">
 								<hidden/>
 							</attribute>
 							<attribute id="solution">
@@ -647,10 +630,6 @@
 							<attribute id="time_spent">
 								<read_only/>
 							</attribute>
-							<attribute id="resolution_code">
-								<mandatory/>
-								<must_prompt/>
-							</attribute>
 							<attribute id="solution">
 								<mandatory/>
 								<must_prompt/>
@@ -723,9 +702,6 @@
 								<read_only/>
 							</attribute>
 							<attribute id="close_date">
-								<read_only/>
-							</attribute>
-							<attribute id="resolution_code">
 								<read_only/>
 							</attribute>
 							<attribute id="solution">
@@ -1127,9 +1103,6 @@
 								<item id="fieldset:Ticket:resolution">
 									<rank>20</rank>
 									<items>
-										<item id="resolution_code">
-											<rank>10</rank>
-										</item>
 										<item id="solution">
 											<rank>20</rank>
 										</item>
@@ -1194,9 +1167,6 @@
 						</item>
 						<item id="agent_id">
 							<rank>190</rank>
-						</item>
-						<item id="resolution_code">
-							<rank>200</rank>
 						</item>
 					</items>
 				</search>
