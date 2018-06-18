@@ -42,7 +42,12 @@
               <action id="action:bulk delete">allow</action>
             </actions>
           </group>
- 		  
+ 		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
 		  <group id="BuildingRequest">
 		    <actions>
               <action id="action:read">allow</action>
