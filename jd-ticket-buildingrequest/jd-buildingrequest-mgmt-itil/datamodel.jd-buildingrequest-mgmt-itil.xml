@@ -255,6 +255,12 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
+				<field id="reminder" xsi:type="AttributeDate">
+				  <sql>reminder</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
 			</fields>
 			<lifecycle>
 				<highlight_scale>
@@ -627,6 +633,9 @@
 							<attribute id="resolution_date">
 								<read_only/>
 							</attribute>
+							<attribute id="reminder">
+								<read_only/>
+							</attribute>
 							<attribute id="time_spent">
 								<read_only/>
 							</attribute>
@@ -702,6 +711,9 @@
 								<read_only/>
 							</attribute>
 							<attribute id="close_date">
+								<read_only/>
+							</attribute>
+							<attribute id="reminder">
 								<read_only/>
 							</attribute>
 							<attribute id="solution">
@@ -1085,6 +1097,9 @@
 										<item id="close_date">
 											<rank>50</rank>
 										</item>
+										<item id="reminder">
+											<rank>51</rank>
+										</item>
 									</items>
 								</item>
 							</items>
@@ -1132,6 +1147,9 @@
 						<item id="start_date">
 							<rank>50</rank>
 						</item>
+						<item id="reminder">
+							<rank>51</rank>
+						</item>
 						<item id="resolution_date">
 							<rank>70</rank>
 						</item>
@@ -1175,9 +1193,6 @@
 						<item id="title">
 							<rank>10</rank>
 						</item>
-						<item id="org_id">
-							<rank>20</rank>
-						</item>
 						<item id="caller_id">
 							<rank>30</rank>
 						</item>
@@ -1186,6 +1201,9 @@
 						</item>
 						<item id="status">
 							<rank>50</rank>
+						</item>
+						<item id="reminder">
+							<rank>51</rank>
 						</item>
 						<item id="agent_id">
 							<rank>60</rank>

@@ -172,6 +172,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:BuildingRequest/Attribute:resolution_date+' => '',
 	'Class:BuildingRequest/Attribute:last_pending_date' => 'Laatste wachtend datum',
 	'Class:BuildingRequest/Attribute:last_pending_date+' => '',
+	'Class:BuildingRequest/Attribute:reminder' => 'Herinnering',
+	'Class:BuildingRequest/Attribute:reminder+' => 'Wanneer wil je hierover een herinnering krijgen',
 	'Class:BuildingRequest/Attribute:cumulatedpending' => 'samengeteld wachtend',
 	'Class:BuildingRequest/Attribute:cumulatedpending+' => '',
 	'Class:BuildingRequest/Attribute:tto' => 'TTO',

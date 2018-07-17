@@ -170,6 +170,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:BuildingRequest/Attribute:resolution_date+' => '',
 	'Class:BuildingRequest/Attribute:last_pending_date' => 'Last pending date',
 	'Class:BuildingRequest/Attribute:last_pending_date+' => '',
+	'Class:BuildingRequest/Attribute:reminder' => 'Reminder',
+	'Class:BuildingRequest/Attribute:reminder+' => 'When do I need to be reminded about this',
 	'Class:BuildingRequest/Attribute:cumulatedpending' => 'cumulatedpending',
 	'Class:BuildingRequest/Attribute:cumulatedpending+' => '',
 	'Class:BuildingRequest/Attribute:tto' => 'TTO',
