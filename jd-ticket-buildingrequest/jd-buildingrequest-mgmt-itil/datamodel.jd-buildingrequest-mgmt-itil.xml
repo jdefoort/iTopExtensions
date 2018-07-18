@@ -108,6 +108,42 @@
 					<default_value>phone</default_value>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
+				<field id="site_visit" xsi:type="AttributeEnum">
+					<values>
+						<value id="not_done">not_done</value>
+						<value id="done">done</value>
+						<value id="to_do">to_do</value>
+					</values>
+					<sql>site_visit</sql>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="site_visit_w_cops" xsi:type="AttributeEnum">
+					<values>
+						<value id="not_done">not_done</value>
+						<value id="done">done</value>
+						<value id="to_do">to_do</value>
+					</values>
+					<sql>site_visit_w_cops</sql>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="remind_citizen" xsi:type="AttributeEnum">
+					<values>
+						<value id="not_done">not_done</value>
+						<value id="done">done</value>
+						<value id="to_do">to_do</value>
+					</values>
+					<sql>remind_citizen</sql>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="warrant" xsi:type="AttributeEnum">
+					<values>
+						<value id="not_done">not_done</value>
+						<value id="done">done</value>
+						<value id="to_do">to_do</value>
+					</values>
+					<sql>warrant</sql>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
 				<field id="address_allotment" xsi:type="AttributeString">
 					<sql>address_allotment</sql>
 					<default_value/>
@@ -636,6 +672,18 @@
 							<attribute id="reminder">
 								<read_only/>
 							</attribute>
+							<attribute id="site_visit">
+								<read_only/>
+							</attribute>
+							<attribute id="site_visit_w_cops">
+								<read_only/>
+							</attribute>
+							<attribute id="remind_citizen">
+								<read_only/>
+							</attribute>
+							<attribute id="warrant">
+								<read_only/>
+							</attribute>
 							<attribute id="time_spent">
 								<read_only/>
 							</attribute>
@@ -717,6 +765,18 @@
 								<read_only/>
 							</attribute>
 							<attribute id="solution">
+								<read_only/>
+							</attribute>
+							<attribute id="site_visit">
+								<read_only/>
+							</attribute>
+							<attribute id="site_visit_w_cops">
+								<read_only/>
+							</attribute>
+							<attribute id="remind_citizen">
+								<read_only/>
+							</attribute>
+							<attribute id="warrant">
 								<read_only/>
 							</attribute>
 							<attribute id="user_comment">
@@ -1115,6 +1175,23 @@
 										</item>
 									</items>
 								</item>
+								<item id="fieldset:BuildingRequest:actions_to_follow">
+									<rank>11</rank>
+									<items>
+										<item id="site_visit">
+											<rank>10</rank>
+										</item>
+										<item id="site_visit_w_cops">
+											<rank>20</rank>
+										</item>
+										<item id="remind_citizen">
+											<rank>30</rank>
+										</item>
+										<item id="warrant">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
 								<item id="fieldset:Ticket:resolution">
 									<rank>20</rank>
 									<items>
@@ -1149,6 +1226,18 @@
 						</item>
 						<item id="reminder">
 							<rank>51</rank>
+						</item>
+						<item id="site_visit">
+							<rank>52</rank>
+						</item>
+						<item id="site_visit_w_cops">
+							<rank>53</rank>
+						</item>
+						<item id="remind_citizen">
+							<rank>54</rank>
+						</item>
+						<item id="warrant">
+							<rank>55</rank>
 						</item>
 						<item id="resolution_date">
 							<rank>70</rank>

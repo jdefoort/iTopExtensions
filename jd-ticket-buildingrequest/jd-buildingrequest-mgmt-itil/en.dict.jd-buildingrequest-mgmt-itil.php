@@ -269,7 +269,46 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:BuildingRequest/Stimulus:ev_wait_for_approval' => 'Wait for approval',
 	'Class:BuildingRequest/Stimulus:ev_wait_for_approval+' => '',
 	'Class:BuildingRequest/Error:CannotAssignParentRequestIdToSelf' => 'Cannot assign the Parent request to the request itself',
-
+	
+	'BuildingRequest:actions_to_follow' => 'Actions',
+	'BuildingRequest:actions_to_follow+' => '',
+	'Class:BuildingRequest/Attribute:site_visit' => 'Site visit',
+	'Class:BuildingRequest/Attribute:site_visit+' => '',
+	'Class:BuildingRequest/Attribute:site_visit/Value:done' => 'done',
+	'Class:BuildingRequest/Attribute:site_visit/Value:done+' => 'done',
+	'Class:BuildingRequest/Attribute:site_visit/Value:not_done' => 'not done',
+	'Class:BuildingRequest/Attribute:site_visit/Value:not_done+' => 'not done',
+	'Class:BuildingRequest/Attribute:site_visit/Value:to_do' => 'to do',
+	'Class:BuildingRequest/Attribute:site_visit/Value:to_do+' => 'to do',
+	
+	'Class:BuildingRequest/Attribute:site_visit_w_cops' => 'Site visit with cops',
+	'Class:BuildingRequest/Attribute:site_visit_w_cops+' => '',
+	'Class:BuildingRequest/Attribute:site_visit_w_cops/Value:done' => 'done',
+	'Class:BuildingRequest/Attribute:site_visit_w_cops/Value:done+' => 'done',
+	'Class:BuildingRequest/Attribute:site_visit_w_cops/Value:not_done' => 'not done',
+	'Class:BuildingRequest/Attribute:site_visit_w_cops/Value:not_done+' => 'not done',
+	'Class:BuildingRequest/Attribute:site_visit_w_cops/Value:to_do' => 'to do',
+	'Class:BuildingRequest/Attribute:site_visit_w_cops/Value:to_do+' => 'to do',
+	
+	'Class:BuildingRequest/Attribute:remind_citizen' => 'Remind citizen',
+	'Class:BuildingRequest/Attribute:remind_citizen+' => '',
+	'Class:BuildingRequest/Attribute:remind_citizen/Value:done' => 'done',
+	'Class:BuildingRequest/Attribute:remind_citizen/Value:done+' => 'done',
+	'Class:BuildingRequest/Attribute:remind_citizen/Value:not_done' => 'not done',
+	'Class:BuildingRequest/Attribute:remind_citizen/Value:not_done+' => 'not done',
+	'Class:BuildingRequest/Attribute:remind_citizen/Value:to_do' => 'to do',
+	'Class:BuildingRequest/Attribute:remind_citizen/Value:to_do+' => 'to do',
+	
+	'Class:BuildingRequest/Attribute:warrant' => 'Warrant',
+	'Class:BuildingRequest/Attribute:warrant+' => '',	
+	'Class:BuildingRequest/Attribute:warrant/Value:done' => 'done',
+	'Class:BuildingRequest/Attribute:warrant/Value:done+' => 'done',
+	'Class:BuildingRequest/Attribute:warrant/Value:not_done' => 'not done',
+	'Class:BuildingRequest/Attribute:warrant/Value:not_done+' => 'not done',
+	'Class:BuildingRequest/Attribute:warrant/Value:to_do' => 'to do',
+	'Class:BuildingRequest/Attribute:warrant/Value:to_do+' => 'to do',
+	
+	
 	'Class:BuildingRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:BuildingRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
 ));
