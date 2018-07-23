@@ -36,6 +36,10 @@
 						$sFormat = 'ROM-%06d';
 						break;
 						
+						case 'BuildingViolation':
+						$sFormat = 'OVT-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }

@@ -1374,13 +1374,6 @@
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
 		</menu>
-		<menu id="RcxRequest:MySupportRequests" xsi:type="OQLMenuNode" _delta="define">
-			<rank>3</rank>
-			<parent>RcxRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT RcxRequest WHERE caller_id = :current_contact_id AND status NOT IN ("closed")]]></oql>
-			<do_search/>
-			<auto_reload>fast</auto_reload>
-		</menu>
 	</menus>
 	<module_designs>
 		<module_design id="itop-portal">
