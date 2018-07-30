@@ -606,7 +606,13 @@
 							<attribute id="parent_problem_id">
 								<read_only/>
 							</attribute>
-							<attribute id="title">
+							<attribute id="service_id">
+								<read_only/>
+							</attribute>
+							<attribute id="parent_incident_id">
+								<read_only/>
+							</attribute>
+							<attribute id="public_log">
 								<read_only/>
 							</attribute>
 							<attribute id="description">

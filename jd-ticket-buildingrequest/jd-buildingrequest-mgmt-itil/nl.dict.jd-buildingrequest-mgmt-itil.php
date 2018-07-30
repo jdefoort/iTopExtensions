@@ -59,9 +59,9 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:NewBuildingViolation+' => 'Maak een nieuwe overtreding aan',
 	'Menu:SearchBuildingViolations' => 'Zoek in overtredingen',
 	'Menu:SearchBuildingViolations+' => 'Zoek in overtredingen',
-	'Menu:BuildingViolation:MyRequests' => 'Overtredingen toegewezen aan mij',
+	'Menu:BuildingViolation:MyRequests' => 'OVT toegewezen aan mij',
 	'Menu:BuildingViolation:MyRequests+' => 'Overtredingen toegewezen aan mij (als behandelaar)',
-	'Menu:BuildingViolation:OpenRequests' => 'Alle openstaande overtredingen',
+	'Menu:BuildingViolation:OpenRequests' => 'Alle openstaande OVT',
 	'Menu:BuildingViolation:OpenRequests+' => 'Alle openstaande overtredingen',
 ));
 

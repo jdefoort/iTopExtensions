@@ -655,7 +655,10 @@
 							<attribute id="parent_problem_id">
 								<read_only/>
 							</attribute>
-							<attribute id="title">
+							<attribute id="service_id">
+								<read_only/>
+							</attribute>
+							<attribute id="public_log">
 								<read_only/>
 							</attribute>
 							<attribute id="description">
@@ -2016,7 +2019,13 @@
 							<attribute id="parent_problem_id">
 								<read_only/>
 							</attribute>
-							<attribute id="title">
+							<attribute id="reminder">
+								<read_only/>
+							</attribute>
+							<attribute id="public_log">
+								<read_only/>
+							</attribute>
+							<attribute id="service_id">
 								<read_only/>
 							</attribute>
 							<attribute id="description">
