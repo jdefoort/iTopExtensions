@@ -384,10 +384,12 @@
 							<attribute id="team_id">
 								<mandatory/>
 								<must_prompt/>
+								<read_only/>
 							</attribute>
 							<attribute id="agent_id">
 								<mandatory/>
 								<must_prompt/>
+								<read_only/>
 							</attribute>
 							<attribute id="approver_id">
 								<read_only/>
