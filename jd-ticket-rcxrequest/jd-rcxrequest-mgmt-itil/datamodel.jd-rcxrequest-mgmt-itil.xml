@@ -866,7 +866,6 @@
 				$oRequest->set('service_id',$this->Get('service_id'));		
 				$oRequest->set('team_id',$this->Get('team_id'));
 				$oRequest->set('agent_id',$this->Get('agent_id'));	
-				$oRequest->set('resolution_code',$this->Get('resolution_code'));
 				$oRequest->set('solution','Automatically resolved by request:[[RcxRequest:'.$this->Get('ref').']]');
 				$oRequest->ApplyStimulus('ev_autoresolve');
 				$oRequest->DBUpdate();
@@ -920,7 +919,6 @@
 			$this->Set('service_id', $oParentTicket->Get('service_id'));		
 			$this->Set('team_id', $oParentTicket->Get('team_id'));
 			$this->Set('agent_id', $oParentTicket->Get('agent_id'));	
-			$this->Set('resolution_code', $oParentTicket->Get('resolution_code'));
 			$sParent = '[['.get_class($oParentTicket).':'.$oParentTicket->Get('ref').']]';
 			$this->Set('solution', Dict::Format('Tickets:ResolvedFrom', $sParent, MetaModel::GetName(get_class($oParentTicket))));
 			$this->ApplyStimulus('ev_autoresolve');
