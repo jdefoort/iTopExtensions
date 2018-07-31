@@ -1,4 +1,10 @@
+All extensions here are working. 
+These extensions are being used in our own production environment. 
 
-Work in progress.
-Do not use in production environments! 
+Some of my extensions work in cooperation with extensions which were written by my colleague. 
+You can find his extensions on https://github.com/jbostoen/iTop-custom-extensions 
+
+Be aware of my newer extensions:
+* As of the moment HrRequest is still a rough version that isn't in production.
+* BuildingRequest is still being live tested by some users. 
 
