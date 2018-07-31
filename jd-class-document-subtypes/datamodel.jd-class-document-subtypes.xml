@@ -66,6 +66,23 @@
 		  
 		</class>
 		
+		<class id="DocumentFileHr" _delta="define">
+		
+			<parent>DocumentFile</parent>
+			<properties>
+				<db_table>documentfilehr</db_table>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<naming>
+				<attributes/>
+				</naming>
+			</properties>
+
+			<presentation/>
+			<methods/>
+		  
+		</class>
+		
 	</classes>
 	<!-- Adds a link to the ConfigManagement Overview -->
 	<menus>

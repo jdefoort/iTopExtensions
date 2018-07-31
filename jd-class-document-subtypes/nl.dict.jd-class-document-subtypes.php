@@ -15,6 +15,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:DocumentFileTechnicalServices+' => 'Een nieuw document voor de technische dienst aanmaken',
 	'Class:DocumentFileBuilding' => 'Omgeving document',
 	'Class:DocumentFileBuilding+' => 'Een nieuw document voor omgeving aanmaken',
+	'Class:DocumentFileHr' => 'Personeelsdocument',
+	'Class:DocumentFileHr+' => 'Een nieuw document voor personeel aanmaken',
 	
 	'Menu:NewDocument' => 'Nieuw document',
 	'Menu:NewDocument+' => 'Voeg een nieuw document toe',
