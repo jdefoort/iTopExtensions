@@ -1,4 +1,4 @@
-https://formulieren.izegem.be/educatief-aanbod/<?php
+<?php
 // Copyright (C) 2010-2014 Combodo SARL
 //
 //   This file is part of iTop.

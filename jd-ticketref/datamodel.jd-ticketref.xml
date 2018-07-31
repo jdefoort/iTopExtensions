@@ -40,6 +40,10 @@
 						$sFormat = 'OVT-%06d';
 						break;
 						
+						case 'HrRequest':
+						$sFormat = 'HR-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }
