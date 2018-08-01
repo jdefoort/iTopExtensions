@@ -1266,7 +1266,7 @@
 			</definition>
 		</menu>
 		<menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>31</rank>
+			<rank>33</rank>
 			<enable_stimulus/>
 		</menu>
 		<menu id="RcxRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">

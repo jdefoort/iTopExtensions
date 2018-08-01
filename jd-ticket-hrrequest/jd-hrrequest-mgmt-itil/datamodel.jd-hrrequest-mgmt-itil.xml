@@ -1267,7 +1267,7 @@
 			</definition>
 		</menu>
 		<menu id="HrRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>31</rank>
+			<rank>32</rank>
 			<enable_stimulus/>
 		</menu>
 		<menu id="HrRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
