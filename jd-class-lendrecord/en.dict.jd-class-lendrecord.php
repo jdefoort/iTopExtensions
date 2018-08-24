@@ -8,6 +8,9 @@
 
 Dict::Add('EN US', 'English', 'English', array(
 	// Dictionary entries go here
+	'LendRecord/otherinfo' => 'General information',
+	'LendRecord/baseinfo' => 'Other information',
+	
 	'Class:LendRecord' => 'Lend record',
 	'Class:LendRecord+' => 'Logs a new item that has been lent.',
 	

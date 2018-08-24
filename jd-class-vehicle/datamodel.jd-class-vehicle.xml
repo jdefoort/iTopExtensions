@@ -337,8 +337,8 @@
             <item id="contacts_list">
               <rank>170</rank>
             </item>
-            <item id="DocumentFileTechnicalServices">
-              <rank>181</rank>
+            <item id="documents_list">
+              <rank>180</rank>
             </item>
             <item id="tickets_list">
               <rank>190</rank>

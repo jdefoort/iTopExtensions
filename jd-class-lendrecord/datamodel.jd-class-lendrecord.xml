@@ -81,7 +81,7 @@
 		  <item id="col:col1">
 				<rank>10</rank>
 					<items>
-						<item id="fieldset:Server:baseinfo">
+						<item id="fieldset:LendRecord:baseinfo">
 						<items>
 							<item id="physicaldevice_id">
 							<rank>5</rank>
@@ -105,7 +105,7 @@
 			<item id="col:col2">
 				<rank>20</rank>
 				<items>
-					<item id="fieldset:Server:otherinfo">
+					<item id="fieldset:LendRecord:otherinfo">
 					<items>
 						<item id="reason">
 						 <rank>60</rank>

@@ -8,6 +8,9 @@
 
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	// Dictionary entries go here
+	'LendRecord:baseinfo' => 'Algemene info',
+	'LendRecord:otherinfo' => 'Andere info',
+	
 	'Class:LendRecord' => 'Item uitlenen',
 	'Class:LendRecord+' => 'Registreer een nieuwe uitlening van een item',
 	

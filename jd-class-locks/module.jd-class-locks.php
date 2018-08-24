@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-class-vehicle/2.4.180215',
+	'jd-class-locks/2.4.180824',
 	array(
 		// Identification
 		//
-		'label' => 'Class: Vehicle - Adds Vehicle',
+		'label' => 'Class: Locks - Adds locks as class',
 		'category' => 'business',
 
 		// Setup
@@ -24,8 +24,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'main.jd-class-vehicle.php',
-			'model.jd-class-vehicle.php'
+			'model.jd-class-locks.php'
 		),
 		'webservice' => array(
 			
