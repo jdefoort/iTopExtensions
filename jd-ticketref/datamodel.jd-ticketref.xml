@@ -44,6 +44,10 @@
 						$sFormat = 'HR-%06d';
 						break;
 						
+						case 'HrComplaint':
+						$sFormat = 'KL-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }

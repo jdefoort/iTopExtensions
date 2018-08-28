@@ -9,8 +9,8 @@
 Dict::Add('EN US', 'English', 'English', array(
 	
 	// Dictionary entries go here
-	'Locks/otherinfo' => 'General information',
-	'Locks/baseinfo' => 'Other information',
+	'Lock/otherinfo' => 'General information',
+	'Lock/baseinfo' => 'Other information',
 
 	// Typology: LockType
 	'Class:LockType' => 'Type of Lock',

@@ -9,8 +9,8 @@
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	
 	// Dictionary entries go here
-	'Locks/otherinfo' => 'Andere informatie',
-	'Locks/baseinfo' => 'Basis informatie',
+	'Lock/otherinfo' => 'Andere informatie',
+	'Lock/baseinfo' => 'Basis informatie',
 
 
 	// Typology: LockType

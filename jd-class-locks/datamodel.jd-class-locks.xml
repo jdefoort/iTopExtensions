@@ -133,7 +133,7 @@
 			<item id="col:col1">
 				<rank>80</rank>
 				<items>
-				<item id="fieldset:Locks:baseinfo">
+				<item id="fieldset:Lock:baseinfo">
 					<rank>10</rank>
 					<items>
 					<item id="name">
@@ -164,7 +164,7 @@
 			<item id="col:col2">
 				<rank>90</rank>
 				<items>
-				<item id="fieldset:Locks:otherinfo">
+				<item id="fieldset:Lock:otherinfo">
 					<rank>20</rank>
 					<items>
 						<item id="move2production">
