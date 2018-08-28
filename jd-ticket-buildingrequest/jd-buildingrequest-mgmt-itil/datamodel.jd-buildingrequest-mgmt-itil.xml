@@ -2861,45 +2861,45 @@
 			<parent>BuildingRequestManagement</parent>
 			<class>BuildingRequest</class>
 		</menu>
-		<menu id="NewBuildingViolation" xsi:type="NewObjectMenuNode" _delta="define">
+		<menu id="BuildingRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>3</rank>
 			<parent>BuildingRequestManagement</parent>
-			<class>BuildingViolation</class>
-		</menu>
-		<menu id="SearchBuildingViolations" xsi:type="SearchMenuNode" _delta="define">
-			<rank>4</rank>
-			<parent>BuildingRequestManagement</parent>
-			<class>BuildingViolation</class>
-		</menu>
-		<menu id="BuildingRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
-			<rank>5</rank>	
-			<parent>BuildingRequestManagement</parent>
-			<template_file/>
-		</menu>
-		<menu id="BuildingRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
-			<rank>0</rank>
-			<parent>BuildingRequest:Shortcuts</parent>
 			<oql><![CDATA[SELECT BuildingRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
 			<do_search/>
 			<auto_reload>fast</auto_reload>
 		</menu>
 		<menu id="BuildingRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
-			<rank>2</rank>
-			<parent>BuildingRequest:Shortcuts</parent>
+			<rank>4</rank>
+			<parent>BuildingRequestManagement</parent>
 			<oql><![CDATA[SELECT BuildingRequest WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
 		</menu>
+		<menu id="BuildingRequest:Violation" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>5</rank>	
+			<parent>BuildingRequestManagement</parent>
+			<template_file/>
+		</menu>
+		<menu id="NewBuildingViolation" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>6</rank>
+			<parent>BuildingRequest:Violation</parent>
+			<class>BuildingViolation</class>
+		</menu>
+		<menu id="SearchBuildingViolations" xsi:type="SearchMenuNode" _delta="define">
+			<rank>7</rank>
+			<parent>BuildingRequest:Violation</parent>
+			<class>BuildingViolation</class>
+		</menu>
 		<menu id="BuildingViolation:MyRequests" xsi:type="OQLMenuNode" _delta="define">
-			<rank>3</rank>
-			<parent>BuildingRequest:Shortcuts</parent>
+			<rank>8</rank>
+			<parent>BuildingRequest:Violation</parent>
 			<oql><![CDATA[SELECT BuildingViolation WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
 			<do_search/>
 			<auto_reload>fast</auto_reload>
 		</menu>
 		<menu id="BuildingViolation:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
-			<rank>4</rank>
-			<parent>BuildingRequest:Shortcuts</parent>
+			<rank>9</rank>
+			<parent>BuildingRequest:Violation</parent>
 			<oql><![CDATA[SELECT BuildingViolation WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
