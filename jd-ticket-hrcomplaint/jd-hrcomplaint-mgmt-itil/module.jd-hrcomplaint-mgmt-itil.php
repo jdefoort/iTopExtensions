@@ -5,34 +5,27 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-menuhide-itil/2.4.0',
+        'jd-hrcomplaint-mgmt-itil/2.4.0',
         array(
                 // Identification
                 //
-                'label' => 'Menuhide: Don\'t show the left menu-items which aren\'t modifiable for that user-profile',
+                'label' => 'Class: HR Complaint (ITIL) - Add complaintform',
                 'category' => 'business',
 
                 // Setup
                 //
                 'dependencies' => array(
                         'itop-config-mgmt/2.4.0',
-                        'itop-service-mgmt/2.4.0',
-                        // we are not using service-mgmt-provider, so we can't depend on it
-						// 'itop-service-mgmt-provider/2.4.0',
-                        'itop-change-mgmt-itil/2.4.0',
-						'jd-rcxrequest-mgmt-itil/2.4.0',
-						'jd-hrrequest-mgmt-itil/2.4.0',
-						'jd-hrcomplaint-mgmt-itil/2.4.0',
-						'jd-buildingrequest-mgmt-itil/2.4.0'
+                        'itop-request-mgmt-itil/2.4.0',
+						'itop-tickets/2.4.0'
                 ),
-
                 'mandatory' => false,
                 'visible' => true,
 
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-menuhide-itil.php'
+                        'model.jd-hrcomplaint-mgmt-itil.php'
                 ),
                 'webservice' => array(
 

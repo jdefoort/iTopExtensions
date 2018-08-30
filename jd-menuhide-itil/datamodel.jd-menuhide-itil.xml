@@ -20,7 +20,7 @@
      <enable_stimulus/>
    </menu>
    <menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>33</rank>
+	 <rank>34</rank>
      <enable_class>RcxRequest</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
@@ -34,6 +34,12 @@
    <menu id="HrRequestManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>32</rank>
      <enable_class>HrRequest</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+    <menu id="HrComplaintManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>33</rank>
+     <enable_class>HrComplaint</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>

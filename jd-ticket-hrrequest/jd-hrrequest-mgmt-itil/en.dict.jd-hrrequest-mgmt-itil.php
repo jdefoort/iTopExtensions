@@ -37,8 +37,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Menu:NewHrRequest+' => 'Create a new Hr request ticket',
 	'Menu:SearchHrRequests' => 'Search for Hr requests',
 	'Menu:SearchHrRequests+' => 'Search for Hr request tickets',
-	'Menu:HrRequest:Shortcuts' => 'Shortcuts',
-	'Menu:HrRequest:Shortcuts+' => '',
+	'Menu:HrRequest:Complaint' => 'Complaints',
+	'Menu:HrRequest:Complaint+' => '',
 	'Menu:HrRequest:MyRequests' => 'Hr Requests assigned to me',
 	'Menu:HrRequest:MyRequests+' => 'Hr Requests assigned to me (as Agent)',
 	'Menu:HrRequest:MySupportRequests' => "My support calls",
@@ -55,6 +55,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'UI-RequestManagementOverview-OpenRequestByType' => 'Open requests by type',
 	'UI-RequestManagementOverview-OpenRequestByCustomer' => 'Open requests by customer',
 	'Class:HrRequest:KnownErrorList' => 'Known Errors',
+	
 ));
 
 // Dictionnay conventions
@@ -264,4 +265,6 @@ Dict::Add('EN US', 'English', 'English', array(
 
 	'Class:HrRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:HrRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
+	
 ));
+

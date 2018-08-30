@@ -37,8 +37,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:NewHrRequest+' => 'Maak een nieuw ticket aan',
 	'Menu:SearchHrRequests' => 'Zoek naar tickets',
 	'Menu:SearchHrRequests+' => 'Zoek naar tickets',
-	'Menu:HrRequest:Shortcuts' => 'Snelkoppelingen',
-	'Menu:HrRequest:Shortcuts+' => '',
+	'Menu:HrRequest:Complaint' => 'Klachten',
+	'Menu:HrRequest:Complaint+' => '',
 	'Menu:HrRequest:MyRequests' => 'Tickets toegewezen aan mij',
 	'Menu:HrRequest:MyRequests+' => 'Tickets toegewezen aan mij (als behandelaar)',
 	'Menu:HrRequest:MySupportRequests' => 'Tickets van mij',
@@ -55,6 +55,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'UI-RequestManagementOverview-OpenRequestByType' => 'Open tickets per type',
 	'UI-RequestManagementOverview-OpenRequestByCustomer' => 'Open tickets per organisatie',
 	'Class:HrRequest:KnownErrorList' => 'Bekende fouten',
+	
 ));
 
 // Dictionnary conventions
@@ -268,4 +269,6 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 
 	'Class:HrRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:HrRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
+	
+	
 ));
