@@ -79,7 +79,7 @@
       </presentation>
     </class>
 	
-	<!-- Adds a driver's license class. In the end, this could give easy access to an overview of all vehicles requiring a certain kind of license. -->
+	<!-- Adds a driver's energy source class. In the end, this could give easy access to an overview of all vehicles requiring a certain kind of energy source. -->
 	<!-- Based on the original 'Brand' class -->
     <class id="VehicleEnergySource" _delta="define">
       <parent>Typology</parent>

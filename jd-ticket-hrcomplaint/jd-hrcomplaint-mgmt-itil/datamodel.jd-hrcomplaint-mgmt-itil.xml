@@ -13,6 +13,73 @@
 		<constant id="PORTAL_HRCOMPLAINT_DISPLAY_POWERUSER_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT HrComplaint WHERE org_id = :contact->org_id]]></constant>
 	</constants>
 	<classes>
+		
+		<!-- Adds an department class. In the end, this could give easy access to an overview of all complaints about a certain department. -->
+		<!-- Based on the original 'Brand' class -->
+		<class id="Department" _delta="define">
+		  <parent>Typology</parent>
+		  <properties>
+			<category>bizmodel,searchable</category>
+			<abstract>false</abstract>
+			<key_type>autoincrement</key_type>
+			<db_table>department</db_table>
+			<db_key_field>id</db_key_field>
+			<db_final_class_field/>
+			<naming>
+			  <attributes>
+				<attribute id="name"/>
+			  </attributes>
+			</naming>
+			<display_template/>
+			<icon/>
+			<reconciliation>
+			  <attributes>
+				<attribute id="name"/>
+			  </attributes>
+			</reconciliation>
+		  </properties>
+		  <fields>
+			<field id="HrComplaint_list" xsi:type="AttributeLinkedSet">
+			  <linked_class>HrComplaint</linked_class>
+			  <ext_key_to_me>department_id</ext_key_to_me>
+			  <edit_mode>add_only</edit_mode>
+			  <count_min>0</count_min>
+			  <count_max>0</count_max>
+			  <duplicates/>
+			</field>
+		  </fields>
+		  <methods/>
+		  <presentation>
+			<details>
+			  <items>
+				<item id="name">
+				  <rank>10</rank>
+				</item>
+				<item id="HrComplaint_list">
+				  <rank>20</rank>
+				</item>
+			  </items>
+			</details>
+			<search>
+			  <items>
+				<item id="name">
+				  <rank>10</rank>
+				</item>
+			  </items>
+			</search>
+			<list>
+			  <items>
+				<item id="name">
+				  <rank>10</rank>
+				</item>
+			  </items>
+			</list>
+		  </presentation>
+		</class>
+		
+	
+	
+	
 		<class id="HrComplaint" _delta="define">
 			<parent>Ticket</parent>
 			<properties>
@@ -102,9 +169,30 @@
 						<value id="portal">portal</value>
 						<value id="in_person">in_person</value>
 						<value id="letter">letter</value>
+						<value id="alderman">alderman</value>
+						<value id="social_media">social_media</value>
 					</values>
 					<sql>origin</sql>
-					<default_value>phone</default_value>
+					<default_value>letter</default_value>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="amenable" xsi:type="AttributeEnum">
+					<values>
+					  <value id="yes">yes</value>
+					  <value id="no">no</value>
+					</values>
+					<sql>amenable</sql>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+				</field>
+				<field id="not_amenable" xsi:type="AttributeEnum">
+					<values>
+						<value id="c">c</value>
+						<value id="b">b</value>
+						<value id="a">a</value>
+					</values>
+					<sql>not_amenable</sql>
+					<default_value></default_value>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="approver_id" xsi:type="AttributeExternalKey">
@@ -217,6 +305,26 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
+				<field id="date_received" xsi:type="AttributeDate">
+				  <sql>date_received</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
+				<field id="reminder" xsi:type="AttributeDate">
+				  <sql>reminder</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
+				<field id="department_id" xsi:type="AttributeExternalKey">
+				  <sql>department_id</sql>
+				  <is_null_allowed>true</is_null_allowed>
+				  <on_target_delete>DEL_AUTO</on_target_delete>
+				  <target_class>Department</target_class>
+				
+				
+				</field>
 			</fields>
 			<lifecycle>
 				<highlight_scale>
@@ -304,6 +412,9 @@
 							</attribute>
 							<attribute id="user_comment">
 								<hidden/>
+							</attribute>
+							<attribute id="amenable">
+								<mandatory/>
 							</attribute>
 						</flags>
 						<transitions>
@@ -599,6 +710,18 @@
 								<mandatory/>
 								<must_prompt/>
 							</attribute>
+							<attribute id="amenable">
+								<read_only/>
+							</attribute>
+							<attribute id="not_amenable">
+								<read_only/>
+							</attribute>
+							<attribute id="reminder">
+								<read_only/>
+							</attribute>
+							<attribute id="date_received">
+								<read_only/>
+							</attribute>
 						</flags>
 						<transitions>
 							<transition id="ev_close">
@@ -675,6 +798,18 @@
 							<attribute id="user_comment">
 								<read_only/>
 								<must_prompt/>
+							</attribute>
+							<attribute id="reminder">
+								<read_only/>
+							</attribute>
+							<attribute id="date_received">
+								<read_only/>
+							</attribute>
+							<attribute id="amenable">
+								<read_only/>
+							</attribute>
+							<attribute id="not_amenable">
+								<read_only/>
 							</attribute>
 						</flags>
 						<transitions/>
@@ -1045,6 +1180,12 @@
 										<item id="impact">
 											<rank>20</rank>
 										</item>
+										<item id="amenable">
+											<rank>21</rank>
+										</item>
+										<item id="not_amenable">
+											<rank>22</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Ticket:contact">
@@ -1076,6 +1217,12 @@
 										<item id="close_date">
 											<rank>50</rank>
 										</item>
+										<item id="date_received">
+											<rank>51</rank>
+										</item>
+										<item id="reminder">
+											<rank>52</rank>
+										</item>
 									</items>
 								</item>
 							</items>
@@ -1088,6 +1235,9 @@
 									<items>
 										<item id="parent_request_id">
 											<rank>10</rank>
+										</item>
+										<item id="department_id">
+										  <rank>21</rank>
 										</item>
 									</items>
 								</item>
@@ -1114,14 +1264,29 @@
 						<item id="org_id">
 							<rank>20</rank>
 						</item>
+						<item id="department_id">
+						  <rank>21</rank>
+						</item>
 						<item id="title">
 							<rank>30</rank>
 						</item>
 						<item id="description">
 							<rank>40</rank>
 						</item>
+						<item id="amenable">
+							<rank>41</rank>
+						</item>
+						<item id="not_amenable">
+							<rank>42</rank>
+						</item>
 						<item id="start_date">
 							<rank>50</rank>
+						</item>
+						<item id="date_received">
+							<rank>51</rank>
+						</item>
+						<item id="reminder">
+							<rank>52</rank>
 						</item>
 						<item id="resolution_date">
 							<rank>70</rank>
@@ -1180,6 +1345,9 @@
 						</item>
 						<item id="status">
 							<rank>50</rank>
+						</item>
+						<item id="reminder">
+							<rank>52</rank>
 						</item>
 						<item id="agent_id">
 							<rank>60</rank>

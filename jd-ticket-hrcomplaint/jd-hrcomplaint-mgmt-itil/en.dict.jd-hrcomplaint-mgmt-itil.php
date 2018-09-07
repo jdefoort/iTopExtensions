@@ -140,6 +140,14 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:HrComplaint/Attribute:origin/Value:phone+' => 'phone',
 	'Class:HrComplaint/Attribute:origin/Value:portal' => 'portal',
 	'Class:HrComplaint/Attribute:origin/Value:portal+' => 'portal',
+	'Class:HrComplaint/Attribute:origin/Value:letter' => 'letter',
+	'Class:HrComplaint/Attribute:origin/Value:letter+' => 'letter',
+	'Class:HrComplaint/Attribute:origin/Value:alderman' => 'alderman',
+	'Class:HrComplaint/Attribute:origin/Value:alderman+' => 'alderman',
+	'Class:HrComplaint/Attribute:origin/Value:social_media' => 'social media',
+	'Class:HrComplaint/Attribute:origin/Value:social_media+' => 'social media',	
+	'Class:HrComplaint/Attribute:origin/Value:in_person' => 'in person',
+    'Class:HrComplaint/Attribute:origin/Value:in_person+' => 'in person',
 	'Class:HrComplaint/Attribute:approver_id' => 'Approver',
 	'Class:HrComplaint/Attribute:approver_id+' => '',
 	'Class:HrComplaint/Attribute:approver_email' => 'Approver Email',
@@ -267,6 +275,35 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:HrComplaint/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:HrComplaint/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
 	
+	'Class:HrComplaint/Attribute:amenable' => 'Amenable',
+	'Class:HrComplaint/Attribute:amenable+' => 'Amenable or not',
+	'Class:HrComplaint/Attribute:not_amenable' => 'Why not amenable',
+	'Class:HrComplaint/Attribute:impact+' => 'Why is the following complaint not amenable',
+	'Class:HrComplaint/Attribute:date_received' => 'Date received',
+	'Class:HrComplaint/Attribute:date_received+' => 'Date received',
+	'Class:HrComplaint/Attribute:department_id' => 'Department',
+	'Class:HrComplaint/Attribute:department_id+' => 'What is the name of the department',
+	'Class:HrComplaint/Attribute:amenable/Value:no' => 'No',
+	'Class:HrComplaint/Attribute:amenable/Value:no+' => 'No',
+	'Class:HrComplaint/Attribute:amenable/Value:yes' => 'Yes',
+	'Class:HrComplaint/Attribute:amenable/Value:yes+' => 'Yes',
+	'Class:HrComplaint/Attribute:not_amenable/Value:c' => 'Notification',
+	'Class:HrComplaint/Attribute:not_amenable/Value:c+' => 'Notification',
+	'Class:HrComplaint/Attribute:not_amenable/Value:b' => 'Policy suggestion',
+	'Class:HrComplaint/Attribute:not_amenable/Value:b+' => 'Policy suggestion',
+	'Class:HrComplaint/Attribute:not_amenable/Value:a' => 'Other',
+	'Class:HrComplaint/Attribute:not_amenable/Value:a+' => 'Other',
+	'Class:HrComplaint/Attribute:reminder' => 'Reminder',
+	'Class:HrComplaint/Attribute:reminder+' => 'Reminder',	
+	
+	
+	
+	// Typology: Department
+	'Class:Department' => 'Department',
+	'Class:Department+' => 'Department',
+	'Class:Department/Attribute:name' => 'Name of department',
+	'Class:Department/Attribute:HrComplaint_list' => 'HR Complaints of this department',
+	'Class:Department/Attribute:HrComplaint_list+' => 'Overview of HR Complaints of this department',
 	
 ));
 
