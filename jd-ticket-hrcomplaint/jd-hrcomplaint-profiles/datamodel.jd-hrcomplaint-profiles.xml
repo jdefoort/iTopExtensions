@@ -7,6 +7,7 @@
 	<group id="HrComplaint" _delta="define">
 		<classes>
           <class id="HrComplaint"/>
+		  <class id="Department"/>
         </classes>
       </group>
 	  
@@ -53,6 +54,7 @@
 			  <action id="stimulus:ev_reassign">allow</action>
             </actions>
 		  </group>	
+		  
 		           
 		  <group id="Ticketing">
             <actions>

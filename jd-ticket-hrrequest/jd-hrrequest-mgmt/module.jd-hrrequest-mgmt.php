@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-hrcomplaint-mgmt-itil/2.4.0',
+        'jd-hrrequest-mgmt/2.4.0',
         array(
                 // Identification
                 //
-                'label' => 'Class: HR Complaint (ITIL) - Add complaintform',
+                'label' => 'Class: HR Request (ITIL) - Add requestform',
                 'category' => 'business',
 
                 // Setup
@@ -25,7 +25,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-hrcomplaint-mgmt-itil.php'
+                        'model.jd-hrrequest-mgmt.php'
                 ),
                 'webservice' => array(
 

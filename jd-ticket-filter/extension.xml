@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-ticket-filter</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Tickets: Change filter]]></label>
+	<description><![CDATA[Changes the filter in tickets]]></description>
+	<version>2.4.180731</version>
+	<release_date>2018-02-05</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.4.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>
+

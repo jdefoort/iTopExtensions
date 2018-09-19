@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<classes>
+		<class id="Ticket">	
+
+			<fields>
+
+				<field id="org_id" xsi:type="AttributeExternalKey" _delta="merge">
+					<!--
+						Org ids: 
+							1 = Personeel
+							4 = Burgers rcx
+							5 = Burgers omgeving
+							6 = Burgers personeel
+							
+					-->
+					<filter _delta="force"><![CDATA[
+						SELECT Organization AS o WHERE 
+							( o.name = 'Personeel Izegem' AND :this->finalclass IN ('HrRequest') ) OR
+							( o.name = 'Burgers Personeel' AND :this->finalclass IN ('HrComplaint') ) OR
+							( o.name = 'Burgers Omgeving' AND :this->finalclass IN ('BuildingViolation', 'BuildingRequest') ) OR 
+							( :this->finalclass NOT IN ('HrComplaint', 'HrRequest', 'BuildingViolation', 'BuildingRequest') )
+					]]></filter>
+				</field>
+
+			</fields>
+
+		</class>
+	</classes>
+</itop_design>
+

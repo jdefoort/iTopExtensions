@@ -336,6 +336,9 @@
 							<attribute id="user_comment">
 								<hidden/>
 							</attribute>
+							<attribute id="public_log">
+								<hidden/>
+							</attribute>
 						</flags>
 						<transitions>
 							<transition id="ev_assign">
@@ -398,6 +401,7 @@
 								<read_only/>
 							</attribute>
 							<attribute id="caller_id"/>
+							<attribute id="public_log"/>
 						</flags>
 						<transitions>
 							<transition id="ev_resolve">

@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-hrcomplaint-profiles/',
+        'jd-ticket-filter/',
         array(
                 // Identification
                 //
-                'label' => 'Profile: add HR complaint user as profile',
+                'label' => 'Tickets: Change filter',
                 'category' => 'business',
 
                 // Setup
@@ -17,8 +17,8 @@ SetupWebPage::AddModule(
                 'dependencies' => array(
                         'itop-config-mgmt/2.4.0',
                         'itop-request-mgmt-itil/2.4.0',
-                        'itop-knownerror-mgmt/2.4.0',
-						'jd-hrrequest-mgmt/2.4.0'
+						'jd-hrrequest-mgmt/2.4.0',
+						'jd-hrcomplaint-mgmt/2.4.0',
                 ),
                 'mandatory' => false,
                 'visible' => true,
@@ -26,7 +26,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-hrcomplaint-profiles.php'
+                        'model.jd-ticket-filter.php'
                 ),
                 'webservice' => array(
 

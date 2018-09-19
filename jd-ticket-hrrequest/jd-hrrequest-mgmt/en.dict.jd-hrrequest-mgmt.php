@@ -133,6 +133,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:HrRequest/Attribute:origin+' => '',
 	'Class:HrRequest/Attribute:origin/Value:mail' => 'mail',
 	'Class:HrRequest/Attribute:origin/Value:mail+' => 'mail',
+	'Class:HrRequest/Attribute:origin/Value:letter' => 'letter',
+	'Class:HrRequest/Attribute:origin/Value:letter+' => 'letter',
 	'Class:HrRequest/Attribute:origin/Value:monitoring' => 'monitoring',
 	'Class:HrRequest/Attribute:origin/Value:monitoring+' => 'monitoring',
 	'Class:HrRequest/Attribute:origin/Value:phone' => 'phone',
@@ -262,9 +264,13 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:HrRequest/Stimulus:ev_wait_for_approval' => 'Wait for approval',
 	'Class:HrRequest/Stimulus:ev_wait_for_approval+' => '',
 	'Class:HrRequest/Error:CannotAssignParentRequestIdToSelf' => 'Cannot assign the Parent request to the request itself',
+	'Class:HrRequest/Attribute:reminder' => 'Reminder',
+	'Class:HrRequest/Attribute:reminder+' => 'Reminder',	
+	
 
 	'Class:HrRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:HrRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
 	
 ));
+
 

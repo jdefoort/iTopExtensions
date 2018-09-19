@@ -25,8 +25,8 @@
  */
 
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
-	'Menu:HrComplaintManagement' => 'Personeel - klachten',
-	'Menu:HrComplaintManagement+' => 'Personeel',
+	'Menu:HrComplaintManagement' => 'Klachten',
+	'Menu:HrComplaintManagement+' => 'Klachten',
 	'Menu:HrComplaintManagementProvider' => 'Helpdesk leverancier',
 	'Menu:HrComplaintManagementProvider+' => 'Helpdesk leverancier',
 	'Menu:HrComplaint:Provider' => 'Open tickets overgebracht naar leverancier',
@@ -310,3 +310,4 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Department/Attribute:HrComplaint_list+' => 'Overzicht van klachten over deze dienst',
 	
 ));
+

@@ -133,6 +133,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:HrRequest/Attribute:origin+' => '',
 	'Class:HrRequest/Attribute:origin/Value:mail' => 'mail',
 	'Class:HrRequest/Attribute:origin/Value:mail+' => 'mail',
+	'Class:HrRequest/Attribute:origin/Value:letter' => 'brief',
+	'Class:HrRequest/Attribute:origin/Value:letter+' => 'brief',
 	'Class:HrRequest/Attribute:origin/Value:monitoring' => 'monitoring',
 	'Class:HrRequest/Attribute:origin/Value:monitoring+' => 'monitoring',
 	'Class:HrRequest/Attribute:origin/Value:phone' => 'telefoon',
@@ -266,9 +268,12 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:HrRequest/Stimulus:ev_wait_for_approval' => 'Wacht op goedkeuring',
 	'Class:HrRequest/Stimulus:ev_wait_for_approval+' => '',
 	'Class:HrRequest/Error:CannotAssignParentRequestIdToSelf' => 'Kan niet toewijzen aan hoofdverzoek en aan het verzoek zelf',
+	'Class:HrRequest/Attribute:reminder' => 'Herinnering',
+	'Class:HrRequest/Attribute:reminder+' => 'Herinnering',	
 
 	'Class:HrRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:HrRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
 	
 	
 ));
+
