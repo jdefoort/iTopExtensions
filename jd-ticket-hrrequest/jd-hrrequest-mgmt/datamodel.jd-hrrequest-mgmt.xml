@@ -1176,7 +1176,7 @@
 		<menu id="WelcomeMenuPage" xsi:type="DashboardMenuNode" _delta="must_exist">
 			<definition>
 				<cells>
-					<cell id="5" _delta="define">
+					<cell id="3" _delta="define">
 						<rank>1</rank>
 						<dashlets>
 							<dashlet id="11" xsi:type="DashletHeaderDynamic">
@@ -1200,7 +1200,7 @@
 			</definition>
 		</menu>
 		<menu id="HrRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>32</rank>
+			<rank>34</rank>
 			<enable_stimulus/>
 		</menu>
 		<menu id="HrRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">

@@ -48,6 +48,10 @@
 						$sFormat = 'KL-%06d';
 						break;
 						
+						case 'ComRequest':
+						$sFormat = 'COM-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }

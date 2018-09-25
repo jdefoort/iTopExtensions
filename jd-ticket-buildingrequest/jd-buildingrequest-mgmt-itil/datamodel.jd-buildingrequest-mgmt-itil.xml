@@ -2694,7 +2694,7 @@
 		<menu id="WelcomeMenuPage" xsi:type="DashboardMenuNode" _delta="must_exist">
 			<definition>
 				<cells>
-					<cell id="3" _delta="define">
+					<cell id="2" _delta="define">
 						<rank>1</rank>
 						<dashlets>
 							<dashlet id="11" xsi:type="DashletHeaderDynamic">
@@ -2718,7 +2718,7 @@
 			</definition>
 		</menu>
 		<menu id="BuildingRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>31</rank>
+			<rank>33</rank>
 			<enable_stimulus/>
 		</menu>
 		<menu id="BuildingRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">

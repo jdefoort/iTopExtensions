@@ -1366,7 +1366,7 @@
 			</definition>
 		</menu>
 		<menu id="HrComplaintManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>33</rank>
+			<rank>32</rank>
 			<enable_stimulus/>
 		</menu>
 		<menu id="HrComplaint:Overview" xsi:type="DashboardMenuNode" _delta="define">

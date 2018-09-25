@@ -199,38 +199,6 @@
 					<extkey_attcode>parent_request_id</extkey_attcode>
 					<target_attcode>ref</target_attcode>
 				</field>
-				<field id="parent_incident_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT Incident WHERE status != "closed"]]></filter>
-					<sql>parent_incident_id</sql>
-					<target_class>Incident</target_class>
-					<is_null_allowed>true</is_null_allowed>
-					<on_target_delete>DEL_MANUAL</on_target_delete>
-				</field>
-				<field id="parent_incident_ref" xsi:type="AttributeExternalField">
-					<extkey_attcode>parent_incident_id</extkey_attcode>
-					<target_attcode>ref</target_attcode>
-				</field>
-				<field id="parent_problem_id" xsi:type="AttributeExternalKey">
-					<sql>parent_problem_id</sql>
-					<target_class>Problem</target_class>
-					<is_null_allowed>true</is_null_allowed>
-					<on_target_delete>DEL_MANUAL</on_target_delete>
-				</field>
-				<field id="parent_problem_ref" xsi:type="AttributeExternalField">
-					<extkey_attcode>parent_problem_id</extkey_attcode>
-					<target_attcode>ref</target_attcode>
-				</field>
-				<field id="parent_change_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT Change WHERE status != "closed"]]></filter>
-					<sql>parent_change_id</sql>
-					<target_class>Change</target_class>
-					<is_null_allowed>true</is_null_allowed>
-					<on_target_delete>DEL_MANUAL</on_target_delete>
-				</field>
-				<field id="parent_change_ref" xsi:type="AttributeExternalField">
-					<extkey_attcode>parent_change_id</extkey_attcode>
-					<target_attcode>ref</target_attcode>
-				</field>
 				<field id="related_request_list" xsi:type="AttributeLinkedSet">
 					<linked_class>RcxRequest</linked_class>
 					<ext_key_to_me>parent_request_id</ext_key_to_me>
@@ -1124,15 +1092,6 @@
 										<item id="parent_request_id">
 											<rank>10</rank>
 										</item>
-										<item id="parent_incident_id">
-											<rank>20</rank>
-										</item>
-										<item id="parent_problem_id">
-											<rank>30</rank>
-										</item>
-										<item id="parent_change_id">
-											<rank>40</rank>
-										</item>
 									</items>
 								</item>
 								<item id="fieldset:Ticket:resolution">
@@ -1237,7 +1196,7 @@
 		<menu id="WelcomeMenuPage" xsi:type="DashboardMenuNode" _delta="must_exist">
 			<definition>
 				<cells>
-					<cell id="2" _delta="define">
+					<cell id="1" _delta="define">
 						<rank>1</rank>
 						<dashlets>
 							<dashlet id="11" xsi:type="DashletHeaderDynamic">
@@ -1261,7 +1220,7 @@
 			</definition>
 		</menu>
 		<menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>33</rank>
+			<rank>35</rank>
 			<enable_stimulus/>
 		</menu>
 		<menu id="RcxRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
