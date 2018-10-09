@@ -216,6 +216,12 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
+				<field id="reminder" xsi:type="AttributeDate">
+				  <sql>reminder</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
 			</fields>
 			<lifecycle>
 				<highlight_scale>
@@ -602,6 +608,9 @@
 								<mandatory/>
 								<must_prompt/>
 							</attribute>
+							<attribute id="reminder">
+								<read_only/>
+							</attribute>
 						</flags>
 						<transitions>
 							<transition id="ev_close">
@@ -678,6 +687,9 @@
 							<attribute id="user_comment">
 								<read_only/>
 								<must_prompt/>
+							</attribute>
+							<attribute id="reminder">
+								<read_only/>
 							</attribute>
 						</flags>
 						<transitions/>
@@ -1079,6 +1091,9 @@
 										<item id="close_date">
 											<rank>50</rank>
 										</item>
+										<item id="reminder">
+											<rank>52</rank>
+										</item>
 									</items>
 								</item>
 							</items>
@@ -1125,6 +1140,9 @@
 						</item>
 						<item id="start_date">
 							<rank>50</rank>
+						</item>
+						<item id="reminder">
+							<rank>52</rank>
 						</item>
 						<item id="resolution_date">
 							<rank>70</rank>
@@ -1184,6 +1202,9 @@
 						<item id="status">
 							<rank>50</rank>
 						</item>
+						<item id="reminder">
+							<rank>52</rank>
+						</item>
 						<item id="agent_id">
 							<rank>60</rank>
 						</item>
@@ -1196,7 +1217,7 @@
 		<menu id="WelcomeMenuPage" xsi:type="DashboardMenuNode" _delta="must_exist">
 			<definition>
 				<cells>
-					<cell id="1" _delta="define">
+					<cell id="6" _delta="define">
 						<rank>1</rank>
 						<dashlets>
 							<dashlet id="11" xsi:type="DashletHeaderDynamic">
@@ -1228,79 +1249,113 @@
 			<parent>RcxRequestManagement</parent>
 			<definition>
 				<layout>DashboardLayoutTwoCols</layout>
-				<title>UI:RequestMgmtMenuOverview:Title</title>
+				<title>Overzicht Recreatex</title>
 				<cells>
 					<cell id="0">
-						<rank>0</rank>
-						<dashlets>
-							<dashlet id="1" xsi:type="DashletGroupByPie">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-RequestByType-last-14-days</title>
-								<query>SELECT RcxRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
-								<group_by>request_type</group_by>
-								<style>pie</style>
-							</dashlet>
-						</dashlets>
+					  <rank>0</rank>
+					  <dashlets>
+						<dashlet id="11" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Herinnering</title>
+						  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+						</dashlet>
+						<dashlet id="10" xsi:type="DashletObjectList">
+						  <rank>1</rank>
+						  <title></title>
+						  <query>SELECT RcxRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
+						  <menu>false</menu>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="1">
-						<rank>1</rank>
-						<dashlets>
-							<dashlet id="2" xsi:type="DashletGroupByBars">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-Last-14-days</title>
-								<query>SELECT RcxRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
-								<group_by>start_date:day_of_month</group_by>
-								<style>bars</style>
-							</dashlet>
-						</dashlets>
+					  <rank>1</rank>
+					  <dashlets>
+						<dashlet id="12" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Algemene info</title>
+						  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+						</dashlet>
+						<dashlet id="2" xsi:type="DashletGroupByBars">
+						  <rank>1</rank>
+						  <title>UI-RequestManagementOverview-Last-14-days</title>
+						  <query>SELECT RcxRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+						  <group_by>start_date:day_of_month</group_by>
+						  <style>bars</style>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="2">
-						<rank>2</rank>
-						<dashlets>
-							<dashlet id="3" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByStatus</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>status</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>2</rank>
+					  <dashlets>
+						<dashlet id="13" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Tickets in cijfers</title>
+						  <icon>jd-class-lendrecord/images/lendrecord.png</icon>
+						</dashlet>
+						<dashlet id="7" xsi:type="DashletGroupByTable">
+						  <rank>1</rank>
+						  <title>Tickets in de laatste maand</title>
+						  <query>SELECT RcxRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						</dashlet>
+						<dashlet id="8" xsi:type="DashletGroupByTable">
+						  <rank>2</rank>
+						  <title>Tickets in de laatste 6 maanden</title>
+						  <query>SELECT RcxRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						</dashlet>
+						<dashlet id="9" xsi:type="DashletGroupByTable">
+						  <rank>3</rank>
+						  <title>Tickets in het laatste jaar</title>
+						  <query>SELECT RcxRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="3">
-						<rank>3</rank>
-						<dashlets>
-							<dashlet id="4" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>agent_id</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>3</rank>
+					  <dashlets>
+						<dashlet id="4" xsi:type="DashletGroupByTable">
+						  <rank>0</rank>
+						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
+						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+						  <group_by>agent_id</group_by>
+						  <style>table</style>
+						</dashlet>
+						<dashlet id="3" xsi:type="DashletGroupByTable">
+						  <rank>1</rank>
+						  <title>UI-RequestManagementOverview-OpenRequestByStatus</title>
+						  <query>SELECT RcxRequest WHERE status NOT IN ('rejected')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						</dashlet>
+						<dashlet id="6" xsi:type="DashletGroupByTable">
+						  <rank>2</rank>
+						  <title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
+						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+						  <group_by>org_id</group_by>
+						  <style>table</style>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="4">
-						<rank>4</rank>
-						<dashlets>
-							<dashlet id="5" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByType</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>finalclass</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>4</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="5">
-						<rank>5</rank>
-						<dashlets>
-							<dashlet id="6" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
-								<query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>org_id</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>5</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
 					</cell>
 				</cells>
 			</definition>

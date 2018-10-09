@@ -261,6 +261,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:RcxRequest/Stimulus:ev_wait_for_approval' => 'Wait for approval',
 	'Class:RcxRequest/Stimulus:ev_wait_for_approval+' => '',
 	'Class:RcxRequest/Error:CannotAssignParentRequestIdToSelf' => 'Cannot assign the Parent request to the request itself',
+	'Class:RcxRequest/Attribute:reminder' => 'Reminder',
+	'Class:RcxRequest/Attribute:reminder+' => 'Reminder',	
 
 	'Class:RcxRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:RcxRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',

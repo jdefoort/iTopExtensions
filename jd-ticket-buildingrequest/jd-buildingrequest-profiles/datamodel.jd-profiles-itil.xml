@@ -11,7 +11,7 @@
 			  <class id="DocumentFileBuilding"/>
 			</classes>
 		</group>
-		  
+	
 		<group id="BuildingViolation" _delta="define">
 			<classes>
 			  <class id="BuildingViolation"/>
@@ -30,6 +30,13 @@
 				  <class id="PrecannedReply"/>
 				  <class id="PrecannedReplyCategory"/>
 				</classes>
+		</group>
+		
+		<group id="Crab" _delta="define_if_not_exists">
+			<classes>
+			  <class id="CrabStreet"/>
+			  <class id="CrabAddress"/>
+			</classes>
 		</group>
 	 
     </groups>
@@ -65,6 +72,7 @@
 			  <action id="stimulus:ev_assign">allow</action>
 			  <action id="stimulus:ev_resolve">allow</action>
 			  <action id="stimulus:ev_reassign">allow</action>
+			  <action id="stimulus:ev_reopen">allow</action>
             </actions>
 		  </group>	
 		  <group id="BuildingViolation">
@@ -78,9 +86,15 @@
 			  <action id="stimulus:ev_assign">allow</action>
 			  <action id="stimulus:ev_resolve">allow</action>
 			  <action id="stimulus:ev_reassign">allow</action>
+			  <action id="stimulus:ev_reopen">allow</action>
             </actions>
 		  </group>	
-		  
+		  <group id="Crab">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>		  
 		           
 		  <group id="Ticketing">
             <actions>

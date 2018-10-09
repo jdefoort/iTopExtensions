@@ -265,6 +265,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:RcxRequest/Stimulus:ev_wait_for_approval' => 'Wacht op goedkeuring',
 	'Class:RcxRequest/Stimulus:ev_wait_for_approval+' => '',
 	'Class:RcxRequest/Error:CannotAssignParentRequestIdToSelf' => 'Kan niet toewijzen aan hoofdverzoek en aan het verzoek zelf',
+	'Class:RcxRequest/Attribute:reminder' => 'Herinnering',
+	'Class:RcxRequest/Attribute:reminder+' => 'Herinnering',	
 
 	'Class:RcxRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:RcxRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',

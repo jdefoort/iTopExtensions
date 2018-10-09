@@ -24,6 +24,14 @@ https://formulieren.izegem.be/educatief-aanbod/<?php
  * @license     http://opensource.org/licenses/AGPL-3.0
  */
 
+ 
+Dict::Add('EN US', 'English', 'English', array(
+
+	'Tab:InfraGIS' => 'InfraGIS'
+	
+));
+
+
 Dict::Add('EN US', 'English', 'English', array(
 	'Menu:BuildingRequestManagement' => 'Building Request',
 	'Menu:BuildingRequestManagement+' => 'Building Request',
@@ -86,8 +94,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:BuildingRequest+' => '',
 	'Class:BuildingRequest/Attribute:status' => 'Status',
 	'Class:BuildingRequest/Attribute:status+' => '',
-	'Class:BuildingRequest/Attribute:address_allotment' => 'Address of the allotment',
-	'Class:BuildingRequest/Attribute:address_allotment+' => 'Address of the allotment',
+	'Class:BuildingRequest/Attribute:crab_address_id' => 'CRAB Address',
+	'Class:BuildingRequest/Attribute:crab_address_id+' => 'CRAB Address', 
 	'Class:BuildingRequest/Attribute:status/Value:new' => 'New',
 	'Class:BuildingRequest/Attribute:status/Value:new+' => '',
 	'Class:BuildingRequest/Attribute:status/Value:escalated_tto' => 'Escalated TTO',
@@ -330,8 +338,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:BuildingViolation+' => '',
 	'Class:BuildingViolation/Attribute:status' => 'Status',
 	'Class:BuildingViolation/Attribute:status+' => '',
-	'Class:BuildingViolation/Attribute:address_allotment' => 'Address of the allotment',
-	'Class:BuildingViolation/Attribute:address_allotment+' => 'Address of the allotment',
+	'Class:BuildingViolation/Attribute:crab_address_id' => 'CRAB Address',
+	'Class:BuildingViolation/Attribute:crab_address_id+' => 'CRAB Address',
 	'Class:BuildingViolation/Attribute:status/Value:new' => 'New',
 	'Class:BuildingViolation/Attribute:status/Value:new+' => '',
 	'Class:BuildingViolation/Attribute:status/Value:escalated_tto' => 'Escalated TTO',
@@ -641,4 +649,6 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:BuildingRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:BuildingRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
 ));
+
+
 

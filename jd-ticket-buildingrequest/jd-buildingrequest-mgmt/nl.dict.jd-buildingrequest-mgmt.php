@@ -24,6 +24,15 @@
  * @license     http://opensource.org/licenses/AGPL-3.0
  */
 
+ 
+ 
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+
+	'Tab:InfraGIS' => 'InfraGIS'
+	
+));
+
+
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:BuildingRequestManagement' => 'Omgeving',
 	'Menu:BuildingRequestManagement+' => 'Omgeving',
@@ -84,8 +93,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:BuildingRequest+' => '',
 	'Class:BuildingRequest/Attribute:status' => 'Status',
 	'Class:BuildingRequest/Attribute:status+' => '',
-	'Class:BuildingRequest/Attribute:address_allotment' => 'Adres',
-	'Class:BuildingRequest/Attribute:address_allotment+' => 'Adres van de verkaveling,...',
+	'Class:BuildingRequest/Attribute:crab_address_id' => 'Crab-adres',
+	'Class:BuildingRequest/Attribute:crab_address_id+' => 'Crab-adres', 
 	'Class:BuildingRequest/Attribute:status/Value:new' => 'Nieuw',
 	'Class:BuildingRequest/Attribute:status/Value:new+' => '',
 	'Class:BuildingRequest/Attribute:status/Value:escalated_tto' => 'Geëscalleerd TTO',
@@ -334,8 +343,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:BuildingViolation+' => '',
 	'Class:BuildingViolation/Attribute:status' => 'Status',
 	'Class:BuildingViolation/Attribute:status+' => '',
-	'Class:BuildingViolation/Attribute:address_allotment' => 'Adres',
-	'Class:BuildingViolation/Attribute:address_allotment+' => 'Adres van de verkaveling,...',
+	'Class:BuildingViolation/Attribute:crab_address_id' => 'Crab-adres',
+	'Class:BuildingViolation/Attribute:crab_address_id+' => 'Crab-adres', 
 	'Class:BuildingViolation/Attribute:status/Value:new' => 'Nieuw',
 	'Class:BuildingViolation/Attribute:status/Value:new+' => '',
 	'Class:BuildingViolation/Attribute:status/Value:escalated_tto' => 'Geëscalleerd TTO',
@@ -645,4 +654,6 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:BuildingRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:BuildingRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
 ));
+
+
 

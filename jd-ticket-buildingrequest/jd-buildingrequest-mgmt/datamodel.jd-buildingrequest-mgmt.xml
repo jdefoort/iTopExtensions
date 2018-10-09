@@ -148,11 +148,14 @@
 					<sql>warrant</sql>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="address_allotment" xsi:type="AttributeString">
-					<sql>address_allotment</sql>
-					<default_value/>
+				<field id="crab_address_id" xsi:type="AttributeExternalKey">
+					<sql>crab_address_id</sql>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<target_class>CrabAddress</target_class>
 					<is_null_allowed>true</is_null_allowed>
+					<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
                 </field>
+			 
 				<field id="approver_id" xsi:type="AttributeExternalKey">
 					<filter><![CDATA[SELECT Person WHERE org_id= :this->org_id]]></filter>
 					<dependencies>
@@ -631,8 +634,8 @@
 							<attribute id="caller_id">
 								<read_only/>
 							</attribute>
-							<attribute id="address_allotment">
-							</attribute>
+						 
+							<attribute id="crab_address_id"/>
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
@@ -879,17 +882,7 @@
 		return parent::ComputeValues();
 	}]]></code>
 				</method>
-				<method id="DisplayBareRelations">
-					<static>false</static>
-					<access>public</access>
-					<type>Overload-cmdbAbstractObject</type>
-					<code><![CDATA[	function DisplayBareRelations(WebPage $oPage, $bEditMode = false)
-	{
-		parent::DisplayBareRelations($oPage, $bEditMode);
-
-		
-	}]]></code>
-				</method>
+				
 				<method id="resolveChilds">
 					<comment><![CDATA[/**
 	 * To be deprecated: use ResolveChildTickets() instead
@@ -1062,6 +1055,43 @@
 		$this->UpdateChildRequestLog();
 	}]]></code>
 				</method>
+				
+				
+				 
+				<method id="DisplayBareRelations" _delta="define">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-cmdbAbstractObject</type>
+					<code><![CDATA[      public function DisplayBareRelations(WebPage $oPage, $bEditMode = false)
+					{
+						parent::DisplayBareRelations($oPage, $bEditMode);
+	 
+	
+						// Intention was an iframe, but it's giving security warnings and doesn't work properly (InfraGIS doesn't zoom)
+						/*
+							$sTabName = Dict::S('Tab:InfraGIS');
+							$oPage->SetCurrentTab($sTabName); 
+							
+							// It seems iTop just outputs a script as text if you set it in $oPage->add()? 
+							
+							$sAddress = $this->Get('crab_address_id_friendlyname');
+							$sAddress = trim($sAddress); // "friendlyname" adds invisible spaces at the end, because it *could* show apartment number and sub number.
+							$sAddress = urlencode($sAddress);
+							
+							$oPage->add('<iframe src="https://infragis.infrax.be/infragis/raadplegen/?LAYOUT=Library://Gemeenten/Izegem/Layouts/raadplegen.WebLayout&niscode=36008&LOCALE=nl&mapname=raadplegen&layer=adres&key=adres&value=' . $sAddress .'" height="800px" width="100%"></iframe>');
+
+							 
+							$oPage->add_ready_script('
+
+								// After display, set width and height to something
+
+							');
+								
+						*/
+						
+					}  ]]></code>
+				</method> 
+			
 			</methods>
 			<presentation>
 				<details>
@@ -1099,11 +1129,12 @@
 										<item id="title">
 											<rank>50</rank>
 										</item>
-										<item id="address_allotment">
+										<item id="crab_address_id">
 											<rank>60</rank>
 										</item>
+										 
 										<item id="description">
-											<rank>60</rank>
+											<rank>70</rank>
 										</item>
 									</items>
 								</item>
@@ -1246,9 +1277,10 @@
 						<item id="caller_id">
 							<rank>100</rank>
 						</item>
-						<item id="address_allotment">
+						<item id="crab_address_id">
 							<rank>105</rank>
 						</item>
+						 
 						<item id="origin">
 							<rank>110</rank>
 						</item>
@@ -1270,6 +1302,9 @@
 					<items>
 						<item id="title">
 							<rank>10</rank>
+						</item>
+						<item id="crab_address_id">
+							<rank>15</rank>
 						</item>
 						<item id="caller_id">
 							<rank>30</rank>
@@ -1475,11 +1510,16 @@
 					<sql>compulsary_fix</sql>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="address_allotment" xsi:type="AttributeString">
-					<sql>address_allotment</sql>
-					<default_value/>
+				
+				<field id="crab_address_id" xsi:type="AttributeExternalKey">
+					<sql>crab_address_id</sql>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<target_class>CrabAddress</target_class>
 					<is_null_allowed>true</is_null_allowed>
+					<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
                 </field>
+			 
+				 
 				<field id="police_report_number" xsi:type="AttributeString">
 					<sql>police_report_number</sql>
 					<default_value/>
@@ -1970,8 +2010,9 @@
 							<attribute id="caller_id">
 								<read_only/>
 							</attribute>
-							<attribute id="address_allotment">
+							<attribute id="crab_address_id">
 							</attribute>
+							 
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
@@ -2450,11 +2491,12 @@
 										<item id="title">
 											<rank>50</rank>
 										</item>
-										<item id="address_allotment">
+										<item id="crab_address_id">
 											<rank>60</rank>
 										</item>
+										 
 										<item id="description">
-											<rank>60</rank>
+											<rank>70</rank>
 										</item>
 									</items>
 								</item>
@@ -2642,9 +2684,9 @@
 						<item id="caller_id">
 							<rank>100</rank>
 						</item>
-						<item id="address_allotment">
+						<item id="crab_address_id">
 							<rank>105</rank>
-						</item>
+						</item>						 
 						<item id="origin">
 							<rank>110</rank>
 						</item>
@@ -2666,6 +2708,9 @@
 					<items>
 						<item id="title">
 							<rank>10</rank>
+						</item>
+						<item id="crab_address_id">
+							<rank>15</rank>
 						</item>
 						<item id="caller_id">
 							<rank>30</rank>
@@ -2879,4 +2924,6 @@
 		</module_design>
 	</module_designs>
 </itop_design>
+
+
 

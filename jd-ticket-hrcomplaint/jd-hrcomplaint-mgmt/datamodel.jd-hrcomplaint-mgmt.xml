@@ -1374,79 +1374,117 @@
 			<parent>HrComplaintManagement</parent>
 			<definition>
 				<layout>DashboardLayoutTwoCols</layout>
-				<title>UI:RequestMgmtMenuOverview:Title</title>
+				<title>Overzicht klachten</title>
 				<cells>
 					<cell id="0">
-						<rank>0</rank>
-						<dashlets>
-							<dashlet id="1" xsi:type="DashletGroupByPie">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-RequestByType-last-14-days</title>
-								<query>SELECT HrComplaint WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
-								<group_by>request_type</group_by>
-								<style>pie</style>
-							</dashlet>
-						</dashlets>
+					  <rank>0</rank>
+					  <dashlets>
+						<dashlet id="7" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Herinnering</title>
+						  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+						</dashlet>
+						<dashlet id="8" xsi:type="DashletObjectList">
+						  <rank>1</rank>
+						  <title></title>
+						  <query>SELECT HrComplaint WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
+						  <menu>false</menu>
+						</dashlet>
+						<dashlet id="1" xsi:type="DashletGroupByPie">
+						  <rank>2</rank>
+						  <title>UI-RequestManagementOverview-RequestByType-last-14-days</title>
+						  <query>SELECT HrComplaint WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+						  <group_by>request_type</group_by>
+						  <style>pie</style>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="1">
-						<rank>1</rank>
-						<dashlets>
-							<dashlet id="2" xsi:type="DashletGroupByBars">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-Last-14-days</title>
-								<query>SELECT HrComplaint WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
-								<group_by>start_date:day_of_month</group_by>
-								<style>bars</style>
-							</dashlet>
-						</dashlets>
+					  <rank>1</rank>
+					  <dashlets>
+						<dashlet id="9" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Algemene info</title>
+						  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+						</dashlet>
+						<dashlet id="4" xsi:type="DashletGroupByTable">
+						  <rank>1</rank>
+						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
+						  <query>SELECT HrComplaint WHERE status NOT IN ('closed','rejected')</query>
+						  <group_by>agent_id</group_by>
+						  <style>table</style>
+						</dashlet>
+						<dashlet id="6" xsi:type="DashletGroupByTable">
+						  <rank>2</rank>
+						  <title>Open tickets per subcategorie</title>
+						  <query>SELECT HrComplaint WHERE status NOT IN ('closed','rejected')</query>
+						  <group_by>servicesubcategory_id</group_by>
+						  <style>table</style>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="2">
-						<rank>2</rank>
-						<dashlets>
-							<dashlet id="3" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByStatus</title>
-								<query>SELECT HrComplaint WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>status</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>2</rank>
+					  <dashlets>
+						<dashlet id="10" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Tickets in cijfers</title>
+						  <icon>jd-class-lendrecord/images/lendrecord.png</icon>
+						</dashlet>
+						<dashlet id="3" xsi:type="DashletGroupByTable">
+						  <rank>1</rank>
+						  <title>UI-RequestManagementOverview-OpenRequestByStatus</title>
+						  <query>SELECT HrComplaint WHERE status NOT IN ('closed','rejected')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						</dashlet>
+						<dashlet id="11" xsi:type="DashletObjectList">
+						  <rank>2</rank>
+						  <title>Tickets in het laatste jaar</title>
+						  <query>SELECT HrComplaint WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
+						  <menu>false</menu>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="3">
-						<rank>3</rank>
-						<dashlets>
-							<dashlet id="4" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-								<query>SELECT HrComplaint WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>agent_id</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>3</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="4">
-						<rank>4</rank>
-						<dashlets>
-							<dashlet id="5" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByType</title>
-								<query>SELECT HrComplaint WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>finalclass</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>4</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
 					</cell>
 					<cell id="5">
-						<rank>5</rank>
-						<dashlets>
-							<dashlet id="6" xsi:type="DashletGroupByTable">
-								<rank>0</rank>
-								<title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
-								<query>SELECT HrComplaint WHERE status NOT IN ('closed','rejected')</query>
-								<group_by>org_id</group_by>
-								<style>table</style>
-							</dashlet>
-						</dashlets>
+					  <rank>5</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="6">
+					  <rank>6</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="7">
+					  <rank>7</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
 					</cell>
 				</cells>
 			</definition>
