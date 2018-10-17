@@ -1251,11 +1251,12 @@
 						  <title>Tickets in cijfers</title>
 						  <icon>jd-class-lendrecord/images/lendrecord.png</icon>
 						</dashlet>
-						<dashlet id="11" xsi:type="DashletObjectList">
+						<dashlet id="12" xsi:type="DashletGroupByTable">
 						  <rank>1</rank>
 						  <title>Tickets in het laatste jaar</title>
 						  <query>SELECT HrRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
-						  <menu>false</menu>
+						  <group_by>status</group_by>
+						  <style>table</style>
 						</dashlet>
 					  </dashlets>
 					</cell>

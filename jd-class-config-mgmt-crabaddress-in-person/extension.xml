@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-class-config-mgmt-crabaddress-in-person</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Class: Person : add crabaddress to person]]></label>
+	<description><![CDATA[Adds 'crabaddress' field to Person class]]></description>
+	<version>2.4.181017</version>
+	<release_date>2018-10-17</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.4.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort</more_info_url>
+</extension>

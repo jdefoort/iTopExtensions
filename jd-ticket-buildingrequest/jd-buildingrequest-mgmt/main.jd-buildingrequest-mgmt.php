@@ -72,16 +72,53 @@ class AddMenuInfraGIS implements iPopupMenuExtension
 			{
 				// add a separator
 				$aResult[] = new SeparatorPopupMenuItem();
+				 
 				
-				$sAddress = $param->Get('crab_address_id_friendlyname');
-				$sAddress = trim($sAddress); // "friendlyname" adds invisible spaces at the end, because it *could* show apartment number and sub number.
-				$sAddress = urlencode($sAddress);
-				
-				$sLink = "https://infragis.infrax.be/infragis/raadplegen/?LAYOUT=Library://Gemeenten/Izegem/Layouts/raadplegen.WebLayout&niscode=36008&LOCALE=nl&mapname=raadplegen&layer=adres&key=adres&value=" . $sAddress;
-
-								
-				$aResult[] = new URLPopupMenuItem( "InfraGIS" , Dict::S('Tab:InfraGIS'), $sLink, '_blank');
-				
+				// Only if not empty 
+				if( $param->Get("crab_address_id") != "" ) {
+					
+					// Examples
+					// Streetname 10
+					// Streetname 76 2 (sub number)
+					// Streetname 376_2 (bis number)
+					// Streetname 15 / 7  (apartment)
+					
+					$sOQL = "SELECT CrabAddress WHERE id = '".$param->Get('crab_address_id')."'";
+					$oSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL));
+					while($oCrabAddress = $oSet->Fetch())
+					{
+						$sAddress = $oCrabAddress->Get("street_id_friendlyname")." ".$oCrabAddress->Get("house_number")  ;
+						
+						// Sub number? 
+						if( $oCrabAddress->Get("sub_number") != "" ) {
+							
+							$sAddress .= " / ".$oCrabAddress->get("sub_number");
+							
+						}
+						
+						// Sub number? 
+						if( $oCrabAddress->Get("apartment_number") != "" ) {							
+							$sAddress .= " / ".$oCrabAddress->get("apartment_number");							
+						}
+						
+							
+						$sAddress = trim($sAddress);
+						$sAddress = urlencode($sAddress);
+						
+						$sLink = "https://infragis.infrax.be/infragis/raadplegen/?LAYOUT=Library://Gemeenten/Izegem/Layouts/raadplegen.WebLayout&niscode=36008&LOCALE=nl&mapname=raadplegen&layer=adres&key=adres&value=" . $sAddress."&scale=300";
+						$aResult[] = new URLPopupMenuItem( "InfraGIS" , Dict::S('Tab:InfraGIS'), $sLink, '_blank');
+						
+						
+					}
+					
+				}
+				// Still show InfraGIS, but no automatic
+				else {
+										
+					$sLink = "https://infragis.infrax.be/infragis/raadplegen/?LAYOUT=Library://Gemeenten/Izegem/Layouts/raadplegen.WebLayout&niscode=36008&LOCALE=nl&mapname=raadplegen";
+					$aResult[] = new URLPopupMenuItem( "InfraGIS" , Dict::S('Tab:InfraGIS'), $sLink, '_blank');
+					
+				}
 				
 			}
 			break;
