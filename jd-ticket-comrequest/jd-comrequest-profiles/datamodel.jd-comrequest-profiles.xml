@@ -11,14 +11,6 @@
 			</classes>
 		</group>
 		  
-	  
-		<group id="KnownErrors" _delta="define_if_not_exists">
-			<classes>
-			  <class id="FAQ"/>
-			  <class id="FAQCategory"/>
-			</classes>
-		</group>
-		
 		<group id="PrecannedReplies" _delta="define_if_not_exists">
 			<classes>
 			  <class id="PrecannedReply"/>
@@ -42,25 +34,10 @@
               <action id="action:bulk delete">allow</action>
             </actions>
           </group>
-       
-          <group id="Problem">
-            <actions>
-             <action id="action:read">allow</action>
-              <action id="action:bulk read">allow</action>
-			  <action id="action:write">allow</action>
-              <action id="action:bulk write">allow</action>
-			  <action id="action:delete">allow</action>
-              <action id="action:bulk delete">allow</action>
-            </actions>
-          </group>
 		   <group id="Service">
             <actions>
               <action id="action:read">allow</action>
               <action id="action:bulk read">allow</action>
-			  <action id="action:write">allow</action>
-              <action id="action:bulk write">allow</action>
-			  <action id="action:delete">allow</action>
-              <action id="action:bulk delete">allow</action>
             </actions>
           </group> 
 		  <group id="ComRequest">
@@ -75,8 +52,7 @@
 			  <action id="stimulus:ev_resolve">allow</action>
 			  <action id="stimulus:ev_reassign">allow</action>
             </actions>
-		  </group>	
-		           
+		  </group>	    
 		  <group id="Ticketing">
             <actions>
               <action id="action:read">allow</action>
@@ -87,18 +63,6 @@
               <action id="action:bulk delete">allow</action>
             </actions>
           </group>
-         
-		  <group id="KnownErrors">
-            <actions>
-              <action id="action:read">allow</action>
-              <action id="action:bulk read">allow</action>
-			  <action id="action:write">allow</action>
-              <action id="action:bulk write">allow</action>
-			  <action id="action:delete">allow</action>
-              <action id="action:bulk delete">allow</action>
-            </actions>
-          </group>
-		  
 		  <group id="PrecannedReplies">
 			<actions>
 			<action id="action:read">allow</action>

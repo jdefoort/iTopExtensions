@@ -92,7 +92,7 @@
 						<value id="in_person">in_person</value>
 					</values>
 					<sql>origin</sql>
-					<default_value>phone</default_value>
+					<default_value>in_person</default_value>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="approver_id" xsi:type="AttributeExternalKey">
@@ -110,25 +110,9 @@
 					<extkey_attcode>approver_id</extkey_attcode>
 					<target_attcode>email</target_attcode>
 				</field>
-				<field id="service_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT Service AS s JOIN lnkCustomerContractToService AS l1 ON l1.service_id=s.id JOIN CustomerContract AS cc ON l1.customercontract_id=cc.id WHERE cc.org_id = :this->org_id AND s.status != 'obsolete']]></filter>
-					<dependencies>
-						<attribute id="org_id"/>
-					</dependencies>
-					<sql>service_id</sql>
-					<target_class>Service</target_class>
-					<is_null_allowed>true</is_null_allowed>
-					<on_target_delete>DEL_MANUAL</on_target_delete>
-					<allow_target_creation>false</allow_target_creation>
-				</field>
-				<field id="service_name" xsi:type="AttributeExternalField">
-					<extkey_attcode>service_id</extkey_attcode>
-					<target_attcode>name</target_attcode>
-				</field>
 				<field id="servicesubcategory_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_id = :this->service_id AND request_type = :this->request_type AND status != 'obsolete']]></filter>
+					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_name = 'Communicatie helpdesk' AND request_type = :this->request_type AND status != 'obsolete']]></filter>
 					<dependencies>
-						<attribute id="service_id"/>
 						<attribute id="request_type"/>
 					</dependencies>
 					<sql>servicesubcategory_id</sql>
@@ -925,17 +909,10 @@
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
-							<attribute id="service_id">
-								<mandatory/>
-								<must_prompt/>
-							</attribute>
 							<attribute id="servicesubcategory_id">
 								<must_prompt/>
 							</attribute>
 							<attribute id="parent_request_id">
-								<read_only/>
-							</attribute>
-							<attribute id="service_id">
 								<read_only/>
 							</attribute>
 							<attribute id="public_log">
@@ -1133,9 +1110,6 @@
 								<read_only/>
 							</attribute>
 							<attribute id="contacts_list">
-								<read_only/>
-							</attribute>
-							<attribute id="service_id">
 								<read_only/>
 							</attribute>
 							<attribute id="servicesubcategory_id">
@@ -1611,9 +1585,6 @@
 								<item id="fieldset:Ticket:moreinfo">
 									<rank>20</rank>
 									<items>
-										<item id="service_id">
-											<rank>10</rank>
-										</item>
 										<item id="servicesubcategory_id">
 											<rank>20</rank>
 										</item>
@@ -1846,9 +1817,6 @@
 						</item>
 						<item id="priority">
 							<rank>150</rank>
-						</item>
-						<item id="service_id">
-							<rank>160</rank>
 						</item>
 						<item id="servicesubcategory_id">
 							<rank>170</rank>
