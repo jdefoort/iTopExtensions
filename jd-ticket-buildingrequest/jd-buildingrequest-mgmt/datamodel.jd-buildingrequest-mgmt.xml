@@ -785,7 +785,13 @@
 								<must_prompt/>
 							</attribute>
 							</flags>
-							<transitions/>
+							<transitions>
+								<transition id="ev_reopen">
+									<target>assigned</target>
+									<actions>
+									</actions>
+								</transition>
+							</transitions>							
 						</state>
 					</states>
 				</lifecycle>
@@ -2242,7 +2248,13 @@
 									<must_prompt/>
 								</attribute>
 							</flags>
-							<transitions/>
+								<transitions>
+									<transition id="ev_reopen">
+										<target>assigned</target>
+										<actions>
+										</actions>
+									</transition>
+								</transitions>	
 						</state>
 					</states>
 				</lifecycle>
@@ -2837,84 +2849,100 @@
 					<title>Overzicht Omgeving</title>
 					<cells>
 						<cell id="0">
-							<rank>0</rank>
-							<dashlets>
-								<dashlet id="8" xsi:type="DashletHeaderStatic">
-									<rank>0</rank>
-									<title>Omgeving</title>
-									<icon>itop-config-mgmt/images/business-process.png</icon>
-								</dashlet>
-								<dashlet id="7" xsi:type="DashletObjectList">
-									<rank>1</rank>
-									<title>Wat moet opgevolgd worden?</title>
-									<query>SELECT BuildingRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
-									<menu>false</menu>
-								</dashlet>
-								<dashlet id="3" xsi:type="DashletGroupByTable">
-									<rank>2</rank>
-									<title>UI-RequestManagementOverview-OpenRequestByStatus</title>
-									<query>SELECT BuildingRequest WHERE status NOT IN ('closed','rejected')</query>
-									<group_by>status</group_by>
-									<style>table</style>
-								</dashlet>
-								<dashlet id="4" xsi:type="DashletGroupByTable">
-									<rank>3</rank>
-									<title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-									<query>SELECT BuildingRequest WHERE status NOT IN ('closed','rejected','resolved')</query>
-									<group_by>agent_id</group_by>
-									<style>table</style>
-								</dashlet>
-							</dashlets>
+						  <rank>0</rank>
+						  <dashlets>
+							<dashlet id="8" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Omgeving</title>
+							  <icon>itop-config-mgmt/images/business-process.png</icon>
+							</dashlet>
+							<dashlet id="7" xsi:type="DashletObjectList">
+							  <rank>1</rank>
+							  <title>Wat moet opgevolgd worden?</title>
+							  <query>SELECT BuildingRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
+							  <menu>false</menu>
+							</dashlet>
+							<dashlet id="3" xsi:type="DashletGroupByTable">
+							  <rank>2</rank>
+							  <title>Tickets per status</title>
+							  <query>SELECT BuildingRequest WHERE status NOT IN ('rejected')</query>
+							  <group_by>status</group_by>
+							  <style>table</style>
+							</dashlet>
+							<dashlet id="4" xsi:type="DashletGroupByTable">
+							  <rank>3</rank>
+							  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
+							  <query>SELECT BuildingRequest WHERE status NOT IN ('closed','rejected','resolved')</query>
+							  <group_by>agent_id</group_by>
+							  <style>table</style>
+							</dashlet>
+						  </dashlets>
 						</cell>
 						<cell id="1">
-							<rank>1</rank>
-							<dashlets>
-								<dashlet id="9" xsi:type="DashletHeaderStatic">
-									<rank>0</rank>
-									<title>Overtredingen</title>
-									<icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
-								</dashlet>
-								<dashlet id="10" xsi:type="DashletObjectList">
-									<rank>1</rank>
-									<title>Wat moet opgevolgd worden?</title>
-									<query>SELECT BuildingViolation WHERE  reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
-									<menu>false</menu>
-								</dashlet>
-								<dashlet id="11" xsi:type="DashletGroupByTable">
-									<rank>2</rank>
-									<title>UI-RequestManagementOverview-OpenRequestByStatus</title>
-									<query>SELECT BuildingViolation WHERE status NOT IN ('closed','rejected')</query>
-									<group_by>status</group_by>
-									<style>table</style>
-								</dashlet>
-								<dashlet id="12" xsi:type="DashletGroupByTable">
-									<rank>3</rank>
-									<title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-									<query>SELECT BuildingViolation WHERE status NOT IN ('closed','rejected','resolved')</query>
-									<group_by>agent_id</group_by>
-									<style>table</style>
-								</dashlet>
-							</dashlets>
+						  <rank>1</rank>
+						  <dashlets>
+							<dashlet id="9" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Overtredingen</title>
+							  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+							</dashlet>
+							<dashlet id="10" xsi:type="DashletObjectList">
+							  <rank>1</rank>
+							  <title>Wat moet opgevolgd worden?</title>
+							  <query>SELECT BuildingViolation WHERE  reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
+							  <menu>false</menu>
+							</dashlet>
+							<dashlet id="11" xsi:type="DashletGroupByTable">
+							  <rank>2</rank>
+							  <title>Tickets per status</title>
+							  <query>SELECT BuildingViolation WHERE status NOT IN ('rejected')</query>
+							  <group_by>status</group_by>
+							  <style>table</style>
+							</dashlet>
+							<dashlet id="12" xsi:type="DashletGroupByTable">
+							  <rank>3</rank>
+							  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
+							  <query>SELECT BuildingViolation WHERE status NOT IN ('closed','rejected','resolved')</query>
+							  <group_by>agent_id</group_by>
+							  <style>table</style>
+							</dashlet>
+						  </dashlets>
 						</cell>
 						<cell id="2">
-							<rank>2</rank>
-							<dashlets>
-								<dashlet id="2" xsi:type="DashletGroupByBars">
-									<rank>0</rank>
-									<title>UI-RequestManagementOverview-Last-14-days</title>
-									<query>SELECT BuildingRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
-									<group_by>start_date:day_of_month</group_by>
-									<style>bars</style>
-								</dashlet>
-							</dashlets>
+						  <rank>2</rank>
+						  <dashlets>
+							<dashlet id="2" xsi:type="DashletGroupByBars">
+							  <rank>0</rank>
+							  <title>UI-RequestManagementOverview-Last-14-days</title>
+							  <query>SELECT BuildingRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+							  <group_by>start_date:day_of_month</group_by>
+							  <style>bars</style>
+							</dashlet>
+						  </dashlets>
 						</cell>
 						<cell id="3">
-							<rank>3</rank>
-							<dashlets>
-								<dashlet id="0" xsi:type="DashletEmptyCell">
-									<rank>0</rank>
-								</dashlet>
-							</dashlets>
+						  <rank>3</rank>
+						  <dashlets>
+							<dashlet id="0" xsi:type="DashletEmptyCell">
+							  <rank>0</rank>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="4">
+						  <rank>4</rank>
+						  <dashlets>
+							<dashlet id="0" xsi:type="DashletEmptyCell">
+							  <rank>0</rank>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="5">
+						  <rank>5</rank>
+						  <dashlets>
+							<dashlet id="0" xsi:type="DashletEmptyCell">
+							  <rank>0</rank>
+							</dashlet>
+						  </dashlets>
 						</cell>
 					</cells>
 				</definition>

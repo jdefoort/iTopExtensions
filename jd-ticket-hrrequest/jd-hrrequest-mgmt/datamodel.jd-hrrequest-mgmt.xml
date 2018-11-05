@@ -1266,14 +1266,14 @@
 						<dashlet id="4" xsi:type="DashletGroupByTable">
 						  <rank>0</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-						  <query>SELECT HrRequest WHERE status NOT IN ('closed','rejected')</query>
+						  <query>SELECT HrRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>agent_id</group_by>
 						  <style>table</style>
 						</dashlet>
 						<dashlet id="3" xsi:type="DashletGroupByTable">
 						  <rank>1</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByStatus</title>
-						  <query>SELECT HrRequest WHERE status NOT IN ('closed','rejected')</query>
+						  <query>SELECT HrRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
 						</dashlet>
@@ -1289,22 +1289,6 @@
 					</cell>
 					<cell id="5">
 					  <rank>5</rank>
-					  <dashlets>
-						<dashlet id="0" xsi:type="DashletEmptyCell">
-						  <rank>0</rank>
-						</dashlet>
-					  </dashlets>
-					</cell>
-					<cell id="6">
-					  <rank>6</rank>
-					  <dashlets>
-						<dashlet id="0" xsi:type="DashletEmptyCell">
-						  <rank>0</rank>
-						</dashlet>
-					  </dashlets>
-					</cell>
-					<cell id="7">
-					  <rank>7</rank>
 					  <dashlets>
 						<dashlet id="0" xsi:type="DashletEmptyCell">
 						  <rank>0</rank>

@@ -8,7 +8,7 @@
 		<constant id="PORTAL_COMREQUEST_TYPE" xsi:type="string" _delta="define"><![CDATA[]]></constant>
 		<constant id="PORTAL_COMREQUEST_LIST_ZLIST" xsi:type="string" _delta="define"><![CDATA[finalclass,title,start_date,status,servicesubcategory_id,,caller_id]]></constant>
 		<constant id="PORTAL_COMREQUEST_CLOSED_ZLIST" xsi:type="string" _delta="define"><![CDATA[title,start_date,close_date,servicesubcategory_id]]></constant>
-		<constant id="PORTAL_COMREQUEST_DETAILS_ZLIST" xsi:type="string" _delta="define"><![CDATA[{"col:left":["ref","caller_id","servicesubcategory_id","title","description","solution"],"col:right":["status","start_date","resolution_date","last_update","agent_id"]}]]></constant>
+		<constant id="PORTAL_COMREQUEST_DETAILS_ZLIST" xsi:type="string" _delta="define"><![CDATA[{"col:left":["ref","caller_id","servicesubcategory_id","title","description"],"col:right":["status","start_date","resolution_date","last_update","agent_id"]}]]></constant>
 		<constant id="PORTAL_COMREQUEST_DISPLAY_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT ComRequest WHERE org_id = :contact->org_id AND caller_id = :contact->id]]></constant>
 		<constant id="PORTAL_COMREQUEST_DISPLAY_POWERUSER_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT ComRequest WHERE org_id = :contact->org_id]]></constant>
 	</constants>
@@ -110,22 +110,6 @@
 					<extkey_attcode>approver_id</extkey_attcode>
 					<target_attcode>email</target_attcode>
 				</field>
-				<field id="servicesubcategory_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_name = 'Communicatie helpdesk' AND request_type = :this->request_type AND status != 'obsolete']]></filter>
-					<dependencies>
-						<attribute id="request_type"/>
-					</dependencies>
-					<sql>servicesubcategory_id</sql>
-					<target_class>ServiceSubcategory</target_class>
-					<is_null_allowed>true</is_null_allowed>
-					<on_target_delete>DEL_MANUAL</on_target_delete>
-					<allow_target_creation>false</allow_target_creation>
-					<jointype/>
-				</field>
-				<field id="servicesubcategory_name" xsi:type="AttributeExternalField">
-					<extkey_attcode>servicesubcategory_id</extkey_attcode>
-					<target_attcode>name</target_attcode>
-				</field>
 				<field id="assignment_date" xsi:type="AttributeDateTime">
 					<sql>assignment_date</sql>
 					<default_value/>
@@ -151,11 +135,6 @@
 				</field>
 				<field id="time_spent" xsi:type="AttributeDuration">
 					<sql>time_spent</sql>
-					<default_value/>
-					<is_null_allowed>true</is_null_allowed>
-				</field>
-				<field id="solution" xsi:type="AttributeText">
-					<sql>solution</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
@@ -420,7 +399,22 @@
 					<default_value>no</default_value>
 					<is_null_allowed>false</is_null_allowed>
 					<display_style>radio_horizontal</display_style>
-				</field>	
+				</field>
+				<field id="invitation" xsi:type="AttributeString">
+					<sql>invitation</sql>
+					<default_value></default_value>
+					<is_null_allowed>true</is_null_allowed>				
+				</field>
+				<field id="pennon" xsi:type="AttributeString">
+					<sql>pennon</sql>
+					<default_value></default_value>
+					<is_null_allowed>true</is_null_allowed>				
+				</field>				
+				<field id="sticker" xsi:type="AttributeString">
+					<sql>sticker</sql>
+					<default_value></default_value>
+					<is_null_allowed>true</is_null_allowed>				
+				</field>				
 				<field id="poster_A3" xsi:type="AttributeString">
 					<sql>poster_A3</sql>
 					<default_value></default_value>
@@ -489,7 +483,7 @@
 						<value id="wip">wip</value>
 					</values>
 					<sql>graphic_work_needed</sql>
-					<default_value>not_needed</default_value>
+					<default_value></default_value>
 					<is_null_allowed>false</is_null_allowed>
 				</field>
 			</fields>
@@ -572,9 +566,6 @@
 								<hidden/>
 							</attribute>
 							<attribute id="time_spent">
-								<hidden/>
-							</attribute>
-							<attribute id="solution">
 								<hidden/>
 							</attribute>
 							<attribute id="user_comment">
@@ -909,9 +900,6 @@
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
-							<attribute id="servicesubcategory_id">
-								<must_prompt/>
-							</attribute>
 							<attribute id="parent_request_id">
 								<read_only/>
 							</attribute>
@@ -935,10 +923,6 @@
 							</attribute>
 							<attribute id="time_spent">
 								<read_only/>
-							</attribute>
-							<attribute id="solution">
-								<mandatory/>
-								<must_prompt/>
 							</attribute>
 							<attribute id="deadline">
 								<read_only/>
@@ -1010,6 +994,15 @@
 								<read_only/>
 							</attribute>
 							<attribute id="instagram_museum">
+								<read_only/>
+							</attribute>
+							<attribute id="pennon">
+								<read_only/>
+							</attribute>
+							<attribute id="sticker">
+								<read_only/>
+							</attribute>
+							<attribute id="invitation">
 								<read_only/>
 							</attribute>
 							<attribute id="poster_A3">
@@ -1112,13 +1105,7 @@
 							<attribute id="contacts_list">
 								<read_only/>
 							</attribute>
-							<attribute id="servicesubcategory_id">
-								<read_only/>
-							</attribute>
 							<attribute id="close_date">
-								<read_only/>
-							</attribute>
-							<attribute id="solution">
 								<read_only/>
 							</attribute>
 							<attribute id="user_comment">
@@ -1196,7 +1183,16 @@
 							</attribute>
 							<attribute id="instagram_museum">
 								<read_only/>
-							</attribute>	
+							</attribute>
+							<attribute id="pennon">
+								<read_only/>
+							</attribute>
+							<attribute id="sticker">
+								<read_only/>
+							</attribute>
+							<attribute id="invitation">
+								<read_only/>
+							</attribute>
 							<attribute id="poster_A3">
 								<read_only/>
 							</attribute>
@@ -1237,7 +1233,13 @@
 								<read_only/>
 							</attribute>								
 						</flags>
-						<transitions/>
+						<transitions>
+							<transition id="ev_reopen">
+								<target>assigned</target>
+								<actions>
+								</actions>
+							</transition>
+						</transitions>	
 					</state>
 				</states>
 			</lifecycle>
@@ -1389,11 +1391,9 @@
 		{
 			if ( $oRequest->Get('status') != 'resolved')
 			{
-				$oRequest->set('servicesubcategory_id',$this->Get('servicesubcategory_id'));
 				$oRequest->set('service_id',$this->Get('service_id'));		
 				$oRequest->set('team_id',$this->Get('team_id'));
 				$oRequest->set('agent_id',$this->Get('agent_id'));	
-				$oRequest->set('solution','Automatically resolved by request:[[ComRequest:'.$this->Get('ref').']]');
 				$oRequest->ApplyStimulus('ev_autoresolve');
 				$oRequest->DBUpdate();
 			}
@@ -1442,12 +1442,10 @@
 	{
 		if ($this->Get('status') != 'resolved')
 		{
-			$this->Set('servicesubcategory_id', $oParentTicket->Get('servicesubcategory_id'));
 			$this->Set('service_id', $oParentTicket->Get('service_id'));		
 			$this->Set('team_id', $oParentTicket->Get('team_id'));
 			$this->Set('agent_id', $oParentTicket->Get('agent_id'));	
 			$sParent = '[['.get_class($oParentTicket).':'.$oParentTicket->Get('ref').']]';
-			$this->Set('solution', Dict::Format('Tickets:ResolvedFrom', $sParent, MetaModel::GetName(get_class($oParentTicket))));
 			$this->ApplyStimulus('ev_autoresolve');
 			$this->DBUpdate();
 		}
@@ -1582,14 +1580,6 @@
 										</item>
 									</items>
 								</item>
-								<item id="fieldset:Ticket:moreinfo">
-									<rank>20</rank>
-									<items>
-										<item id="servicesubcategory_id">
-											<rank>20</rank>
-										</item>
-									</items>
-								</item>
 							</items>
 						</item>
 						<item id="col:col2">
@@ -1673,8 +1663,17 @@
 										<item id="graphic_screen">
 											<rank>32</rank>
 										</item>
-										<item id="graphic_other">
+										<item id="pennon">
 											<rank>33</rank>
+										</item>	
+										<item id="sticker">
+											<rank>34</rank>
+										</item>	
+										<item id="invitation">
+											<rank>35</rank>
+										</item>										
+										<item id="graphic_other">
+											<rank>40</rank>
 										</item>										
 									</items>
 								</item>
@@ -1762,9 +1761,6 @@
 								<item id="fieldset:Ticket:resolution">
 									<rank>20</rank>
 									<items>
-										<item id="solution">
-											<rank>20</rank>
-										</item>
 										<item id="time_spent">
 											<rank>30</rank>
 										</item>
@@ -1817,9 +1813,6 @@
 						</item>
 						<item id="priority">
 							<rank>150</rank>
-						</item>
-						<item id="servicesubcategory_id">
-							<rank>170</rank>
 						</item>
 						<item id="team_id">
 							<rank>180</rank>
@@ -1898,6 +1891,15 @@
 						</item>
 						<item id="poster_A2">
 							<rank>232</rank>
+						</item>
+						<item id="pennon">
+							<rank>235</rank>
+						</item>
+						<item id="sticker">
+							<rank>236</rank>
+						</item>
+						<item id="invitation">
+							<rank>237</rank>
 						</item>
 						<item id="flyer">
 							<rank>240</rank>
@@ -2003,7 +2005,7 @@
 				<layout>DashboardLayoutTwoCols</layout>
 				<title>Overzicht communicatie</title>
 				<cells>
-					 <cell id="0">
+					<cell id="0">
 					  <rank>0</rank>
 					  <dashlets>
 						<dashlet id="12" xsi:type="DashletHeaderDynamic">
@@ -2011,9 +2013,9 @@
 						  <title>Grafisch</title>
 						  <icon>itop-attachments/icons/image.png</icon>
 						  <subtitle>Alle tickets</subtitle>
-						  <query>SELECT ComRequest</query>
+						  <query>SELECT ComRequest WHERE status NOT IN ('resolved', 'closed')</query>
 						  <group_by>graphic_work_needed</group_by>
-						  <values>needed,wip,not_needed,done</values>
+						  <values>done,needed,wip,not_needed</values>
 						</dashlet>
 					  </dashlets>
 					</cell>
@@ -2049,8 +2051,8 @@
 						<dashlet id="2" xsi:type="DashletGroupByBars">
 						  <rank>0</rank>
 						  <title>UI-RequestManagementOverview-Last-14-days</title>
-						  <query>SELECT ComRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
-						  <group_by>start_date:day_of_month</group_by>
+						  <query>SELECT ComRequest WHERE DATE_SUB(NOW(), INTERVAL 12 MONTH) &lt; start_date</query>
+						  <group_by>start_date:month</group_by>
 						  <style>bars</style>
 						</dashlet>
 						<dashlet id="3" xsi:type="DashletGroupByTable">

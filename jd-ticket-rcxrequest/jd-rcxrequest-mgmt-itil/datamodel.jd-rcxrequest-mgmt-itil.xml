@@ -1321,13 +1321,13 @@
 						<dashlet id="4" xsi:type="DashletGroupByTable">
 						  <rank>0</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>agent_id</group_by>
 						  <style>table</style>
 						</dashlet>
 						<dashlet id="3" xsi:type="DashletGroupByTable">
 						  <rank>1</rank>
-						  <title>UI-RequestManagementOverview-OpenRequestByStatus</title>
+						  <title>Tickets per status</title>
 						  <query>SELECT RcxRequest WHERE status NOT IN ('rejected')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
@@ -1335,7 +1335,7 @@
 						<dashlet id="6" xsi:type="DashletGroupByTable">
 						  <rank>2</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
-						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','rejected')</query>
+						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>org_id</group_by>
 						  <style>table</style>
 						</dashlet>
