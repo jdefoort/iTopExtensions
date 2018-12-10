@@ -32,7 +32,6 @@
 			<attribute id="thirdpartycontracttype_id"/>
             <attribute id="provider_name"/>
             <attribute id="finalclass"/>
-			<attribute id="currency"/>
           </attributes>
         </reconciliation>
       </properties>
@@ -83,20 +82,20 @@
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
+		<field id="payment_date" xsi:type="AttributeDate">
+          <sql>payment_date</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
         <field id="cost" xsi:type="AttributeString">
           <sql>cost</sql>
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
-        <field id="currency" xsi:type="AttributeEnum">
-          <values>
-            <value id="dollars">dollars</value>
-            <value id="euro">euro</value>
-          </values>
-          <sql>currency</sql>
-          <default_value>euro</default_value>
+		<field id="receipts" xsi:type="AttributeString">
+          <sql>receipts</sql>
+          <default_value/>
           <is_null_allowed>true</is_null_allowed>
-          <display_style>list</display_style>
         </field>
         <field id="contracttype_id" xsi:type="AttributeExternalKey">
           <sql>contracttype_id</sql>
@@ -139,6 +138,57 @@
           <is_null_allowed>true</is_null_allowed>
           <display_style>list</display_style>
         </field>
+		<field id="indexed" xsi:type="AttributeEnum">
+					<values>
+					  <value id="yes">yes</value>
+					  <value id="no">no</value>
+					</values>
+					<sql>indexed</sql>
+					<default_value>no</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+		</field>
+		<field id="contract_future" xsi:type="AttributeEnum">
+					<values>
+					  <value id="unchanged">unchanged</value>
+					  <value id="to_review">to_review</value>
+					  <value id="to_cancel">to_cancel</value>
+					</values>
+					<sql>contract_future</sql>
+					<default_value>unchanged</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>list</display_style>
+		</field>	
+        <field id="guarantee_period" xsi:type="AttributeString">
+          <sql>guarantee_period</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>	
+        <field id="deposit" xsi:type="AttributeString">
+          <sql>deposit</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>	
+		<field id="budget_manager" xsi:type="AttributeEnum">
+			<values>
+			  <value id="1">1</value>
+			  <value id="2">2</value>
+			  <value id="3">3</value>
+			  <value id="4">4</value>
+			  <value id="5">5</value>
+			  <value id="6">6</value>
+			  <value id="7">7</value>
+			  <value id="8">8</value>
+			  <value id="9">9</value>
+			  <value id="10">10</value>
+			  <value id="11">11</value>
+			  <value id="12">12</value>			  
+			</values>
+			<sql>budget_manager</sql>
+			<default_value></default_value>
+			<is_null_allowed>true</is_null_allowed>
+			<display_style>list</display_style>
+		</field>			
       </fields>
       <methods>
         <method id="PrefillSearchForm">
@@ -194,12 +244,18 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="end_date">
               <rank>70</rank>
             </item>
+			<item id="payment_date">
+				<rank>75</rank>
+			</item>
             <item id="cost">
               <rank>80</rank>
             </item>
-            <item id="currency">
-              <rank>90</rank>
-            </item>
+			<item id="receipts">
+				<rank>85</rank>
+			</item>
+			<item id="indexed">
+				<rank>90</rank>
+			</item>
             <item id="billing_frequency">
               <rank>100</rank>
             </item>
@@ -212,9 +268,21 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="status">
               <rank>130</rank>
             </item>
+			<item id="contract_future">
+				<rank>135</rank>
+			</item>
             <item id="contracttype_id">
               <rank>140</rank>
             </item>
+			<item id="guarantee_period">
+				<rank>150</rank>
+			</item>
+			<item id="deposit">
+				<rank>160</rank>
+			</item>
+			<item id="budget_manager">
+				<rank>170</rank>
+			</item>
           </items>
         </details>
         <default_search>
@@ -228,6 +296,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="provider_id">
               <rank>30</rank>
             </item>
+			<item id="budget_manager">
+				<rank>40</rank>
+			</item>
           </items>
         </default_search>
         <search>
@@ -244,14 +315,17 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="end_date">
               <rank>40</rank>
             </item>
+			<item id="payment_date">
+				<rank>45</rank>
+			</item>
             <item id="cost">
               <rank>50</rank>
             </item>
+			<item id="receipts">
+			  <rank>55</rank>
+			</item>
             <item id="provider_id">
               <rank>60</rank>
-            </item>
-            <item id="currency">
-              <rank>70</rank>
             </item>
             <item id="billing_frequency">
               <rank>80</rank>
@@ -262,9 +336,15 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="status">
               <rank>100</rank>
             </item>
+			<item id="contract_future">
+				<rank>105</rank>
+			</item>
             <item id="contracttype_id">
               <rank>110</rank>
             </item>
+			<item id="budget_manager">
+				<rank>120</rank>
+			</item>
           </items>
         </search>
         <list>
@@ -272,27 +352,30 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="name">
               <rank>10</rank>
             </item>
-            <item id="status">
+	        <item id="end_date">
               <rank>20</rank>
             </item>
-            <item id="org_id">
-              <rank>30</rank>
-            </item>
-            <item id="description">
+			<item id="payment_date">
+				<rank>25</rank>
+			</item>
+	    	<item id="contract_future">
+				<rank>30</rank>
+			</item>
+		    <item id="provider_id">
               <rank>40</rank>
             </item>
-            <item id="start_date">
+            <item id="org_id">
               <rank>50</rank>
             </item>
-            <item id="end_date">
+            <item id="description">
               <rank>60</rank>
             </item>
-            <item id="cost_unit">
+            <item id="accountancy_key">
               <rank>70</rank>
             </item>
-            <item id="provider_id">
-              <rank>80</rank>
-            </item>
+			<item id="budget_manager">
+				<rank>80</rank>
+			</item>
           </items>
         </list>
       </presentation>
@@ -368,7 +451,6 @@ public function PrefillSearchForm(&$aContextParam)
             <attribute id="organization_name"/>
             <attribute id="provider_id"/>
             <attribute id="provider_name"/>
-			<attribute id="currency"/>
           </attributes>
         </reconciliation>
       </properties>
@@ -383,11 +465,6 @@ public function PrefillSearchForm(&$aContextParam)
         </field>
         <field id="sla" xsi:type="AttributeString">
           <sql>sla</sql>
-          <default_value/>
-          <is_null_allowed>true</is_null_allowed>
-        </field>
-        <field id="coverage" xsi:type="AttributeString">
-          <sql>coverage</sql>
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
@@ -443,6 +520,9 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="status">
 								  <rank>60</rank>
 								</item>
+								<item id="contract_future">
+									<rank>70</rank>
+								</item>
 							</items>
 						</item>
 						<item id="fieldset:Contracts:moreinfo">
@@ -457,8 +537,8 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="sla">
 								  <rank>40</rank>
 								</item>
-								<item id="coverage">
-								  <rank>50</rank>
+								<item id="guarantee_period">
+									<rank>50</rank>
 								</item>
 							</items>
 						</item>
@@ -476,6 +556,9 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="end_date">
 								  <rank>20</rank>
 								</item>
+								<item id="payment_date">
+									<rank>30</rank>
+								</item>
 							</items>
 						</item>
 						<item id="fieldset:Contracts:money">
@@ -484,8 +567,11 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="cost">
 								  <rank>10</rank>
 								</item>
-								<item id="currency">
-								  <rank>20</rank>
+								<item id="receipts">
+									<rank>15</rank>
+								</item>
+								<item id="indexed">
+									<rank>20</rank>
 								</item>
 								<item id="billing_frequency">
 								  <rank>30</rank>
@@ -498,7 +584,13 @@ public function PrefillSearchForm(&$aContextParam)
 								</item>
 					            <item id="accountancy_key">
 								  <rank>50</rank>
-								</item>	
+								</item>
+								<item id="budget_manager">
+									<rank>55</rank>
+								</item>
+								<item id="deposit">
+									<rank>60</rank>
+								</item>
 							</items>
 						</item>
 					</items>
@@ -522,6 +614,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="end_date">
               <rank>40</rank>
             </item>
+			<item id="payment_date">
+				<rank>45</rank>
+			</item>
             <item id="provider_id">
               <rank>50</rank>
             </item>
@@ -531,9 +626,12 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="cost">
               <rank>70</rank>
             </item>
-            <item id="currency">
-              <rank>80</rank>
-            </item>
+			<item id="receipts">
+				<rank>75</rank>
+			</item>
+			<item id="indexed">
+				<rank>80</rank>
+			</item>
             <item id="billing_frequency">
               <rank>90</rank>
             </item>
@@ -543,51 +641,51 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="sla">
               <rank>110</rank>
             </item>
-            <item id="coverage">
-              <rank>120</rank>
-            </item>
             <item id="status">
               <rank>130</rank>
             </item>
+			<item id="contract_future">
+				<rank>135</rank>
+			</item>
 			<item id="accountancy_key">
 				<rank>140</rank>
 			</item>
 			<item id="cancellation_conditions">
 				<rank>150</rank>
 			</item>
+			<item id="deposit">
+				<rank>160</rank>
+			</item>
+			<item id="budget_manager">
+				<rank>170</rank>
+			</item>
           </items>
         </search>
         <list>
           <items>
-            <item id="status">
-              <rank>10</rank>
-            </item>
-            <item id="org_id">
+	        <item id="end_date">
               <rank>20</rank>
             </item>
-			<item id="relevant_office">
-			  <rank>25</rank>
+			<item id="payment_date">
+				<rank>25</rank>
 			</item>
-            <item id="description">
-              <rank>30</rank>
-            </item>
-            <item id="start_date">
+	    	<item id="contract_future">
+				<rank>30</rank>
+			</item>
+		    <item id="provider_id">
               <rank>40</rank>
             </item>
-            <item id="end_date">
+            <item id="org_id">
               <rank>50</rank>
             </item>
-            <item id="provider_id">
+            <item id="description">
               <rank>60</rank>
             </item>
-            <item id="sla">
+            <item id="accountancy_key">
               <rank>70</rank>
             </item>
-            <item id="coverage">
-              <rank>80</rank>
-            </item>
-			<item id="accountancy_key">
-				<rank>90</rank>
+			<item id="budget_manager">
+				<rank>80</rank>
 			</item>
           </items>
         </list>
@@ -764,7 +862,7 @@ public function PrefillSearchForm(&$aContextParam)
       <rank>0</rank>
       <parent>ContractManagement</parent>
       <definition>
-        <layout>DashboardLayoutTwoCols</layout>
+		  <layout>DashboardLayoutOneCol</layout>
 		  <title>Overzicht Contracten</title>
 		  <auto_reload>
 			<enabled>false</enabled>
@@ -774,10 +872,15 @@ public function PrefillSearchForm(&$aContextParam)
 			<cell id="0">
 			  <rank>0</rank>
 			  <dashlets>
-				<dashlet id="2" xsi:type="DashletObjectList">
+				<dashlet id="5" xsi:type="DashletHeaderStatic">
 				  <rank>0</rank>
-				  <title>UI-ServiceManagementOverview-ProviderContractToRenew</title>
-				  <query>SELECT ThirdPartyProviderContract AS c WHERE c.end_date &lt; DATE_ADD(NOW(), INTERVAL 30 DAY)</query>
+				  <title>Contracten die binnen 30 dagen vernieuwd moeten worden</title>
+				  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+				</dashlet>
+				<dashlet id="2" xsi:type="DashletObjectList">
+				  <rank>1</rank>
+				  <title></title>
+				  <query>SELECT ThirdPartyProviderContract AS c WHERE c.end_date &lt; DATE_ADD(NOW(), INTERVAL 30 DAY) AND status NOT IN ('obsolete')</query>
 				  <menu>false</menu>
 				</dashlet>
 			  </dashlets>
@@ -785,9 +888,14 @@ public function PrefillSearchForm(&$aContextParam)
 			<cell id="1">
 			  <rank>1</rank>
 			  <dashlets>
-				<dashlet id="3" xsi:type="DashletGroupByTable">
+				<dashlet id="6" xsi:type="DashletHeaderStatic">
 				  <rank>0</rank>
-				  <title>Contracten per leverancier</title>
+				  <title>Contracten</title>
+				  <icon>jd-class-lendrecord/images/lendrecord.png</icon>
+				</dashlet>
+				<dashlet id="3" xsi:type="DashletGroupByTable">
+				  <rank>1</rank>
+				  <title>per leverancier</title>
 				  <query>SELECT ThirdPartyProviderContract</query>
 				  <group_by>provider_id</group_by>
 				  <style>table</style>
@@ -798,8 +906,8 @@ public function PrefillSearchForm(&$aContextParam)
 				  <order_direction>desc</order_direction>
 				</dashlet>
 				<dashlet id="4" xsi:type="DashletGroupByTable">
-				  <rank>1</rank>
-				  <title>Contracten per dienst</title>
+				  <rank>2</rank>
+				  <title>per dienst</title>
 				  <query>SELECT ThirdPartyProviderContract</query>
 				  <group_by>relevant_office</group_by>
 				  <style>table</style>
@@ -813,30 +921,6 @@ public function PrefillSearchForm(&$aContextParam)
 			</cell>
 			<cell id="2">
 			  <rank>2</rank>
-			  <dashlets>
-				<dashlet id="0" xsi:type="DashletEmptyCell">
-				  <rank>0</rank>
-				</dashlet>
-			  </dashlets>
-			</cell>
-			<cell id="3">
-			  <rank>3</rank>
-			  <dashlets>
-				<dashlet id="0" xsi:type="DashletEmptyCell">
-				  <rank>0</rank>
-				</dashlet>
-			  </dashlets>
-			</cell>
-			<cell id="4">
-			  <rank>4</rank>
-			  <dashlets>
-				<dashlet id="0" xsi:type="DashletEmptyCell">
-				  <rank>0</rank>
-				</dashlet>
-			  </dashlets>
-			</cell>
-			<cell id="5">
-			  <rank>5</rank>
 			  <dashlets>
 				<dashlet id="0" xsi:type="DashletEmptyCell">
 				  <rank>0</rank>
