@@ -64,7 +64,7 @@
           <ext_key_to_me>thirdpartycontract_id</ext_key_to_me>
           <count_min>0</count_min>
           <count_max>0</count_max>
-          <ext_key_to_remote>document_id</ext_key_to_remote>
+          <ext_key_to_remote>documenttype_id</ext_key_to_remote>
           <duplicates/>
         </field>
         <field id="description" xsi:type="AttributeText">
@@ -159,8 +159,8 @@
 					<is_null_allowed>false</is_null_allowed>
 					<display_style>list</display_style>
 		</field>	
-        <field id="guarantee_period" xsi:type="AttributeString">
-          <sql>guarantee_period</sql>
+        <field id="warranty_period" xsi:type="AttributeString">
+          <sql>warranty_period</sql>
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>	
@@ -169,26 +169,19 @@
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>	
-		<field id="budget_manager" xsi:type="AttributeEnum">
-			<values>
-			  <value id="1">1</value>
-			  <value id="2">2</value>
-			  <value id="3">3</value>
-			  <value id="4">4</value>
-			  <value id="5">5</value>
-			  <value id="6">6</value>
-			  <value id="7">7</value>
-			  <value id="8">8</value>
-			  <value id="9">9</value>
-			  <value id="10">10</value>
-			  <value id="11">11</value>
-			  <value id="12">12</value>			  
-			</values>
+		<field id="budget_manager" xsi:type="AttributeExternalKey">
 			<sql>budget_manager</sql>
-			<default_value></default_value>
 			<is_null_allowed>true</is_null_allowed>
-			<display_style>list</display_style>
-		</field>			
+			<on_target_delete>DEL_AUTO</on_target_delete>
+			<target_class>Person</target_class>
+		</field>
+		<field id="crab_address_id" xsi:type="AttributeExternalKey">
+			<sql>crab_address_id</sql>
+			<on_target_delete>DEL_MANUAL</on_target_delete>
+			<target_class>CrabAddress</target_class>
+			<is_null_allowed>true</is_null_allowed>
+			<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
+		</field>		
       </fields>
       <methods>
         <method id="PrefillSearchForm">
@@ -274,7 +267,7 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="contracttype_id">
               <rank>140</rank>
             </item>
-			<item id="guarantee_period">
+			<item id="warranty_period">
 				<rank>150</rank>
 			</item>
 			<item id="deposit">
@@ -282,6 +275,9 @@ public function PrefillSearchForm(&$aContextParam)
 			</item>
 			<item id="budget_manager">
 				<rank>170</rank>
+			</item>
+			<item id="crab_address_id">
+				<rank>180</rank>
 			</item>
           </items>
         </details>
@@ -345,6 +341,9 @@ public function PrefillSearchForm(&$aContextParam)
 			<item id="budget_manager">
 				<rank>120</rank>
 			</item>
+			<item id="crab_address_id">
+				<rank>130</rank>
+			</item>
           </items>
         </search>
         <list>
@@ -375,6 +374,9 @@ public function PrefillSearchForm(&$aContextParam)
             </item>
 			<item id="budget_manager">
 				<rank>80</rank>
+			</item>
+			<item id="crab_address_id">
+				<rank>90</rank>
 			</item>
           </items>
         </list>
@@ -508,6 +510,9 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="relevant_office">
 									<rank>25</rank>
 								</item>
+								<item id="crab_address_id">
+									<rank>27</rank>
+								</item>
 								<item id="contacts_list">
 									<rank>30</rank>
 								</item>
@@ -537,7 +542,7 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="sla">
 								  <rank>40</rank>
 								</item>
-								<item id="guarantee_period">
+								<item id="warranty_period">
 									<rank>50</rank>
 								</item>
 							</items>
@@ -659,6 +664,9 @@ public function PrefillSearchForm(&$aContextParam)
 			<item id="budget_manager">
 				<rank>170</rank>
 			</item>
+			<item id="crab_address_id">
+				<rank>180</rank>
+			</item>
           </items>
         </search>
         <list>
@@ -686,6 +694,9 @@ public function PrefillSearchForm(&$aContextParam)
             </item>
 			<item id="budget_manager">
 				<rank>80</rank>
+			</item>
+			<item id="crab_address_id">
+				<rank>90</rank>
 			</item>
           </items>
         </list>
@@ -785,7 +796,7 @@ public function PrefillSearchForm(&$aContextParam)
         <naming>
           <attributes>
             <attribute id="thirdpartycontract_id"/>
-            <attribute id="document_id"/>
+            <attribute id="documenttype_id"/>
           </attributes>
         </naming>
         <display_template/>
@@ -793,7 +804,7 @@ public function PrefillSearchForm(&$aContextParam)
         <reconciliation>
           <attributes>
             <attribute id="thirdpartycontract_id"/>
-            <attribute id="document_id"/>
+            <attribute id="documenttype_id"/>
           </attributes>
         </reconciliation>
       </properties>
@@ -808,14 +819,14 @@ public function PrefillSearchForm(&$aContextParam)
           <extkey_attcode>thirdpartycontract_id</extkey_attcode>
           <target_attcode>name</target_attcode>
         </field>
-        <field id="document_id" xsi:type="AttributeExternalKey">
-          <sql>document_id</sql>
+        <field id="documenttype_id" xsi:type="AttributeExternalKey">
+          <sql>documenttype_id</sql>
           <target_class>Document</target_class>
           <is_null_allowed>false</is_null_allowed>
           <on_target_delete>DEL_AUTO</on_target_delete>
         </field>
         <field id="document_name" xsi:type="AttributeExternalField">
-          <extkey_attcode>document_id</extkey_attcode>
+          <extkey_attcode>documenttype_id</extkey_attcode>
           <target_attcode>name</target_attcode>
         </field>
       </fields>
@@ -826,7 +837,7 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="thirdpartycontract_id">
               <rank>10</rank>
             </item>
-            <item id="document_id">
+            <item id="documenttype_id">
               <rank>20</rank>
             </item>
           </items>
@@ -836,7 +847,7 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="thirdpartycontract_id">
               <rank>10</rank>
             </item>
-            <item id="document_id">
+            <item id="documenttype_id">
               <rank>20</rank>
             </item>
           </items>
@@ -846,7 +857,7 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="thirdpartycontract_id">
               <rank>10</rank>
             </item>
-            <item id="document_id">
+            <item id="documenttype_id">
               <rank>20</rank>
             </item>
           </items>
@@ -862,7 +873,7 @@ public function PrefillSearchForm(&$aContextParam)
       <rank>0</rank>
       <parent>ContractManagement</parent>
       <definition>
-		  <layout>DashboardLayoutOneCol</layout>
+		<layout>DashboardLayoutOneCol</layout>
 		  <title>Overzicht Contracten</title>
 		  <auto_reload>
 			<enabled>false</enabled>
@@ -881,6 +892,17 @@ public function PrefillSearchForm(&$aContextParam)
 				  <rank>1</rank>
 				  <title></title>
 				  <query>SELECT ThirdPartyProviderContract AS c WHERE c.end_date &lt; DATE_ADD(NOW(), INTERVAL 30 DAY) AND status NOT IN ('obsolete')</query>
+				  <menu>false</menu>
+				</dashlet>
+				<dashlet id="8" xsi:type="DashletHeaderStatic">
+				  <rank>2</rank>
+				  <title>Contracten waarvan de betaaltermijn binnen de 30 dagen  overschreden wordt</title>
+				  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+				</dashlet>
+				<dashlet id="7" xsi:type="DashletObjectList">
+				  <rank>3</rank>
+				  <title></title>
+				  <query>SELECT ThirdPartyProviderContract AS c WHERE c.payment_date &lt; DATE_ADD(NOW(), INTERVAL 30 DAY) AND status NOT IN ('obsolete')</query>
 				  <menu>false</menu>
 				</dashlet>
 			  </dashlets>
@@ -917,10 +939,38 @@ public function PrefillSearchForm(&$aContextParam)
 				  <order_by>attribute</order_by>
 				  <order_direction>desc</order_direction>
 				</dashlet>
+				<dashlet id="9" xsi:type="DashletGroupByTable">
+				  <rank>3</rank>
+				  <title>volgens toekomstperspectief</title>
+				  <query>SELECT ThirdPartyContract</query>
+				  <group_by>contract_future</group_by>
+				  <style>table</style>
+				  <aggregation_function>count</aggregation_function>
+				  <aggregation_attribute></aggregation_attribute>
+				  <limit></limit>
+				  <order_by>attribute</order_by>
+				  <order_direction>desc</order_direction>
+				</dashlet>
 			  </dashlets>
 			</cell>
 			<cell id="2">
 			  <rank>2</rank>
+			  <dashlets>
+				<dashlet id="0" xsi:type="DashletEmptyCell">
+				  <rank>0</rank>
+				</dashlet>
+			  </dashlets>
+			</cell>
+			<cell id="3">
+			  <rank>3</rank>
+			  <dashlets>
+				<dashlet id="0" xsi:type="DashletEmptyCell">
+				  <rank>0</rank>
+				</dashlet>
+			  </dashlets>
+			</cell>
+			<cell id="4">
+			  <rank>4</rank>
 			  <dashlets>
 				<dashlet id="0" xsi:type="DashletEmptyCell">
 				  <rank>0</rank>

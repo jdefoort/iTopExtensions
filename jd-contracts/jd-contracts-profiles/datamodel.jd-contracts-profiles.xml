@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+  <classes/>
+  <user_rights>
+    <groups>
+	 <!-- name all the id's you made in your new extensions, so this profile gets read/write rights on everything from those extensions --> 
+			
+		<group id="Contracts" _delta="define">
+			<classes>
+			  <class id="ThirdPartyContract"/>
+			  <class id="ThirdPartyProviderContract"/>
+			  <class id="ThirdPartyContractType"/>
+			  <class id="lnkContactToThirdPartyContract"/>
+			  <class id="lnkThirdPartyContractToDocument"/>
+			  <class id="DocumentFileContracts"/>
+			  <class id="Contract"/>
+			  <class id="ContractType"/>
+			  <class id="CustomerContract"/>
+			  <class id="ProviderContract"/>
+			</classes>
+		</group>
+		
+		<group id="Crab" _delta="define_if_not_exists">
+			<classes>
+			  <class id="CrabStreet"/>
+			  <class id="CrabAddress"/>
+			</classes>
+		</group>
+		
+		<!-- <group id="Document" _delta="define">
+			<classes>
+				<class id="Document"/>
+				<class id="DocumentFile"/>
+			</classes>
+		</group>
+		
+		<group id="DocumentDeny" _delta="define">
+			<classes>
+				<class id="DocumentNote"/>
+				<class id="DocumentWeb"/>
+				<class id="DocumentFileRcx"/>
+				<class id="DocumentFileTechnicalServices"/>
+				<class id="DocumentFileBuilding"/>
+				<class id="DocumentFileHr"/>
+			</classes>
+		</group> -->
+	 
+    </groups>
+    <profiles>
+	  <profile id="106" _delta="define">
+        <name>Contracts User</name>
+        <description>Person in charge of Contracts, can add, delete or modify contracts</description>
+        <groups>
+		
+		<!-- you can not delete general, since otherwise you can't login --> 
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+         
+		  
+		  <group id="Contracts">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+		  </group>
+		  
+		  <group id="Crab">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>	
+		  
+		  
+		  <!-- <group id="Document">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+		  
+		  <group id="DocumentDeny">
+		    <actions>
+              <action id="action:read">deny</action>
+              <action id="action:bulk read">deny</action>
+			  <action id="action:write">deny</action>
+              <action id="action:bulk write">deny</action>
+			  <action id="action:delete">deny</action>
+              <action id="action:bulk delete">deny</action>
+            </actions>		  
+		  </group> --> 
+		  
+		 
+        </groups>
+      </profile>
+    </profiles>
+  </user_rights>
+</itop_design>

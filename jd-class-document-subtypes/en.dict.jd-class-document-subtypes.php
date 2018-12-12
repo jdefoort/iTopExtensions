@@ -18,6 +18,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:DocumentFileBuilding+' => 'All documents for Building instance',
 	'Class:DocumentFileHr' => 'Document File HR',
 	'Class:DocumentFileHr+' => 'All documents for Human Resources instance',
+	'Class:DocumentFileContracts' => 'Document File Contracts',
+	'Class:DocumentFileContracts+' => 'All documents for Contracts instance',
 	
 	'Menu:NewDocument' => 'New document',
 	'Menu:NewDocument+' => 'Add a new document',

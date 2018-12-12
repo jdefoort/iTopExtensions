@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension format="1.0">
 	<extension_code>jd-contracts</extension_code>
-	<company>none</company>
+	<company>Stad Izegem</company>
 	<author><![CDATA[jdefoort]]></author>
-	<label><![CDATA[Contracts]]></label>
-	<description><![CDATA[Adds a contract instance customized to our needs]]></description>
-	<version>2.5.181123</version>
-	<release_date>2018-11-23</release_date>
+	<label><![CDATA[Feature: Adds Contracts and Contracts profile user]]></label>
+	<description><![CDATA[Adds Contracts and Contracts profile user]]></description>
+	<version>2.5.181210</version>
+	<release_date>2018-12-10</release_date>
 	<version_description><![CDATA[ ]]></version_description>
 	<itop_version_min>2.5.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
 	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
 </extension>
-

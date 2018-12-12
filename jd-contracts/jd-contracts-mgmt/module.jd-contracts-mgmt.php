@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-contracts/2.5.0',
+        'jd-contracts-mgmt/2.5.0',
         array(
                 // Identification
                 //
@@ -27,7 +27,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-contracts.php'
+                        'model.jd-contracts-mgmt.php'
                 ),
                 'webservice' => array(
 
