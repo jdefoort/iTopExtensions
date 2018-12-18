@@ -5,7 +5,7 @@
 	<author><![CDATA[jdefoort]]></author>
 	<label><![CDATA[Feature: Adds Contracts and Contracts profile user]]></label>
 	<description><![CDATA[Adds Contracts and Contracts profile user]]></description>
-	<version>2.5.181210</version>
+	<version>2.4.181210</version>
 	<release_date>2018-12-10</release_date>
 	<version_description><![CDATA[ ]]></version_description>
 	<itop_version_min>2.5.0</itop_version_min>
