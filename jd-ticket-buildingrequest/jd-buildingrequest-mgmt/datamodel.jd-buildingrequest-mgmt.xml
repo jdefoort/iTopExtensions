@@ -640,12 +640,6 @@
 							<attribute id="service_id">
 								<read_only/>
 							</attribute>
-							<attribute id="parent_change_id">
-								<read_only/>
-							</attribute>
-							<attribute id="parent_problem_id">
-								<read_only/>
-							</attribute>
 							<attribute id="public_log">
 								<read_only/>
 							</attribute>
