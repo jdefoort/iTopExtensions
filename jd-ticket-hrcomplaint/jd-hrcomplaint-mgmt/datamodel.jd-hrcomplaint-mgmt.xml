@@ -190,6 +190,7 @@
 						<value id="c">c</value>
 						<value id="b">b</value>
 						<value id="a">a</value>
+						<value id="d">d</value>
 					</values>
 					<sql>not_amenable</sql>
 					<default_value></default_value>

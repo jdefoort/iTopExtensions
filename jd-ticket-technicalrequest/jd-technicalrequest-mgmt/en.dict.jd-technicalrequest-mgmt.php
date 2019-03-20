@@ -268,6 +268,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:TechnicalRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',
 	
 	'Class:TechnicalRequest/Attribute:geom' => 'Geometry', 
+	'Location:Geometry' => 'Geometry',
 	'TechnicalRequest:Geometry' => 'Geometry',
 	
 	// Actions

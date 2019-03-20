@@ -293,6 +293,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:HrComplaint/Attribute:not_amenable/Value:b+' => 'Policy suggestion',
 	'Class:HrComplaint/Attribute:not_amenable/Value:a' => 'Other',
 	'Class:HrComplaint/Attribute:not_amenable/Value:a+' => 'Other',
+	'Class:HrComplaint/Attribute:not_amenable/Value:d' => 'External legal entity',
+	'Class:HrComplaint/Attribute:not_amenable/Value:d+' => 'External legal entity',
 	'Class:HrComplaint/Attribute:reminder' => 'Reminder',
 	'Class:HrComplaint/Attribute:reminder+' => 'Reminder',	
 	

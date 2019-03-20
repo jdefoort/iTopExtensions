@@ -10,6 +10,7 @@
 			  <class id="ThirdPartyContract"/>
 			  <class id="ThirdPartyProviderContract"/>
 			  <class id="ThirdPartyContractType"/>
+			  <class id="ThirdPartyRelevantOffice"/>
 			  <class id="lnkContactToThirdPartyContract"/>
 			  <class id="lnkThirdPartyContractToDocument"/>
 			  <class id="DocumentFileContracts"/>

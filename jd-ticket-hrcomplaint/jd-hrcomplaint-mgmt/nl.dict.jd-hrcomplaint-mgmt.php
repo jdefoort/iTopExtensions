@@ -299,6 +299,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:HrComplaint/Attribute:not_amenable/Value:b+' => 'Beleidssuggestie',
 	'Class:HrComplaint/Attribute:not_amenable/Value:a' => 'Andere',
 	'Class:HrComplaint/Attribute:not_amenable/Value:a+' => 'Andere',
+	'Class:HrComplaint/Attribute:not_amenable/Value:d' => 'Externe rechtspersoon',
+	'Class:HrComplaint/Attribute:not_amenable/Value:d+' => 'Externe rechtspersoon',
 	'Class:HrComplaint/Attribute:reminder' => 'Herinnering',
 	'Class:HrComplaint/Attribute:reminder+' => 'Herinnering',	
 	
