@@ -97,6 +97,11 @@
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
+		<field id="cost_energy" xsi:type="AttributeString">
+          <sql>cost_energy</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
         <field id="contracttype_id" xsi:type="AttributeExternalKey">
           <sql>contracttype_id</sql>
           <target_class>ThirdPartyContractType</target_class>
@@ -154,6 +159,21 @@
 					<is_null_allowed>false</is_null_allowed>
 					<display_style>radio_horizontal</display_style>
 		</field>
+		<field id="indexed_energy" xsi:type="AttributeEnum">
+					<values>
+					  <value id="yes">yes</value>
+					  <value id="no">no</value>
+					</values>
+					<sql>indexed_energy</sql>
+					<default_value>no</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+		</field>
+		<field id="start_index" xsi:type="AttributeDate">
+          <sql>start_index</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
 		<field id="contract_future" xsi:type="AttributeEnum">
 					<values>
 					  <value id="unchanged">unchanged</value>
@@ -252,8 +272,17 @@ public function PrefillSearchForm(&$aContextParam)
 			<item id="receipts">
 				<rank>85</rank>
 			</item>
+			<item id="cost_energy">
+				<rank>87</rank>
+			</item>
 			<item id="indexed">
 				<rank>90</rank>
+			</item>
+			<item id="indexed_energy">
+				<rank>91</rank>
+			</item>
+			<item id="start_index">
+				<rank>95</rank>
 			</item>
             <item id="billing_frequency">
               <rank>100</rank>
@@ -326,6 +355,9 @@ public function PrefillSearchForm(&$aContextParam)
 			<item id="receipts">
 			  <rank>55</rank>
 			</item>
+			<item id="cost_energy">
+				<rank>57</rank>
+			</item>
             <item id="provider_id">
               <rank>60</rank>
             </item>
@@ -378,6 +410,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="accountancy_key">
               <rank>70</rank>
             </item>
+			<item id="comment_enddate">
+				<rank>75</rank>
+			</item>
 			<item id="budget_manager">
 				<rank>80</rank>
 			</item>
@@ -529,6 +564,11 @@ public function PrefillSearchForm(&$aContextParam)
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
+		<field id="comment_enddate" xsi:type="AttributeString">
+          <sql>comment_enddate</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
 		<field id="cancellation_conditions" xsi:type="AttributeString">
           <sql>cancellation_conditions</sql>
           <default_value/>
@@ -605,6 +645,9 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="end_date">
 								  <rank>20</rank>
 								</item>
+								<item id="comment_enddate">
+									<rank>25</rank>
+								</item>
 								<item id="payment_date">
 									<rank>30</rank>
 								</item>
@@ -616,11 +659,20 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="cost">
 								  <rank>10</rank>
 								</item>
+								<item id="indexed">
+									<rank>11</rank>
+								</item>
+								<item id="cost_energy">
+									<rank>12</rank>
+								</item>
+								<item id="indexed_energy">
+									<rank>14</rank>
+								</item>
 								<item id="receipts">
 									<rank>15</rank>
 								</item>
-								<item id="indexed">
-									<rank>20</rank>
+								<item id="start_index">
+									<rank>25</rank>
 								</item>
 								<item id="billing_frequency">
 								  <rank>30</rank>
@@ -675,6 +727,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="cost">
               <rank>70</rank>
             </item>
+			<item id="cost_energy">
+				<rank>72</rank>
+			</item>
 			<item id="receipts">
 				<rank>75</rank>
 			</item>
