@@ -235,7 +235,16 @@
           <is_null_allowed>true</is_null_allowed>
           <display_style>list</display_style>
         </field>
-		
+		<field id="logouptodate" xsi:type="AttributeEnum">
+			<values>
+			  <value id="yes">yes</value>
+			  <value id="no">no</value>
+			</values>
+			<sql>logouptodate</sql>
+			<default_value>no</default_value>
+			<is_null_allowed>false</is_null_allowed>
+			<display_style>radio_horizontal</display_style>
+		</field>
       </fields>
       <methods/>
       <presentation>
@@ -267,24 +276,27 @@
 				<item id="fieldset:Server:moreinfo">
 					<rank>20</rank>
 					<items>
-					<item id="brand_id">
-					  <rank>60</rank>
-					</item>
-					<item id="model_id">
-					  <rank>70</rank>
-					</item>
-					<item id="vehicledriverslicense_id">
-					  <rank>75</rank>
-					</item>
-					<item id="vehicleenergysource_id">
-					  <rank>75</rank>
-					</item>
-					<item id="licenseplate">
-					  <rank>76</rank>
-					</item>
-					 <item id="chassisnumber">
-					  <rank>77</rank>
-					</item>
+						<item id="brand_id">
+						  <rank>60</rank>
+						</item>
+						<item id="model_id">
+						  <rank>70</rank>
+						</item>
+						<item id="vehicledriverslicense_id">
+						  <rank>75</rank>
+						</item>
+						<item id="vehicleenergysource_id">
+						  <rank>75</rank>
+						</item>
+						<item id="licenseplate">
+						  <rank>76</rank>
+						</item>
+						 <item id="chassisnumber">
+						  <rank>77</rank>
+						</item>
+						<item id="logouptodate">
+						  <rank>80</rank>
+						</item>
 					</items>
 				</item>
 				</items>
@@ -383,6 +395,9 @@
 			 <item id="chassisnumber">
               <rank>77</rank>
             </item>
+			<item id="logouptodate">
+				<rank>80</rank>
+			</item>
             <item id="move2production">
               <rank>100</rank>
             </item>

@@ -36,6 +36,13 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Vehicle/Attribute:vehicledriverslicense_id' => 'Rijbewijs',
 	'Class:Vehicle/Attribute:vehicledriverslicense_id+' => 'Welk rijbewijs is vereist om met dit voertuig te rijden',
 	
+	'Class:Vehicle/Attribute:logouptodate' => 'Logo up-to-date',
+	'Class:Vehicle/Attribute:logouptodate+' => '',
+	'Class:Vehicle/Attribute:logouptodate/Value:no' => 'Nee',
+	'Class:Vehicle/Attribute:logouptodate/Value:no+' => 'Nee',
+	'Class:Vehicle/Attribute:logouptodate/Value:yes' => 'Ja',
+	'Class:Vehicle/Attribute:logouptodate/Value:yes+' => 'Ja',
+	
 	'Class:Vehicle/Attribute:maintenanceplace' => 'Onderhoudsplaats',
 	'Class:Vehicle/Attribute:maintenanceplace+' => 'Naar welke garage gaat dit voertuig',
 	'Class:Vehicle/Attribute:payload' => 'Laadvermogen',

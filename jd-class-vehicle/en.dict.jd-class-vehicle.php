@@ -33,6 +33,12 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Vehicle/Attribute:vehicledriverslicense_id' => 'Driver\'s license',
 	'Class:Vehicle/Attribute:vehicledriverslicense_id+' => 'Required driver\'s license to operate this vehicle',
 
+	'Class:Vehicle/Attribute:logouptodate' => 'Logo up to date',
+	'Class:Vehicle/Attribute:logouptodate+' => '',
+	'Class:Vehicle/Attribute:logouptodate/Value:no' => 'No',
+	'Class:Vehicle/Attribute:logouptodate/Value:no+' => 'No',
+	'Class:Vehicle/Attribute:logouptodate/Value:yes' => 'Yes',
+	'Class:Vehicle/Attribute:logouptodate/Value:yes+' => 'Yes',
 	
 	'Class:Vehicle/Attribute:maintenanceplace' => 'Maintenance place',
 	'Class:Vehicle/Attribute:maintenanceplace+' => 'The maintenance place for this vehicle',
