@@ -355,12 +355,6 @@
             <item id="tickets_list">
               <rank>190</rank>
             </item>
-            <item id="providercontracts_list">
-              <rank>200</rank>
-            </item>
-            <item id="services_list">
-              <rank>210</rank>
-            </item>
           </items>
         </details>
         <search>
@@ -435,9 +429,6 @@
             <item id="status">
               <rank>30</rank>
             </item>
-            <item id="business_criticity">
-              <rank>40</rank>
-            </item>
             <item id="location_id">
               <rank>50</rank>
             </item>
@@ -453,18 +444,6 @@
             <item id="licenseplate">
               <rank>76</rank>
             </item>
-			 <item id="chassisnumber">
-              <rank>77</rank>
-            </item>
-            <item id="vehicleenergysource_id">
-              <rank>78</rank>
-            </item>
-            <item id="move2production">
-              <rank>100</rank>
-            </item>
-            <item id="purchase_date">
-              <rank>110</rank>
-            </item>
             <item id="end_of_warranty">
               <rank>120</rank>
             </item>
@@ -477,12 +456,6 @@
 			<item id="insuredtill">
               <rank>123</rank>
             </item>
-			<item id="maintenanceplace">
-			  <rank>158</rank>
-			</item>
-			<item id="payload">
-			  <rank>159</rank>
-			</item>
           </items>
         </list>
       </presentation>
