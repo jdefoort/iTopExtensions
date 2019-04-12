@@ -14,7 +14,7 @@
 	class iTop_Rest {
 		
 		/* URL of the iTop web services, including version. This is a test environment for us. */
-		private $url = "http://10.1.20.22/itop/web/webservices/rest.php?version=1.3";
+		private $url = "http://ww03/web/webservices/rest.php?version=1.3";
 		
 		/* Credentials of an iTop user */
 		private $user = "admin";

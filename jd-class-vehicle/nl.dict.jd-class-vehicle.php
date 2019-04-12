@@ -61,6 +61,9 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Vehicle/Attribute:nextinspection+' => 'Wanneer moet het voertuig nog eens naar de keuring',
 	'Class:Vehicle/Attribute:insuredtill' => 'Verzekering is geldig tot',
 	'Class:Vehicle/Attribute:insuredtill+' => 'Tot wanneer loopt de verzekering op dit voertuig',
+	'Class:Vehicle/Attribute:vehicleannualrecord_list' => 'Jaaroverzicht',
+	'Class:Vehicle/Attribute:vehicleannualrecord_list+' => 'Jaaroverzicht'
+
 
 ));
 
