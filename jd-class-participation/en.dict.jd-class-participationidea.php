@@ -39,6 +39,9 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ParticipationIdea/Attribute:description+' => 'Description',
 	'Class:ParticipationIdea/Attribute:participationpicture' => 'Image',
 	'Class:ParticipationIdea/Attribute:participationpicture+' => 'Image that fits the idea',
+	'Class:ParticipationIdea/Attribute:participationvote_list' => 'Votes',
+	'Class:ParticipationIdea/Attribute:participationvote_list+' => 'Overview of voters',
+	
 	
 	'Menu:SearchParticipationIdea' => 'Search for participation ideas',
 	'Menu:SearchParticipationIdea+' => 'Search for participation ideas by citizens',

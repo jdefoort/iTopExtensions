@@ -39,6 +39,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:ParticipationIdea/Attribute:description+' => 'Uitleg',
 	'Class:ParticipationIdea/Attribute:participationpicture' => 'Foto',
 	'Class:ParticipationIdea/Attribute:participationpicture+' => 'Foto dat het idee omschrijft',
+	'Class:ParticipationIdea/Attribute:participationvote_list' => 'Stemmen',
+	'Class:ParticipationIdea/Attribute:participationvote_list+' => 'Overzicht van wie hierop gestemd heeft',
 	
 	'Menu:SearchParticipationIdea' => 'Zoek een idee',
 	'Menu:SearchParticipationIdea+' => 'Zoek in de ideëen van burgers',

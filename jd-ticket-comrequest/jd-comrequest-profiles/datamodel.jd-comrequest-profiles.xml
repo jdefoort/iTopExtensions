@@ -9,6 +9,7 @@
 			  <class id="ComRequest"/>
 			  <class id="DocumentFileCom"/>
 			  <class id="ParticipationIdea"/>
+			  <class id="ParticipationVote"/>
 			</classes>
 		</group>
 		  

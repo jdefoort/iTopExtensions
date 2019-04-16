@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+
+	<classes>
+
+
+		<class id="ParticipationVote" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>participationvote</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes/>
+				</naming>
+
+				<display_template/>
+				<icon>images/participationvotes.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="participationvote"/>
+						<attribute id="id"/>
+						<attribute id="org_id"/>
+						<attribute id="organization_name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+
+
+			<fields>
+				<field id="org_id" xsi:type="AttributeExternalKey">
+					<sql>org_id</sql>
+					<target_class>Organization</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>
+				<field id="voter_id" xsi:type="AttributeExternalKey">
+					<filter><![CDATA[SELECT Person WHERE org_id= :this->org_id]]></filter>
+					<dependencies>
+						<attribute id="org_id"/>
+					</dependencies>
+					<sql>voter_id</sql>
+					<target_class>Person</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<allow_target_creation>false</allow_target_creation>
+				</field>				
+				<field id="participationidea_id" xsi:type="AttributeExternalKey">
+					<sql>participationidea_id</sql>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<target_class>ParticipationIdea</target_class>
+				</field>
+				<field id="created" xsi:type="AttributeDateTime">
+					<sql>created</sql>
+					<default_value></default_value>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="score" xsi:type="AttributeInteger">
+					<sql>score</sql>
+					<default_value></default_value>
+					<is_null_allowed>true</is_null_allowed>				
+				</field>
+			</fields> 
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:ParticipationVote:baseinfo">
+									<items>
+										<item id="org_id">
+											<rank>10</rank>
+										</item>
+										<item id="voter_id">
+											<rank>20</rank>
+										</item>
+										<item id="participationidea_id">
+											<rank>30</rank>
+										</item>
+										<item id="created">
+											<rank>40</rank>
+										</item>
+										<item id="score">
+											<rank>50</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>		 
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="org_id">
+							<rank>10</rank>
+						</item>
+						<item id="voter_id">
+							<rank>20</rank>
+						</item>
+						<item id="participationidea_id">
+							<rank>30</rank>
+						</item>  
+						<item id="created">
+							<rank>40</rank>
+						</item>	
+						<item id="score">
+							<rank>50</rank>
+						</item>						
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="org_id">
+							<rank>10</rank>
+						</item>
+						<item id="voter_id">
+							<rank>20</rank>
+						</item>
+						<item id="participationidea_id">
+							<rank>30</rank>
+						</item>
+						<item id="created">
+							<rank>40</rank>
+						</item>
+						<item id="score">
+							<rank>50</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+
+			<methods/>
+
+
+		</class>
+	</classes>
+
+	<!-- Adds a link to the ConfigManagement Overview -->
+	<menus>
+		<menu id="SearchParticipationVote" xsi:type="SearchMenuNode" _delta="define">
+			<rank>921</rank>
+			<parent>ComRequestManagement</parent>
+			<class>ParticipationVote</class> 
+		</menu> 
+	</menus>
+
+	<profiles>
+	</profiles>
+</itop_design>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-class-participationvote</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Class: Participation Vote]]></label>
+	<description><![CDATA[Adds Participation Vote, a system to keep track of votes.]]></description>
+	<version>2.5.1904015</version>
+	<release_date>2019-04-15</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.5.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>

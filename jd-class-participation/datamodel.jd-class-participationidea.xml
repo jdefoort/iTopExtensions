@@ -89,6 +89,11 @@
                 <default_image>images/silhouette.png</default_image>
                 <is_null_allowed>true</is_null_allowed>
            </field>
+			<field id="participationvote_list" xsi:type="AttributeLinkedSet">
+				<linked_class>ParticipationVote</linked_class>
+				<ext_key_to_me>participationidea_id</ext_key_to_me>
+				<edit_mode>actions</edit_mode>
+			</field>
       </fields> 
       <presentation>
         <details>
@@ -138,7 +143,10 @@
 					</items>
 					</item>
 				</items>
-			</item>			 
+			</item>	
+			<item id="participationvote_list">
+				<rank>30</rank>
+			</item>
           </items>
         </details>
         <search>
@@ -176,22 +184,21 @@
         </list>
       </presentation>
 	  
-			<methods/>
+	<methods/>
 			
 			
     </class>
   </classes>
   
-	<!-- Adds a link to the ConfigManagement Overview -->
-	<menus>
-	 
+	<!-- Adds a link to the ComRequestManagement Overview -->
+	<menus>	 
 		<menu id="NewParticipationIdea" xsi:type="NewObjectMenuNode" _delta="define">
-			<rank>910</rank>
+			<rank>915</rank>
 			<parent>ComRequestManagement</parent>
 			<class>ParticipationIdea</class>
 		</menu>
 		<menu id="SearchParticipationIdea" xsi:type="SearchMenuNode" _delta="define">
-			<rank>911</rank>
+			<rank>916</rank>
 			<parent>ComRequestManagement</parent>
 			<class>ParticipationIdea</class> 
 		</menu> 

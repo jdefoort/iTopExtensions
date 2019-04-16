@@ -13,6 +13,7 @@
 			  <class id="ToolType"/>
 			  <class id="Purpose"/>
 			<!-- vehicle -->
+			  <class id="VehicleAnnualRecord"/>
 			  <class id="Vehicle"/>
 			  <class id="VehicleDriversLicense"/>
 			  <class id="VehicleEnergySource"/>
