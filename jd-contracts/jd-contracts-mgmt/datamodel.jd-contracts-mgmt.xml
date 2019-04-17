@@ -138,6 +138,20 @@
           <extkey_attcode>provider_id</extkey_attcode>
           <target_attcode>name</target_attcode>
         </field>
+	  <field id="providercontact_id" xsi:type="AttributeExternalKey">
+		<filter><![CDATA[SELECT Person WHERE org_id = :this->provider_id]]></filter>
+		<dependencies>
+		  <attribute id="provider_id"/>
+		</dependencies>
+		<sql>providercontact_id</sql>
+		<target_class>Person</target_class>
+		<is_null_allowed>true</is_null_allowed>
+		<on_target_delete>DEL_AUTO</on_target_delete>
+	  </field>
+	  <field id="providercontact_name" xsi:type="AttributeExternalField">
+		<extkey_attcode>providercontact_id</extkey_attcode>
+		<target_attcode>name</target_attcode>
+	  </field>
         <field id="status" xsi:type="AttributeEnum">
           <values>
             <value id="production">production</value>
@@ -293,6 +307,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="provider_id">
               <rank>120</rank>
             </item>
+			<item id="providercontact_id">
+				<rank>125</rank>
+			</item>
             <item id="status">
               <rank>130</rank>
             </item>
@@ -327,6 +344,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="provider_id">
               <rank>30</rank>
             </item>
+			<item id="providercontact_id">
+				<rank>35</rank>
+			</item>
 			<item id="budget_manager">
 				<rank>40</rank>
 			</item>
@@ -361,6 +381,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="provider_id">
               <rank>60</rank>
             </item>
+			<item id="providercontact_id">
+				<rank>70</rank>
+			</item>
             <item id="billing_frequency">
               <rank>80</rank>
             </item>
@@ -623,6 +646,9 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="provider_id">
 								  <rank>20</rank>
 								</item>
+								<item id="providercontact_id">
+									<rank>30</rank>
+								</item>
 								<item id="sla">
 								  <rank>40</rank>
 								</item>
@@ -721,6 +747,9 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="provider_id">
               <rank>50</rank>
             </item>
+			<item id="providercontact_id">
+				<rank>55</rank>
+			</item>
             <item id="contracttype_id">
               <rank>60</rank>
             </item>
@@ -782,7 +811,7 @@ public function PrefillSearchForm(&$aContextParam)
 		    <item id="provider_id">
               <rank>40</rank>
             </item>
-            <item id="org_id">
+            <item id="providercontact_id">
               <rank>50</rank>
             </item>
             <item id="description">

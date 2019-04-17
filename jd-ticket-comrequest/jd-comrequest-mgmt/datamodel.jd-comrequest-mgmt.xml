@@ -1425,9 +1425,19 @@
 			<rank>31</rank>
 			<enable_stimulus/>
 		</menu>
-		<menu id="ComRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
-			<rank>0</rank>
+		<menu id="ComRequest:Participation" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>1</rank>
 			<parent>ComRequestManagement</parent>
+			<template_file/>
+		</menu>
+		<menu id="ComRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>10</rank>
+			<parent>ComRequestManagement</parent>
+			<template_file/>
+		</menu>
+		<menu id="ComRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
+			<rank>11</rank>
+			<parent>ComRequest:Shortcuts</parent>
 			<definition>
 				<layout>DashboardLayoutTwoCols</layout>
 				<title>Overzicht communicatie</title>
@@ -1518,29 +1528,24 @@
 			</definition>
 		</menu>
 		<menu id="NewComRequest" xsi:type="NewObjectMenuNode" _delta="define">
-			<rank>1</rank>
-			<parent>ComRequestManagement</parent>
+			<rank>12</rank>
+			<parent>ComRequest:Shortcuts</parent>
 			<class>ComRequest</class>
 		</menu>
 		<menu id="SearchComRequests" xsi:type="SearchMenuNode" _delta="define">
-			<rank>2</rank>
-			<parent>ComRequestManagement</parent>
+			<rank>13</rank>
+			<parent>ComRequest:Shortcuts</parent>
 			<class>ComRequest</class>
 		</menu>
-		<menu id="ComRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
-			<rank>3</rank>
-			<parent>ComRequestManagement</parent>
-			<template_file/>
-		</menu>
 		<menu id="ComRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
-			<rank>0</rank>
+			<rank>14</rank>
 			<parent>ComRequest:Shortcuts</parent>
 			<oql><![CDATA[SELECT ComRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
 			<do_search/>
 			<auto_reload>fast</auto_reload>
 		</menu>
 		<menu id="ComRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
-			<rank>2</rank>
+			<rank>15</rank>
 			<parent>ComRequest:Shortcuts</parent>
 			<oql><![CDATA[SELECT ComRequest WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>

@@ -144,7 +144,7 @@
 	<menus>
 		<menu id="SearchParticipationVote" xsi:type="SearchMenuNode" _delta="define">
 			<rank>921</rank>
-			<parent>ComRequestManagement</parent>
+			<parent>ComRequest:Participation</parent>
 			<class>ParticipationVote</class> 
 		</menu> 
 	</menus>

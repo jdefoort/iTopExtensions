@@ -194,12 +194,12 @@
 	<menus>	 
 		<menu id="NewParticipationIdea" xsi:type="NewObjectMenuNode" _delta="define">
 			<rank>915</rank>
-			<parent>ComRequestManagement</parent>
+			<parent>ComRequest:Participation</parent>
 			<class>ParticipationIdea</class>
 		</menu>
 		<menu id="SearchParticipationIdea" xsi:type="SearchMenuNode" _delta="define">
 			<rank>916</rank>
-			<parent>ComRequestManagement</parent>
+			<parent>ComRequest:Participation</parent>
 			<class>ParticipationIdea</class> 
 		</menu> 
 	</menus>

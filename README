@@ -5,6 +5,7 @@ Some of my extensions work in cooperation with extensions which were written by 
 You can find his extensions on https://github.com/jbostoen/iTop-custom-extensions 
 
 Be aware of my newer extensions:
-* As of the moment ComRequest is still a rough version that isn't in production.
-* HrComplaint and HrRequest are still being live tested by some users. 
+* As of the moment the class 'ParticpationIdea' and 'ParticipationVote' are still a rough version, which still need the API from my colleague to work (frontend).
+* jd-contracts still needs some polishing.
+* 'TechnicalRequest' still needs a lot of livetesting, but here we are waiting for input from our users. 
 

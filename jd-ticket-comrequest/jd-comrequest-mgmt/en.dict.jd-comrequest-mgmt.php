@@ -39,6 +39,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Menu:SearchComRequests+' => 'Search for communication request tickets',
 	'Menu:ComRequest:Shortcuts' => 'Shortcuts',
 	'Menu:ComRequest:Shortcuts+' => 'Shortcuts',
+	'Menu:ComRequest:Participation' => 'Participation',
+	'Menu:ComRequest:Participation+' => 'Participation',
 	'Menu:ComRequest:MyRequests' => 'Communication Requests assigned to me',
 	'Menu:ComRequest:MyRequests+' => 'Communication Requests assigned to me (as Agent)',
 	'Menu:ComRequest:MySupportRequests' => "My support calls",

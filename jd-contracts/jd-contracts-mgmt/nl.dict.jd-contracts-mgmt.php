@@ -110,6 +110,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:ThirdPartyContract/Attribute:billing_frequency+' => '',
 	'Class:ThirdPartyContract/Attribute:provider_id' => 'Derde',
 	'Class:ThirdPartyContract/Attribute:provider_id+' => '',
+	'Class:ThirdPartyContract/Attribute:providercontact_id' => 'Contactpersoon',
+	'Class:ThirdPartyContract/Attribute:providercontact_id+' => 'Contactpersoon',
 	'Class:ThirdPartyContract/Attribute:provider_name' => 'Naam derde',
 	'Class:ThirdPartyContract/Attribute:provider_name+' => 'Gemeenschappelijke naam',
 	'Class:ThirdPartyContract/Attribute:status' => 'Status',
