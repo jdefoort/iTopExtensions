@@ -1502,7 +1502,7 @@
 						<dashlet id="4" xsi:type="DashletGroupByTable">
 						  <rank>2</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-						  <query>SELECT ComRequest WHERE status NOT IN ('closed','rejected')</query>
+						  <query>SELECT ComRequest WHERE status NOT IN ('closed','rejected', 'resolved')</query>
 						  <group_by>agent_id</group_by>
 						  <style>table</style>
 						</dashlet>

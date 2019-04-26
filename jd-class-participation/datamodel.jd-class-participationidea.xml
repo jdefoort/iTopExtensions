@@ -51,7 +51,7 @@
         </field>		
 		<field id="contact_id" xsi:type="AttributeExternalKey">
 					<sql>contact_id</sql>
-					<target_class>Contact</target_class>
+					<target_class>Person</target_class>
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
 		</field>	

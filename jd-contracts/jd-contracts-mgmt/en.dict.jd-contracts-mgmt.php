@@ -163,6 +163,8 @@ Dict::Add('EN US', 'English', 'English', array(
 Dict::Add('EN US', 'English', 'English', array(
 	'Class:ThirdPartyProviderContract' => 'Provider Contract',
 	'Class:ThirdPartyProviderContract+' => '',
+	'Class:ThirdPartyProviderContract/Attribute:code' => 'Code',
+	'Class:ThirdPartyProviderContract/Attribute:code+' => 'Code',
 	'Class:ThirdPartyProviderContract/Attribute:functionalcis_list' => 'CIs',
 	'Class:ThirdPartyProviderContract/Attribute:functionalcis_list+' => 'All the configuration items covered by this provider contract',
 	'Class:ThirdPartyProviderContract/Attribute:sla' => 'SLA',

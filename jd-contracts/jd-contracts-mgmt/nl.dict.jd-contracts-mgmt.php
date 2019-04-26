@@ -165,6 +165,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:ThirdPartyProviderContract' => 'Contract',
 	'Class:ThirdPartyProviderContract+' => '',
+	'Class:ThirdPartyProviderContract/Attribute:code' => 'Dossiercode',
+	'Class:ThirdPartyProviderContract/Attribute:code+' => 'Code van papieren dossier',
 	'Class:ThirdPartyProviderContract/Attribute:functionalcis_list' => 'CIs',
 	'Class:ThirdPartyProviderContract/Attribute:functionalcis_list+' => 'Alle configuratie items die gedekt zijn door dit derdencontract',
 	'Class:ThirdPartyProviderContract/Attribute:sla' => 'SLA',
