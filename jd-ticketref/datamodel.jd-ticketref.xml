@@ -52,6 +52,10 @@
 						$sFormat = 'COM-%06d';
 						break;
 						
+						case 'PrevRequest':
+						$sFormat = 'PREV-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }

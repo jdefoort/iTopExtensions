@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-ticket-prevrequest</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Feature: Adds Prevention Request and Prevention profile user]]></label>
+	<description><![CDATA[Adds Prevention Request and Prevention profile user]]></description>
+	<version>2.6.180309</version>
+	<release_date>2019-04-26</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.6.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>
