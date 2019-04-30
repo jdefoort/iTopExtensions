@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-menuhide-itil/2.4.0',
+        'jd-menuhide/2.4.0',
         array(
                 // Identification
                 //
@@ -21,9 +21,9 @@ SetupWebPage::AddModule(
 						// 'itop-service-mgmt-provider/2.4.0',
                         'itop-change-mgmt-itil/2.4.0',
 						'jd-rcxrequest-mgmt-itil/2.4.0',
-						'jd-hrrequest-mgmt-itil/2.4.0',
-						'jd-hrcomplaint-mgmt-itil/2.4.0',
-						'jd-buildingrequest-mgmt-itil/2.4.0'
+						'jd-hrrequest-mgmt/2.4.0',
+						'jd-hrcomplaint-mgmt/2.4.0',
+						'jd-buildingrequest-mgmt/2.4.0'
                 ),
 
                 'mandatory' => false,
@@ -32,7 +32,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-menuhide-itil.php'
+                        'model.jd-menuhide.php'
                 ),
                 'webservice' => array(
 

@@ -25,6 +25,12 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
+    <menu id="ComRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>35</rank>
+     <enable_class>ComRequest</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
     <menu id="BuildingRequestManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>31</rank>
      <enable_class>BuildingRequest</enable_class>
@@ -40,6 +46,18 @@
     <menu id="HrComplaintManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>33</rank>
      <enable_class>HrComplaint</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="TechnicalRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>35</rank>
+     <enable_class>TechnicalRequest</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="PrevRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>37</rank>
+     <enable_class>PrevRequest</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>

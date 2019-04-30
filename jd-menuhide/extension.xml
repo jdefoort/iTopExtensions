@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension format="1.0">
-	<extension_code>jd-menuhide-itil</extension_code>
+	<extension_code>jd-menuhide</extension_code>
 	<company>none</company>
 	<author><![CDATA[jdefoort]]></author>
 	<label><![CDATA[Menuhide]]></label>
@@ -13,3 +13,4 @@
 	<mandatory>false</mandatory>
 	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
 </extension>
+
