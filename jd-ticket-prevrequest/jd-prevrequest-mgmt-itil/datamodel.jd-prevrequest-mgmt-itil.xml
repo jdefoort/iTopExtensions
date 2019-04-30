@@ -63,15 +63,6 @@
 					<default_value>new</default_value>
 					<is_null_allowed>false</is_null_allowed>
 				</field>
-				<field id="request_type" xsi:type="AttributeEnum">
-					<values>
-						<value id="service_request">service_request</value>
-					</values>
-					<sql>request_type</sql>
-					<default_value>service_request</default_value>
-					<is_null_allowed>true</is_null_allowed>
-					<display_style>list</display_style>
-				</field>
 				<field id="impact" xsi:type="AttributeEnum">
 					<values>
 						<value id="1">1</value>
@@ -137,10 +128,9 @@
 					<target_attcode>name</target_attcode>
 				</field>
 				<field id="servicesubcategory_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_id = :this->service_id AND request_type = :this->request_type AND status != 'obsolete']]></filter>
+					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_id = :this->service_id AND status != 'obsolete']]></filter>
 					<dependencies>
 						<attribute id="service_id"/>
-						<attribute id="request_type"/>
 					</dependencies>
 					<sql>servicesubcategory_id</sql>
 					<target_class>ServiceSubcategory</target_class>
@@ -288,9 +278,6 @@
 							</attribute>
 							<attribute id="approver_id">
 								<hidden/>
-							</attribute>
-							<attribute id="request_type">
-								<read_only/>
 							</attribute>
 							<attribute id="assignment_date">
 								<hidden/>
@@ -793,37 +780,6 @@
 		return parent::ComputeValues();
 	}]]></code>
 				</method>
-				<method id="DisplayBareRelations">
-					<static>false</static>
-					<access>public</access>
-					<type>Overload-cmdbAbstractObject</type>
-					<code><![CDATA[	function DisplayBareRelations(WebPage $oPage, $bEditMode = false)
-	{
-		parent::DisplayBareRelations($oPage, $bEditMode);
-
-		if (!$bEditMode)
-		{
-
-			if (MetaModel::IsValidClass('KnownError'))
-			{			
-				//Search for known errors
-				$oPage->SetCurrentTab(Dict::S('Class:PrevRequest:KnownErrorList'));
-				$iTicketID = $this->GetKey();;
-				$oKnownErrorSet = new CMDBObjectSet(DBObjectSearch::FromOQL("SELECT KnownError AS ke JOIN lnkErrorToFunctionalCI AS l1 ON l1.error_id=ke.id JOIN FunctionalCI AS ci ON l1.functionalci_id=ci.id JOIN lnkFunctionalCIToTicket AS l2 ON l2.functionalci_id=ci.id WHERE l2.ticket_id=$iTicketID"));
-				$iNumberKE=$oKnownErrorSet->count();
-				if ($iNumberKE > 0)
-				{
-					$oPage->SetCurrentTab(Dict::S('Class:PrevRequest:KnownErrorList')." ($iNumberKE)");
-				}
-				else
-				{
-					$oPage->SetCurrentTab(Dict::S('Class:PrevRequest:KnownErrorList'));	
-				}			
-				self::DisplaySet($oPage, $oKnownErrorSet, array ('menu' => false));
-			}
-		}
-	}]]></code>
-				</method>
 				<method id="resolveChilds">
 					<comment><![CDATA[/**
 	 * To be deprecated: use ResolveChildTickets() instead
@@ -1054,9 +1010,6 @@
 								<item id="fieldset:Ticket:Type">
 									<rank>10</rank>
 									<items>
-										<item id="request_type">
-											<rank>10</rank>
-										</item>
 										<item id="impact">
 											<rank>20</rank>
 										</item>
@@ -1161,9 +1114,6 @@
 						</item>
 						<item id="origin">
 							<rank>110</rank>
-						</item>
-						<item id="request_type">
-							<rank>120</rank>
 						</item>
 						<item id="impact">
 							<rank>130</rank>
@@ -1396,7 +1346,7 @@
 				<class id="ServiceSubcategory">
 					<scopes>
 						<scope id="all">
-							<oql_view _delta="redefine"><![CDATA[SELECT ServiceSubcategory WHERE status != 'obsolete' AND request_type = 'service_request']]></oql_view>
+							<oql_view _delta="redefine"><![CDATA[SELECT ServiceSubcategory WHERE status != 'obsolete']]></oql_view>
 						</scope>
 					</scopes>
 				</class>

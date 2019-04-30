@@ -12,7 +12,9 @@
         <db_key_field>id</db_key_field>
         <db_final_class_field/>
 		<naming>
-			<attributes/>
+			<attributes>
+				<attribute id="title"></attribute>
+			</attributes>
 		</naming>
 		
         <display_template/>
@@ -151,9 +153,6 @@
         </details>
         <search>
           <items>
-            <item id="title">
-              <rank>10</rank>
-            </item>
             <item id="contact_id">
               <rank>20</rank>
             </item>
@@ -168,9 +167,6 @@
         </search>
         <list>
           <items>
-            <item id="title">
-              <rank>10</rank>
-            </item>
             <item id="contact_id">
               <rank>20</rank>
             </item>

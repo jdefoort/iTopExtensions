@@ -28,6 +28,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Lock/Attribute:locktype_id+' => 'Welke type is dit: voorbeeld badge, fysieke sleutel',
 	'Class:Lock/Attribute:locksort' => 'Sleutelsoort',
 	'Class:Lock/Attribute:locksort+' => 'Analoog (fysiek) of digitaal (badge)',
+	'Class:Lock/Attribute:contact' => 'Eigenaar',
+	'Class:Lock/Attribute:contact+' => 'Wie of welk team is de eigenaar van deze sleutel',
 	
 
 

@@ -27,6 +27,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Lock/Attribute:locktype_id+' => 'What type is this, example: brand, badge, key,...',
 	'Class:Lock/Attribute:locksort' => 'What type of Lock is this',
 	'Class:Lock/Attribute:locksort+' => 'Analog (physical) or digital (badge)',
+	'Class:Lock/Attribute:contact' => 'Owner',
+	'Class:Lock/Attribute:contact+' => 'Who or which team is the owner of this lock',
 	
 ));
 

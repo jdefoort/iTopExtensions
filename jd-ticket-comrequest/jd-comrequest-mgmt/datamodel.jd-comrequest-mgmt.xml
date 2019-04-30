@@ -1371,17 +1371,11 @@
 						<item id="graphic_work_needed">
 							<rank>15</rank>
 						</item>
-						<item id="org_id">
-							<rank>20</rank>
-						</item>
 						<item id="caller_id">
 							<rank>30</rank>
 						</item>
 						<item id="start_date">
 							<rank>40</rank>
-						</item>
-						<item id="status">
-							<rank>50</rank>
 						</item>
 						<item id="deadline">
 							<rank>51</rank>
@@ -1487,7 +1481,7 @@
 					  <dashlets>
 						<dashlet id="2" xsi:type="DashletGroupByBars">
 						  <rank>0</rank>
-						  <title>UI-RequestManagementOverview-Last-14-days</title>
+						  <title>Aantal meldingen per maand</title>
 						  <query>SELECT ComRequest WHERE DATE_SUB(NOW(), INTERVAL 12 MONTH) &lt; start_date</query>
 						  <group_by>start_date:month</group_by>
 						  <style>bars</style>

@@ -14,7 +14,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="voter_id_friendlyname"></attribute>
+					</attributes>
 				</naming>
 
 				<display_template/>
@@ -99,9 +101,6 @@
 						<item id="org_id">
 							<rank>10</rank>
 						</item>
-						<item id="voter_id">
-							<rank>20</rank>
-						</item>
 						<item id="participationidea_id">
 							<rank>30</rank>
 						</item>  
@@ -117,9 +116,6 @@
 					<items>
 						<item id="org_id">
 							<rank>10</rank>
-						</item>
-						<item id="voter_id">
-							<rank>20</rank>
 						</item>
 						<item id="participationidea_id">
 							<rank>30</rank>

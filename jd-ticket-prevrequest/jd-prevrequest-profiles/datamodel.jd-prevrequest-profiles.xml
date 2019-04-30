@@ -74,13 +74,6 @@
             </actions>	
           </group>
 		  
-		  <group id="Contracts">
-		    <actions>
-              <action id="action:read">allow</action>
-              <action id="action:bulk read">allow</action>
-            </actions>
-		  </group>
-		  
         </groups>
       </profile>
     </profiles>

@@ -125,6 +125,18 @@
 					  <is_null_allowed>false</is_null_allowed>
 					  <on_target_delete>DEL_AUTO</on_target_delete>
 		</field>
+		<!-- we use contact here instead of person, because a key can belong to a team aswell -->
+		<field id="contact" xsi:type="AttributeExternalKey">
+			<filter><![CDATA[SELECT Contact WHERE org_id= :this->org_id]]></filter>
+			<dependencies>
+				<attribute id="org_id"/>
+			</dependencies>
+			<sql>contact_id</sql>
+			<target_class>Contact</target_class>
+			<is_null_allowed>true</is_null_allowed>
+			<on_target_delete>DEL_MANUAL</on_target_delete>
+			<allow_target_creation>false</allow_target_creation>
+		</field>
 	  </fields>
       <methods/>
       <presentation>
@@ -141,6 +153,9 @@
 					</item>
 					<item id="org_id">
 						<rank>20</rank>
+					</item>
+					<item id="contact">
+						<rank>25</rank>
 					</item>
 					<item id="status">
 						<rank>30</rank>
@@ -177,15 +192,6 @@
 				</item>
 				</items>
 			</item>
-            <item id="contacts_list">
-              <rank>170</rank>
-            </item>
-            <item id="documents_list">
-              <rank>180</rank>
-            </item>
-            <item id="tickets_list">
-              <rank>190</rank>
-            </item>
           </items>
         </details>
         <search>
@@ -196,6 +202,9 @@
             <item id="org_id">
               <rank>20</rank>
             </item>
+			<item id="contact">
+				<rank>25</rank>
+			</item>
             <item id="status">
               <rank>30</rank>
             </item>
@@ -224,6 +233,9 @@
             <item id="org_id">
               <rank>20</rank>
             </item>
+			<item id="contact">
+				<rank>25</rank>
+			</item>
             <item id="status">
               <rank>30</rank>
             </item>
@@ -235,12 +247,6 @@
 			</item>
             <item id="locktype_id">
               <rank>75</rank>
-            </item>
-            <item id="serialnumber">
-		      <rank>76</rank>
-			</item>
-            <item id="move2production">
-              <rank>100</rank>
             </item>
           </items>
         </list>
