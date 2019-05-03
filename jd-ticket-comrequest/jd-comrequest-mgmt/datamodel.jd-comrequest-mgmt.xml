@@ -394,10 +394,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 						</transitions>
@@ -442,10 +438,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 							<transition id="ev_reassign">
@@ -480,10 +472,6 @@
 											<param xsi:type="attcode">start_date</param>
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
-									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
 									</action>
 								</actions>
 							</transition>
@@ -544,10 +532,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 						</transitions>
@@ -593,10 +577,6 @@
 											<param xsi:type="attcode">start_date</param>
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
-									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
 									</action>
 								</actions>
 							</transition>
@@ -727,10 +707,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 						</transitions>
@@ -745,9 +721,6 @@
 								<read_only/>
 							</attribute>
 							<attribute id="public_log">
-								<read_only/>
-							</attribute>
-							<attribute id="functionalcis_list">
 								<read_only/>
 							</attribute>
 							<attribute id="contacts_list">
@@ -929,153 +902,6 @@
 	{
 		parent::DisplayBareRelations($oPage, $bEditMode);
 
-		if (!$bEditMode)
-		{
-
-			if (MetaModel::IsValidClass('KnownError'))
-			{			
-				//Search for known errors
-				$oPage->SetCurrentTab(Dict::S('Class:ComRequest:KnownErrorList'));
-				$iTicketID = $this->GetKey();;
-				$oKnownErrorSet = new CMDBObjectSet(DBObjectSearch::FromOQL("SELECT KnownError AS ke JOIN lnkErrorToFunctionalCI AS l1 ON l1.error_id=ke.id JOIN FunctionalCI AS ci ON l1.functionalci_id=ci.id JOIN lnkFunctionalCIToTicket AS l2 ON l2.functionalci_id=ci.id WHERE l2.ticket_id=$iTicketID"));
-				$iNumberKE=$oKnownErrorSet->count();
-				if ($iNumberKE > 0)
-				{
-					$oPage->SetCurrentTab(Dict::S('Class:ComRequest:KnownErrorList')." ($iNumberKE)");
-				}
-				else
-				{
-					$oPage->SetCurrentTab(Dict::S('Class:ComRequest:KnownErrorList'));	
-				}			
-				self::DisplaySet($oPage, $oKnownErrorSet, array ('menu' => false));
-			}
-		}
-	}]]></code>
-				</method>
-				<method id="resolveChilds">
-					<comment><![CDATA[/**
-	 * To be deprecated: use ResolveChildTickets() instead
-	 */]]></comment>
-					<static>false</static>
-					<access>public</access>
-					<type>LifecycleAction</type>
-					<code><![CDATA[	public function resolveChilds($sStimulusCode)
-	{
-				
-		$sOQL = "SELECT ComRequest WHERE parent_request_id=:ticket";
-		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-						array(),
-						array(
-							'ticket' => $this->GetKey(),
-							)
-						);
-		while($oRequest = $oChildRequestSet->Fetch())
-		{
-			if ( $oRequest->Get('status') != 'resolved')
-			{
-				$oRequest->set('service_id',$this->Get('service_id'));		
-				$oRequest->set('team_id',$this->Get('team_id'));
-				$oRequest->set('agent_id',$this->Get('agent_id'));	
-				$oRequest->ApplyStimulus('ev_autoresolve');
-				$oRequest->DBUpdate();
-			}
-		}
-		return true;
-
-	}]]></code>
-				</method>
-				<method id="ResolveChildTickets">
-					<comment><![CDATA[/**
-	 * Cascade the resolution to child User Request
-	 * @return true (returning false would stop the ongoing transition)
-	 */]]></comment>
-					<static>false</static>
-					<access>public</access>
-					<type>LifecycleAction</type>
-					<arguments>
-					</arguments>
-					<code><![CDATA[	public function ResolveChildTickets()
-	{
-        static $aTickets = array(); // prevent infinite recursion
-    
-		// Automatically resolve child requests
-		$sOQL = "SELECT ComRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
-		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('ticket' => $this->GetKey()));
-		while($oRequest = $oChildRequestSet->Fetch())
-		{
-            if (!array_key_exists($oRequest->GetKey(), $aTickets))
-            {
-                $aTickets[$oRequest->GetKey()] = true;
-			    $oRequest->ResolveFrom($this);
-            }
-		}
-		return true;
-	}]]></code>
-				</method>
-				<method id="ResolveFrom">
-					<comment><![CDATA[/**
-	 * Resolve the ticket from another resolved ticket
-	 * @return void
-	 */]]></comment>
-					<static>false</static>
-					<access>public</access>
-					<type>Internal</type>
-					<code><![CDATA[	public function ResolveFrom($oParentTicket)
-	{
-		if ($this->Get('status') != 'resolved')
-		{
-			$this->Set('service_id', $oParentTicket->Get('service_id'));		
-			$this->Set('team_id', $oParentTicket->Get('team_id'));
-			$this->Set('agent_id', $oParentTicket->Get('agent_id'));	
-			$sParent = '[['.get_class($oParentTicket).':'.$oParentTicket->Get('ref').']]';
-			$this->ApplyStimulus('ev_autoresolve');
-			$this->DBUpdate();
-		}
-	}]]></code>
-				</method>
-				<method id="UpdateChildRequestLog">
-					<static>false</static>
-					<access>public</access>
-					<type>LifecycleAction</type>
-					<code><![CDATA[	public function UpdateChildRequestLog()
-	{
-		$oLog = $this->Get('public_log');
-		$sLogPublic = $oLog->GetModifiedEntry('html');
-		if ($sLogPublic != '')
-		{
-			$sOQL = "SELECT ComRequest WHERE parent_request_id=:ticket";
-			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-							array(),
-							array(
-								'ticket' => $this->GetKey(),
-								)
-							);
-			while($oRequest = $oChildRequestSet->Fetch())
-			{
-				$oRequest->set('public_log',$sLogPublic);
-				$oRequest->DBUpdate();
-			}
-
-		}
-		$oLog = $this->Get('private_log');
-		$sLogPrivate = $oLog->GetModifiedEntry('html');
-		if ($sLogPrivate != '')
-		{
-			$sOQL = "SELECT ComRequest WHERE parent_request_id=:ticket";
-			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-							array(),
-							array(
-								'ticket' => $this->GetKey(),
-								)
-							);
-			while($oRequest = $oChildRequestSet->Fetch())
-			{
-				$oRequest->set('private_log',$sLogPrivate);
-				$oRequest->DBUpdate();
-			}
-		}
-		return true;
-
 	}]]></code>
 				</method>
 				<method id="ComputeImpactedItems">
@@ -1117,21 +943,14 @@
             $this->UpdateImpactedItems();
         }
 		$this->Set('last_update', time());
-		$this->UpdateChildRequestLog();
 	}]]></code>
 				</method>
 			</methods>
 			<presentation>
 				<details>
 					<items>
-						<item id="functionalcis_list">
-							<rank>10</rank>
-						</item>
 						<item id="contacts_list">
 							<rank>20</rank>
-						</item>
-						<item id="related_request_list">
-							<rank>30</rank>
 						</item>
 						<item id="col:col1">
 							<rank>40</rank>

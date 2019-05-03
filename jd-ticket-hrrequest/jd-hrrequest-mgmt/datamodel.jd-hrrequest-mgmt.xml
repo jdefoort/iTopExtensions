@@ -1158,9 +1158,6 @@
 						<item id="start_date">
 							<rank>40</rank>
 						</item>
-						<item id="status">
-							<rank>50</rank>
-						</item>
 						<item id="reminder">
 							<rank>52</rank>
 						</item>
