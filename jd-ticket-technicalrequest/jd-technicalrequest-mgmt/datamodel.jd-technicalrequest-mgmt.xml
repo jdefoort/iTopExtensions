@@ -599,7 +599,6 @@
 								<read_only/>
 							</attribute>
 							<attribute id="solution">
-								<mandatory/>
 								<must_prompt/>
 							</attribute>
 							<attribute id="reminder">
