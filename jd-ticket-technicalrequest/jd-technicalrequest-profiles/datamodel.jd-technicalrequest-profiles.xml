@@ -8,6 +8,8 @@
 		<classes>
           <class id="TechnicalRequest"/>
 		  <class id="DocumentFileTechnical"/>
+		  <class id="ContactMethod"/>
+		  <class id="AuthenticationMethod"/>
         </classes>
       </group>
 	  

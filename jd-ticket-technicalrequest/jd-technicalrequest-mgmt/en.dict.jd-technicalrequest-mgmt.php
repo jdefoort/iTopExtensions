@@ -57,7 +57,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:TechnicalRequest:KnownErrorList' => 'Known Errors',
 ));
 
-// Dictionnay conventions
+// Dictionnary conventions
 // Class:<class_name>
 // Class:<class_name>+
 // Class:<class_name>/Attribute:<attribute_code>
@@ -67,13 +67,31 @@ Dict::Add('EN US', 'English', 'English', array(
 // Class:<class_name>/Stimulus:<stimulus_code>
 // Class:<class_name>/Stimulus:<stimulus_code>+
 
+
+//
+// Class: lnkContactToTechnicalTicket
+//
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:lnkContactToTechnicalTicket' => 'Link staff member to ticket',
+	'Class:lnkContactToTechnicalTicket+' => 'Link staff member to technical ticket', 		
+	'Class:lnkContactToTechnicalTicket/Attribute:start' => 'Start',
+	'Class:lnkContactToTechnicalTicket/Attribute:start+' => 'Start', 
+	'Class:lnkContactToTechnicalTicket/Attribute:stop' => 'Stop',
+	'Class:lnkContactToTechnicalTicket/Attribute:stop+' => 'Stop', 
+	'Class:lnkContactToTechnicalTicket/Attribute:contact_id' => 'Staff members',
+	'Class:lnkContactToTechnicalTicket/Attribute:contact_id+' => 'Staff members', 
+
+
 //
 // Class: TechnicalRequest
 //
 
-Dict::Add('EN US', 'English', 'English', array(
 	'Class:TechnicalRequest' => 'Technical Request',
 	'Class:TechnicalRequest+' => '',
+	'Class:TechnicalRequest/Attribute:staff_list' => 'Staff',
+	'Class:TechnicalRequest/Attribute:staff_list+' => 'Staff', 	
+	'Class:TechnicalRequest/Attribute:crab_address_id' => 'CRAB Address',
+	'Class:TechnicalRequest/Attribute:crab_address_id+' => 'CRAB Address', 
 	'Class:TechnicalRequest/Attribute:status' => 'Status',
 	'Class:TechnicalRequest/Attribute:status+' => '',
 	'Class:TechnicalRequest/Attribute:status/Value:new' => 'New',
@@ -118,10 +136,20 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:TechnicalRequest/Attribute:priority/Value:3+' => 'medium',
 	'Class:TechnicalRequest/Attribute:priority/Value:4' => 'low',
 	'Class:TechnicalRequest/Attribute:priority/Value:4+' => 'low',
+	'Class:TechnicalRequest/Attribute:status_detail' => 'Status',
+	'Class:TechnicalRequest/Attribute:status_detail+' => '',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:additional_information_requested' => 'Additional information requested',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:additional_information_requested+' => 'Additional information requested',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:not_yet_started' => 'Not yet started',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:not_yet_started+' => 'Not yet started',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:passed_for_execution' => 'Passed for execution',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:passed_for_execution+' => 'Passed for execution',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:planned' => 'Planned',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:planned+' => 'Planned',
 	'Class:TechnicalRequest/Attribute:urgency' => 'Urgency',
 	'Class:TechnicalRequest/Attribute:urgency+' => '',
 	'Class:TechnicalRequest/Attribute:urgency/Value:1' => 'critical',
-	'Class:TechnicalRequest/Attribute:urgency/Value:1+' => 'critical',
+	'Class:TechnicalRequest/Attribute:urgency/Value:1+' => 'critical',	
 	'Class:TechnicalRequest/Attribute:urgency/Value:2' => 'high',
 	'Class:TechnicalRequest/Attribute:urgency/Value:2+' => 'high',
 	'Class:TechnicalRequest/Attribute:urgency/Value:3' => 'medium',

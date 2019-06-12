@@ -67,13 +67,31 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 // Class:<class_name>/Stimulus:<stimulus_code>
 // Class:<class_name>/Stimulus:<stimulus_code>+
 
+
+//
+// Class: lnkContactToTechnicalTicket
+//
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+	'Class:lnkContactToTechnicalTicket' => 'Koppel uitvoerder aan melding',
+	'Class:lnkContactToTechnicalTicket+' => 'Koppel iemand van de technische dienst aan een technisch ticket', 		
+	'Class:lnkContactToTechnicalTicket/Attribute:start' => 'Start',
+	'Class:lnkContactToTechnicalTicket/Attribute:start+' => 'Start', 
+	'Class:lnkContactToTechnicalTicket/Attribute:stop' => 'Stop',
+	'Class:lnkContactToTechnicalTicket/Attribute:stop+' => 'Stop', 
+	'Class:lnkContactToTechnicalTicket/Attribute:contact_id' => 'Uitvoerders',
+	'Class:lnkContactToTechnicalTicket/Attribute:contact_id+' => 'Uitvoerders', 
+
 //
 // Class: TechnicalRequest
 //
 
-Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+
 	'Class:TechnicalRequest' => 'Gebruikersmeldingen',
 	'Class:TechnicalRequest+' => '',
+	'Class:TechnicalRequest/Attribute:staff_list' => 'Uitvoerders',
+	'Class:TechnicalRequest/Attribute:staff_list+' => 'Wie van de werkplaatsen lost dit op', 	
+	'Class:TechnicalRequest/Attribute:crab_address_id' => 'Crab-adres',
+	'Class:TechnicalRequest/Attribute:crab_address_id+' => 'Crab-adres', 
 	'Class:TechnicalRequest/Attribute:status' => 'Status',
 	'Class:TechnicalRequest/Attribute:status+' => '',
 	'Class:TechnicalRequest/Attribute:status/Value:new' => 'Nieuw',
@@ -118,6 +136,16 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:TechnicalRequest/Attribute:priority/Value:3+' => 'normaal',
 	'Class:TechnicalRequest/Attribute:priority/Value:4' => 'laag',
 	'Class:TechnicalRequest/Attribute:priority/Value:4+' => 'laag',
+	'Class:TechnicalRequest/Attribute:status_detail' => 'Status',
+	'Class:TechnicalRequest/Attribute:status_detail+' => '',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:additional_information_requested' => 'Bijkomende info gevraagd',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:additional_information_requested+' => 'Bijkomende info gevraagd aan de melder',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:not_yet_started' => 'Nog niet gestart',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:not_yet_started+' => 'Nog niet gestart',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:passed_for_execution' => 'Doorgegeven voor uitvoering',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:passed_for_execution+' => 'Doorgegeven voor uitvoering',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:planned' => 'Ingepland',
+	'Class:TechnicalRequest/Attribute:status_detail/Value:planned+' => 'Ingepland',
 	'Class:TechnicalRequest/Attribute:urgency' => 'Urgentie',
 	'Class:TechnicalRequest/Attribute:urgency+' => '',
 	'Class:TechnicalRequest/Attribute:urgency/Value:1' => 'kritiek',
