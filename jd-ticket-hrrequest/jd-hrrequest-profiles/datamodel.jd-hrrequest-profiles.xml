@@ -8,6 +8,8 @@
 		<classes>
           <class id="HrRequest"/>
 		  <class id="DocumentFileHr"/>
+		  <class id="ContactMethod"/>
+		  <class id="AuthenticationMethod"/>
         </classes>
       </group>
 	  

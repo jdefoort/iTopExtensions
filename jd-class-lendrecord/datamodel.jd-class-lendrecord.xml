@@ -21,10 +21,7 @@
         <icon>images/lendrecord.png</icon>
         <reconciliation>
           <attributes>
-            <attribute id="lendrecord"/>
-            <attribute id="id"/>
             <attribute id="org_id"/>
-            <attribute id="organization_name"/>
           </attributes>
         </reconciliation>
       </properties>

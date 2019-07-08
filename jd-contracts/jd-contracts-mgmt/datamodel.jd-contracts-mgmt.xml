@@ -29,7 +29,6 @@
             <attribute id="org_id"/>
             <attribute id="organization_name"/>
             <attribute id="provider_id"/>
-			<attribute id="thirdpartycontracttype_id"/>
             <attribute id="provider_name"/>
             <attribute id="finalclass"/>
           </attributes>

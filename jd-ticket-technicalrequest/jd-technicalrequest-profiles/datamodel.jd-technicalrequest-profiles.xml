@@ -27,6 +27,14 @@
 			  <class id="PrecannedReplyCategory"/>
 			</classes>
 		</group>
+		
+		<group id="Crab" _delta="define_if_not_exists">
+			<classes>
+			  <class id="CrabStreet"/>
+			  <class id="CrabAddress"/>
+			</classes>
+		</group>
+		
 	 
     </groups>
     <profiles>
@@ -78,6 +86,12 @@
 			  <action id="stimulus:ev_reassign">allow</action>
             </actions>
 		  </group>	
+		  <group id="Crab">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>		
 		           
 		  <group id="Ticketing">
             <actions>

@@ -20,10 +20,7 @@
         <display_template/>
         <icon>images/participation.png</icon>
         <reconciliation>
-          <attributes>
-            <attribute id="participationidea"/>
-            <attribute id="id"/>
-          </attributes>
+          <attributes/>
         </reconciliation>
       </properties>
 	  
@@ -96,6 +93,12 @@
 				<ext_key_to_me>participationidea_id</ext_key_to_me>
 				<edit_mode>actions</edit_mode>
 			</field>
+			<field id="tag" xsi:type="AttributeTagSet">
+				<sql>tag</sql>
+				<is_null_allowed>true</is_null_allowed>
+				<tag_code_max_len>10</tag_code_max_len>
+				<tracking_level>all</tracking_level>			
+			</field>
       </fields> 
       <presentation>
         <details>
@@ -129,6 +132,9 @@
 								</item>
 								<item id="description">
 								  <rank>20</rank>
+								</item>
+								<item id="tag">
+									<rank>30</rank>
 								</item>
 							</items>
 						</item>

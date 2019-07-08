@@ -7,6 +7,8 @@
 	<group id="PrevRequest" _delta="define">
 		<classes>
           <class id="PrevRequest"/>
+		  <class id="ContactMethod"/>
+		  <class id="AuthenticationMethod"/>
         </classes>
       </group>
 	  	

@@ -9,12 +9,16 @@
 			  <class id="BuildingRequest"/>
 			  <class id="BuildingViolation"/>
 			  <class id="DocumentFileBuilding"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
 			</classes>
 		</group>
 	
 		<group id="BuildingViolation" _delta="define">
 			<classes>
 			  <class id="BuildingViolation"/>
+			  <class id="ContactMethod"/>
+		      <class id="AuthenticationMethod"/>
 			</classes>
 		</group>  
 		  

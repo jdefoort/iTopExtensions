@@ -20,7 +20,7 @@ SetupWebPage::AddModule(
 	array(
 		// Identification
 		//
-		'label' => 'Auto closure of Incident, RcxRequest and UserRequest',
+		'label' => 'Auto closure of Incident, RcxRequest, TechnicalRequest and UserRequest',
 		'category' => 'feature',
 
 		// Setup
@@ -56,7 +56,7 @@ SetupWebPage::AddModule(
 		'settings' => array(
 		
 			// List of supported ticket types 
-			'ticket_types' => array('Incident', 'UserRequest', 'RcxRequest'), 
+			'ticket_types' => array('Incident', 'UserRequest', 'RcxRequest', 'TechnicalRequest'), 
 			
 			// Module specific settings go here, if any
 			'incident_autoclose_delay' => '7',

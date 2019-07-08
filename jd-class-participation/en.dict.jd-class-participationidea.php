@@ -35,6 +35,8 @@ Dict::Add('EN US', 'English', 'English', array(
 		
 	'Class:ParticipationIdea/Attribute:short_description' => 'Short description',
 	'Class:ParticipationIdea/Attribute:short_description+' => 'Short description',
+	'Class:ParticipationIdea/Attribute:tag' => 'Tags',
+	'Class:ParticipationIdea/Attribute:tag+' => 'Tags',
 	'Class:ParticipationIdea/Attribute:description' => 'Description',
 	'Class:ParticipationIdea/Attribute:description+' => 'Description',
 	'Class:ParticipationIdea/Attribute:participationpicture' => 'Image',

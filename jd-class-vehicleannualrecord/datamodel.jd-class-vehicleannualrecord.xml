@@ -21,10 +21,7 @@
 				<icon>images/vehicleannualrecord.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="vehicleannualrecord"/>
-						<attribute id="id"/>
 						<attribute id="org_id"/>
-						<attribute id="organization_name"/>
 					</attributes>
 				</reconciliation>
 			</properties>

@@ -35,6 +35,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	
 	'Class:ParticipationIdea/Attribute:short_description' => 'Korte uitleg',
 	'Class:ParticipationIdea/Attribute:short_description+' => 'Korte uitleg',
+	'Class:ParticipationIdea/Attribute:tag' => 'Tags',
+	'Class:ParticipationIdea/Attribute:tag+' => 'Tags',
 	'Class:ParticipationIdea/Attribute:description' => 'Uitleg',
 	'Class:ParticipationIdea/Attribute:description+' => 'Uitleg',
 	'Class:ParticipationIdea/Attribute:participationpicture' => 'Foto',

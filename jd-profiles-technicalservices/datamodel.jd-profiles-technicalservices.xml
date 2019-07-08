@@ -22,6 +22,8 @@
 			  <class id="Brand"/>
 			  <class id="Model"/>
 			  <class id="DocumentFileTechnicalServices" />
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
 			</classes>
 		</group>
 		

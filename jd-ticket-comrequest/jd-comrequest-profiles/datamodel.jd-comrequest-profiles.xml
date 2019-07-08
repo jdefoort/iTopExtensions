@@ -10,6 +10,8 @@
 			  <class id="DocumentFileCom"/>
 			  <class id="ParticipationIdea"/>
 			  <class id="ParticipationVote"/>
+			  <class id="ContactMethod"/>
+		  <class id="AuthenticationMethod"/>
 			</classes>
 		</group>
 		  
