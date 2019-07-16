@@ -429,12 +429,6 @@ public function PrefillSearchForm(&$aContextParam)
             <item id="description">
               <rank>60</rank>
             </item>
-            <item id="accountancy_key">
-              <rank>70</rank>
-            </item>
-			<item id="comment_enddate">
-				<rank>75</rank>
-			</item>
 			<item id="budget_manager">
 				<rank>80</rank>
 			</item>

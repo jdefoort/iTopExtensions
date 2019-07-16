@@ -252,6 +252,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:TechnicalRequest/Attribute:related_request_list+' => 'Alle tickets die gelinkt zijn aan dit hoofdticket',
 	'Class:TechnicalRequest/Attribute:public_log' => 'Publiek commentaar',
 	'Class:TechnicalRequest/Attribute:public_log+' => '',
+	'Class:TechnicalRequest/Attribute:orders_log' => 'Werkbon commentaar',
+	'Class:TechnicalRequest/Attribute:orders_log+' => '',
 	'Class:TechnicalRequest/Attribute:private_log' => 'Privé commentaar',
 	'Class:TechnicalRequest/Attribute:private_log+' => '',
 	'Class:TechnicalRequest/Attribute:user_satisfaction' => 'Gebruikerstevredenheid',

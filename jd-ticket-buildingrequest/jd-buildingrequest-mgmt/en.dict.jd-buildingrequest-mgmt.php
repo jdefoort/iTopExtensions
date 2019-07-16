@@ -26,13 +26,6 @@ https://formulieren.izegem.be/educatief-aanbod/<?php
 
  
 Dict::Add('EN US', 'English', 'English', array(
-
-	'Tab:InfraGIS' => 'InfraGIS'
-	
-));
-
-
-Dict::Add('EN US', 'English', 'English', array(
 	'Menu:BuildingRequestManagement' => 'Building Request',
 	'Menu:BuildingRequestManagement+' => 'Building Request',
 	'Menu:RequestManagementProvider' => 'Helpdesk provider',

@@ -25,8 +25,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-buildingrequest-mgmt.php',
-						'main.jd-buildingrequest-mgmt.php'
+                        'model.jd-buildingrequest-mgmt.php'
                 ),
                 'webservice' => array(
 

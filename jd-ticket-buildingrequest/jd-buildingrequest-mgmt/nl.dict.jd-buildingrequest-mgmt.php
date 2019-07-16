@@ -25,14 +25,6 @@
  */
 
  
- 
-Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
-
-	'Tab:InfraGIS' => 'InfraGIS'
-	
-));
-
-
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:BuildingRequestManagement' => 'Omgeving',
 	'Menu:BuildingRequestManagement+' => 'Omgeving',

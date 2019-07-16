@@ -250,6 +250,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:TechnicalRequest/Attribute:related_request_list+' => 'All the requests that are linked to this parent request',
 	'Class:TechnicalRequest/Attribute:public_log' => 'Public log',
 	'Class:TechnicalRequest/Attribute:public_log+' => '',
+	'Class:TechnicalRequest/Attribute:orders_log' => 'Orders log',
+	'Class:TechnicalRequest/Attribute:orders_log+' => '',
 	'Class:TechnicalRequest/Attribute:user_satisfaction' => 'User satisfaction',
 	'Class:TechnicalRequest/Attribute:user_satisfaction+' => '',
 	'Class:TechnicalRequest/Attribute:user_satisfaction/Value:1' => 'Very satisfied',

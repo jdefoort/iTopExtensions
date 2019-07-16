@@ -90,6 +90,7 @@
 						<value id="phone">phone</value>
 						<value id="portal">portal</value>
 						<value id="in_person">in_person</value>
+						<value id="in_person2">in_person2</value>
 						<value id="letter">letter</value>
 					</values>
 					<sql>origin</sql>
