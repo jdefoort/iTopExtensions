@@ -209,7 +209,7 @@
 						<value id="in_person">in_person</value>
 					</values>
 					<sql>origin</sql>
-					<default_value>phone</default_value>
+					<default_value>portal</default_value>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="approver_id" xsi:type="AttributeExternalKey">
@@ -1486,7 +1486,7 @@
 						<dashlet id="14" xsi:type="DashletMapOverview">
 						  <rank>2</rank>
 						  <title>Overzichtkaart</title>
-						  <query>SELECT TechnicalRequest</query>
+						  <query>SELECT TechnicalRequest WHERE  status NOT IN ('resolved', 'closed')</query>
 						  <height>500</height>
 						  <attributes>id,friendlyname,title</attributes>
 						  <feature_label>friendlyname</feature_label>

@@ -305,12 +305,6 @@
             <item id="tickets_list">
               <rank>190</rank>
             </item>
-            <item id="providercontracts_list">
-              <rank>200</rank>
-            </item>
-            <item id="services_list">
-              <rank>210</rank>
-            </item>
           </items>
         </details>
         <search>

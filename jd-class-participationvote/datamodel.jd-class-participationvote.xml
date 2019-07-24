@@ -26,6 +26,14 @@
 						<attribute id="org_id"/>
 					</attributes>
 				</reconciliation>
+				<uniqueness_rules>
+					<rule id="unique_vote">
+						<attributes>
+							<attribute id="voter_id"></attribute>
+							<attribute id="participationidea_id"></attribute>
+						</attributes>
+					</rule>
+				</uniqueness_rules>
 			</properties>
 
 

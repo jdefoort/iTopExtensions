@@ -24,7 +24,6 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'main.jd-class-vehicle.php',
 			'model.jd-class-vehicle.php'
 		),
 		'webservice' => array(
