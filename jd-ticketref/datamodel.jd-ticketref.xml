@@ -60,6 +60,10 @@
 						$sFormat = 'PREV-%06d';
 						break;
 						
+						case 'CamRequest':
+						$sFormat = 'CAM-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }
