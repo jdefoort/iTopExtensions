@@ -92,6 +92,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:TechnicalRequest/Attribute:staff_list+' => 'Staff', 	
 	'Class:TechnicalRequest/Attribute:crab_address_id' => 'CRAB Address',
 	'Class:TechnicalRequest/Attribute:crab_address_id+' => 'CRAB Address', 
+	'Class:TechnicalRequest/Attribute:crab_address_street_id_friendlyname' => 'Streetname',
+	'Class:TechnicalRequest/Attribute:crab_address_street_id_friendlyname+' => 'Streetname as found in CRAB', 
 	'Class:TechnicalRequest/Attribute:status' => 'Status',
 	'Class:TechnicalRequest/Attribute:status+' => '',
 	'Class:TechnicalRequest/Attribute:status/Value:new' => 'New',

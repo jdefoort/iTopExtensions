@@ -92,6 +92,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:TechnicalRequest/Attribute:staff_list+' => 'Wie van de werkplaatsen lost dit op', 	
 	'Class:TechnicalRequest/Attribute:crab_address_id' => 'Crab-adres',
 	'Class:TechnicalRequest/Attribute:crab_address_id+' => 'Crab-adres', 
+	'Class:TechnicalRequest/Attribute:crab_address_street_id_friendlyname' => 'Straatnaam',
+	'Class:TechnicalRequest/Attribute:crab_address_street_id_friendlyname+' => 'Straatnaam uit Crab', 
 	'Class:TechnicalRequest/Attribute:status' => 'Status',
 	'Class:TechnicalRequest/Attribute:status+' => '',
 	'Class:TechnicalRequest/Attribute:status/Value:new' => 'Nieuw',

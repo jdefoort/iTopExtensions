@@ -364,12 +364,21 @@
 					<is_null_allowed>true</is_null_allowed>
 					<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
 				</field>
+				<field id="crab_address_street_id_friendlyname" xsi:type="AttributeExternalField" _delta="define">
+					<extkey_attcode>crab_address_id</extkey_attcode>
+					<target_attcode>street_id</target_attcode>
+					<dependencies/>
+				</field>
 				<field id="caller_phone" xsi:type="AttributeExternalField" _delta="define">
 					<extkey_attcode>caller_id</extkey_attcode>
 					<target_attcode>phone</target_attcode>
-					<dependencies>
-						<attribute id="phone"/>
-					</dependencies>
+					<dependencies/>
+				</field>
+				 <!-- Add phone number (derived from caller_id -> Person) -->
+				<field id="caller_mobile_phone" xsi:type="AttributeExternalField" _delta="define">
+					<extkey_attcode>caller_id</extkey_attcode>
+					<target_attcode>mobile_phone</target_attcode>
+					<dependencies/>
 				</field>
 			</fields>
 			<lifecycle>
@@ -1334,17 +1343,11 @@
 				</details>
 				<search>
 					<items>
-						<item id="ref">
+						<item id="crab_address_street_id_friendlyname">
 							<rank>10</rank>
 						</item>
-						<item id="org_id">
+						<item id="crab_address_id">
 							<rank>20</rank>
-						</item>
-						<item id="title">
-							<rank>30</rank>
-						</item>
-						<item id="description">
-							<rank>40</rank>
 						</item>
 						<item id="start_date">
 							<rank>50</rank>
@@ -1367,17 +1370,8 @@
 						<item id="caller_id">
 							<rank>100</rank>
 						</item>
-						<item id="origin">
-							<rank>110</rank>
-						</item>
-						<item id="urgency">
-							<rank>130</rank>
-						</item>
 						<item id="status_detail">
 							<rank>140</rank>
-						</item>
-						<item id="priority">
-							<rank>150</rank>
 						</item>
 						<item id="service_id">
 							<rank>160</rank>
@@ -1385,15 +1379,7 @@
 						<item id="servicesubcategory_id">
 							<rank>170</rank>
 						</item>
-						<item id="team_id">
-							<rank>180</rank>
-						</item>
-						<item id="agent_id">
-							<rank>190</rank>
-						</item>
-						<item id="crab_address_id">
-							<rank>200</rank>
-						</item>
+
 					</items>
 				</search>
 				<list>
