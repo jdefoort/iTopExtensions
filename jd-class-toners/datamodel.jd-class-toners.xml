@@ -192,9 +192,7 @@
 			<display_template/>
 			<icon>images/tonerstock.png</icon>
 			<reconciliation>
-			  <attributes>
-				<attribute id="org_id"/>
-			  </attributes>
+			  <attributes/>
 			</reconciliation>
 		  </properties>
 		  
