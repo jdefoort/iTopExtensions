@@ -61,6 +61,12 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
+   <menu id="CamRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>38</rank>
+     <enable_class>CamRequest</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
     <menu id="ServiceManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>60</rank>
      <enable_class>Service</enable_class>

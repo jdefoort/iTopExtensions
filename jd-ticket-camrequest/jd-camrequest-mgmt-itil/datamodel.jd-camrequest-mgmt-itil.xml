@@ -192,19 +192,19 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="whenstart" xsi:type="AttributeDate">
+				<field id="whenstart" xsi:type="AttributeDateTime">
 				  <sql>whenstart</sql>
 				  <default_value/>
 				  <is_null_allowed>true</is_null_allowed>
 				  <display_style>list</display_style>
 				</field>
-				<field id="whenstop" xsi:type="AttributeDate">
+				<field id="whenstop" xsi:type="AttributeDateTime">
 				  <sql>whenstop</sql>
 				  <default_value/>
 				  <is_null_allowed>true</is_null_allowed>
 				  <display_style>list</display_style>
 				</field>
-				<field id="whendelivered" xsi:type="AttributeDate">
+				<field id="whendelivered" xsi:type="AttributeDateTime">
 				  <sql>whendelivered</sql>
 				  <default_value/>
 				  <is_null_allowed>true</is_null_allowed>
@@ -931,9 +931,6 @@
 						<item id="contacts_list">
 							<rank>20</rank>
 						</item>
-						<item id="related_request_list">
-							<rank>30</rank>
-						</item>
 						<item id="col:col1">
 							<rank>40</rank>
 							<items>
@@ -1017,14 +1014,6 @@
 										<item id="whendelivered">
 											<rank>80</rank>
 										</item>										
-									</items>
-								</item>
-								<item id="fieldset:Ticket:relation">
-									<rank>10</rank>
-									<items>
-										<item id="parent_request_id">
-											<rank>10</rank>
-										</item>
 									</items>
 								</item>
 							</items>
