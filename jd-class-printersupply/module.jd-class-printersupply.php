@@ -9,7 +9,7 @@ SetupWebPage::AddModule(
 	array(
 		// Identification
 		//
-		'label' => 'Class: Toners - Adds toners as a class',
+		'label' => 'Class: PrinterSupply - Adds printersupply as a class',
 		'category' => 'business',
 
 		// Setup
