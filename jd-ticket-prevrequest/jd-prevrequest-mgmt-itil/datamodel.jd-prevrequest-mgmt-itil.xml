@@ -530,9 +530,7 @@
 						</highlight>
 						<inherit_flags_from>assigned</inherit_flags_from>
 						<flags>
-							<attribute id="caller_id">
-								<read_only/>
-							</attribute>
+							<attribute id="caller_id"/>
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
@@ -551,9 +549,7 @@
 							<attribute id="description">
 								<read_only/>
 							</attribute>
-							<attribute id="org_id">
-								<read_only/>
-							</attribute>
+							<attribute id="org_id"/>
 							<attribute id="team_id">
 								<read_only/>
 							</attribute>

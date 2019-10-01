@@ -279,6 +279,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:CamRequest/Attribute:requeststatus/Value:todo+' => 'To do',
 	'Class:CamRequest/Attribute:requeststatus/Value:refused' => 'Refused',
 	'Class:CamRequest/Attribute:requeststatus/Value:refused+' => 'Refused',	
+	'Class:CamRequest/Attribute:requeststatus/Value:not_admissable' => 'Not admissable',
+	'Class:CamRequest/Attribute:requeststatus/Value:not_admissable+' => 'Not admissable',
 
 	'Class:CamRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:CamRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',

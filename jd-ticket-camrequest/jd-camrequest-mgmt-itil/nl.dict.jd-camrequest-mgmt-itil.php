@@ -283,6 +283,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:CamRequest/Attribute:requeststatus/Value:todo+' => 'Nog af te leveren',
 	'Class:CamRequest/Attribute:requeststatus/Value:refused' => 'Geweigerd',
 	'Class:CamRequest/Attribute:requeststatus/Value:refused+' => 'Geweigerd',
+	'Class:CamRequest/Attribute:requeststatus/Value:not_admissable' => 'Niet ontvankelijk',
+	'Class:CamRequest/Attribute:requeststatus/Value:not_admissable+' => 'Niet ontvankelijk',
 
 	'Class:CamRequest/Method:ResolveChildTickets' => 'ResolveChildTickets',
 	'Class:CamRequest/Method:ResolveChildTickets+' => 'Cascade the resolution to child requests (ev_autoresolve), and align the following characteristics of the request: service, team, agent, resolution info',

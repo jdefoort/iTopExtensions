@@ -67,6 +67,7 @@
 						<value id="delivered">delivered</value>
 						<value id="todo">todo</value>
 						<value id="refused">refused</value>
+						<value id="not_admissable">not_admissable</value>
 					</values>					
 					<sql>requeststatus</sql>
 					<default_value>todo</default_value>
@@ -548,9 +549,7 @@
 						</highlight>
 						<inherit_flags_from>assigned</inherit_flags_from>
 						<flags>
-							<attribute id="caller_id">
-								<read_only/>
-							</attribute>
+							<attribute id="caller_id"/>
 							<attribute id="location_id">
 								<read_only/>
 							</attribute>
@@ -563,9 +562,7 @@
 							<attribute id="description">
 								<read_only/>
 							</attribute>
-							<attribute id="org_id">
-								<read_only/>
-							</attribute>
+							<attribute id="org_id"/>
 							<attribute id="team_id">
 								<read_only/>
 							</attribute>
@@ -577,10 +574,6 @@
 							</attribute>
 							<attribute id="time_spent">
 								<read_only/>
-							</attribute>
-							<attribute id="solution">
-								<mandatory/>
-								<must_prompt/>
 							</attribute>
 							<attribute id="whenstart">
 								<read_only/>
