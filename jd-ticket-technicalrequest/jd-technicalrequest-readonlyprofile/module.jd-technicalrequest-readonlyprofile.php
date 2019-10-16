@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-technicalrequest-profiles/',
+        'jd-technicalrequest-readonlyprofile/',
         array(
                 // Identification
                 //
-                'label' => 'Profile: add TechnicalRequest user as profile',
+                'label' => 'Profile: add readonly profile for Technical Request',
                 'category' => 'business',
 
                 // Setup
@@ -26,7 +26,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-technicalrequest-profiles.php'
+                        'model.jd-technicalrequest-readonlyprofile.php'
                 ),
                 'webservice' => array(
 

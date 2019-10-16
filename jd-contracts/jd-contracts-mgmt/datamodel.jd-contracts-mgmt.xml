@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
   <classes>
+      <class id="Organization" >
+      <fields>
+        <field id="vat" xsi:type="AttributeString" _delta="define">
+          <sql>vat</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+      </fields>
+      <methods/>
+      <presentation>
+        <details>
+          <items>
+            <item id="vat" _delta="define">
+              <rank>70</rank>
+            </item>
+          </items>
+        </details>
+        <default_search>
+          <items>
+            <item id="vat" _delta="define">
+              <rank>70</rank>
+            </item>
+          </items>
+        </default_search>
+        <search>
+          <items>
+            <item id="vat" _delta="define">
+              <rank>70</rank>
+            </item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="vat" _delta="define"> 
+              <rank>70</rank>
+            </item>
+          </items>
+        </list>
+      </presentation>
+    </class>  
+  
     <class id="ThirdPartyContract" _delta="define">
       <parent>cmdbAbstractObject</parent>
       <properties>
@@ -197,7 +238,18 @@
 					<default_value>unchanged</default_value>
 					<is_null_allowed>false</is_null_allowed>
 					<display_style>list</display_style>
-		</field>	
+		</field>
+		<field id="vat" xsi:type="AttributeEnum">
+					<values>
+					  <value id="0%">0_%</value>
+					  <value id="6%">6_%</value>
+					  <value id="21%">21_%</value>
+					</values>
+					<sql>vat</sql>
+					<default_value>0_%</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>list</display_style>
+		</field>		
         <field id="warranty_period" xsi:type="AttributeString">
           <sql>warranty_period</sql>
           <default_value/>
@@ -686,11 +738,14 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="cost">
 								  <rank>10</rank>
 								</item>
-								<item id="indexed">
+								<item id="vat">
 									<rank>11</rank>
 								</item>
-								<item id="cost_energy">
+								<item id="indexed">
 									<rank>12</rank>
+								</item>
+								<item id="cost_energy">
+									<rank>13</rank>
 								</item>
 								<item id="indexed_energy">
 									<rank>14</rank>

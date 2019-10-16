@@ -52,7 +52,7 @@
    <menu id="TechnicalRequestManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>35</rank>
      <enable_class>TechnicalRequest</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_action>UR_ACTION_READ</enable_action>
      <enable_stimulus/>
    </menu>
    <menu id="PrevRequestManagement" xsi:type="MenuGroup" _delta="redefine">

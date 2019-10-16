@@ -58,6 +58,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Organization/Attribute:deliverymodel_id' => 'Delivery model',
 	'Class:Organization/Attribute:deliverymodel_id+' => '',
 	'Class:Organization/Attribute:deliverymodel_name' => 'Delivery model name',
+	'Class:Organization/Attribute:vat' => 'VAT number',
 
 ));
 
@@ -142,6 +143,10 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ThirdPartyContract/Attribute:indexed_energy/Value:yes+' => 'Yes',
 	'Class:ThirdPartyContract/Attribute:indexed_energy/Value:no' => 'No',
 	'Class:ThirdPartyContract/Attribute:indexed_energy/Value:no+' => 'No',
+	'Class:ThirdPartyContract/Attribute:vat' => 'VAT',
+	'Class:ThirdPartyContract/Attribute:vat/Value:0_%' => '0 %',
+	'Class:ThirdPartyContract/Attribute:vat/Value:6_%' => '6 %',
+	'Class:ThirdPartyContract/Attribute:vat/Value:21_%' => '21 %',	
 	'Class:ThirdPartyContract/Attribute:finalclass' => 'ThirdPartyContract sub-class',
 	'Class:ThirdPartyContract/Attribute:finalclass+' => 'Name of the final class',
 ));
