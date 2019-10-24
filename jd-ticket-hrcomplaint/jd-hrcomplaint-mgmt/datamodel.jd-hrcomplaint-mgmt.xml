@@ -14,71 +14,7 @@
 	</constants>
 	<classes>
 		
-		<!-- Adds an department class. In the end, this could give easy access to an overview of all complaints about a certain department. -->
-		<!-- Based on the original 'Brand' class -->
-		<class id="Department" _delta="define">
-		  <parent>Typology</parent>
-		  <properties>
-			<category>bizmodel,searchable</category>
-			<abstract>false</abstract>
-			<key_type>autoincrement</key_type>
-			<db_table>department</db_table>
-			<db_key_field>id</db_key_field>
-			<db_final_class_field/>
-			<naming>
-			  <attributes>
-				<attribute id="name"/>
-			  </attributes>
-			</naming>
-			<display_template/>
-			<icon/>
-			<reconciliation>
-			  <attributes>
-				<attribute id="name"/>
-			  </attributes>
-			</reconciliation>
-		  </properties>
-		  <fields>
-			<field id="HrComplaint_list" xsi:type="AttributeLinkedSet">
-			  <linked_class>HrComplaint</linked_class>
-			  <ext_key_to_me>department_id</ext_key_to_me>
-			  <edit_mode>add_only</edit_mode>
-			  <count_min>0</count_min>
-			  <count_max>0</count_max>
-			  <duplicates/>
-			</field>
-		  </fields>
-		  <methods/>
-		  <presentation>
-			<details>
-			  <items>
-				<item id="name">
-				  <rank>10</rank>
-				</item>
-				<item id="HrComplaint_list">
-				  <rank>20</rank>
-				</item>
-			  </items>
-			</details>
-			<search>
-			  <items>
-				<item id="name">
-				  <rank>10</rank>
-				</item>
-			  </items>
-			</search>
-			<list>
-			  <items>
-				<item id="name">
-				  <rank>10</rank>
-				</item>
-			  </items>
-			</list>
-		  </presentation>
-		</class>
-		
-	
-	
+
 	
 		<class id="HrComplaint" _delta="define">
 			<parent>Ticket</parent>

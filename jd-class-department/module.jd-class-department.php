@@ -5,18 +5,18 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-projectpublication-mgmt/2.5.0',
+	'jd-class-department/2.5.191024',
 	array(
 		// Identification
 		//
-		'label' => 'Class: Projectpublication, a system to publish projects to the council and public',
+		'label' => 'Class: Department - Adds Department',
 		'category' => 'business',
 
 		// Setup
 		//
 		'dependencies' => array(
-			'itop-request-mgmt-itil/2.4.0',	
-			'jd-class-department/2.5.0',
+			'itop-config-mgmt/2.4.0',
+			'itop-endusers-devices/2.4.0'
 		),
 		'mandatory' => false,
 		'visible' => true,
@@ -24,7 +24,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'model.jd-projectpublication-mgmt.php'
+			'model.jd-class-department.php'
 		),
 		'webservice' => array(
 			

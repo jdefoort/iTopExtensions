@@ -11,6 +11,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'ProjectPublication:description' => 'Description',
 	'ProjectPublication:baseinfo' => 'Other information',
 	'ProjectPublication:picture' => 'Image',
+	'ProjectPublication:extrainfo' => 'Budget and tags',
 	
 	'Class:ProjectPublication' => 'Project publication',
 	'Class:ProjectPublication+' => 'Add a new project publication.',
@@ -25,6 +26,34 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublication/Attribute:date_created+' => 'When was this project submitted',
 	'Class:ProjectPublication/Attribute:state_published' => 'State published',
 	'Class:ProjectPublication/Attribute:state_published+' => 'State published',
+
+	'Class:ProjectPublication/Attribute:project_state' => 'Projectstate',
+	'Class:ProjectPublication/Attribute:project_state+' => '',
+	'Class:ProjectPublication/Attribute:project_state/Value:not_started' => 'Not started',
+	'Class:ProjectPublication/Attribute:project_state/Value:not_started+' => '',
+	'Class:ProjectPublication/Attribute:project_state/Value:completed' => 'Completed',
+	'Class:ProjectPublication/Attribute:project_state/Value:completed+' => '',
+	'Class:ProjectPublication/Attribute:project_state/Value:started' => 'Started',
+	'Class:ProjectPublication/Attribute:project_state/Value:started+' => '',
+	
+	'Class:ProjectPublication/Attribute:parent_project_id' => 'Parent project',
+	'Class:ProjectPublication/Attribute:parent_project_id+' => '',
+	'Class:ProjectPublication/Attribute:budget_estimate' => 'Budget estimate',
+	'Class:ProjectPublication/Attribute:budget_estimate+' => '',
+	'Class:ProjectPublication/Attribute:budget_settlement' => 'Budget settlement',
+	'Class:ProjectPublication/Attribute:budget_settlement+' => '',
+	'Class:ProjectPublication/Attribute:action_number' => 'Action number',
+	'Class:ProjectPublication/Attribute:action_number+' => '',
+	'Class:ProjectPublication/Attribute:theme_tag' => 'Themes',
+	'Class:ProjectPublication/Attribute:theme_tag+' => '',	
+	'Class:ProjectPublication/Attribute:keyword_tag' => 'Keywords',
+	'Class:ProjectPublication/Attribute:keyword_tag+' => '',	
+	
+	'Class:ProjectPublication/Attribute:department_list' => 'Departments',
+	'Class:ProjectPublication/Attribute:department_list+' => '',	
+	'Class:ProjectPublication/Attribute:related_project_list' => 'Subprojects',
+	'Class:ProjectPublication/Attribute:related_project_list+' => '',		
+
 	
 	'Class:ProjectPublication/Attribute:state_published/Value:not_published' => 'Not published',
 	'Class:ProjectPublication/Attribute:state_published/Value:not_published+' => 'Not published',

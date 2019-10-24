@@ -9,6 +9,7 @@
 			  <class id="ProjectPublication"/>
 			  <class id="ContactMethod"/>
 			  <class id="TagSetFieldData"/>
+			  <class id="Department"/>
 		  <class id="AuthenticationMethod"/>
 			</classes>
 		</group>
