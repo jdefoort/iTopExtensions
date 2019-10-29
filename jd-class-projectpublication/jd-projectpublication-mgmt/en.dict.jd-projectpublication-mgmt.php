@@ -26,6 +26,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublication/Attribute:date_created+' => 'When was this project submitted',
 	'Class:ProjectPublication/Attribute:state_published' => 'State published',
 	'Class:ProjectPublication/Attribute:state_published+' => 'State published',
+	'Class:ProjectPublication/Attribute:company_id' => 'Entity',
+	'Class:ProjectPublication/Attribute:company_id+' => 'For which organization is this',	
 
 	'Class:ProjectPublication/Attribute:project_state' => 'Projectstate',
 	'Class:ProjectPublication/Attribute:project_state+' => '',
@@ -42,6 +44,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublication/Attribute:budget_estimate+' => '',
 	'Class:ProjectPublication/Attribute:budget_settlement' => 'Budget settlement',
 	'Class:ProjectPublication/Attribute:budget_settlement+' => '',
+	'Class:ProjectPublication/Attribute:budget_key' => 'Budget key',
+	'Class:ProjectPublication/Attribute:budget_key+' => '',
 	'Class:ProjectPublication/Attribute:action_number' => 'Action number',
 	'Class:ProjectPublication/Attribute:action_number+' => '',
 	'Class:ProjectPublication/Attribute:theme_tag' => 'Themes',
@@ -49,8 +53,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublication/Attribute:keyword_tag' => 'Keywords',
 	'Class:ProjectPublication/Attribute:keyword_tag+' => '',	
 	
-	'Class:ProjectPublication/Attribute:department_list' => 'Departments',
-	'Class:ProjectPublication/Attribute:department_list+' => '',	
+	'Class:ProjectPublication/Attribute:department_id' => 'Department',
+	'Class:ProjectPublication/Attribute:department_id+' => '',	
 	'Class:ProjectPublication/Attribute:related_project_list' => 'Subprojects',
 	'Class:ProjectPublication/Attribute:related_project_list+' => '',		
 

@@ -2,80 +2,6 @@
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
 
 	<classes>
-		 <class id="lnkDepartmentToProjectPublication" _delta="define">
-			<parent>cmdbAbstractObject</parent>
-			<properties>
-			  <is_link>1</is_link>
-			  <category>bizmodel</category>
-			  <abstract>false</abstract>
-			  <key_type>autoincrement</key_type>
-			  <db_table>lnkDepartmentToProjectPublication</db_table>
-			  <db_key_field>id</db_key_field>
-			  <db_final_class_field/>
-			  <naming>
-				<attributes>
-				  <attribute id="projectpublication_id"/>
-				  <attribute id="department_id"/>
-				</attributes>
-			  </naming>
-			  <display_template/>
-			  <icon/>
-			  <reconciliation>
-				<attributes>
-				  <attribute id="projectpublication_id"/>
-				  <attribute id="department_id"/>
-				</attributes>
-			  </reconciliation>
-			</properties>
-			<fields>
-			  <field id="projectpublication_id" xsi:type="AttributeExternalKey">
-				<sql>projectpublication_id</sql>
-				<target_class>ProjectPublication</target_class>
-				<is_null_allowed>false</is_null_allowed>
-				<on_target_delete>DEL_AUTO</on_target_delete>
-			  </field>
-			  <field id="department_id" xsi:type="AttributeExternalKey">
-				<sql>department_id</sql>
-				<target_class>Department</target_class>
-				<is_null_allowed>false</is_null_allowed>
-				<on_target_delete>DEL_AUTO</on_target_delete>
-			  </field>
-			</fields>
-			<methods/>
-			<presentation>
-			  <details>
-				<items>
-				  <item id="projectpublication_id">
-					<rank>10</rank>
-				  </item>
-				  <item id="department_id">
-					<rank>20</rank>
-				  </item>
-				</items>
-			  </details>
-			  <search>
-				<items>
-				  <item id="projectpublication_id">
-					<rank>10</rank>
-				  </item>
-				  <item id="department_id">
-					<rank>20</rank>
-				  </item>
-				</items>
-			  </search>
-			  <list>
-				<items>
-				  <item id="projectpublication_id">
-					<rank>10</rank>
-				  </item>
-				  <item id="department_id">
-					<rank>20</rank>
-				  </item>
-				</items>
-			  </list>
-			</presentation>
-		  </class>
-	
 		<class id="ProjectPublication" _delta="define">
 			<parent>cmdbAbstractObject</parent>
 			<properties>
@@ -107,13 +33,11 @@
 					<on_target_delete>DEL_AUTO</on_target_delete>
 					<filter><![CDATA[SELECT Organization WHERE name = 'Personeel Izegem']]></filter>
 				</field>	
-				<field id="department_list" xsi:type="AttributeLinkedSetIndirect">
-					<linked_class>lnkDepartmentToProjectPublication</linked_class>
-					<ext_key_to_me>projectpublication_id</ext_key_to_me>
-					<count_min>0</count_min>
-					<count_max>0</count_max>
-					<ext_key_to_remote>department_id</ext_key_to_remote>
-					<duplicates>true</duplicates>
+				<field id="department_id" xsi:type="AttributeExternalKey">
+					<sql>department_id</sql>
+					<target_class>Department</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
 				</field>				
 				<field id="date_created" xsi:type="AttributeDateTime">
 					<sql>date_created</sql>
@@ -180,6 +104,11 @@
 					<default_value>Nog niet geweten</default_value>
 					<is_null_allowed>false</is_null_allowed>
 				</field>
+				<field id="budget_key" xsi:type="AttributeString">
+					<sql>budget_key</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
 				<field id="action_number" xsi:type="AttributeString">
 					<sql>action_number</sql>
 					<default_value/>
@@ -215,13 +144,17 @@
 					<tag_code_max_len>10</tag_code_max_len>
 					<tracking_level>all</tracking_level>			
 				</field>
+				<field id="company_id" xsi:type="AttributeExternalKey">
+					<sql>company_id</sql>
+					<target_class>Organization</target_class>
+					<filter><![CDATA[SELECT Organization WHERE name IN ('Stadsbestuur Izegem', 'Zorg Izegem', 'AGIZ', 'Etiz', 'OCMW Izegem', 'Farys')]]></filter>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
 			</fields> 
 			<presentation>
 				<details>
 					<items>
-						<item id="department_list">
-							<rank>5</rank>
-						</item>
 						<item id="related_project_list">
 							<rank>8</rank>
 						</item>
@@ -254,6 +187,12 @@
 										<item id="action_number">
 											<rank>60</rank>
 										</item>
+										<item id="department_id">
+											<rank>65</rank>
+										</item>
+										<item id="company_id">
+											<rank>70</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:ProjectPublication:description">
@@ -278,6 +217,9 @@
 										</item>
 										<item id="budget_settlement">
 											<rank>20</rank>
+										</item>
+										<item id="budget_key">
+											<rank>25</rank>
 										</item>
 										<item id="theme_tag">
 											<rank>30</rank>
