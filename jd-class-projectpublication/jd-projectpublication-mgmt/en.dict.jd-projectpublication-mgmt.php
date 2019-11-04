@@ -26,8 +26,17 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublication/Attribute:date_created+' => 'When was this project submitted',
 	'Class:ProjectPublication/Attribute:state_published' => 'State published',
 	'Class:ProjectPublication/Attribute:state_published+' => 'State published',
+	'Class:ProjectPublication/Attribute:start' => 'Start project',
+	'Class:ProjectPublication/Attribute:start+' => '',
+	'Class:ProjectPublication/Attribute:stop' => 'Stop project',
+	'Class:ProjectPublication/Attribute:stop+' => '',
 	'Class:ProjectPublication/Attribute:company_id' => 'Entity',
 	'Class:ProjectPublication/Attribute:company_id+' => 'For which organization is this',	
+	
+	'Class:ProjectPublication/Attribute:start/Value:full_legislature' => 'Full legislature',
+	'Class:ProjectPublication/Attribute:start/Value:full_legislature+' => '',
+	'Class:ProjectPublication/Attribute:stop/Value:full_legislature' => 'Full legislature',
+	'Class:ProjectPublication/Attribute:stop/Value:full_legislature+' => '',	
 
 	'Class:ProjectPublication/Attribute:project_state' => 'Projectstate',
 	'Class:ProjectPublication/Attribute:project_state+' => '',
@@ -40,6 +49,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	
 	'Class:ProjectPublication/Attribute:parent_project_id' => 'Parent project',
 	'Class:ProjectPublication/Attribute:parent_project_id+' => '',
+	'Class:ProjectPublication/Attribute:date_changed' => 'Last change',
+	'Class:ProjectPublication/Attribute:date_changed+' => 'Date last change',
 	'Class:ProjectPublication/Attribute:budget_estimate' => 'Budget estimate',
 	'Class:ProjectPublication/Attribute:budget_estimate+' => '',
 	'Class:ProjectPublication/Attribute:budget_settlement' => 'Budget settlement',

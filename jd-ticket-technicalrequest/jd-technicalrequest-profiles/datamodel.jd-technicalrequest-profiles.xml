@@ -84,6 +84,7 @@
 			  <action id="stimulus:ev_assign">allow</action>
 			  <action id="stimulus:ev_resolve">allow</action>
 			  <action id="stimulus:ev_reassign">allow</action>
+			  <action id="stimulus:ev_reopen">allow</action>
             </actions>
 		  </group>	
 		  <group id="Crab">

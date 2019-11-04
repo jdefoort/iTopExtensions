@@ -380,6 +380,10 @@
 					<target_attcode>mobile_phone</target_attcode>
 					<dependencies/>
 				</field>
+				<field id="crab_address_id_geom" xsi:type="AttributeExternalField">
+					<extkey_attcode>crab_address_id</extkey_attcode>
+					<target_attcode>geom</target_attcode>
+				</field>
 			</fields>
 			<lifecycle>
 				<highlight_scale>
@@ -860,7 +864,13 @@
 								<read_only/>
 							</attribute>
 						</flags>
-						<transitions/>
+						<transitions>
+							<transition id="ev_reopen">
+								<target>assigned</target>
+								<actions>
+								</actions>
+							</transition>
+						</transitions>	
 					</state>
 				</states>
 			</lifecycle>

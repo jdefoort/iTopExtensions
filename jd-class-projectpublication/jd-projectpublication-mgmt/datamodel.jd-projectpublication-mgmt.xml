@@ -89,6 +89,36 @@
 					<default_value>not_started</default_value>
 					<is_null_allowed>false</is_null_allowed>
 				</field>
+				<field id="start" xsi:type="AttributeEnum">
+					<always_load_in_tables>true</always_load_in_tables>
+					<values>
+						<value id="2020">2020</value>
+						<value id="2021">2021</value>
+						<value id="2022">2022</value>
+						<value id="2023">2023</value>
+						<value id="2024">2024</value>
+						<value id="2025">2025</value>
+						<value id="full_legislature">full_legislature</value>
+					</values>
+					<sql>start</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="stop" xsi:type="AttributeEnum">
+					<always_load_in_tables>true</always_load_in_tables>
+					<values>
+						<value id="2020">2020</value>
+						<value id="2021">2021</value>
+						<value id="2022">2022</value>
+						<value id="2023">2023</value>
+						<value id="2024">2024</value>
+						<value id="2025">2025</value>
+						<value id="full_legislature">full_legislature</value>
+					</values>
+					<sql>stop</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
 				<field id="title" xsi:type="AttributeString">
 					<sql>title</sql>
 					<default_value/>
@@ -180,6 +210,12 @@
 										</item>
 										<item id="project_state">
 											<rank>45</rank>
+										</item>
+										<item id="start">
+											<rank>47</rank>
+										</item>
+										<item id="stop">
+											<rank>48</rank>
 										</item>
 										<item id="parent_project_id">
 											<rank>50</rank>
