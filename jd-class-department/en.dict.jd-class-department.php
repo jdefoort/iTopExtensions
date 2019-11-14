@@ -20,8 +20,12 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Department/Attribute:postal_code+' => '',
 	'Class:Department/Attribute:city' => 'City',
 	'Class:Department/Attribute:city+' => '',
-	'Class:Department/Attribute:country' => 'Counrty',
+	'Class:Department/Attribute:country' => 'Country',
 	'Class:Department/Attribute:country+' => '',
+	'Class:Department/Attribute:phone' => 'Phone',
+	'Class:Department/Attribute:phone+' => 'Phonenumber',
+	'Class:Department/Attribute:email' => 'Email',
+	'Class:Department/Attribute:email+' => '',	
 		
 	'Menu:SearchDepartment' => 'Search department',
 	'Menu:NewDepartment' => 'New department',

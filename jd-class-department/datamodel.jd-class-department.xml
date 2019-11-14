@@ -74,6 +74,18 @@
 				<default_value>België</default_value>
 				<is_null_allowed>true</is_null_allowed>
 			</field>
+			<field id="phone" xsi:type="AttributePhoneNumber">
+				<sql>phonenumber</sql>
+				<default_value>051337300</default_value>
+				<is_null_allowed>false</is_null_allowed>
+				<validation_pattern>^[\d]{9,9}$</validation_pattern>			
+			</field>
+			<field id="email" xsi:type="AttributeEmailAddress">
+				<sql>email</sql>
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed>
+				<validation_pattern>^[a-z]+@[a-z]+.\.be$</validation_pattern>				
+			</field>
 		</fields>
 		<methods/>
 		<presentation>
@@ -99,6 +111,12 @@
 					</item>
 					<item id="country">
 						<rank>70</rank>
+					</item>
+					<item id="phone">
+						<rank>80</rank>
+					</item>
+					<item id="email">
+						<rank>90</rank>
 					</item>
 				</items>
 			</details>

@@ -109,6 +109,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ThirdPartyContract/Attribute:cost_unit+' => '',
 	'Class:ThirdPartyContract/Attribute:provider_id' => 'Provider',
 	'Class:ThirdPartyContract/Attribute:provider_id+' => '',
+	'Class:ThirdPartyContract/Attribute:location_id' => 'Location',
+	'Class:ThirdPartyContract/Attribute:location_id+' => 'Location of the firm',
 	'Class:ThirdPartyContract/Attribute:providercontact_id' => 'Contactperson',
 	'Class:ThirdPartyContract/Attribute:providercontact_id+' => 'Contactperson',
 	'Class:ThirdPartyContract/Attribute:provider_name' => 'Provider Name',

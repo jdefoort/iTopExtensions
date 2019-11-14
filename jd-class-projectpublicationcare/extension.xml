@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-class-projectpublicationcare</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Class: Projectpublicationcare]]></label>
+	<description><![CDATA[A system to publish careprojects to the council and public]]></description>
+	<version>2.5.20191114</version>
+	<release_date>2019-11-14</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.5.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>
