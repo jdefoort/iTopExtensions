@@ -95,6 +95,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ThirdPartyContract/Attribute:start_date+' => '',
 	'Class:ThirdPartyContract/Attribute:end_date' => 'End date',
 	'Class:ThirdPartyContract/Attribute:end_date+' => '',
+	'Class:ThirdPartyContract/Attribute:decisiondate' => 'Council date',
+	'Class:ThirdPartyContract/Attribute:decisiondate+' => '',
 	'Class:ThirdPartyContract/Attribute:cost' => 'Cost',
 	'Class:ThirdPartyContract/Attribute:cost+' => '',
 	'Class:ThirdPartyContract/Attribute:cost_energy' => 'Energycost per year',

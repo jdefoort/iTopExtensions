@@ -10,7 +10,7 @@
 			  <class id="ContactMethod"/>
 			  <class id="TagSetFieldData"/>
 			  <class id="Department"/>
-		  <class id="AuthenticationMethod"/>
+			  <class id="AuthenticationMethod"/>
 			</classes>
 		</group>
 		  

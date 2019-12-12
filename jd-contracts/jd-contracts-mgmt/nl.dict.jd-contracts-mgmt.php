@@ -99,6 +99,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:ThirdPartyContract/Attribute:start_date+' => '',
 	'Class:ThirdPartyContract/Attribute:end_date' => 'Einddatum',
 	'Class:ThirdPartyContract/Attribute:end_date+' => '',
+	'Class:ThirdPartyContract/Attribute:decisiondate' => 'CBS datum',
+	'Class:ThirdPartyContract/Attribute:decisiondate+' => '',
 	'Class:ThirdPartyContract/Attribute:cost' => 'Jaarkosten incl. BTW',
 	'Class:ThirdPartyContract/Attribute:cost+' => '',
 	'Class:ThirdPartyContract/Attribute:cost_energy' => 'Nutskosten per jaar',

@@ -13,7 +13,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'ProjectPublicationCare:picture' => 'Image',
 	'ProjectPublicationCare:extrainfo' => 'Budget and tags',
 	
-	'Class:ProjectPublicationCare' => 'Project publication',
+	'Class:ProjectPublicationCare' => 'Project publication Care',
 	'Class:ProjectPublicationCare+' => 'Add a new project publication.',
 	
 	'Class:ProjectPublicationCare/Attribute:title' => 'Title',
@@ -86,7 +86,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublicationCare/Attribute:picture' => 'Image',
 	'Class:ProjectPublicationCare/Attribute:picture+' => 'Image that fits the project',
 	
-	'Menu:ProjectPublicationCareManagement' => 'Project Publication',
+	'Menu:ProjectPublicationCareManagement' => 'Project Publication Care',
 	'Menu:ProjectPublicationCareManagement+' => 'Project Publication',
 	'Menu:SearchProjectPublicationCare' => 'Search for project',
 	'Menu:SearchProjectPublicationCare+' => 'Search for project publication',

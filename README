@@ -4,8 +4,7 @@ These extensions are being used in our own production environment.
 Some of my extensions work in cooperation with extensions which were written by my colleague. 
 You can find his extensions on https://github.com/jbostoen/iTop-custom-extensions 
 
-Be aware of my newer extensions:
-* As of the moment the class 'ParticpationIdea' and 'ParticipationVote' are still a rough version, which still need the API from my colleague to work (frontend).
-* jd-contracts still needs some polishing.
-* 'TechnicalRequest' still needs a lot of livetesting, but here we are waiting for input from our users. 
-
+Some extensions are used together with frontend websites, which are being used by our citizens, e.g.:
+* https://meldingen.izegem.be (module: technicalrequest)
+* https://zegheteens.izegem.be (module: participation)
+* https://beleidsplan.izegem.be (module: projectpublication)

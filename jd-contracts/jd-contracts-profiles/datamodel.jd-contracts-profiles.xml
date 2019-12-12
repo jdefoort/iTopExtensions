@@ -13,11 +13,11 @@
 			  <class id="ThirdPartyRelevantOffice"/>
 			  <class id="lnkContactToThirdPartyContract"/>
 			  <class id="lnkThirdPartyContractToDocument"/>
-			  <class id="DocumentFileContracts"/>
 			  <class id="Contract"/>
 			  <class id="ContractType"/>
 			  <class id="CustomerContract"/>
 			  <class id="ProviderContract"/>
+			  <class id="Attachment"/>
 			</classes>
 		</group>
 		
@@ -27,24 +27,6 @@
 			  <class id="CrabAddress"/>
 			</classes>
 		</group>
-		
-		<!-- <group id="Document" _delta="define">
-			<classes>
-				<class id="Document"/>
-				<class id="DocumentFile"/>
-			</classes>
-		</group>
-		
-		<group id="DocumentDeny" _delta="define">
-			<classes>
-				<class id="DocumentNote"/>
-				<class id="DocumentWeb"/>
-				<class id="DocumentFileRcx"/>
-				<class id="DocumentFileTechnicalServices"/>
-				<class id="DocumentFileBuilding"/>
-				<class id="DocumentFileHr"/>
-			</classes>
-		</group> -->
 	 
     </groups>
     <profiles>
@@ -83,26 +65,7 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group>	
-		  
-		  
-		  <!-- <group id="Document">
-            <actions>
-              <action id="action:read">allow</action>
-              <action id="action:bulk read">allow</action>
-            </actions>
-          </group>
-		  
-		  <group id="DocumentDeny">
-		    <actions>
-              <action id="action:read">deny</action>
-              <action id="action:bulk read">deny</action>
-			  <action id="action:write">deny</action>
-              <action id="action:bulk write">deny</action>
-			  <action id="action:delete">deny</action>
-              <action id="action:bulk delete">deny</action>
-            </actions>		  
-		  </group> --> 
-		  
+		  	  
 		 
         </groups>
       </profile>

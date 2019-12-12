@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<classes>
+		<class id="PC">
+			<parent>ConnectableCI</parent>
+			<fields>
+				<field id="out_of_service_date" xsi:type="AttributeDate" _delta="define">
+					<sql>out_of_service_date</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="reason" xsi:type="AttributeString" _delta="define">
+					<sql>reason</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col2" _delta="merge">
+							<rank>90</rank>
+							<items>
+								<item id="fieldset:Server:Date" _delta="merge">
+									<rank>10</rank>
+									<items>
+										<item id="out_of_service_date" _delta="define">
+											<rank>40</rank>
+										</item>
+										<item id="reason" _delta="define">
+											<rank>50</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
+	</classes>
+	
+</itop_design>
