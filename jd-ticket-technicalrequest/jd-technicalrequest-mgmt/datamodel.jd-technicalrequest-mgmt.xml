@@ -1125,6 +1125,23 @@
 		$this->ComputeImpactedItems();
 		$this->Set('last_update', time());
 		$this->Set('start_date', time());
+		
+		
+		// Dealing with a new TechnicalRequest, so new crab_address_id
+		// If no geometry was drawn AND a crab_address_id was selected: overwrite geometry
+		$bTakeGeometryFromCrab = ($this->Get('geom') == '' && (Int)$this->Get('crab_address_id') > 0);
+		
+		if($bTakeGeometryFromCrab == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+			
+		}
+		
 	}]]></code>
 				</method>
 				<method id="OnUpdate">
@@ -1142,6 +1159,50 @@
         }
 		$this->Set('last_update', time());
 		$this->UpdateChildRequestLog();
+		
+
+		$bTakeGeometryFromCrab = false;
+	
+		// Retrieve old data
+		$sQuery = 'SELECT TechnicalRequest WHERE id = '.$this->GetKey();
+		$oSet_TechnicalRequests = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+		
+		// Was crab_address set and geometry the same before?
+		while($oRequest = $oSet_TechnicalRequests->Fetch()) {
+			
+			if((Int)$this->Get('crab_address_id') < 1) {
+				// crab_address_id changed? if now empty, prevent clearing of 'geom'
+				$bTakeGeometryFromCrab = false; // No change
+			}					
+			elseif($oRequest->Get('crab_address_id') != $this->Get('crab_address_id')) {
+				
+				// crab_address_id has changed.
+				// was geometry the same as for the crab address?
+				$sQuery = 'SELECT CrabAddress WHERE id = '.$oRequest->Get('crab_address_id');
+				$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+				
+				while($oAddress = $oSet_CrabAddresses->Fetch()) {
+					if($oRequest->Get('geom') == $oAddress->Get('geom')) {
+						$bTakeGeometryFromCrab = true;
+					}
+				}
+				
+			}
+			
+		}
+		
+		if($bTakeGeometryFromCrab == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+			
+		}
+						
+						
 	}]]></code>
 				</method>
 				
