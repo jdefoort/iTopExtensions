@@ -170,6 +170,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:TechnicalRequest/Attribute:origin/Value:portal+' => 'portaal',
 	'Class:TechnicalRequest/Attribute:origin/Value:in_person' => 'in persoon',
     'Class:TechnicalRequest/Attribute:origin/Value:in_person+' => 'in persoon',
+    'Class:TechnicalRequest/Attribute:origin/Value:standby_duty' => 'wachtdienst',
+    'Class:TechnicalRequest/Attribute:origin/Value:standby_duty+' => '',
 	'Class:TechnicalRequest/Attribute:approver_id' => 'Goedkeurder',
 	'Class:TechnicalRequest/Attribute:approver_id+' => '',
 	'Class:TechnicalRequest/Attribute:approver_email' => 'Goedkeurder Email',

@@ -42,6 +42,12 @@ Dict::Add('EN US', 'English', 'English', array(
 'Menu:NewAppointmentEnergy+' => '',
 'Menu:SearchAppointmentEnergy' => 'Search appointment',
 'Menu:SearchAppointmentEnergy+' => '',
+'Menu:AppointmentTourMgmt' => 'Appointment - Tour',
+'Menu:AppointmentTourMgmt+' => '',
+'Menu:NewAppointmentTour' => 'New appointment',
+'Menu:NewAppointmentTour+' => '',
+'Menu:SearchAppointmentTour' => 'Search appointment',
+'Menu:SearchAppointmentTour+' => '',
 
 
 ));
@@ -57,7 +63,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Appointment/Attribute:finalclass+' => '',	
 	'Class:Appointment/Attribute:name' => 'Name',
 	'Class:Appointment/Attribute:name+' => '',
-	'Class:Appointment/Attribute:org_id' => 'Organization id',
+	'Class:Appointment/Attribute:org_id' => 'Organization',
 	'Class:Appointment/Attribute:org_id+' => '',
 	'Class:Appointment/Attribute:org_name' => 'Organization',
 	'Class:Appointment/Attribute:org_name+' => '',	
@@ -106,9 +112,15 @@ Dict::Add('EN US', 'English', 'English', array(
 	
 	'Appointment:moreinfo' => 'More info',
 	'Appointment:baseinfo' => 'Basic info',
-	'Appointment:status' => 'Boothinformation',
-	'Appointment:details' => 'Subscriberinformation',	
+	'Appointment:status' => 'Booth information',
+	'Appointment:details' => 'Subscriber information',	
 ));
 
+//
+// Class: AppointmentTour
+//
 
-?>
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentTour' => 'Appointment - Tour',
+	'Class:AppointmentTour+' => '',
+));

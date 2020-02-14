@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-ticket-roadworkrequest</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Feature: Adds Roadwork Request and Roadwork profile user]]></label>
+	<description><![CDATA[Adds Roadwork Request and Roadwork profile user]]></description>
+	<version>2.6.200120</version>
+	<release_date>2020-01-20</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.6.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>

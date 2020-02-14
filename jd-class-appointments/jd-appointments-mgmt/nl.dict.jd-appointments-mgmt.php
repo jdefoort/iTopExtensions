@@ -42,6 +42,12 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 'Menu:NewAppointmentEnergy+' => '',
 'Menu:SearchAppointmentEnergy' => 'Zoek afspraak',
 'Menu:SearchAppointmentEnergy+' => '',
+'Menu:AppointmentTourMgmt' => 'Afspraak - Rondleiding',
+'Menu:AppointmentTourMgmt+' => '',
+'Menu:NewAppointmentTour' => 'Nieuwe afspraak',
+'Menu:NewAppointmentTour+' => '',
+'Menu:SearchAppointmentTour' => 'Zoek afspraak',
+'Menu:SearchAppointmentTour+' => '',
 
 
 ));
@@ -57,7 +63,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Appointment/Attribute:finalclass+' => '',	
 	'Class:Appointment/Attribute:name' => 'Naam',
 	'Class:Appointment/Attribute:name+' => '',
-	'Class:Appointment/Attribute:org_id' => 'Organisatie id',
+	'Class:Appointment/Attribute:org_id' => 'Organisatie',
 	'Class:Appointment/Attribute:org_id+' => '',
 	'Class:Appointment/Attribute:org_name' => 'Organisatie',
 	'Class:Appointment/Attribute:org_name+' => '',	
@@ -112,4 +118,12 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 ));
 
 
-?>
+//
+// Class: AppointmentTour
+//
+
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+	'Class:AppointmentTour' => 'Afspraak - Rondleiding',
+	'Class:AppointmentTour+' => '',
+));
+

@@ -25,7 +25,13 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Department/Attribute:phone' => 'Telefoon',
 	'Class:Department/Attribute:phone+' => 'Telefoonnummer',
 	'Class:Department/Attribute:email' => 'E-mail',
-	'Class:Department/Attribute:email+' => 'E-mailadres',		
+	'Class:Department/Attribute:email+' => 'E-mailadres',	
+	'Class:Department/Attribute:vat' => 'KBO nummer',
+	'Class:Department/Attribute:vat+' => '',	
+	'Class:Department/Attribute:branch_number' => 'Vestigingsnummer',	
+	'Class:Department/Attribute:branch_number+' => 'Hier geef je KBO/vestigingsnummer in',	
+	'Class:Department/Attribute:dep_bank_account_number' => 'Rekeningnummer',	
+	'Class:Department/Attribute:dep_bank_account_number+' => 'Bankrekeningnummer van de dienst',	
 	
 	
 	'Menu:SearchDepartment' => 'Zoek Dienst',

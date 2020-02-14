@@ -168,6 +168,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:TechnicalRequest/Attribute:origin/Value:phone+' => 'phone',
 	'Class:TechnicalRequest/Attribute:origin/Value:portal' => 'portal',
 	'Class:TechnicalRequest/Attribute:origin/Value:portal+' => 'portal',
+	'Class:TechnicalRequest/Attribute:origin/Value:standby_duty' => 'standby duty',
+	'Class:TechnicalRequest/Attribute:origin/Value:standby_duty+' => '',
 	'Class:TechnicalRequest/Attribute:approver_id' => 'Approver',
 	'Class:TechnicalRequest/Attribute:approver_id+' => '',
 	'Class:TechnicalRequest/Attribute:approver_email' => 'Approver Email',

@@ -86,6 +86,21 @@
 				<is_null_allowed>true</is_null_allowed>
 				<validation_pattern>^[a-z]+@[a-z]+.\.be$</validation_pattern>				
 			</field>
+			<field id="vat" xsi:type="AttributeString" _delta="define">
+				<sql>vat</sql>
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed>
+			</field>
+			<field id="dep_bank_account_number" xsi:type="AttributeString" _delta="define">
+				<sql>dep_bank_account_number</sql>
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed>
+			</field>
+			<field id="branch_number" xsi:type="AttributeString" _delta="define">
+				<sql>branch_number</sql>
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed>			
+			</field>
 		</fields>
 		<methods/>
 		<presentation>
@@ -99,6 +114,12 @@
 					</item>
 					<item id="org_id">
 						<rank>30</rank>
+					</item>
+					<item id="branch_number">
+						<rank>37</rank>
+					</item>
+					<item id="dep_bank_account_number">
+						<rank>38</rank>
 					</item>
 					<item id="address">
 						<rank>40</rank>

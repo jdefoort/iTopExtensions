@@ -91,6 +91,18 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
+   <menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>45</rank>
+     <enable_class>AppointmentEnergy</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="RoadworkRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>43</rank>
+     <enable_class>RoadworkRequest</enable_class>
+     <enable_action>UR_ACTION_READ</enable_action>
+     <enable_stimulus/>
+   </menu>
     <menu id="ServiceManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>60</rank>
      <enable_class>Service</enable_class>

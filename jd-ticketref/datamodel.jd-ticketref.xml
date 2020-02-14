@@ -64,6 +64,10 @@
 						$sFormat = 'CAM-%06d';
 						break;
 						
+						case 'RoadworkRequest':
+						$sFormat = 'WW-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }

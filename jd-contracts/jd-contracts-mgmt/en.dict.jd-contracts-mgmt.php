@@ -59,6 +59,10 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Organization/Attribute:deliverymodel_id+' => '',
 	'Class:Organization/Attribute:deliverymodel_name' => 'Delivery model name',
 	'Class:Organization/Attribute:vat' => 'VAT number',
+	'Class:Organization/Attribute:vat+' => '',	
+	'Class:Organization/Attribute:bank_account_number' => 'Bank account number',	
+	'Class:Organization/Attribute:bank_account_number+' => '',	
+	
 
 ));
 
@@ -125,6 +129,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ThirdPartyContract/Attribute:status/Value:obsolete+' => 'obsolete',
 	'Class:ThirdPartyContract/Attribute:status/Value:production' => 'production',
 	'Class:ThirdPartyContract/Attribute:status/Value:production+' => 'production',
+	'Class:ThirdPartyContract/Attribute:status/Value:pending_cancellation+' => 'opgezegd',
+	'Class:ThirdPartyContract/Attribute:status/Value:pending_cancellation+' => 'opgezegd, maar de opzeg is nog lopende',
 	'Class:ThirdPartyContract/Attribute:contract_future' => 'Contract future',
 	'Class:ThirdPartyContract/Attribute:contract_future+' => '',
 	'Class:ThirdPartyContract/Attribute:contract_future/Value:unchanged' => 'Unchanged',
@@ -182,6 +188,16 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ThirdPartyProviderContract/Attribute:coverage+' => '',
 	'Class:ThirdPartyProviderContract/Attribute:cancellation_conditions' => 'Cancellation conditions',
 	'Class:ThirdPartyProviderContract/Attribute:cancellation_conditions+' => '',	
+	'Class:ThirdPartyProviderContract/Attribute:cancel_warning' => 'Warn date',	
+	'Class:ThirdPartyProviderContract/Attribute:cancel_warning+' => '',	
+	'Class:ThirdPartyProviderContract/Attribute:initial_index' => 'Initial index',
+	'Class:ThirdPartyProviderContract/Attribute:initial_index+' => '',
+	'Class:ThirdPartyProviderContract/Attribute:which_index' => 'Which index',
+	'Class:ThirdPartyProviderContract/Attribute:which_index+' => '',
+	'Class:ThirdPartyProviderContract/Attribute:which_index/Value:consumption' => 'Consumption',
+	'Class:ThirdPartyProviderContract/Attribute:which_index/Value:consumption+' => '',
+	'Class:ThirdPartyProviderContract/Attribute:which_index/Value:health' => 'Health',
+	'Class:ThirdPartyProviderContract/Attribute:which_index/Value:health+' => '',
 	'Class:ThirdPartyProviderContract/Attribute:accountancy_key' => 'Accountancy key',
 	'Class:ThirdPartyProviderContract/Attribute:accountancy_key+' => '',
 	'Class:ThirdPartyProviderContract/Attribute:comment_enddate' => 'Comment on enddate',
@@ -210,6 +226,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ThirdPartyProviderContract/Attribute:budget_manager+' => '',
 	'Class:ThirdPartyProviderContract/Attribute:crab_address_id' => 'Address',
 	'Class:ThirdPartyProviderContract/Attribute:crab_address_id+' => '',
+	'Class:ThirdPartyProviderContract/Attribute:id_agenda_item' => 'Cobra number',
+	'Class:ThirdPartyProviderContract/Attribute:id_agenda_item+' => 'Cobra calendarnumber',
 
 	
 	'Contracts:dates' => 'Dates',

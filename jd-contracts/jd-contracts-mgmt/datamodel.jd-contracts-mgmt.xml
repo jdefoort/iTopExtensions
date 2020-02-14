@@ -8,6 +8,11 @@
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
+		<field id="bank_account_number" xsi:type="AttributeString" _delta="define">
+			<sql>bank_account_number</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>
+		</field>
       </fields>
       <methods/>
       <presentation>
@@ -16,6 +21,9 @@
             <item id="vat" _delta="define">
               <rank>70</rank>
             </item>
+			<item id="bank_account_number" _delta="define">
+				<rank>75</rank>
+			</item>
           </items>
         </details>
         <default_search>
@@ -23,6 +31,9 @@
             <item id="vat" _delta="define">
               <rank>70</rank>
             </item>
+			<item id="bank_account_number" _delta="define">
+				<rank>75</rank>
+			</item>
           </items>
         </default_search>
         <search>
@@ -30,12 +41,18 @@
             <item id="vat" _delta="define">
               <rank>70</rank>
             </item>
+		    <item id="bank_account_number" _delta="define">
+              <rank>75</rank>
+            </item>
           </items>
         </search>
         <list>
           <items>
             <item id="vat" _delta="define"> 
               <rank>70</rank>
+            </item>
+			<item id="bank_account_number" _delta="define">
+              <rank>75</rank>
             </item>
           </items>
         </list>
@@ -196,6 +213,7 @@
             <value id="production">production</value>
             <value id="implementation">implementation</value>
             <value id="obsolete">obsolete</value>
+			<value id="pending_cancellation">pending_cancellation</value>
           </values>
           <sql>status</sql>
           <default_value/>
@@ -634,6 +652,16 @@ public function PrefillSearchForm(&$aContextParam)
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
+		<field id="cancellation_terms" xsi:type="AttributeString">
+			<sql>cancellation_terms</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>		
+		</field>
+		<field id="cancel_warning" xsi:type="AttributeDate">
+			<sql>cancel_warning</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>
+		</field>
 		<field id="comment_enddate" xsi:type="AttributeString">
           <sql>comment_enddate</sql>
           <default_value/>
@@ -649,6 +677,29 @@ public function PrefillSearchForm(&$aContextParam)
           <default_value/>
           <is_null_allowed>true</is_null_allowed>
         </field>
+		<field id="initial_index" xsi:type="AttributeDecimal">
+			<sql>initial_index</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>
+			<digits>6</digits>
+			<decimals>2</decimals>
+		</field>
+		<field id="which_index" xsi:type="AttributeEnum">
+					<values>
+					  <value id="consumption">consumption</value>
+					  <value id="health">health</value>
+					</values>
+					<sql>which_index</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<display_style>list</display_style>
+		</field>
+		<field id="id_agenda_item" xsi:type="AttributeInteger">
+			<sql>id_agenda_item</sql>
+			<is_null_allowed>true</is_null_allowed>
+			<default_value/>
+		</field>
+		
       </fields>
       <methods/>
       <presentation>
@@ -710,6 +761,9 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="warranty_period">
 									<rank>50</rank>
 								</item>
+								<item id="id_agenda_item">
+									<rank>55</rank>
+								</item>
 							</items>
 						</item>
 					</items>
@@ -725,6 +779,12 @@ public function PrefillSearchForm(&$aContextParam)
 								</item>
 								<item id="end_date">
 								  <rank>20</rank>
+								</item>
+								<item id="cancellation_terms">
+									<rank>22</rank>
+								</item>
+								<item id="cancel_warning">
+									<rank>23</rank>
 								</item>
 								<item id="comment_enddate">
 									<rank>25</rank>
@@ -755,8 +815,14 @@ public function PrefillSearchForm(&$aContextParam)
 								<item id="indexed_energy">
 									<rank>14</rank>
 								</item>
-								<item id="receipts">
+								<item id="initial_index">
 									<rank>15</rank>
+								</item>
+								<item id="which_index">
+									<rank>16</rank>
+								</item>
+								<item id="receipts">
+									<rank>20</rank>
 								</item>
 								<item id="start_index">
 									<rank>25</rank>

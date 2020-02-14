@@ -4,7 +4,7 @@
   <user_rights>
     <groups>
 	
-		<group id="Appointments" _delta="define">
+		<group id="AppointmentEnergy" _delta="define">
 			<classes>
 			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
@@ -12,11 +12,20 @@
 			  <class id="AppointmentEnergy"/>
 			</classes>
 		</group>
+		
+		<group id="AppointmentTour" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentTour"/>
+			</classes>
+		</group>
 	 
     </groups>
     <profiles>
 	  <profile id="114" _delta="define">
-        <name>Appointment User</name>
+        <name>Appointment Energy User</name>
         <description>Person in charge of Appointments, can add or modify appointments</description>
         <groups>
           <group id="General">
@@ -35,7 +44,41 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
-		  <group id="Appointments">
+		  <group id="AppointmentEnergy">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  
+	  <profile id="117" _delta="define">
+        <name>Appointment Tour User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentTour">
 		    <actions>
               <action id="action:read">allow</action>
               <action id="action:bulk read">allow</action>

@@ -48,6 +48,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:ProjectPublication/Attribute:project_state/Value:completed+' => '',
 	'Class:ProjectPublication/Attribute:project_state/Value:started' => 'Opgestart',
 	'Class:ProjectPublication/Attribute:project_state/Value:started+' => '',
+	'Class:ProjectPublication/Attribute:project_state/Value:operational' => 'Operationeel',
+	'Class:ProjectPublication/Attribute:project_state/Value:operational+' => '',
 	
 	'Class:ProjectPublication/Attribute:parent_project_id' => 'Actieplan',
 	'Class:ProjectPublication/Attribute:parent_project_id+' => '',

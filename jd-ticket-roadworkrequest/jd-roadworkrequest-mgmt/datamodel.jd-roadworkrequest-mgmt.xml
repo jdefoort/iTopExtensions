@@ -1,132 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
-	<constants>
-		<constant id="PORTAL_TYPE_TO_CLASS" xsi:type="string" _delta="redefine"><![CDATA[{"service_request":"TechnicalRequest","incident":"Incident"}]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_PUBLIC_LOG" xsi:type="string" _delta="define"><![CDATA[public_log]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_USER_COMMENT" xsi:type="string" _delta="define"><![CDATA[user_comment]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_FORM_ATTRIBUTES" xsi:type="string" _delta="define"><![CDATA[title,description, urgency]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_TYPE" xsi:type="string" _delta="define"><![CDATA[]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_LIST_ZLIST" xsi:type="string" _delta="define"><![CDATA[finalclass,title,start_date,status,servicesubcategory_id,,caller_id]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_CLOSED_ZLIST" xsi:type="string" _delta="define"><![CDATA[title,start_date,close_date,servicesubcategory_id]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_DETAILS_ZLIST" xsi:type="string" _delta="define"><![CDATA[{"col:left":["ref","caller_id","servicesubcategory_id","title","description","solution"],"col:right":["status","start_date","resolution_date","last_update","agent_id"]}]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_DISPLAY_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT TechnicalRequest WHERE org_id = :contact->org_id AND caller_id = :contact->id]]></constant>
-		<constant id="PORTAL_TECHNICALREQUEST_DISPLAY_POWERUSER_QUERY" xsi:type="string" _delta="define"><![CDATA[SELECT TechnicalRequest WHERE org_id = :contact->org_id]]></constant>
-	</constants>
 	<classes>
-		 <class id="lnkContactToTechnicalTicket" _delta="define">
-			<parent>cmdbAbstractObject</parent>
-			<properties>
-			  <is_link>1</is_link>
-			  <category>bizmodel</category>
-			  <abstract>false</abstract>
-			  <key_type>autoincrement</key_type>
-			  <db_table>lnkcontacttotechnicalticket</db_table>
-			  <db_key_field>id</db_key_field>
-			  <db_final_class_field/>
-			  <naming>
-				<attributes>
-				  <attribute id="ticket_id"/>
-				  <attribute id="contact_id"/>
-				</attributes>
-			  </naming>
-			  <display_template/>
-			  <icon/>
-			  <reconciliation>
-				<attributes>
-				  <attribute id="ticket_id"/>
-				  <attribute id="contact_id"/>
-				</attributes>
-			  </reconciliation>
-			</properties>
-			<fields>
-			  <field id="ticket_id" xsi:type="AttributeExternalKey">
-				<sql>ticket_id</sql>
-				<target_class>Ticket</target_class>
-				<is_null_allowed>false</is_null_allowed>
-				<on_target_delete>DEL_AUTO</on_target_delete>
-			  </field>
-			  <field id="ticket_ref" xsi:type="AttributeExternalField">
-				<extkey_attcode>ticket_id</extkey_attcode>
-				<target_attcode>ref</target_attcode>
-			  </field>
-			  <field id="contact_id" xsi:type="AttributeExternalKey">
-				<sql>contact_id</sql>
-				<target_class>Person</target_class>
-				<is_null_allowed>false</is_null_allowed>
-				<on_target_delete>DEL_AUTO</on_target_delete>
-				<filter>SELECT Person AS p JOIN lnkPersonToTeam AS t ON t.person_id = p.id JOIN Team AS t2 ON t.team_id=t2.id WHERE t2.name = "Werkplaatsen"</filter>
-			  </field>
-			  <field id="contact_email" xsi:type="AttributeExternalField">
-				<extkey_attcode>contact_id</extkey_attcode>
-				<target_attcode>email</target_attcode>
-			  </field>		  
-			  <field id="start" xsi:type="AttributeDateTime">
-				<sql>start</sql>
-				<default_value/>
-				<is_null_allowed>true</is_null_allowed>
-			  </field>
-			  <field id="stop" xsi:type="AttributeDateTime">
-				<sql>stop</sql>
-				<default_value/>
-				<is_null_allowed>true</is_null_allowed>
-			  </field>
-			</fields>
-			<methods/>
-			<presentation>
-			  <details>
-				<items>
-				  <item id="ticket_id">
-					<rank>10</rank>
-				  </item>
-				  <item id="contact_id">
-					<rank>20</rank>
-				  </item>
-				  <item id="start">
-					<rank>40</rank>
-				  </item>
-				  <item id="stop">
-					<rank>50</rank>
-				  </item>
-				</items>
-			  </details>
-			  <search>
-				<items>
-				  <item id="ticket_id">
-					<rank>10</rank>
-				  </item>
-				  <item id="contact_id">
-					<rank>20</rank>
-				  </item>
-				  <item id="start">
-					<rank>40</rank>
-				  </item>
-				  <item id="stop">
-					<rank>50</rank>
-				  </item>
-				</items>
-			  </search>
-			  <list>
-				<items>
-				  <item id="ticket_id">
-					<rank>10</rank>
-				  </item>
-				  <item id="contact_id">
-					<rank>20</rank>
-				  </item>
-				  <item id="start">
-					<rank>40</rank>
-				  </item>
-				  <item id="stop">
-					<rank>50</rank>
-				  </item>
-				</items>
-			  </list>
-			</presentation>
-		  </class>
-	
-	
-	
-		<class id="TechnicalRequest" _delta="define">
+		<class id="RoadworkRequest" _delta="define">
 			<parent>Ticket</parent>
 			<properties>
 				<comment><![CDATA[/**
@@ -138,7 +13,7 @@
 				<category>bizmodel,searchable,requestmgmt</category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
-				<db_table>ticket_technicalrequest</db_table>
+				<db_table>ticket_roadworkrequest</db_table>
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
@@ -176,41 +51,15 @@
 					<default_value>new</default_value>
 					<is_null_allowed>false</is_null_allowed>
 				</field>
-				<field id="priority" xsi:type="AttributeEnum">
-					<values>
-						<value id="1">1</value>
-						<value id="2">2</value>
-						<value id="3">3</value>
-						<value id="4">4</value>
-					</values>
-					<dependencies>
-						<attribute id="urgency"/>
-					</dependencies>
-					<sql>priority</sql>
-					<default_value>4</default_value>
-					<is_null_allowed>false</is_null_allowed>
-				</field>
-				<field id="urgency" xsi:type="AttributeEnum">
-				  <values>
-					<value id="1">1</value>
-					<value id="2">2</value>
-					<value id="3">3</value>
-					<value id="4">4</value>
-				  </values>
-				  <sql>urgency</sql>
-				  <default_value>3</default_value>
-				  <is_null_allowed>false</is_null_allowed>
-				</field>
 				<field id="origin" xsi:type="AttributeEnum">
 					<values>
 						<value id="mail">mail</value>
 						<value id="phone">phone</value>
 						<value id="portal">portal</value>
 						<value id="in_person">in_person</value>
-						<value id="standby_duty">standby_duty</value>
 					</values>
 					<sql>origin</sql>
-					<default_value>portal</default_value>
+					<default_value>phone</default_value>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="approver_id" xsi:type="AttributeExternalKey">
@@ -293,11 +142,11 @@
 					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="parent_request_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT TechnicalRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
+					<filter><![CDATA[SELECT RoadworkRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
 					<dependencies>
 					</dependencies>
 					<sql>parent_request_id</sql>
-					<target_class>TechnicalRequest</target_class>
+					<target_class>RoadworkRequest</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
@@ -306,7 +155,7 @@
 					<target_attcode>ref</target_attcode>
 				</field>
 				<field id="related_request_list" xsi:type="AttributeLinkedSet">
-					<linked_class>TechnicalRequest</linked_class>
+					<linked_class>RoadworkRequest</linked_class>
 					<ext_key_to_me>parent_request_id</ext_key_to_me>
 					<edit_mode>add_remove</edit_mode>
 					<count_min>0</count_min>
@@ -314,11 +163,6 @@
 				</field>
 				<field id="public_log" xsi:type="AttributeCaseLog">
 					<sql>public_log</sql>
-					<default_value/>
-					<is_null_allowed>true</is_null_allowed>
-				</field>
-				<field id="orders_log" xsi:type="AttributeCaseLog">
-					<sql>orders_log</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
@@ -333,57 +177,12 @@
 				  <is_null_allowed>true</is_null_allowed>
 				  <display_style>list</display_style>
 				</field>
-				<field id="geom" xsi:type="AttributeText" _delta="define">
-					<sql>geom</sql>
-					<default_value/>
-					<is_null_allowed>true</is_null_allowed>
-				</field>
-				<field id="status_detail" xsi:type="AttributeEnum">
-				  <values>
-					<value id="planned">planned</value>
-					<value id="passed">passed_for_execution</value>
-					<value id="information">additional_information_requested</value>
-					<value id="start">not_yet_started</value>
-				  </values>
-				  <sql>status_detail</sql>
-				  <default_value>not_yet_started</default_value>
-				  <is_null_allowed>false</is_null_allowed>
-				  <display_style>list</display_style> 
-				</field>
-				<field id="staff_list" xsi:type="AttributeLinkedSetIndirect">
-					<linked_class>lnkContactToTechnicalTicket</linked_class>
-					<ext_key_to_me>ticket_id</ext_key_to_me>
-					<count_min>0</count_min>
-					<count_max>0</count_max>
-					<ext_key_to_remote>contact_id</ext_key_to_remote>
-					<duplicates>true</duplicates>
-				</field>
 				<field id="crab_address_id" xsi:type="AttributeExternalKey">
 					<sql>crab_address_id</sql>
 					<on_target_delete>DEL_MANUAL</on_target_delete>
 					<target_class>CrabAddress</target_class>
 					<is_null_allowed>true</is_null_allowed>
 					<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
-				</field>
-				<field id="crab_address_street_id_friendlyname" xsi:type="AttributeExternalField" _delta="define">
-					<extkey_attcode>crab_address_id</extkey_attcode>
-					<target_attcode>street_id</target_attcode>
-					<dependencies/>
-				</field>
-				<field id="caller_phone" xsi:type="AttributeExternalField" _delta="define">
-					<extkey_attcode>caller_id</extkey_attcode>
-					<target_attcode>phone</target_attcode>
-					<dependencies/>
-				</field>
-				 <!-- Add phone number (derived from caller_id -> Person) -->
-				<field id="caller_mobile_phone" xsi:type="AttributeExternalField" _delta="define">
-					<extkey_attcode>caller_id</extkey_attcode>
-					<target_attcode>mobile_phone</target_attcode>
-					<dependencies/>
-				</field>
-				<field id="crab_address_id_geom" xsi:type="AttributeExternalField">
-					<extkey_attcode>crab_address_id</extkey_attcode>
-					<target_attcode>geom</target_attcode>
 				</field>
 			</fields>
 			<lifecycle>
@@ -437,9 +236,6 @@
 							<attribute id="agent_id">
 								<hidden/>
 							</attribute>
-							<attribute id="priority">
-								<read_only/>
-							</attribute>
 							<attribute id="start_date">
 								<read_only/>
 							</attribute>
@@ -471,9 +267,6 @@
 								<hidden/>
 							</attribute>
 							<attribute id="public_log">
-								<read_only/>
-							</attribute>
-							<attribute id="orders_log">
 								<hidden/>
 							</attribute>
 						</flags>
@@ -526,10 +319,6 @@
 								<must_prompt/>
 								<read_only/>
 							</attribute>
-							<attribute id="title">
-								<mandatory/>
-								<must_prompt/>
-							</attribute>
 							<attribute id="agent_id">
 								<mandatory/>
 								<must_prompt/>
@@ -543,7 +332,6 @@
 							</attribute>
 							<attribute id="caller_id"/>
 							<attribute id="public_log"/>
-							<attribute id="orders_log"/>
 						</flags>
 						<transitions>
 							<transition id="ev_resolve">
@@ -730,14 +518,10 @@
 						<inherit_flags_from>assigned</inherit_flags_from>
 						<flags>
 							<attribute id="caller_id"/>
-							<attribute id="crab_address_id"/>
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
-							<attribute id="urgency">
-								<read_only/>
-							</attribute>
-							<attribute id="status_detail">
+							<attribute id="crab_address_id">
 								<read_only/>
 							</attribute>
 							<attribute id="service_id">
@@ -754,9 +538,6 @@
 								<read_only/>
 							</attribute>
 							<attribute id="public_log">
-								<read_only/>
-							</attribute>
-							<attribute id="orders_log">
 								<read_only/>
 							</attribute>
 							<attribute id="description">
@@ -776,6 +557,7 @@
 								<read_only/>
 							</attribute>
 							<attribute id="solution">
+								<mandatory/>
 								<must_prompt/>
 							</attribute>
 							<attribute id="reminder">
@@ -836,9 +618,6 @@
 							<attribute id="public_log">
 								<read_only/>
 							</attribute>
-							<attribute id="orders_log">
-								<read_only/>
-							</attribute>
 							<attribute id="functionalcis_list">
 								<read_only/>
 							</attribute>
@@ -865,13 +644,7 @@
 								<read_only/>
 							</attribute>
 						</flags>
-						<transitions>
-							<transition id="ev_reopen">
-								<target>assigned</target>
-								<actions>
-								</actions>
-							</transition>
-						</transitions>	
+						<transitions/>
 					</state>
 				</states>
 			</lifecycle>
@@ -957,7 +730,7 @@
     parent::DoCheckToWrite();
     if (!$this->IsNew() && ($this->Get('parent_request_id') == $this->GetKey()))
     {
-      $this->m_aCheckIssues[] = Dict::Format('Class:TechnicalRequest/Error:CannotAssignParentRequestIdToSelf');
+      $this->m_aCheckIssues[] = Dict::Format('Class:RoadworkRequest/Error:CannotAssignParentRequestIdToSelf');
     }
   }]]></code>
 				</method>
@@ -972,7 +745,6 @@
 		return parent::ComputeValues();
 	}]]></code>
 				</method>
-				
 				<method id="resolveChilds">
 					<comment><![CDATA[/**
 	 * To be deprecated: use ResolveChildTickets() instead
@@ -983,7 +755,7 @@
 					<code><![CDATA[	public function resolveChilds($sStimulusCode)
 	{
 				
-		$sOQL = "SELECT TechnicalRequest WHERE parent_request_id=:ticket";
+		$sOQL = "SELECT RoadworkRequest WHERE parent_request_id=:ticket";
 		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 						array(),
 						array(
@@ -998,7 +770,7 @@
 				$oRequest->set('service_id',$this->Get('service_id'));		
 				$oRequest->set('team_id',$this->Get('team_id'));
 				$oRequest->set('agent_id',$this->Get('agent_id'));	
-				$oRequest->set('solution','Automatically resolved by request:[[TechnicalRequest:'.$this->Get('ref').']]');
+				$oRequest->set('solution','Automatically resolved by request:[[RoadworkRequest:'.$this->Get('ref').']]');
 				$oRequest->ApplyStimulus('ev_autoresolve');
 				$oRequest->DBUpdate();
 			}
@@ -1022,7 +794,7 @@
         static $aTickets = array(); // prevent infinite recursion
     
 		// Automatically resolve child requests
-		$sOQL = "SELECT TechnicalRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
+		$sOQL = "SELECT RoadworkRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
 		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('ticket' => $this->GetKey()));
 		while($oRequest = $oChildRequestSet->Fetch())
 		{
@@ -1068,7 +840,7 @@
 		$sLogPublic = $oLog->GetModifiedEntry('html');
 		if ($sLogPublic != '')
 		{
-			$sOQL = "SELECT TechnicalRequest WHERE parent_request_id=:ticket";
+			$sOQL = "SELECT RoadworkRequest WHERE parent_request_id=:ticket";
 			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 							array(),
 							array(
@@ -1086,7 +858,7 @@
 		$sLogPrivate = $oLog->GetModifiedEntry('html');
 		if ($sLogPrivate != '')
 		{
-			$sOQL = "SELECT TechnicalRequest WHERE parent_request_id=:ticket";
+			$sOQL = "SELECT RoadworkRequest WHERE parent_request_id=:ticket";
 			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
 							array(),
 							array(
@@ -1126,23 +898,6 @@
 		$this->ComputeImpactedItems();
 		$this->Set('last_update', time());
 		$this->Set('start_date', time());
-		
-		
-		// Dealing with a new TechnicalRequest, so new crab_address_id
-		// If no geometry was drawn AND a crab_address_id was selected: overwrite geometry
-		$bTakeGeometryFromCrab = ($this->Get('geom') == '' && (Int)$this->Get('crab_address_id') > 0);
-		
-		if($bTakeGeometryFromCrab == true) {
-			
-			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
-			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
-			
-			while($oAddress = $oSet_CrabAddresses->Fetch()) {
-				$this->Set('geom', $oAddress->Get('geom'));
-			}
-			
-		}
-		
 	}]]></code>
 				</method>
 				<method id="OnUpdate">
@@ -1160,130 +915,14 @@
         }
 		$this->Set('last_update', time());
 		$this->UpdateChildRequestLog();
-		
-
-		$bTakeGeometryFromCrab = false;
-	
-		// Retrieve old data
-		$sQuery = 'SELECT TechnicalRequest WHERE id = '.$this->GetKey();
-		$oSet_TechnicalRequests = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
-		
-		// Was crab_address set and geometry the same before?
-		while($oRequest = $oSet_TechnicalRequests->Fetch()) {
-			
-			if((Int)$this->Get('crab_address_id') < 1) {
-				// crab_address_id changed? if now empty, prevent clearing of 'geom'
-				$bTakeGeometryFromCrab = false; // No change
-			}					
-			elseif($oRequest->Get('crab_address_id') != $this->Get('crab_address_id')) {
-				
-				// crab_address_id has changed.
-				// was geometry the same as for the crab address?
-				$sQuery = 'SELECT CrabAddress WHERE id = '.$oRequest->Get('crab_address_id');
-				$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
-				
-				while($oAddress = $oSet_CrabAddresses->Fetch()) {
-					if($oRequest->Get('geom') == $oAddress->Get('geom')) {
-						$bTakeGeometryFromCrab = true;
-					}
-				}
-				
-			}
-			
-		}
-		
-		if($bTakeGeometryFromCrab == true) {
-			
-			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
-			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
-			
-			while($oAddress = $oSet_CrabAddresses->Fetch()) {
-				$this->Set('geom', $oAddress->Get('geom'));
-			}
-			
-		}
-						
-						
 	}]]></code>
 				</method>
-				
-				<method id="DisplayBareRelations" _delta="define">
-						<static>false</static>
-						<access>public</access>
-						<type>Overload-cmdbAbstractObject</type>
-						<code><![CDATA[      public function DisplayBareRelations(WebPage $oPage, $bEditMode = false)
-					{
-						parent::DisplayBareRelations($oPage, $bEditMode);
-	 
-	
-						// Intention was an iframe, but it's giving security warnings and doesn't work properly (InfraGIS doesn't zoom)
-						/*
-							$sTabName = Dict::S('Tab:InfraGIS');
-							$oPage->SetCurrentTab($sTabName); 
-							
-							// It seems iTop just outputs a script as text if you set it in $oPage->add()? 
-							
-							$sAddress = $this->Get('crab_address_id_friendlyname');
-							$sAddress = trim($sAddress); // "friendlyname" adds invisible spaces at the end, because it *could* show apartment number and sub number.
-							$sAddress = urlencode($sAddress);
-							
-							$oPage->add('<iframe src="https://infragis.infrax.be/infragis/raadplegen/?LAYOUT=Library://Gemeenten/Izegem/Layouts/raadplegen.WebLayout&niscode=36008&LOCALE=nl&mapname=raadplegen&layer=adres&key=adres&value=' . $sAddress .'" height="800px" width="100%"></iframe>');
-
-							 
-							$oPage->add_ready_script('
-
-								// After display, set width and height to something
-
-							');
-								
-						*/
-						
-					}  ]]></code>
-				</method> 
-				
-				
-            <method id="PrefillSearchForm" _delta="define">
-                <static>false</static>
-                <access>public</access>
-                <type>Overload-DBObject</type>
-                <arguments>
-                    <argument id="1">
-                        <type>reference</type>
-                        <mandatory>true</mandatory>
-                    </argument>
-                </arguments>
-                <code><![CDATA[public function PrefillSearchForm(&$aContextParam)
-              {       // code of the function
-			  					
-					// We remove any criteria set by the default search
-					$aContextParam['filter']->ResetCondition();
-					
-					// We set a criteria on the 'org_id' of the searched class with the Contract provider value
-					
-					$sOQL = 'SELECT Location WHERE name = "Werkplaatsen"';			
-					$oSet_Locations = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), /* Order by */ Array('id' => /* Ascending */ false), /* Arguments */ Array(), /* Extended data spec */ null, /* Amount */ 1);
-		
-					// Only 1 location should be retrieved
-					$oLocation = $oSet_Locations->Fetch();
-					
-					$aContextParam['filter']->AddCondition('location_id', $oLocation->Get('id') );					
-					
-			  }]]>
-                </code>
-            </method>
-			
 			</methods>
 			<presentation>
 				<details>
 					<items>
-						<item id="functionalcis_list">
-							<rank>10</rank>
-						</item>
 						<item id="contacts_list">
 							<rank>20</rank>
-						</item>
-						<item id="staff_list">
-							<rank>25</rank>
 						</item>
 						<item id="related_request_list">
 							<rank>30</rank>
@@ -1326,9 +965,6 @@
 										<item id="servicesubcategory_id">
 											<rank>20</rank>
 										</item>
-										<item id="geom" _delta="define">
-											<rank>50</rank>
-										</item>
 									</items>
 								</item>
 							</items>
@@ -1336,17 +972,6 @@
 						<item id="col:col2">
 							<rank>50</rank>
 							<items>
-								<item id="fieldset:Ticket:Type">
-									<rank>10</rank>
-									<items>
-										<item id="urgency">
-											<rank>20</rank>
-										</item>
-										<item id="status_detail">
-											<rank>30</rank>
-										</item>
-									</items>
-								</item>
 								<item id="fieldset:Ticket:contact">
 									<rank>20</rank>
 									<items>
@@ -1381,13 +1006,8 @@
 										</item>
 									</items>
 								</item>
-							</items>
-						</item>
-						<item id="col:col3">
-							<rank>60</rank>
-							<items>
 								<item id="fieldset:Ticket:relation">
-									<rank>10</rank>
+									<rank>40</rank>
 									<items>
 										<item id="parent_request_id">
 											<rank>10</rank>
@@ -1395,7 +1015,7 @@
 									</items>
 								</item>
 								<item id="fieldset:Ticket:resolution">
-									<rank>20</rank>
+									<rank>50</rank>
 									<items>
 										<item id="solution">
 											<rank>20</rank>
@@ -1411,11 +1031,17 @@
 				</details>
 				<search>
 					<items>
-						<item id="crab_address_street_id_friendlyname">
+						<item id="ref">
 							<rank>10</rank>
 						</item>
-						<item id="crab_address_id">
+						<item id="org_id">
 							<rank>20</rank>
+						</item>
+						<item id="title">
+							<rank>30</rank>
+						</item>
+						<item id="description">
+							<rank>40</rank>
 						</item>
 						<item id="start_date">
 							<rank>50</rank>
@@ -1438,8 +1064,8 @@
 						<item id="caller_id">
 							<rank>100</rank>
 						</item>
-						<item id="status_detail">
-							<rank>140</rank>
+						<item id="origin">
+							<rank>110</rank>
 						</item>
 						<item id="service_id">
 							<rank>160</rank>
@@ -1447,16 +1073,18 @@
 						<item id="servicesubcategory_id">
 							<rank>170</rank>
 						</item>
-
+						<item id="team_id">
+							<rank>180</rank>
+						</item>
+						<item id="agent_id">
+							<rank>190</rank>
+						</item>
 					</items>
 				</search>
 				<list>
 					<items>
 						<item id="title">
 							<rank>10</rank>
-						</item>
-						<item id="crab_address_id">
-							<rank>15</rank>
 						</item>
 						<item id="org_id">
 							<rank>20</rank>
@@ -1467,7 +1095,7 @@
 						<item id="start_date">
 							<rank>40</rank>
 						</item>
-						<item id="status_detail">
+						<item id="status">
 							<rank>50</rank>
 						</item>
 						<item id="reminder">
@@ -1482,47 +1110,17 @@
 		</class>
 	</classes>
 	<menus>
-		<menu id="WelcomeMenuPage" xsi:type="DashboardMenuNode" _delta="must_exist">
-			<definition>
-				<cells>
-					<cell id="7" _delta="define">
-						<rank>1</rank>
-						<dashlets>
-							<dashlet id="11" xsi:type="DashletHeaderDynamic">
-								<rank>0</rank>
-								<title>Menu:RequestManagement</title>
-								<icon>itop-welcome-itil/images/user-request-deadline.png</icon>
-								<subtitle>Menu:TechnicalRequest:OpenRequests</subtitle>
-								<query>SELECT TechnicalRequest WHERE status != "closed"</query>
-								<group_by>status</group_by>
-								<values>new,assigned,resolved</values>
-							</dashlet>
-							<dashlet id="12" xsi:type="DashletObjectList">
-								<rank>1</rank>
-								<title>UI:WelcomeMenu:MyCalls</title>
-								<query>SELECT TechnicalRequest AS i WHERE i.agent_id = :current_contact_id AND status NOT IN ("closed", "resolved")</query>
-								<menu>true</menu>
-							</dashlet>
-						</dashlets>
-					</cell>
-				</cells>
-			</definition>
-		</menu>
-		<menu id="TechnicalRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>35</rank>
+		<menu id="RoadworkRequestManagement" xsi:type="MenuGroup" _delta="define">
+			<rank>44</rank>
 			<enable_stimulus/>
 		</menu>
-		<menu id="TechnicalRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
+		<menu id="RoadworkRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
 			<rank>0</rank>
-			<parent>TechnicalRequestManagement</parent>
+			<parent>RoadworkRequestManagement</parent>
 			<definition>
-				  <layout>DashboardLayoutOneCol</layout>
-				  <title>Overzicht Meldingen</title>
-				  <auto_reload>
-					<enabled>false</enabled>
-					<interval>300</interval>
-				  </auto_reload>
-				  <cells>
+				<layout>DashboardLayoutTwoCols</layout>
+				<title>Overzicht Werken</title>
+				<cells>
 					<cell id="0">
 					  <rank>0</rank>
 					  <dashlets>
@@ -1534,33 +1132,25 @@
 						<dashlet id="10" xsi:type="DashletObjectList">
 						  <rank>1</rank>
 						  <title></title>
-						  <query>SELECT TechnicalRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
+						  <query>SELECT RoadworkRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
 						  <menu>false</menu>
-						</dashlet>
-						<dashlet id="14" xsi:type="DashletMapOverview">
-						  <rank>2</rank>
-						  <title>Overzichtkaart</title>
-						  <query>SELECT TechnicalRequest WHERE  status NOT IN ('resolved', 'closed')</query>
-						  <height>500</height>
-						  <attributes>id,friendlyname,title</attributes>
-						  <feature_label>friendlyname</feature_label>
 						</dashlet>
 					  </dashlets>
 					</cell>
 					<cell id="1">
 					  <rank>1</rank>
 					  <dashlets>
-						<dashlet id="2" xsi:type="DashletGroupByBars">
+						<dashlet id="12" xsi:type="DashletHeaderStatic">
 						  <rank>0</rank>
+						  <title>Algemene info</title>
+						  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+						</dashlet>
+						<dashlet id="2" xsi:type="DashletGroupByBars">
+						  <rank>1</rank>
 						  <title>UI-RequestManagementOverview-Last-14-days</title>
-						  <query>SELECT TechnicalRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+						  <query>SELECT RoadworkRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
 						  <group_by>start_date:day_of_month</group_by>
 						  <style>bars</style>
-						  <aggregation_function>count</aggregation_function>
-						  <aggregation_attribute></aggregation_attribute>
-						  <limit></limit>
-						  <order_by>attribute</order_by>
-						  <order_direction>asc</order_direction>
 						</dashlet>
 					  </dashlets>
 					</cell>
@@ -1569,49 +1159,29 @@
 					  <dashlets>
 						<dashlet id="13" xsi:type="DashletHeaderStatic">
 						  <rank>0</rank>
-						  <title>Meldingen in cijfers</title>
+						  <title>Vragen in cijfers</title>
 						  <icon>jd-class-lendrecord/images/lendrecord.png</icon>
 						</dashlet>
 						<dashlet id="7" xsi:type="DashletGroupByTable">
 						  <rank>1</rank>
-						  <title>Meldingen in de laatste maand</title>
-						  <query>SELECT TechnicalRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <title>Vragen in de laatste maand</title>
+						  <query>SELECT RoadworkRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m-%d 00:00:00')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
-						  <aggregation_function>count</aggregation_function>
-						  <aggregation_attribute></aggregation_attribute>
-						  <limit></limit>
-						  <order_by>attribute</order_by>
-						  <order_direction>desc</order_direction>
 						</dashlet>
 						<dashlet id="8" xsi:type="DashletGroupByTable">
 						  <rank>2</rank>
-						  <title>Meldingen in de laatste 6 maanden</title>
-						  <query>SELECT TechnicalRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <title>Vragen in de laatste 6 maanden</title>
+						  <query>SELECT RoadworkRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 MONTH),'%Y-%m-%d 00:00:00')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
-						  <aggregation_function>count</aggregation_function>
-						  <aggregation_attribute></aggregation_attribute>
-						  <limit></limit>
-						  <order_by>attribute</order_by>
-						  <order_direction>desc</order_direction>
 						</dashlet>
 						<dashlet id="9" xsi:type="DashletGroupByTable">
 						  <rank>3</rank>
-						  <title>Meldingen in het laatste jaar</title>
-						  <query>SELECT TechnicalRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
+						  <title>Vragen in het laatste jaar</title>
+						  <query>SELECT RoadworkRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
-						  <aggregation_function>count</aggregation_function>
-						  <aggregation_attribute></aggregation_attribute>
-						  <limit></limit>
-						  <order_by>attribute</order_by>
-						  <order_direction>desc</order_direction>
-						</dashlet>
-						<dashlet id="12" xsi:type="DashletHeaderStatic">
-						  <rank>4</rank>
-						  <title>Algemene info</title>
-						  <icon>itop-knownerror-mgmt/images/faq.png</icon>
 						</dashlet>
 					  </dashlets>
 					</cell>
@@ -1621,38 +1191,23 @@
 						<dashlet id="4" xsi:type="DashletGroupByTable">
 						  <rank>0</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-						  <query>SELECT TechnicalRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
+						  <query>SELECT RoadworkRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>agent_id</group_by>
 						  <style>table</style>
-						  <aggregation_function>count</aggregation_function>
-						  <aggregation_attribute></aggregation_attribute>
-						  <limit></limit>
-						  <order_by>attribute</order_by>
-						  <order_direction>desc</order_direction>
 						</dashlet>
 						<dashlet id="3" xsi:type="DashletGroupByTable">
 						  <rank>1</rank>
-						  <title>Tickets per status</title>
-						  <query>SELECT TechnicalRequest WHERE status NOT IN ('rejected')</query>
+						  <title>Vragen per status</title>
+						  <query>SELECT RoadworkRequest WHERE status NOT IN ('rejected')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
-						  <aggregation_function>count</aggregation_function>
-						  <aggregation_attribute></aggregation_attribute>
-						  <limit></limit>
-						  <order_by>attribute</order_by>
-						  <order_direction>desc</order_direction>
 						</dashlet>
 						<dashlet id="6" xsi:type="DashletGroupByTable">
 						  <rank>2</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
-						  <query>SELECT TechnicalRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
+						  <query>SELECT RoadworkRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>org_id</group_by>
 						  <style>table</style>
-						  <aggregation_function>count</aggregation_function>
-						  <aggregation_attribute></aggregation_attribute>
-						  <limit></limit>
-						  <order_by>attribute</order_by>
-						  <order_direction>desc</order_direction>
 						</dashlet>
 					  </dashlets>
 					</cell>
@@ -1664,35 +1219,43 @@
 						</dashlet>
 					  </dashlets>
 					</cell>
-				  </cells>
+					<cell id="5">
+					  <rank>5</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
+					</cell>
+				</cells>
 			</definition>
 		</menu>
-		<menu id="NewTechnicalRequest" xsi:type="NewObjectMenuNode" _delta="define">
+		<menu id="NewRoadworkRequest" xsi:type="NewObjectMenuNode" _delta="define">
 			<rank>1</rank>
-			<parent>TechnicalRequestManagement</parent>
-			<class>TechnicalRequest</class>
+			<parent>RoadworkRequestManagement</parent>
+			<class>RoadworkRequest</class>
 		</menu>
-		<menu id="SearchTechnicalRequests" xsi:type="SearchMenuNode" _delta="define">
+		<menu id="SearchRoadworkRequests" xsi:type="SearchMenuNode" _delta="define">
 			<rank>2</rank>
-			<parent>TechnicalRequestManagement</parent>
-			<class>TechnicalRequest</class>
+			<parent>RoadworkRequestManagement</parent>
+			<class>RoadworkRequest</class>
 		</menu>
-		<menu id="TechnicalRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
+		<menu id="RoadworkRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
 			<rank>3</rank>
-			<parent>TechnicalRequestManagement</parent>
+			<parent>RoadworkRequestManagement</parent>
 			<template_file/>
 		</menu>
-		<menu id="TechnicalRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
+		<menu id="RoadworkRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>0</rank>
-			<parent>TechnicalRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT TechnicalRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
+			<parent>RoadworkRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT RoadworkRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
 			<do_search/>
 			<auto_reload>fast</auto_reload>
 		</menu>
-		<menu id="TechnicalRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
+		<menu id="RoadworkRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>2</rank>
-			<parent>TechnicalRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT TechnicalRequest WHERE status NOT IN ("closed","resolved")]]></oql>
+			<parent>RoadworkRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT RoadworkRequest WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
 		</menu>
