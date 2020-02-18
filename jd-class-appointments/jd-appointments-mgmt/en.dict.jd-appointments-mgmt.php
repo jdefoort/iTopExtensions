@@ -48,6 +48,12 @@ Dict::Add('EN US', 'English', 'English', array(
 'Menu:NewAppointmentTour+' => '',
 'Menu:SearchAppointmentTour' => 'Search appointment',
 'Menu:SearchAppointmentTour+' => '',
+'Menu:AppointmentTaxMgmt' => 'Appointment - Taxes',
+'Menu:AppointmentTaxMgmt+' => '',
+'Menu:NewAppointmentTax' => 'New appointment',
+'Menu:NewAppointmentTax+' => '',
+'Menu:SearchAppointmentTax' => 'Search appointment',
+'Menu:SearchAppointmentTax+' => '',
 
 
 ));
@@ -123,4 +129,15 @@ Dict::Add('EN US', 'English', 'English', array(
 Dict::Add('EN US', 'English', 'English', array(
 	'Class:AppointmentTour' => 'Appointment - Tour',
 	'Class:AppointmentTour+' => '',
+));
+
+
+
+//
+// Class: AppointmentTour
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentTax' => 'Appointment - Taxes',
+	'Class:AppointmentTax+' => '',
 ));

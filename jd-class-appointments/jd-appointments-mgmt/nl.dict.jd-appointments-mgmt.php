@@ -48,7 +48,12 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 'Menu:NewAppointmentTour+' => '',
 'Menu:SearchAppointmentTour' => 'Zoek afspraak',
 'Menu:SearchAppointmentTour+' => '',
-
+'Menu:AppointmentTaxMgmt' => 'Afspraak - Belastingen',
+'Menu:AppointmentTaxMgmt+' => '',
+'Menu:NewAppointmentTax' => 'Nieuwe afspraak',
+'Menu:NewAppointmentTax+' => '',
+'Menu:SearchAppointmentTax' => 'Zoek afspraak',
+'Menu:SearchAppointmentTax+' => '',
 
 ));
 
@@ -127,3 +132,12 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentTour+' => '',
 ));
 
+
+//
+// Class: AppointmentTour
+//
+
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+	'Class:AppointmentTax' => 'Afspraak - Belastingen',
+	'Class:AppointmentTax+' => '',
+));
