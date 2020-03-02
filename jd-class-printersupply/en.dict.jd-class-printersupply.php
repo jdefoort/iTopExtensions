@@ -2,7 +2,7 @@
 /**
  * Localized data
  *
- * @copyright   Copyright (C) 2013 XXXXX
+ * @copyright   Copyright (C) 2019-2020 Jelle Defoort, Jeffrey Bostoen
  * @license     http://opensource.org/licenses/AGPL-3.0
  */
 
@@ -13,44 +13,42 @@ Dict::Add('EN US', 'English', 'English', array(
 	'PrinterSupplyStock:in' => 'In',
 	'PrinterSupplyStock:out' => 'Out',
 
-	// Typology: Printer
-	'Class:Printer/Attribute:printersupplies_list' => 'Supplies',
-	'Class:Printer/Attribute:printersupplies_list+' => 'Supplies for this printer',
-	
-	// Typology: PrinterSupply
-	'Class:PrinterSupply' => 'Supply',
-	'Class:PrinterSupply+' => 'Supply',
-	'Class:PrinterSupply/Attribute:name' => 'Name',
-	'Class:PrinterSupply/Attribute:name+' => 'Give this supply a name (e.g.: Black HP A30 / IsoTech CLA776 or Drum Brother DR-2100)',
-	'Class:PrinterSupply/Attribute:printers_list' => 'Printers',
-	'Class:PrinterSupply/Attribute:printers_list+' => 'Which printers use this',
+	'Class:PrinterSupplyType' => 'Supply type',
+	'Class:PrinterSupplyType+' => 'Supply type',
+	'Class:PrinterSupplyType/Attribute:name' => 'Name',
+	'Class:PrinterSupplyType/Attribute:name+' => 'Name of the supply. Hint: start with the original name and then the generic name, e.g.: HP A30 Black / IsoTech CLA776 or Brother DR-2100 Drum.',
+	'Class:PrinterSupplyType/Attribute:models_list' => 'Models',
+	'Class:PrinterSupplyType/Attribute:models_list+' => 'Which printer models use this',
+	'Class:PrinterSupplyType/Attribute:printersupplies_list' => 'Printer supplies',
+	'Class:PrinterSupplyType/Attribute:printersupplies_list+' => 'List of this type of printer supplies',
 
-	// Typology: PrinterSupplyStock
-	'Class:PrinterSupplyStock' => 'PrinterSupply',
-	'Class:PrinterSupplyStock+' => 'PrinterSupply',
-	'Class:PrinterSupplyStock/Attribute:printer_supply_id' => 'Supply',
-	'Class:PrinterSupplyStock/Attribute:printer_supply_id+' => 'Give this supply a name (e.g.: Black HP A30 / IsoTech CLA776 or Drum Brother DR-2100)',
-	'Class:PrinterSupplyStock/Attribute:location_id' => 'Location',
-	'Class:PrinterSupplyStock/Attribute:location_id+' => 'Location of supply',	
-	'Class:PrinterSupplyStock/Attribute:printer_id' => 'Printer',
-	'Class:PrinterSupplyStock/Attribute:printer_id+' => 'To which printer did this go',
-	'Class:PrinterSupplyStock/Attribute:date_delivery' => 'Date delivery',
-	'Class:PrinterSupplyStock/Attribute:date_delivery+' => 'Date delivery',	
-	'Class:PrinterSupplyStock/Attribute:date_out' => 'Date out',
-	'Class:PrinterSupplyStock/Attribute:date_out+' => 'Date out',	
+	'Class:PrinterSupply' => 'PrinterSupply',
+	'Class:PrinterSupply+' => 'PrinterSupply',
+	'Class:PrinterSupply/Attribute:printersupplytype_id' => 'Supply',
+	'Class:PrinterSupply/Attribute:printersupplytype_id+' => 'The printer supply',
+	'Class:PrinterSupply/Attribute:location_id' => 'Location',
+	'Class:PrinterSupply/Attribute:location_id+' => 'Location of supply',	
+	'Class:PrinterSupply/Attribute:printer_id' => 'Printer',
+	'Class:PrinterSupply/Attribute:printer_id+' => 'To which printer did this go',
+	'Class:PrinterSupply/Attribute:date_delivery' => 'Date delivery',
+	'Class:PrinterSupply/Attribute:date_delivery+' => 'Date delivery',	
+	'Class:PrinterSupply/Attribute:date_out' => 'Date out',
+	'Class:PrinterSupply/Attribute:date_out+' => 'Date out',	
 	
-	// Typology: Menu Config Management
-	'Menu:SearchPrinterSupplyStock' => 'Search printer supplies',
-	'Menu:SearchPrinterSupplyStock+' => 'Search printer supplies',
-	'Menu:NewPrinterSupplyStock' => 'New printer supply',
-	'Menu:NewPrinterSupplyStock+' => 'Register new printer supply',
+	'Menu:SearchPrinterSupply' => 'Search for printer supplies',
+	'Menu:SearchPrinterSupply+' => 'Search for printer supplies',
+	'Menu:NewPrinterSupply' => 'New printer supply',
+	'Menu:NewPrinterSupply+' => 'Register new printer supply',
 	
-	// Typology: lnkPrinterSupplyToPrinter
-	'Class:lnkPrinterSupplyToPrinter' => 'Link PrinterSupply / Printer',
-	'Class:lnkPrinterSupplyToPrinter/Attribute:printer_supply_id' => 'Supplies',
-	'Class:lnkPrinterSupplyToPrinter/Attribute:printer_supply_id+' => 'Supplies for this printer',
-	'Class:lnkPrinterSupplyToPrinter/Attribute:printer_id' => 'Printer',
-	'Class:lnkPrinterSupplyToPrinter/Attribute:printer_id+' => 'Which printers use this',	
+	'Class:lnkPrinterSupplyTypeToModel' => 'Link PrinterSupply / Model',
+	'Class:lnkPrinterSupplyTypeToModel/Attribute:printersupplytype_id' => 'Supply type',
+	'Class:lnkPrinterSupplyTypeToModel/Attribute:printersupplytype_id+' => 'Printer supply type',
+	'Class:lnkPrinterSupplyTypeToModel/Attribute:model_id' => 'Printer model',
+	'Class:lnkPrinterSupplyTypeToModel/Attribute:model_id+' => 'Model of printer for which this supply can be used',	
+	
+	'Class:Printer/Attribute:printersupplies_dashboard' => 'Supplies',
+	'Class:Printer/Attribute:printersupplies_dashboard/supplytypes_list' => 'Supply types',
+	'Class:Printer/Attribute:printersupplies_dashboard/supplies_list' => 'Available supplies',
 	
 ));
 

@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-class-printersupply/2.6.190807',
+	'jd-class-printersupply/2.6.200129',
 	array(
 		// Identification
 		//
-		'label' => 'Class: PrinterSupply - Adds printersupply as a class',
+		'label' => 'Class: Toners - Adds toners as a class',
 		'category' => 'business',
 
 		// Setup
