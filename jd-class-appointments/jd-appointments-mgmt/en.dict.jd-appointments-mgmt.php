@@ -56,6 +56,99 @@ Dict::Add('EN US', 'English', 'English', array(
 'Menu:SearchAppointmentTax+' => '',
 
 
+'Menu:AppointmentCityHall1Mgmt' => 'Afspraak - Bevolking',
+'Menu:AppointmentCityHall1Mgmt+' => '',
+'Menu:NewAppointmentCityHall1' => 'New appointment',
+'Menu:NewAppointmentCityHall1+' => '',
+'Menu:SearchAppointmentCityHall1' => 'Search appointment',
+'Menu:SearchAppointmentCityHall1+' => '',
+
+'Menu:AppointmentCityHall2Mgmt' => 'Afspraak - Burgerlijke stand',
+'Menu:AppointmentCityHall2Mgmt+' => '',
+'Menu:NewAppointmentCityHall2' => 'New appointment',
+'Menu:NewAppointmentCityHall2+' => '',
+'Menu:SearchAppointmentCityHall2' => 'Search appointment',
+'Menu:SearchAppointmentCityHall2+' => '',
+
+'Menu:AppointmentCityHall3Mgmt' => 'Afspraak - Vreemdelingen',
+'Menu:AppointmentCityHall3Mgmt+' => '',
+'Menu:NewAppointmentCityHall3' => 'New appointment',
+'Menu:NewAppointmentCityHall3+' => '',
+'Menu:SearchAppointmentCityHall3' => 'Search appointment',
+'Menu:SearchAppointmentCityHall3+' => '',
+
+'Menu:AppointmentCityHall4Mgmt' => 'Afspraak - Ruimtelijke ordening',
+'Menu:AppointmentCityHall4Mgmt+' => '',
+'Menu:NewAppointmentCityHall4' => 'New appointment',
+'Menu:NewAppointmentCityHall4+' => '',
+'Menu:SearchAppointmentCityHall4' => 'Search appointment',
+'Menu:SearchAppointmentCityHall4+' => '',
+
+'Menu:AppointmentCityHall5Mgmt' => 'Afspraak - Bibliotheek',
+'Menu:AppointmentCityHall5Mgmt+' => '',
+'Menu:NewAppointmentCityHall5' => 'New appointment',
+'Menu:NewAppointmentCityHall5+' => '',
+'Menu:SearchAppointmentCityHall5' => 'Search appointment',
+'Menu:SearchAppointmentCityHall5+' => '',
+
+'Menu:AppointmentCityHall6Mgmt' => 'Afspraak - Sociaal huis',
+'Menu:AppointmentCityHall6Mgmt+' => '',
+'Menu:NewAppointmentCityHall6' => 'New appointment',
+'Menu:NewAppointmentCityHall6+' => '',
+'Menu:SearchAppointmentCityHall6' => 'Search appointment',
+'Menu:SearchAppointmentCityHall6+' => '',
+
+'Menu:AppointmentCityHall7Mgmt' => 'Afspraak - Openbare werken',
+'Menu:AppointmentCityHall7Mgmt+' => '',
+'Menu:NewAppointmentCityHall7' => 'New appointment',
+'Menu:NewAppointmentCityHall7+' => '',
+'Menu:SearchAppointmentCityHall7' => 'Search appointment',
+'Menu:SearchAppointmentCityHall7+' => '',
+
+'Menu:AppointmentCityHall8Mgmt' => 'Afspraak - Reserve',
+'Menu:AppointmentCityHall8Mgmt+' => '',
+'Menu:NewAppointmentCityHall8' => 'New appointment',
+'Menu:NewAppointmentCityHall8+' => '',
+'Menu:SearchAppointmentCityHall8' => 'Search appointment',
+'Menu:SearchAppointmentCityHall8+' => '',
+
+'Menu:AppointmentCareCenter1Mgmt' => 'Afspraak - Matisse',
+'Menu:AppointmentCareCenter1Mgmt+' => '',
+'Menu:NewAppointmentCareCenter1' => 'New appointment',
+'Menu:NewAppointmentCareCenter1+' => '',
+'Menu:SearchAppointmentCareCenter1' => 'Search appointment',
+'Menu:SearchAppointmentCareCenter1+' => '',
+
+'Menu:AppointmentCareCenter2Mgmt' => 'Afspraak - Ensor',
+'Menu:AppointmentCareCenter2Mgmt+' => '',
+'Menu:NewAppointmentCareCenter2' => 'New appointment',
+'Menu:NewAppointmentCareCenter2+' => '',
+'Menu:SearchAppointmentCareCenter2' => 'Search appointment',
+'Menu:SearchAppointmentCareCenter2+' => '',
+
+'Menu:AppointmentCareCenter3Mgmt' => 'Afspraak - Delvaux',
+'Menu:AppointmentCareCenter3Mgmt+' => '',
+'Menu:NewAppointmentCareCenter3' => 'New appointment',
+'Menu:NewAppointmentCareCenter3+' => '',
+'Menu:SearchAppointmentCareCenter3' => 'Search appointment',
+'Menu:SearchAppointmentCareCenter3+' => '',
+
+'Menu:AppointmentCareCenter4Mgmt' => 'Afspraak - Picasso',
+'Menu:AppointmentCareCenter4Mgmt+' => '',
+'Menu:NewAppointmentCareCenter4' => 'New appointment',
+'Menu:NewAppointmentCareCenter4+' => '',
+'Menu:SearchAppointmentCareCenter4' => 'Search appointment',
+'Menu:SearchAppointmentCareCenter4+' => '',
+
+'Menu:AppointmentCareCenter5Mgmt' => 'Afspraak - Villa Van Gogh',
+'Menu:AppointmentCareCenter5Mgmt+' => '',
+'Menu:NewAppointmentCareCenter5' => 'New appointment',
+'Menu:NewAppointmentCareCenter5+' => '',
+'Menu:SearchAppointmentCareCenter5' => 'Search appointment',
+'Menu:SearchAppointmentCareCenter5+' => '',
+
+
+
 ));
 
 //
@@ -134,10 +227,146 @@ Dict::Add('EN US', 'English', 'English', array(
 
 
 //
-// Class: AppointmentTour
+// Class: AppointmentTax
 //
 
 Dict::Add('EN US', 'English', 'English', array(
 	'Class:AppointmentTax' => 'Appointment - Taxes',
 	'Class:AppointmentTax+' => '',
+));
+
+
+
+//
+// Class: AppointmentCityHall1
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall1' => 'Appointment - Bevolking',
+	'Class:AppointmentCityHall1+' => '',
+));
+
+
+//
+// Class: AppointmentCityHall2
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall2' => 'Appointment - Burgerlijke stand',
+	'Class:AppointmentCityHall2+' => '',
+	'Class:AppointmentCityHall2/Attribute:national_number' => 'National number',
+	'Class:AppointmentCityHall2/Attribute:national_number+' => '',
+));
+
+
+//
+// Class: AppointmentCityHall3
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall3' => 'Appointment - Vreemdelingen',
+	'Class:AppointmentCityHall3+' => '',
+));
+
+
+//
+// Class: AppointmentCityHall4
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall4' => 'Appointment - Ruimtelijke ordening',
+	'Class:AppointmentCityHall4+' => '',
+));
+
+//
+// Class: AppointmentCityHall5
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall5' => 'Appointment - Bibliotheek',
+	'Class:AppointmentCityHall5+' => '',
+));
+
+//
+// Class: AppointmentCityHall6
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall6' => 'Appointment - Sociaal huis',
+	'Class:AppointmentCityHall6+' => '',
+));
+
+
+//
+// Class: AppointmentCityHall7
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall7' => 'Appointment - Openbare werken',
+	'Class:AppointmentCityHall7+' => '',
+));
+
+//
+// Class: AppointmentCityHall8
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall8' => 'Appointment - Reserve',
+	'Class:AppointmentCityHall8+' => '',
+));
+
+
+//
+// Class: AppointmentCareCenter1
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCareCenter1' => 'Appointment - Matisse',
+	'Class:AppointmentCareCenter1+' => '',
+	'Class:AppointmentCareCenter1/Attribute:roomnumber' => 'Room number',
+	'Class:AppointmentCareCenter1/Attribute:roomnumber+' => '',
+));
+
+//
+// Class: AppointmentCareCenter2
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCareCenter2' => 'Appointment - Ensor',
+	'Class:AppointmentCareCenter2+' => '',
+	'Class:AppointmentCareCenter2/Attribute:roomnumber' => 'Room number',
+	'Class:AppointmentCareCenter2/Attribute:roomnumber+' => '',
+));
+
+//
+// Class: AppointmentCareCenter3
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCareCenter3' => 'Appointment - Delvaux',
+	'Class:AppointmentCareCenter3+' => '',
+	'Class:AppointmentCareCenter3/Attribute:roomnumber' => 'Room number',
+	'Class:AppointmentCareCenter3/Attribute:roomnumber+' => '',
+));
+
+//
+// Class: AppointmentCareCenter4
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCareCenter4' => 'Appointment - Picasso',
+	'Class:AppointmentCareCenter4+' => '',
+	'Class:AppointmentCareCenter4/Attribute:roomnumber' => 'Room number',
+	'Class:AppointmentCareCenter4/Attribute:roomnumber+' => '',
+));
+
+//
+// Class: AppointmentCareCenter5
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCareCenter5' => 'Appointment - Villa Van Gogh',
+	'Class:AppointmentCareCenter5+' => '',
+	'Class:AppointmentCareCenter5/Attribute:roomnumber' => 'Room number',
+	'Class:AppointmentCareCenter5/Attribute:roomnumber+' => '',
 ));

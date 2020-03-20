@@ -97,12 +97,93 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-      <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="redefine">
+   <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>46</rank>
      <enable_class>AppointmentTax</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
+   
+   <menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>47</rank>
+     <enable_class>AppointmentCityHall1</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+      <menu id="AppointmentCityHall2Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>48</rank>
+     <enable_class>AppointmentCityHall2</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall3Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>49</rank>
+     <enable_class>AppointmentCityHall3</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>50</rank>
+     <enable_class>AppointmentCityHall4</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall5Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>51</rank>
+     <enable_class>AppointmentCityHall5</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall6Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>52</rank>
+     <enable_class>AppointmentCityHall6</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall7Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>53</rank>
+     <enable_class>AppointmentCityHall7</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall8Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>54</rank>
+     <enable_class>AppointmentCityHall8</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   
+    <menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>55</rank>
+     <enable_class>AppointmentCareCenter1</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCareCenter2Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>56</rank>
+     <enable_class>AppointmentCareCenter2</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCareCenter3Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>57</rank>
+     <enable_class>AppointmentCareCenter3</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCareCenter4Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>58</rank>
+     <enable_class>AppointmentCareCenter4</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCareCenter5Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>59</rank>
+     <enable_class>AppointmentCareCenter5</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   
    <menu id="RoadworkRequestManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>42</rank>
      <enable_class>RoadworkRequest</enable_class>

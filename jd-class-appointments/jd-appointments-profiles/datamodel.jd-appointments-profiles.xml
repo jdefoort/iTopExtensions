@@ -30,6 +30,113 @@
 			  <class id="AppointmentTax"/>
 			</classes>
 		</group>
+		
+		<group id="AppointmentCityHall1" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall1"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall2" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall2"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall3" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall3"/>
+			</classes>
+		</group>	
+		<group id="AppointmentCityHall4" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall4"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall5" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall5"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall6" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall6"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall7" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall7"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall8" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall8"/>
+			</classes>
+		</group>
+		
+		<group id="AppointmentCareCenter1" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter1"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter2" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter2"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter3" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter3"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter4" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter4"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter5" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter5"/>
+			</classes>
+		</group>
+		
 	 
     </groups>
     <profiles>
@@ -134,6 +241,438 @@
 		  </group>	    
         </groups>
       </profile>
+	  
+	  <profile id="119" _delta="define">
+        <name>Appointment CityHall1 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall1">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  <profile id="120" _delta="define">
+        <name>Appointment CityHall2 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall2">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  <profile id="121" _delta="define">
+        <name>Appointment CityHall3 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall3">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  <profile id="122" _delta="define">
+        <name>Appointment CityHall4 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall4">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  	  <profile id="123" _delta="define">
+        <name>Appointment CityHall5 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall5">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  	  <profile id="124" _delta="define">
+        <name>Appointment CityHall6 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall6">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+		 </groups>
+		 </profile>
+		   <profile id="125" _delta="define">
+        <name>Appointment CityHall7 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall7">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>
+			</groups>
+			</profile>
+		 <profile id="126" _delta="define">
+        <name>Appointment CityHall8 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall8">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  
+	  <profile id="127" _delta="define">
+        <name>Appointment CareCenter1 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCareCenter1">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="128" _delta="define">
+        <name>Appointment CareCenter2 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCareCenter2">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="129" _delta="define">
+        <name>Appointment CareCenter3 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCareCenter3">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="130" _delta="define">
+        <name>Appointment CareCenter4 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCareCenter4">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="131" _delta="define">
+        <name>Appointment CareCenter5 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCareCenter5">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  
     </profiles>
   </user_rights>
 </itop_design>
