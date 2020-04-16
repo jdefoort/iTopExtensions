@@ -285,6 +285,8 @@ Dict::Add('EN US', 'English', 'English', array(
 Dict::Add('EN US', 'English', 'English', array(
 	'Class:AppointmentCityHall5' => 'Appointment - Bibliotheek',
 	'Class:AppointmentCityHall5+' => '',
+	'Class:AppointmentCityHall5/Attribute:national_number' => 'National number',
+	'Class:AppointmentCityHall5/Attribute:national_number+' => '',
 ));
 
 //

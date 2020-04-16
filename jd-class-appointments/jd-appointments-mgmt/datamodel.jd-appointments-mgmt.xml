@@ -111,28 +111,54 @@
 				</field>
 			</fields>
 			<methods>
-			<method id="OnInsert">
-              <static>false</static>
-              <access>protected</access>
-              <type>Overload-DBObject</type>
-              <code><![CDATA[
-    protected function OnInsert()
-	{
-		$this->Set('last_update', time());
-	}]]></code>
-            </method>
-            <method id="OnUpdate">
-              <static>false</static>
-              <access>protected</access>
-              <type>Overload-DBObject</type>
-              <code><![CDATA[
-    protected function OnUpdate()
-	{
-		$this->Set('last_update', time());
-	}]]></code>
-            </method>
-			
-			
+				<method id="OnInsert">
+				  <static>false</static>
+				  <access>protected</access>
+				  <type>Overload-DBObject</type>
+				  <code><![CDATA[
+		protected function OnInsert()
+		{
+			$this->Set('last_update', time());
+		}]]></code>
+				</method>
+				<method id="OnUpdate">
+				  <static>false</static>
+				  <access>protected</access>
+				  <type>Overload-DBObject</type>
+				  <code><![CDATA[
+		protected function OnUpdate()
+		{
+			$this->Set('last_update', time());
+		}]]></code>
+				</method>
+				<method id="GetAttributeFlags">
+					  <static>false</static>
+					  <access>public</access>
+					  <type>Overload-DBObject</type>
+					  <code><![CDATA[	public function GetAttributeFlags($sAttCode)
+						{
+							if(in_array($sAttCode, array("start_date", "last_update")))
+							{
+								return OPT_ATT_READONLY;
+							}
+							return parent::GetAttributeFlags($sAttCode);
+						}
+					]]></code>
+				</method>
+				<method id="GetInitialStateAttributeFlags">
+					  <static>false</static>
+					  <access>public</access>
+					  <type>Overload-DBObject</type>
+					  <code><![CDATA[	public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
+						{
+							if(in_array($sAttCode, array("start_date", "last_update")))
+							{
+								return OPT_ATT_READONLY;
+							}
+							return parent::GetAttributeFlags($sAttCode);
+						}
+					]]></code>
+				</method>			
 			</methods>
 
 			<presentation>
@@ -1142,14 +1168,20 @@
 					</attributes>
 				</reconciliation>
 			</properties>
-			<fields/>
+			<fields>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
 			<methods/>
 			<presentation>
 				<details>
 					<items>
 						<item id="col:col1">
 							<rank>10</rank>
-							<items>
+							<items> 
 								<item id="fieldset:Appointment:baseinfo">
 									<rank>10</rank>
 									<items>
@@ -1158,6 +1190,9 @@
 										</item>
 										<item id="person_id">
 											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
 										</item>
 										<item id="start_date">
 											<rank>20</rank>
@@ -2291,229 +2326,140 @@
 				</list>
 			</presentation>
 		</class>
-		
 	</classes>
- <menus>
-    <menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>42</rank>
-    </menu>
-	<menu id="NewAppointmentEnergy" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentEnergyMgmt</parent>
-      <class>AppointmentEnergy</class>
-    </menu>
-    <menu id="SearchAppointmentEnergy" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentEnergyMgmt</parent>
-      <class>AppointmentEnergy</class>
-    </menu>
-	    <menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>45</rank>
-    </menu>
-	<menu id="NewAppointmentTour" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentTourMgmt</parent>
-      <class>AppointmentTour</class>
-    </menu>
-    <menu id="SearchAppointmentTour" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentTourMgmt</parent>
-      <class>AppointmentTour</class>
-    </menu>
-	<menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>46</rank>
-    </menu>
-	<menu id="NewAppointmentTax" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentTaxMgmt</parent>
-      <class>AppointmentTax</class>
-    </menu>
-    <menu id="SearchAppointmentTax" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentTaxMgmt</parent>
-      <class>AppointmentTax</class>
-    </menu>
-	
-	
-	<menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>47</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall1" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall1Mgmt</parent>
-      <class>AppointmentCityHall1</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall1" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall1Mgmt</parent>
-      <class>AppointmentCityHall1</class>
-    </menu>
-	
-	<menu id="AppointmentCityHall2Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>48</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall2" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall2Mgmt</parent>
-      <class>AppointmentCityHall2</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall2" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall2Mgmt</parent>
-      <class>AppointmentCityHall2</class>
-    </menu>
-	
-	<menu id="AppointmentCityHall3Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>49</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall3" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall3Mgmt</parent>
-      <class>AppointmentCityHall3</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall3" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall3Mgmt</parent>
-      <class>AppointmentCityHall3</class>
-    </menu>
-	
-	
-	<menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>50</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall4" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall4Mgmt</parent>
-      <class>AppointmentCityHall4</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall4" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall4Mgmt</parent>
-      <class>AppointmentCityHall4</class>
-    </menu>
-	
-	<menu id="AppointmentCityHall5Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>51</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall5" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall5Mgmt</parent>
-      <class>AppointmentCityHall5</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall5" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall5Mgmt</parent>
-      <class>AppointmentCityHall5</class>
-    </menu>
-	
-	<menu id="AppointmentCityHall6Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>52</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall6" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall6Mgmt</parent>
-      <class>AppointmentCityHall6</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall6" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall6Mgmt</parent>
-      <class>AppointmentCityHall6</class>
-    </menu>
-	
-	<menu id="AppointmentCityHall7Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>53</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall7" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall7Mgmt</parent>
-      <class>AppointmentCityHall7</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall7" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall7Mgmt</parent>
-      <class>AppointmentCityHall7</class>
-    </menu>
+	 <menus>
+		<menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>42</rank>
+		</menu>
+		<menu id="SearchAppointmentEnergy" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentEnergyMgmt</parent>
+		  <class>AppointmentEnergy</class>
+		</menu>
+			<menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>45</rank>
+		</menu>
+		<menu id="SearchAppointmentTour" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentTourMgmt</parent>
+		  <class>AppointmentTour</class>
+		</menu>
+		<menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>46</rank>
+		</menu>
+		<menu id="SearchAppointmentTax" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentTaxMgmt</parent>
+		  <class>AppointmentTax</class>
+		</menu>
 		
-	<menu id="AppointmentCityHall8Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>54</rank>
-    </menu>
-	<menu id="NewAppointmentCityHall8" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCityHall8Mgmt</parent>
-      <class>AppointmentCityHall8</class>
-    </menu>
-    <menu id="SearchAppointmentCityHall8" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCityHall8Mgmt</parent>
-      <class>AppointmentCityHall8</class>
-    </menu>
-	
-	<menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>55</rank>
-    </menu>
-	<menu id="NewAppointmentCareCenter1" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCareCenter1Mgmt</parent>
-      <class>AppointmentCareCenter1</class>
-    </menu>
-    <menu id="SearchAppointmentCareCenter1" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCareCenter1Mgmt</parent>
-      <class>AppointmentCareCenter1</class>
-    </menu>
-	<menu id="AppointmentCareCenter2Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>56</rank>
-    </menu>
-	<menu id="NewAppointmentCareCenter2" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCareCenter2Mgmt</parent>
-      <class>AppointmentCareCenter2</class>
-    </menu>
-    <menu id="SearchAppointmentCareCenter2" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCareCenter2Mgmt</parent>
-      <class>AppointmentCareCenter2</class>
-    </menu>
-	<menu id="AppointmentCareCenter3Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>57</rank>
-    </menu>
-	<menu id="NewAppointmentCareCenter3" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCareCenter3Mgmt</parent>
-      <class>AppointmentCareCenter3</class>
-    </menu>
-    <menu id="SearchAppointmentCareCenter3" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCareCenter3Mgmt</parent>
-      <class>AppointmentCareCenter3</class>
-    </menu>
-	<menu id="AppointmentCareCenter4Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>58</rank>
-    </menu>
-	<menu id="NewAppointmentCareCenter4" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCareCenter4Mgmt</parent>
-      <class>AppointmentCareCenter4</class>
-    </menu>
-    <menu id="SearchAppointmentCareCenter4" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCareCenter4Mgmt</parent>
-      <class>AppointmentCareCenter4</class>
-    </menu>
-	<menu id="AppointmentCareCenter5Mgmt" xsi:type="MenuGroup" _delta="define">
-      <rank>59</rank>
-    </menu>
-	<menu id="NewAppointmentCareCenter5" xsi:type="NewObjectMenuNode" _delta="define">
-      <rank>15</rank>
-      <parent>AppointmentCareCenter5Mgmt</parent>
-      <class>AppointmentCareCenter5</class>
-    </menu>
-    <menu id="SearchAppointmentCareCenter5" xsi:type="SearchMenuNode" _delta="define">
-      <rank>20</rank>
-      <parent>AppointmentCareCenter5Mgmt</parent>
-      <class>AppointmentCareCenter5</class>
-    </menu>
-	
-  </menus>
+		
+		<menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>47</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall1" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall1Mgmt</parent>
+		  <class>AppointmentCityHall1</class>
+		</menu>
+		<menu id="AppointmentCityHall2Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>48</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall2" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall2Mgmt</parent>
+		  <class>AppointmentCityHall2</class>
+		</menu>
+		<menu id="AppointmentCityHall3Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>49</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall3" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall3Mgmt</parent>
+		  <class>AppointmentCityHall3</class>
+		</menu>	
+		<menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>50</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall4" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall4Mgmt</parent>
+		  <class>AppointmentCityHall4</class>
+		</menu>
+		<menu id="AppointmentCityHall5Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>51</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall5" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall5Mgmt</parent>
+		  <class>AppointmentCityHall5</class>
+		</menu>	
+		<menu id="AppointmentCityHall6Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>52</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall6" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall6Mgmt</parent>
+		  <class>AppointmentCityHall6</class>
+		</menu>	
+		<menu id="AppointmentCityHall7Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>53</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall7" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall7Mgmt</parent>
+		  <class>AppointmentCityHall7</class>
+		</menu>		
+		<menu id="AppointmentCityHall8Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>54</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall8" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall8Mgmt</parent>
+		  <class>AppointmentCityHall8</class>
+		</menu>
+		
+		<menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>55</rank>
+		</menu>
+		<menu id="SearchAppointmentCareCenter1" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCareCenter1Mgmt</parent>
+		  <class>AppointmentCareCenter1</class>
+		</menu>
+		<menu id="AppointmentCareCenter2Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>56</rank>
+		</menu>
+		<menu id="SearchAppointmentCareCenter2" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCareCenter2Mgmt</parent>
+		  <class>AppointmentCareCenter2</class>
+		</menu>
+		<menu id="AppointmentCareCenter3Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>57</rank>
+		</menu>
+		<menu id="SearchAppointmentCareCenter3" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCareCenter3Mgmt</parent>
+		  <class>AppointmentCareCenter3</class>
+		</menu>
+		<menu id="AppointmentCareCenter4Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>58</rank>
+		</menu>
+		<menu id="SearchAppointmentCareCenter4" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCareCenter4Mgmt</parent>
+		  <class>AppointmentCareCenter4</class>
+		</menu>
+		<menu id="AppointmentCareCenter5Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>59</rank>
+		</menu>
+		<menu id="SearchAppointmentCareCenter5" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCareCenter5Mgmt</parent>
+		  <class>AppointmentCareCenter5</class>
+		</menu>
+		
+	  </menus>
 
 </itop_design>

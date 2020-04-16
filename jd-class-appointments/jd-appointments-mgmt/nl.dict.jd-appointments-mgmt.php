@@ -283,6 +283,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall5' => 'Afspraak - Bibliotheek',
 	'Class:AppointmentCityHall5+' => '',
+	'Class:AppointmentCityHall5/Attribute:national_number' => 'Rijksregisternummer',
+	'Class:AppointmentCityHall5/Attribute:national_number+' => '',
 ));
 
 //
