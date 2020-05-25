@@ -104,12 +104,26 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 'Menu:SearchAppointmentCityHall7' => 'Zoek afspraak',
 'Menu:SearchAppointmentCityHall7+' => '',
 
-'Menu:AppointmentCityHall8Mgmt' => 'Afspraak - Reserve',
+'Menu:AppointmentCityHall8Mgmt' => 'Afspraak - TZC',
 'Menu:AppointmentCityHall8Mgmt+' => '',
 'Menu:NewAppointmentCityHall8' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCityHall8+' => '',
 'Menu:SearchAppointmentCityHall8' => 'Zoek afspraak',
 'Menu:SearchAppointmentCityHall8+' => '',
+
+'Menu:AppointmentCityHall9Mgmt' => 'Afspraak - Skatepark',
+'Menu:AppointmentCityHall9Mgmt+' => '',
+'Menu:NewAppointmentCityHall9' => 'Nieuwe afspraak',
+'Menu:NewAppointmentCityHall9+' => '',
+'Menu:SearchAppointmentCityHall9' => 'Zoek afspraak',
+'Menu:SearchAppointmentCityHall9+' => '',
+
+'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@Jeugd',
+'Menu:AppointmentCityHall10Mgmt+' => '',
+'Menu:NewAppointmentCityHall10' => 'Nieuwe afspraak',
+'Menu:NewAppointmentCityHall10+' => '',
+'Menu:SearchAppointmentCityHall10' => 'Zoek afspraak',
+'Menu:SearchAppointmentCityHall10+' => '',
 
 'Menu:AppointmentCareCenter1Mgmt' => 'Afspraak - Matisse',
 'Menu:AppointmentCareCenter1Mgmt+' => '',
@@ -195,6 +209,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Appointment/Attribute:ip+' => '',			
 	'Class:Appointment/Attribute:code' => 'Unieke code',
 	'Class:Appointment/Attribute:code+' => '',		
+	'Class:Appointment/Attribute:duration' => 'Duur',		
+	'Class:Appointment/Attribute:duration+' => 'Hoelang duurt de afspraak',		
 ));
 
 
@@ -225,7 +241,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 
 
 //
-// Class: AppointmentTour
+// Class: AppointmentTax
 //
 
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
@@ -242,6 +258,10 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall1' => 'Afspraak - Bevolking',
 	'Class:AppointmentCityHall1+' => '',
+	'Class:AppointmentCityHall1/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall1/Attribute:comment+' => '',
+	'Class:AppointmentCityHall1/Attribute:national_number' => 'Rijksregisternummer',
+	'Class:AppointmentCityHall1/Attribute:national_number+' => '',
 ));
 
 
@@ -254,6 +274,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall2+' => '',
 	'Class:AppointmentCityHall2/Attribute:national_number' => 'Rijksregisternummer',
 	'Class:AppointmentCityHall2/Attribute:national_number+' => '',
+	'Class:AppointmentCityHall2/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall2/Attribute:comment+' => '',
 ));
 
 
@@ -264,6 +286,10 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall3' => 'Afspraak - Vreemdelingen',
 	'Class:AppointmentCityHall3+' => '',
+	'Class:AppointmentCityHall3/Attribute:national_number' => 'Rijksregisternummer',
+	'Class:AppointmentCityHall3/Attribute:national_number+' => '',
+	'Class:AppointmentCityHall3/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall3/Attribute:comment+' => '',
 ));
 
 
@@ -274,6 +300,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall4' => 'Afspraak - Ruimtelijke ordening',
 	'Class:AppointmentCityHall4+' => '',
+	'Class:AppointmentCityHall4/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall4/Attribute:comment+' => '',
 ));
 
 //
@@ -285,6 +313,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall5+' => '',
 	'Class:AppointmentCityHall5/Attribute:national_number' => 'Rijksregisternummer',
 	'Class:AppointmentCityHall5/Attribute:national_number+' => '',
+	'Class:AppointmentCityHall5/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall5/Attribute:comment+' => '',
 ));
 
 //
@@ -294,6 +324,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall6' => 'Afspraak - Sociaal Huis',
 	'Class:AppointmentCityHall6+' => '',
+	'Class:AppointmentCityHall6/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall6/Attribute:comment+' => '',
 ));
 
 //
@@ -303,6 +335,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall7' => 'Afspraak - Openbare werken',
 	'Class:AppointmentCityHall7+' => '',
+	'Class:AppointmentCityHall7/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall7/Attribute:comment+' => '',
 ));
 
 //
@@ -310,9 +344,37 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 //
 
 Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
-	'Class:AppointmentCityHall8' => 'Afspraak - Reserve',
+	'Class:AppointmentCityHall8' => 'Afspraak - TZC',
 	'Class:AppointmentCityHall8+' => '',
+	'Class:AppointmentCityHall8/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall8/Attribute:comment+' => '',
 ));
+
+
+//
+// Class: AppointmentCityHall9
+//
+
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+	'Class:AppointmentCityHall9' => 'Afspraak - Skatepark',
+	'Class:AppointmentCityHall9+' => '',
+	'Class:AppointmentCityHall9/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall9/Attribute:comment+' => '',
+));
+
+//
+// Class: AppointmentCityHall10
+//
+
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+	'Class:AppointmentCityHall10' => 'Afspraak - Blok@Sport',
+	'Class:AppointmentCityHall10+' => '',
+	'Class:AppointmentCityHall10/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall10/Attribute:comment+' => '',
+));
+
+
+
 
 //
 // Class: AppointmentCareCenter1
@@ -323,6 +385,15 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCareCenter1+' => '',
 	'Class:AppointmentCareCenter1/Attribute:roomnumber' => 'Kamernummer',
 	'Class:AppointmentCareCenter1/Attribute:roomnumber+' => '',
+	'Class:AppointmentCareCenter1/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCareCenter1/Attribute:comment+' => '',
+	'Class:AppointmentCareCenter1/Attribute:location' => 'Babbelbox',
+	'Class:AppointmentCareCenter1/Attribute:location+' => '',
+	'Class:AppointmentCareCenter1/Attribute:location/Value:1' => 'Atrium',
+	'Class:AppointmentCareCenter1/Attribute:location/Value:1+' => '',	
+	'Class:AppointmentCareCenter1/Attribute:location/Value:2' => 'Cafetaria',
+	'Class:AppointmentCareCenter1/Attribute:location/Value:2+' => '',	
+	
 ));
 
 //
@@ -334,6 +405,14 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCareCenter2+' => '',
 	'Class:AppointmentCareCenter2/Attribute:roomnumber' => 'Kamernummer',
 	'Class:AppointmentCareCenter2/Attribute:roomnumber+' => '',
+	'Class:AppointmentCareCenter2/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCareCenter2/Attribute:comment+' => '',
+	'Class:AppointmentCareCenter2/Attribute:location' => 'Babbelbox',
+	'Class:AppointmentCareCenter2/Attribute:location+' => '',
+	'Class:AppointmentCareCenter2/Attribute:location/Value:1' => 'Atrium',
+	'Class:AppointmentCareCenter2/Attribute:location/Value:1+' => '',	
+	'Class:AppointmentCareCenter2/Attribute:location/Value:2' => 'Cafetaria',
+	'Class:AppointmentCareCenter2/Attribute:location/Value:2+' => '',	
 ));
 
 //
@@ -345,6 +424,14 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCareCenter3+' => '',
 	'Class:AppointmentCareCenter3/Attribute:roomnumber' => 'Kamernummer',
 	'Class:AppointmentCareCenter3/Attribute:roomnumber+' => '',
+	'Class:AppointmentCareCenter3/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCareCenter3/Attribute:comment+' => '',
+	'Class:AppointmentCareCenter3/Attribute:location' => 'Babbelbox',
+	'Class:AppointmentCareCenter3/Attribute:location+' => '',
+	'Class:AppointmentCareCenter3/Attribute:location/Value:1' => 'Atrium',
+	'Class:AppointmentCareCenter3/Attribute:location/Value:1+' => '',	
+	'Class:AppointmentCareCenter3/Attribute:location/Value:2' => 'Cafetaria',
+	'Class:AppointmentCareCenter3/Attribute:location/Value:2+' => '',	
 ));
 
 //
@@ -356,6 +443,14 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCareCenter4+' => '',
 	'Class:AppointmentCareCenter4/Attribute:roomnumber' => 'Kamernummer',
 	'Class:AppointmentCareCenter4/Attribute:roomnumber+' => '',
+	'Class:AppointmentCareCenter4/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCareCenter4/Attribute:comment+' => '',
+	'Class:AppointmentCareCenter4/Attribute:location' => 'Babbelbox',
+	'Class:AppointmentCareCenter4/Attribute:location+' => '',
+	'Class:AppointmentCareCenter4/Attribute:location/Value:1' => 'Atrium',
+	'Class:AppointmentCareCenter4/Attribute:location/Value:1+' => '',	
+	'Class:AppointmentCareCenter4/Attribute:location/Value:2' => 'Cafetaria',
+	'Class:AppointmentCareCenter4/Attribute:location/Value:2+' => '',	
 ));
 
 //
@@ -367,4 +462,12 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCareCenter5+' => '',
 	'Class:AppointmentCareCenter5/Attribute:roomnumber' => 'Kamernummer',
 	'Class:AppointmentCareCenter5/Attribute:roomnumber+' => '',
+	'Class:AppointmentCareCenter5/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCareCenter5/Attribute:comment+' => '',
+	'Class:AppointmentCareCenter5/Attribute:location' => 'Babbelbox',
+	'Class:AppointmentCareCenter5/Attribute:location+' => '',
+	'Class:AppointmentCareCenter5/Attribute:location/Value:1' => 'Atrium',
+	'Class:AppointmentCareCenter5/Attribute:location/Value:1+' => '',	
+	'Class:AppointmentCareCenter5/Attribute:location/Value:2' => 'Cafetaria',
+	'Class:AppointmentCareCenter5/Attribute:location/Value:2+' => '',	
 ));

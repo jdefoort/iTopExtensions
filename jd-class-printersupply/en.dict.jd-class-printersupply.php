@@ -9,9 +9,8 @@
 Dict::Add('EN US', 'English', 'English', array(
 	
 	// Dictionary entries go here
-	'PrinterSupplyStock:dates' => 'Dates',
-	'PrinterSupplyStock:in' => 'In',
-	'PrinterSupplyStock:out' => 'Out',
+	'PrinterSupply:in' => 'In',
+	'PrinterSupply:out' => 'Out',
 
 	'Class:PrinterSupplyType' => 'Supply type',
 	'Class:PrinterSupplyType+' => 'Supply type',
@@ -24,6 +23,8 @@ Dict::Add('EN US', 'English', 'English', array(
 
 	'Class:PrinterSupply' => 'PrinterSupply',
 	'Class:PrinterSupply+' => 'PrinterSupply',
+	'Class:PrinterSupply/Attribute:org_id' => 'Organization',
+	'Class:PrinterSupply/Attribute:org_id+' => 'The organization which owns this supply',
 	'Class:PrinterSupply/Attribute:printersupplytype_id' => 'Supply',
 	'Class:PrinterSupply/Attribute:printersupplytype_id+' => 'The printer supply',
 	'Class:PrinterSupply/Attribute:location_id' => 'Location',
@@ -33,7 +34,10 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:PrinterSupply/Attribute:date_delivery' => 'Date delivery',
 	'Class:PrinterSupply/Attribute:date_delivery+' => 'Date delivery',	
 	'Class:PrinterSupply/Attribute:date_out' => 'Date out',
-	'Class:PrinterSupply/Attribute:date_out+' => 'Date out',	
+	'Class:PrinterSupply/Attribute:date_out+' => 'Date out',
+
+	'PrinterSupply:in' => 'In',
+	'PrinterSupply:out' => 'Out',
 	
 	'Menu:SearchPrinterSupply' => 'Search for printer supplies',
 	'Menu:SearchPrinterSupply+' => 'Search for printer supplies',

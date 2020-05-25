@@ -9,9 +9,8 @@
 Dict::Add('NL NL', 'Dutch', 'Dutch', array(
 	
 	// Dictionary entries go here
-	'PrinterSupplyStock:dates' => 'Datums',
-	'PrinterSupplyStock:in' => 'In',
-	'PrinterSupplyStock:out' => 'Uit',
+	'PrinterSupply:in' => 'In',
+	'PrinterSupply:out' => 'Uit',
 
 	'Class:PrinterSupplyType' => 'Soort PrinterBenodigheid',
 	'Class:PrinterSupplyType+' => 'Soort PrinterBenodigheid',
@@ -24,6 +23,8 @@ Dict::Add('NL NL', 'Dutch', 'Dutch', array(
 
 	'Class:PrinterSupply' => 'PrinterBenodigheid',
 	'Class:PrinterSupply+' => 'PrinterBenodigheid',
+	'Class:PrinterSupply/Attribute:org_id' => 'Organisatie',
+	'Class:PrinterSupply/Attribute:org_id+' => 'De organisatie waar deze benodigdheid aan toebehoort',
 	'Class:PrinterSupply/Attribute:printersupplytype_id' => 'Benodigdheid',
 	'Class:PrinterSupply/Attribute:printersupplytype_id+' => 'De benodigdheid',
 	'Class:PrinterSupply/Attribute:location_id' => 'Locatie',
@@ -34,6 +35,9 @@ Dict::Add('NL NL', 'Dutch', 'Dutch', array(
 	'Class:PrinterSupply/Attribute:date_delivery+' => 'Datum levering',	
 	'Class:PrinterSupply/Attribute:date_out' => 'Datum uit',
 	'Class:PrinterSupply/Attribute:date_out+' => 'Datum uit',	
+
+	'PrinterSupply:in' => 'In',
+	'PrinterSupply:out' => 'Uit',
 	
 	'Menu:SearchPrinterSupply' => 'Zoek printerbenodigdheden',
 	'Menu:SearchPrinterSupply+' => 'Zoek printerbenodigdheden',

@@ -250,9 +250,13 @@
 					<attributes/>
 				</reconciliation>
 			</properties>
-
-
-			<fields>			
+			<fields>	
+				<field id="org_id" xsi:type="AttributeExternalKey">
+					<sql>org_id</sql>
+					<target_class>Organization</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>		
 				<field id="date_delivery" xsi:type="AttributeDateTime">
 					<sql>date_delivery</sql>
 					<is_null_allowed>true</is_null_allowed>  
@@ -289,6 +293,9 @@
 							<items>
 								<item id="fieldset:PrinterSupply:in">
 									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
 										<item id="printersupplytype_id">
 											<rank>10</rank>
 										</item>
@@ -321,6 +328,9 @@
 				</details>
 				<search>
 					<items>
+						<item id="org_id">
+							<rank>1</rank>
+						</item>
 						<item id="location_id">
 							<rank>5</rank>
 						</item>
@@ -331,6 +341,9 @@
 				</search>
 				<list>
 					<items>
+						<item id="org_id">
+							<rank>1</rank>
+						</item>
 						<item id="printersupplytype_id">
 							<rank>5</rank>
 						</item>
