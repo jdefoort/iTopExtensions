@@ -110,16 +110,10 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-      <menu id="AppointmentCityHall2Mgmt" xsi:type="MenuGroup" _delta="redefine">
+   <menu id="CouncilRequestManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>48</rank>
-     <enable_class>AppointmentCityHall2</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-   <menu id="AppointmentCityHall3Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>49</rank>
-     <enable_class>AppointmentCityHall3</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_class>CouncilRequest</enable_class>
+     <enable_action>UR_ACTION_READ</enable_action>
      <enable_stimulus/>
    </menu>
    <menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="redefine">
@@ -158,39 +152,10 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-   <menu id="AppointmentCityHall10Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>62</rank>
-     <enable_class>AppointmentCityHall10</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>   
+   
     <menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>55</rank>
      <enable_class>AppointmentCareCenter1</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-   <menu id="AppointmentCareCenter2Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>56</rank>
-     <enable_class>AppointmentCareCenter2</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-   <menu id="AppointmentCareCenter3Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>57</rank>
-     <enable_class>AppointmentCareCenter3</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-   <menu id="AppointmentCareCenter4Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>58</rank>
-     <enable_class>AppointmentCareCenter4</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-   <menu id="AppointmentCareCenter5Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>59</rank>
-     <enable_class>AppointmentCareCenter5</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>

@@ -334,7 +334,7 @@
 				  <static>false</static>
 				  <access>public</access>
 				  <type>Overload-DBObject</type>
-				  <code><![CDATA[	public function GetAttributeFlags($sAttCode)
+				  <code><![CDATA[	public function GetAttributeFlags($sAttCode, &$aReasons = Array(), $sTargetState = '')
 		{
 			if($sAttCode == 'short_description')
 			{

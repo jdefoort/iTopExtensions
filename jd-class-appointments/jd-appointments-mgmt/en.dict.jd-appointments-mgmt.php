@@ -63,6 +63,30 @@ Dict::Add('EN US', 'English', 'English', array(
 'Menu:SearchAppointmentCityHall1' => 'Search appointment',
 'Menu:SearchAppointmentCityHall1+' => '',
 
+'Menu:ShortcutCityHall1' => 'From now on',
+'Menu:ShortcutCityHall1+' => '',
+'Menu:SearchNowAppointmentCityHall1' => 'Bevolking',
+'Menu:SearchNowAppointmentCityHall1+' => '',
+'Menu:SearchNowAppointmentCityHall2' => 'Burgerlijke stand',
+'Menu:SearchNowAppointmentCityHall2+' => '',
+'Menu:SearchNowAppointmentCityHall3' => 'Vreemdelingen',
+'Menu:SearchNowAppointmentCityHall3+' => '',
+'Menu:SearchNowAppointmentCityHall11' => 'Rijbewijzen',
+'Menu:SearchNowAppointmentCityHall11+' => '',
+
+'Menu:SearchNowAppointmentCityHall4' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall4+' => '',
+'Menu:SearchNowAppointmentCityHall5' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall5+' => '',
+'Menu:SearchNowAppointmentCityHall6' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall6+' => '',
+'Menu:SearchNowAppointmentCityHall7' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall7+' => '',
+'Menu:SearchNowAppointmentCityHall8' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall8+' => '',
+
+
+
 'Menu:AppointmentCityHall2Mgmt' => 'Afspraak - Burgerlijke stand',
 'Menu:AppointmentCityHall2Mgmt+' => '',
 'Menu:NewAppointmentCityHall2' => 'New appointment',
@@ -119,6 +143,13 @@ Dict::Add('EN US', 'English', 'English', array(
 'Menu:SearchAppointmentCityHall9' => 'Search appointment',
 'Menu:SearchAppointmentCityHall9+' => '',
 
+'Menu:ShortcutCityHall2' => 'From now on',
+'Menu:ShortcutCityHall2+' => '',
+'Menu:SearchNowAppointmentCityHall9' => 'Skatepark',
+'Menu:SearchNowAppointmentCityHall9+' => '',
+'Menu:SearchNowAppointmentCityHall10' => 'Blok@ISO',
+'Menu:SearchNowAppointmentCityHall10+' => '',
+
 'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@Jeugd',
 'Menu:AppointmentCityHall10Mgmt+' => '',
 'Menu:NewAppointmentCityHall10' => 'New appointment',
@@ -126,12 +157,34 @@ Dict::Add('EN US', 'English', 'English', array(
 'Menu:SearchAppointmentCityHall10' => 'Search appointment',
 'Menu:SearchAppointmentCityHall10+' => '',
 
+'Menu:AppointmentCityHall11Mgmt' => 'Afspraak - Rijbewijzen',
+'Menu:AppointmentCityHall11Mgmt+' => '',
+'Menu:NewAppointmentCityHall11' => 'New appointment',
+'Menu:NewAppointmentCityHall11+' => '',
+'Menu:SearchAppointmentCityHall11' => 'Search appointment',
+'Menu:SearchAppointmentCityHall11+' => '',
+
 'Menu:AppointmentCareCenter1Mgmt' => 'Afspraak - Matisse',
 'Menu:AppointmentCareCenter1Mgmt+' => '',
 'Menu:NewAppointmentCareCenter1' => 'New appointment',
 'Menu:NewAppointmentCareCenter1+' => '',
 'Menu:SearchAppointmentCareCenter1' => 'Search appointment',
 'Menu:SearchAppointmentCareCenter1+' => '',
+
+'Menu:ShortcutCareCenter1' => 'Bekijk vanaf nu',
+'Menu:ShortcutCareCenter1+' => '',
+'Menu:SearchNowCareCenter1' => 'Matisse',
+'Menu:SearchNowCareCenter1+' => '',
+'Menu:SearchNowCareCenter2' => 'Ensor',
+'Menu:SearchNowCareCenter2+' => '',
+'Menu:SearchNowCareCenter3' => 'Delvaux',
+'Menu:SearchNowCareCenter3+' => '',
+'Menu:SearchNowCareCenter4' => 'Picasso',
+'Menu:SearchNowCareCenter4+' => '',
+'Menu:SearchNowCareCenter5' => 'Villa Van Gogh',
+'Menu:SearchNowCareCenter5+' => '',
+
+
 
 'Menu:AppointmentCareCenter2Mgmt' => 'Afspraak - Ensor',
 'Menu:AppointmentCareCenter2Mgmt+' => '',
@@ -258,7 +311,7 @@ Dict::Add('EN US', 'English', 'English', array(
 //
 
 Dict::Add('EN US', 'English', 'English', array(
-	'Class:AppointmentCityHall1' => 'Appointment - Bevolking',
+	'Class:AppointmentCityHall1' => 'Appointment - Burgerzaken',
 	'Class:AppointmentCityHall1+' => '',
 	'Class:AppointmentCityHall1/Attribute:comment' => 'Comments',
 	'Class:AppointmentCityHall1/Attribute:comment+' => '',
@@ -358,10 +411,12 @@ Dict::Add('EN US', 'English', 'English', array(
 //
 
 Dict::Add('EN US', 'English', 'English', array(
-	'Class:AppointmentCityHall9' => 'Appointment - TZC',
+	'Class:AppointmentCityHall9' => 'Appointment - Skatepark',
 	'Class:AppointmentCityHall9+' => '',
 	'Class:AppointmentCityHall9/Attribute:comment' => 'Comments',
 	'Class:AppointmentCityHall9/Attribute:comment+' => '',
+	'Class:AppointmentCityHall9/Attribute:national_number' => 'National number',
+	'Class:AppointmentCityHall9/Attribute:national_number+' => '',
 ));
 
 //
@@ -369,11 +424,28 @@ Dict::Add('EN US', 'English', 'English', array(
 //
 
 Dict::Add('EN US', 'English', 'English', array(
-	'Class:AppointmentCityHall10' => 'Appointment - TZC',
+	'Class:AppointmentCityHall10' => 'Appointment - Blok@Jeugd',
 	'Class:AppointmentCityHall10+' => '',
 	'Class:AppointmentCityHall10/Attribute:comment' => 'Comments',
 	'Class:AppointmentCityHall10/Attribute:comment+' => '',
+	'Class:AppointmentCityHall10/Attribute:national_number' => 'National number',
+	'Class:AppointmentCityHall10/Attribute:national_number+' => '',
 ));
+
+
+//
+// Class: AppointmentCityHall11
+//
+
+Dict::Add('EN US', 'English', 'English', array(
+	'Class:AppointmentCityHall11' => 'Appointment - Rijbewijzen',
+	'Class:AppointmentCityHall11+' => '',
+	'Class:AppointmentCityHall11/Attribute:comment' => 'Comments',
+	'Class:AppointmentCityHall11/Attribute:comment+' => '',
+	'Class:AppointmentCityHall11/Attribute:national_number' => 'National number',
+	'Class:AppointmentCityHall11/Attribute:national_number+' => '',
+));
+
 
 
 

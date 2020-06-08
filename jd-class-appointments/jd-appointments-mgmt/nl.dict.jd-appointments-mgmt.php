@@ -55,25 +55,47 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 'Menu:SearchAppointmentTax' => 'Zoek afspraak',
 'Menu:SearchAppointmentTax+' => '',
 
-'Menu:AppointmentCityHall1Mgmt' => 'Afspraak - Bevolking',
+'Menu:AppointmentCityHall1Mgmt' => 'Afspraak - Burgerzaken',
 'Menu:AppointmentCityHall1Mgmt+' => '',
 'Menu:NewAppointmentCityHall1' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCityHall1+' => '',
-'Menu:SearchAppointmentCityHall1' => 'Zoek afspraak',
+'Menu:SearchAppointmentCityHall1' => 'Zoek bevolking',
 'Menu:SearchAppointmentCityHall1+' => '',
+
+'Menu:ShortcutCityHall1' => 'Toekomstige afspraken',
+'Menu:ShortcutCityHall1+' => '',
+'Menu:SearchNowAppointmentCityHall1' => 'Bevolking',
+'Menu:SearchNowAppointmentCityHall1+' => '',
+'Menu:SearchNowAppointmentCityHall2' => 'Burgerlijke stand',
+'Menu:SearchNowAppointmentCityHall2+' => '',
+'Menu:SearchNowAppointmentCityHall3' => 'Vreemdelingen',
+'Menu:SearchNowAppointmentCityHall3+' => '',
+'Menu:SearchNowAppointmentCityHall11' => 'Rijbewijzen',
+'Menu:SearchNowAppointmentCityHall11+' => '',
+
+'Menu:SearchNowAppointmentCityHall4' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall4+' => '',
+'Menu:SearchNowAppointmentCityHall5' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall5+' => '',
+'Menu:SearchNowAppointmentCityHall6' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall6+' => '',
+'Menu:SearchNowAppointmentCityHall7' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall7+' => '',
+'Menu:SearchNowAppointmentCityHall8' => 'Toekomstige afspraken',
+'Menu:SearchNowAppointmentCityHall8+' => '',
 
 'Menu:AppointmentCityHall2Mgmt' => 'Afspraak - Burgerlijke stand',
 'Menu:AppointmentCityHall2Mgmt+' => '',
 'Menu:NewAppointmentCityHall2' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCityHall2+' => '',
-'Menu:SearchAppointmentCityHall2' => 'Zoek afspraak',
+'Menu:SearchAppointmentCityHall2' => 'Zoek burgerlijke stand',
 'Menu:SearchAppointmentCityHall2+' => '',
 
 'Menu:AppointmentCityHall3Mgmt' => 'Afspraak - Vreemdelingen',
 'Menu:AppointmentCityHall3Mgmt+' => '',
 'Menu:NewAppointmentCityHall3' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCityHall3+' => '',
-'Menu:SearchAppointmentCityHall3' => 'Zoek afspraak',
+'Menu:SearchAppointmentCityHall3' => 'Zoek vreemdelingen',
 'Menu:SearchAppointmentCityHall3+' => '',
 
 'Menu:AppointmentCityHall4Mgmt' => 'Afspraak - Ruimtelijke ordening',
@@ -111,53 +133,84 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 'Menu:SearchAppointmentCityHall8' => 'Zoek afspraak',
 'Menu:SearchAppointmentCityHall8+' => '',
 
-'Menu:AppointmentCityHall9Mgmt' => 'Afspraak - Skatepark',
+'Menu:AppointmentCityHall9Mgmt' => 'Afspraak - Jeugd',
 'Menu:AppointmentCityHall9Mgmt+' => '',
 'Menu:NewAppointmentCityHall9' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCityHall9+' => '',
-'Menu:SearchAppointmentCityHall9' => 'Zoek afspraak',
+'Menu:SearchAppointmentCityHall9' => 'Zoek Skatepark',
 'Menu:SearchAppointmentCityHall9+' => '',
+
+'Menu:ShortcutCityHall2' => 'Toekomstige afspraken',
+'Menu:ShortcutCityHall2+' => '',
+'Menu:SearchNowAppointmentCityHall9' => 'Skatepark',
+'Menu:SearchNowAppointmentCityHall9+' => '',
+'Menu:SearchNowAppointmentCityHall10' => 'Blok@ISO',
+'Menu:SearchNowAppointmentCityHall10+' => '',
+
+
 
 'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@Jeugd',
 'Menu:AppointmentCityHall10Mgmt+' => '',
 'Menu:NewAppointmentCityHall10' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCityHall10+' => '',
-'Menu:SearchAppointmentCityHall10' => 'Zoek afspraak',
+'Menu:SearchAppointmentCityHall10' => 'Zoek Blok@ISO',
 'Menu:SearchAppointmentCityHall10+' => '',
 
-'Menu:AppointmentCareCenter1Mgmt' => 'Afspraak - Matisse',
+'Menu:AppointmentCityHall11Mgmt' => 'Afspraak - Rijbewijzen',
+'Menu:AppointmentCityHall11Mgmt+' => '',
+'Menu:NewAppointmentCityHall11' => 'Nieuwe afspraak',
+'Menu:NewAppointmentCityHall11+' => '',
+'Menu:SearchAppointmentCityHall11' => 'Zoek rijbewijs',
+'Menu:SearchAppointmentCityHall11+' => '',
+
+
+'Menu:AppointmentCareCenter1Mgmt' => 'Afspraak - Woonzorgcentrum',
 'Menu:AppointmentCareCenter1Mgmt+' => '',
 'Menu:NewAppointmentCareCenter1' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCareCenter1+' => '',
-'Menu:SearchAppointmentCareCenter1' => 'Zoek afspraak',
+'Menu:SearchAppointmentCareCenter1' => 'Zoek Matisse',
 'Menu:SearchAppointmentCareCenter1+' => '',
+
+'Menu:ShortcutCareCenter1' => 'Toekomstige afspraken',
+'Menu:ShortcutCareCenter1+' => '',
+'Menu:SearchNowCareCenter1' => 'Matisse',
+'Menu:SearchNowCareCenter1+' => '',
+'Menu:SearchNowCareCenter2' => 'Ensor',
+'Menu:SearchNowCareCenter2+' => '',
+'Menu:SearchNowCareCenter3' => 'Delvaux',
+'Menu:SearchNowCareCenter3+' => '',
+'Menu:SearchNowCareCenter4' => 'Picasso',
+'Menu:SearchNowCareCenter4+' => '',
+'Menu:SearchNowCareCenter5' => 'Villa Van Gogh',
+'Menu:SearchNowCareCenter5+' => '',
+
 
 'Menu:AppointmentCareCenter2Mgmt' => 'Afspraak - Ensor',
 'Menu:AppointmentCareCenter2Mgmt+' => '',
 'Menu:NewAppointmentCareCenter2' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCareCenter2+' => '',
-'Menu:SearchAppointmentCareCenter2' => 'Zoek afspraak',
+'Menu:SearchAppointmentCareCenter2' => 'Zoek Ensor',
 'Menu:SearchAppointmentCareCenter2+' => '',
 
 'Menu:AppointmentCareCenter3Mgmt' => 'Afspraak - Delvaux',
 'Menu:AppointmentCareCenter3Mgmt+' => '',
 'Menu:NewAppointmentCareCenter3' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCareCenter3+' => '',
-'Menu:SearchAppointmentCareCenter3' => 'Zoek afspraak',
+'Menu:SearchAppointmentCareCenter3' => 'Zoek Delvaux',
 'Menu:SearchAppointmentCareCenter3+' => '',
 
 'Menu:AppointmentCareCenter4Mgmt' => 'Afspraak - Picasso',
 'Menu:AppointmentCareCenter4Mgmt+' => '',
 'Menu:NewAppointmentCareCenter4' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCareCenter4+' => '',
-'Menu:SearchAppointmentCareCenter4' => 'Zoek afspraak',
+'Menu:SearchAppointmentCareCenter4' => 'Zoek Picasso',
 'Menu:SearchAppointmentCareCenter4+' => '',
 
 'Menu:AppointmentCareCenter5Mgmt' => 'Afspraak - Villa Van Gogh',
 'Menu:AppointmentCareCenter5Mgmt+' => '',
 'Menu:NewAppointmentCareCenter5' => 'Nieuwe afspraak',
 'Menu:NewAppointmentCareCenter5+' => '',
-'Menu:SearchAppointmentCareCenter5' => 'Zoek afspraak',
+'Menu:SearchAppointmentCareCenter5' => 'Zoek Villa Van Gogh',
 'Menu:SearchAppointmentCareCenter5+' => '',
 
 ));
@@ -360,6 +413,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall9+' => '',
 	'Class:AppointmentCityHall9/Attribute:comment' => 'Opmerkingen',
 	'Class:AppointmentCityHall9/Attribute:comment+' => '',
+	'Class:AppointmentCityHall9/Attribute:national_number' => 'Rijksregisternummer',
+	'Class:AppointmentCityHall9/Attribute:national_number+' => '',
 ));
 
 //
@@ -371,7 +426,24 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall10+' => '',
 	'Class:AppointmentCityHall10/Attribute:comment' => 'Opmerkingen',
 	'Class:AppointmentCityHall10/Attribute:comment+' => '',
+	'Class:AppointmentCityHall10/Attribute:national_number' => 'Rijksregisternummer',
+	'Class:AppointmentCityHall10/Attribute:national_number+' => '',
 ));
+
+
+//
+// Class: AppointmentCityHall11
+//
+
+Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
+	'Class:AppointmentCityHall11' => 'Afspraak - Rijbewijzen',
+	'Class:AppointmentCityHall11+' => '',
+	'Class:AppointmentCityHall11/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall11/Attribute:comment+' => '',
+	'Class:AppointmentCityHall11/Attribute:national_number' => 'Rijksregisternummer',
+	'Class:AppointmentCityHall11/Attribute:national_number+' => '',
+));
+
 
 
 
