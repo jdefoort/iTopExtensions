@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.6">
+	<!-- Naming trick applied: specify attributes => forces translation. But translation does not contain the %1$s variable -->
   <classes>
 		<class id="Appointment" _delta="define">
 			<parent>cmdbAbstractObject</parent>
@@ -16,11 +17,6 @@
 				<db_table>appointment</db_table>
 				<db_key_field>id</db_key_field>
 				<db_final_class_field>finalclass</db_final_class_field>
-				<naming>
-					<attributes>
-						<attribute id="name"/>
-					</attributes>
-				</naming>
 				<order>
 					<columns>
 						<column id="start_date" ascending="true">
@@ -31,19 +27,18 @@
 				<icon/>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>				
 						<attribute id="finalclass"/>
 					</attributes>
 				</reconciliation>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
 			</properties>
 			<fields>
-				<field id="name" xsi:type="AttributeString">
-					<sql>name</sql>
-					<default_value/>
-					<is_null_allowed>true</is_null_allowed>
-				</field>
 				<field id="org_id" xsi:type="AttributeExternalKey">
 					  <sql>org_id</sql>
 					  <target_class>Organization</target_class>
@@ -148,7 +143,7 @@
 					  <type>Overload-DBObject</type>
 					  <code><![CDATA[	public function GetAttributeFlags($sAttCode, &$aReasons = Array(), $sTargetState = '')
 						{
-							if(in_array($sAttCode, array("start_date", "last_update", "duration")))
+							if(in_array($sAttCode, array('start_date', 'last_update', 'duration')))
 							{
 								return OPT_ATT_READONLY;
 							}
@@ -162,7 +157,7 @@
 					  <type>Overload-DBObject</type>
 					  <code><![CDATA[	public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
 						{
-							if(in_array($sAttCode, array("start_date", "last_update", "duration")))
+							if(in_array($sAttCode, array('start_date', 'last_update', 'duration')))
 							{
 								return OPT_ATT_READONLY;
 							}
@@ -175,9 +170,6 @@
 			<presentation>
 				<details>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="org_id">
 							<rank>20</rank>
 						</item>
@@ -219,9 +211,6 @@
 				<!-- default_search MOET hier verplicht iets hebben default_search/ zorgt voor een foutmelding in the compiler -->
 				<default_search>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="person_id">
 							<rank>20</rank>
 						</item>
@@ -232,9 +221,6 @@
 				</default_search>
 				<search>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="person_id">
 							<rank>20</rank>
 						</item>
@@ -245,9 +231,6 @@
 				</search>
 				<list>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="person_id">
 							<rank>20</rank>
 						</item>
@@ -268,7 +251,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -280,7 +265,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -400,7 +384,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -412,7 +398,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -532,7 +517,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -544,7 +531,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -666,7 +652,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -678,7 +666,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -819,7 +806,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -831,7 +820,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -972,7 +960,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -984,7 +974,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -1125,7 +1114,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -1137,7 +1128,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -1269,7 +1259,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -1281,7 +1273,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -1421,7 +1412,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -1433,7 +1426,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -1565,7 +1557,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -1577,7 +1571,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -1709,7 +1702,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -1721,7 +1716,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -1853,7 +1847,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -1865,7 +1861,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -2005,7 +2000,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -2017,7 +2014,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -2157,7 +2153,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -2169,7 +2167,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -2312,7 +2309,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -2324,7 +2323,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -2476,7 +2474,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -2488,7 +2488,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -2640,7 +2639,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -2652,7 +2653,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -2804,7 +2804,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -2816,7 +2818,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
@@ -2968,7 +2969,9 @@
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
-					<attributes/>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
 				</naming>
 				<order>
 					<columns>
@@ -2980,7 +2983,6 @@
 				<icon>images/appointment.png</icon>
 				<reconciliation>
 					<attributes>
-						<attribute id="name"/>
 						<attribute id="org_id"/>
 						<attribute id="org_name"/>
 						<attribute id="person_id"/>
