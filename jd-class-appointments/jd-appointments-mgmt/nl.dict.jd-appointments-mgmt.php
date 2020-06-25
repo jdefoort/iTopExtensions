@@ -437,7 +437,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:1+' => '',
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:2' => 'Groep',
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:2+' => '',
-	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => 'Club',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:3' => 'Club',
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => '',
 	'Class:AppointmentCityHall12/Attribute:club' => 'Clubnaam',	
 	'Class:AppointmentCityHall12/Attribute:club+' => '',	

@@ -439,7 +439,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:1+' => '',
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:2' => 'Group',
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:2+' => '',
-	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => 'Club',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:3' => 'Club',
 	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => '',
 	'Class:AppointmentCityHall12/Attribute:club' => 'Clubname',	
 	'Class:AppointmentCityHall12/Attribute:club+' => '',	

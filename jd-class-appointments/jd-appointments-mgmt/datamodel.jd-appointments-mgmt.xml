@@ -2427,10 +2427,10 @@
 								<item id="fieldset:Appointment:moreinfo">
 									<rank>20</rank>
 									<items>
-										<item id="last_update">
+										<item id="club">
 											<rank>10</rank>
 										</item>
-										<item id="club">
+										<item id="last_update">
 											<rank>20</rank>
 										</item>
 									</items>
