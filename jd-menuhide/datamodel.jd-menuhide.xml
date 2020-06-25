@@ -116,6 +116,12 @@
      <enable_action>UR_ACTION_READ</enable_action>
      <enable_stimulus/>
    </menu>
+   <menu id="ClimatePublicationManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>49</rank>
+     <enable_class>ClimatePublication</enable_class>
+     <enable_action>UR_ACTION_READ</enable_action>
+     <enable_stimulus/>
+   </menu>   
    <menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>50</rank>
      <enable_class>AppointmentCityHall4</enable_class>
@@ -143,6 +149,12 @@
    <menu id="AppointmentCityHall8Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>54</rank>
      <enable_class>AppointmentCityHall8</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall12Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>56</rank>
+     <enable_class>AppointmentCityHall12</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>

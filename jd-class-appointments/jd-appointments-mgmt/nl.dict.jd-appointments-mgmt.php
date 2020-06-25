@@ -163,7 +163,15 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:NewAppointmentCityHall11+' => '',
 	'Menu:SearchAppointmentCityHall11' => 'Zoek rijbewijs',
 	'Menu:SearchAppointmentCityHall11+' => '',
-
+	
+	'Menu:AppointmentCityHall12Mgmt' => 'Afspraak - Trailercup',
+	'Menu:AppointmentCityHall12Mgmt+' => '',
+	'Menu:NewAppointmentCityHall12' => 'Nieuwe afspraak',
+	'Menu:NewAppointmentCityHall12+' => '',
+	'Menu:SearchAppointmentCityHall12' => 'Zoek afspraak',
+	'Menu:SearchAppointmentCityHall12+' => '',
+	'Menu:SearchNowAppointmentCityHall12' => 'Toekomstige afspraken',
+	'Menu:SearchNowAppointmentCityHall12+' => '',
 
 	'Menu:AppointmentCareCenter1Mgmt' => 'Afspraak - Woonzorgcentrum',
 	'Menu:AppointmentCareCenter1Mgmt+' => '',
@@ -401,6 +409,48 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall11/Attribute:comment+' => '',
 	'Class:AppointmentCityHall11/Attribute:national_number' => 'Rijksregisternummer',
 	'Class:AppointmentCityHall11/Attribute:national_number+' => '',
+	
+	
+//
+// Class: AppointmentCityHall12
+//
+	'Class:AppointmentCityHall12' => 'Afspraak - Trailercup',
+	'Class:AppointmentCityHall12+' => '',
+	'Class:AppointmentCityHall12/Name' => '%1$s',
+	'Class:AppointmentCityHall12/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCityHall12/Attribute:comment+' => '',
+	'Class:AppointmentCityHall12/Attribute:national_number' => 'Rijksregisternummer',
+	'Class:AppointmentCityHall12/Attribute:national_number+' => '',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch' => 'Sporttak',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch+' => '',	
+	'Class:AppointmentCityHall12/Attribute:gender' => 'Geslacht',	
+	'Class:AppointmentCityHall12/Attribute:gender+' => '',	
+	'Class:AppointmentCityHall12/Attribute:gender/Value:0' => 'Man',
+	'Class:AppointmentCityHall12/Attribute:gender/Value:0+' => '',
+	'Class:AppointmentCityHall12/Attribute:gender/Value:1' => 'Vrouw',
+	'Class:AppointmentCityHall12/Attribute:gender/Value:1+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type' => 'Type',	
+	'Class:AppointmentCityHall12/Attribute:group_type+' => '',		
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:0' => 'Min 16',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:0+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:1' => 'Plus 16',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:1+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:2' => 'Groep',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:2+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => 'Club',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => '',
+	'Class:AppointmentCityHall12/Attribute:club' => 'Clubnaam',	
+	'Class:AppointmentCityHall12/Attribute:club+' => '',	
+	'Class:AppointmentCityHall12/Attribute:first_name' => 'Voornaam',	
+	'Class:AppointmentCityHall12/Attribute:first_name+' => '',	
+	'Class:AppointmentCityHall12/Attribute:last_name' => 'Achternaam',	
+	'Class:AppointmentCityHall12/Attribute:last_name+' => '',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch2' => 'Sporttak',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch2+' => '',
+	'Appointment:person2' => 'Tweede persoon: info',	
+	
+	
+
 	
 //
 // Class: AppointmentCareCenter1

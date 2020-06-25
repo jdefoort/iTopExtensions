@@ -551,6 +551,9 @@
 							<attribute id="servicesubcategory_id">
 								<must_prompt/>
 							</attribute>
+							<attribute id="publishstate">
+								<must_prompt/>
+							</attribute>
 							<attribute id="parent_request_id">
 								<read_only/>
 							</attribute>

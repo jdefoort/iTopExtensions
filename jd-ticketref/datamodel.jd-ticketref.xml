@@ -68,6 +68,10 @@
 						$sFormat = 'WW-%06d';
 						break;
 						
+						case 'CouncilRequest':
+						$sFormat = 'GR-%06d';
+						break;
+						
                         default:
                         $sFormat = 'T-%06d';
                 }

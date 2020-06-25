@@ -163,6 +163,16 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Menu:NewAppointmentCityHall11+' => '',
 	'Menu:SearchAppointmentCityHall11' => 'Search appointment',
 	'Menu:SearchAppointmentCityHall11+' => '',
+	
+	'Menu:AppointmentCityHall12Mgmt' => 'Afspraak - Trailercup',
+	'Menu:AppointmentCityHall12Mgmt+' => '',
+	'Menu:NewAppointmentCityHall12' => 'New appointment',
+	'Menu:NewAppointmentCityHall12+' => '',
+	'Menu:SearchAppointmentCityHall12' => 'Search appointment',
+	'Menu:SearchAppointmentCityHall12+' => '',
+	'Menu:SearchNowAppointmentCityHall12' => 'Toekomstige afspraken',
+	'Menu:SearchNowAppointmentCityHall12+' => '',
+	
 
 	'Menu:AppointmentCareCenter1Mgmt' => 'Afspraak - Matisse',
 	'Menu:AppointmentCareCenter1Mgmt+' => '',
@@ -400,6 +410,47 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:AppointmentCityHall11/Attribute:comment+' => '',
 	'Class:AppointmentCityHall11/Attribute:national_number' => 'National number',
 	'Class:AppointmentCityHall11/Attribute:national_number+' => '',
+	
+	
+	
+//
+// Class: AppointmentCityHall12
+//
+	'Class:AppointmentCityHall12' => 'Afspraak - Trailercup',
+	'Class:AppointmentCityHall12+' => '',
+	'Class:AppointmentCityHall12/Name' => '%1$s',
+	'Class:AppointmentCityHall12/Attribute:comment' => 'Comments',
+	'Class:AppointmentCityHall12/Attribute:comment+' => '',
+	'Class:AppointmentCityHall12/Attribute:national_number' => 'National number',
+	'Class:AppointmentCityHall12/Attribute:national_number+' => '',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch' => 'Sports branch',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch+' => '',	
+	'Class:AppointmentCityHall12/Attribute:gender' => 'Gender',	
+	'Class:AppointmentCityHall12/Attribute:gender+' => '',	
+	'Class:AppointmentCityHall12/Attribute:gender/Value:0' => 'Male',
+	'Class:AppointmentCityHall12/Attribute:gender/Value:0+' => '',
+	'Class:AppointmentCityHall12/Attribute:gender/Value:1' => 'Female',
+	'Class:AppointmentCityHall12/Attribute:gender/Value:1+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type' => 'Type',	
+	'Class:AppointmentCityHall12/Attribute:group_type+' => '',		
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:0' => 'Min 16',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:0+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:1' => 'Plus 16',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:1+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:2' => 'Group',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:2+' => '',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => 'Club',
+	'Class:AppointmentCityHall12/Attribute:group_type/Value:3+' => '',
+	'Class:AppointmentCityHall12/Attribute:club' => 'Clubname',	
+	'Class:AppointmentCityHall12/Attribute:club+' => '',	
+	'Class:AppointmentCityHall12/Attribute:first_name' => 'First name',	
+	'Class:AppointmentCityHall12/Attribute:first_name+' => '',	
+	'Class:AppointmentCityHall12/Attribute:last_name' => 'Last name',	
+	'Class:AppointmentCityHall12/Attribute:last_name+' => '',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch2' => 'Sports branch',	
+	'Class:AppointmentCityHall12/Attribute:sports_branch2+' => '',
+	'Appointment:person2' => 'Second person: info',	
+		
 	
 //
 // Class: AppointmentCareCenter1

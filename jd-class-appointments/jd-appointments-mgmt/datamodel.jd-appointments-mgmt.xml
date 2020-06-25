@@ -2297,6 +2297,223 @@
 				</list>
 			</presentation>
 		</class>
+		<class id="AppointmentCityHall12" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall12</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="duration"/>
+						<attribute id="comments"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="group_type" xsi:type="AttributeEnum">
+					<values>
+						<value id="0">0</value>
+						<value id="1">1</value>
+						<value id="2">2</value>
+						<value id="3">3</value>
+					</values>
+					<sql>group_type</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>				
+				</field>
+				<field id="gender" xsi:type="AttributeEnum">
+					<values>
+						<value id="0">0</value>
+						<value id="1">1</value>
+					</values>
+					<sql>gender</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>				
+				</field>
+				<field id="sports_branch" xsi:type="AttributeString">
+					<sql>sports_branch</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="sports_branch2" xsi:type="AttributeString">
+					<sql>sports_branch2</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="club" xsi:type="AttributeString">
+					<sql>club</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="first_name" xsi:type="AttributeString">
+					<sql>first_name</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="last_name" xsi:type="AttributeString">
+					<sql>last_name</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="gender">
+											<rank>12</rank>
+										</item>
+										<item id="sports_branch">
+											<rank>14</rank>
+										</item>
+										<item id="group_type">
+											<rank>18</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comments">
+											<rank>30</rank>
+										</item>
+										<!-- <item id="comment">
+											<rank>40</rank>
+										</item> -->
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+										<item id="club">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:person2">
+									<rank>30</rank>
+									<items>
+										<item id="first_name">
+											<rank>10</rank>
+										</item>
+										<item id="last_name">
+											<rank>20</rank>
+										</item>
+										<item id="sports_branch2">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
 		
 		
 		<class id="AppointmentCareCenter1" _delta="define">
@@ -3303,6 +3520,20 @@
 			<auto_reload>standard</auto_reload>
 			<parent>ShortcutCityHall2</parent>
 			<oql>SELECT AppointmentCityHall10 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="AppointmentCityHall12Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>56</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall12" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall12Mgmt</parent>
+		  <class>AppointmentCityHall12</class>
+		</menu>	
+		<menu id="SearchNowAppointmentCityHall12" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall12Mgmt</parent>
+			<oql>SELECT AppointmentCityHall12 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
 		</menu>
 		
 		

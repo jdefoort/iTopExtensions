@@ -119,6 +119,14 @@
 			  <class id="AppointmentCityHall11"/>
 			</classes>
 		</group>
+		<group id="AppointmentCityHall12" _delta="define">
+			<classes>
+			  <class id="Appointment"/>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall12"/>
+			</classes>
+		</group>
 		
 		
 		<group id="AppointmentCareCenter1" _delta="define">
@@ -597,7 +605,7 @@
 		  </group>	
         </groups>
       </profile>
-	  	  <profile id="134" _delta="define">
+	  <profile id="134" _delta="define">
         <name>Appointment CityHall11 User</name>
         <description>Person in charge of Appointments, can add or modify appointments</description>
         <groups>
@@ -618,6 +626,39 @@
             </actions>
           </group> 
 		  <group id="AppointmentCityHall10">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="138" _delta="define">
+        <name>Appointment CityHall12 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="AppointmentCityHall12">
 		    <actions>
               <action id="action:read">allow</action>
               <action id="action:bulk read">allow</action>
