@@ -257,11 +257,11 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Appointment/Attribute:available' => 'Beschikbaarheid',
 	'Class:Appointment/Attribute:available+' => '',	
 	'Class:Appointment/Attribute:available/Value:0' => 'Beschikbaar',
-	'Class:Appointment/Attribute:available/Value:0+' => '',
+	'Class:Appointment/Attribute:available/Value:0+' => 'Beschikbaar',
 	'Class:Appointment/Attribute:available/Value:1' => 'Gereserveerd',
-	'Class:Appointment/Attribute:available/Value:1+' => '',
+	'Class:Appointment/Attribute:available/Value:1+' => 'Gereserveerd',
 	'Class:Appointment/Attribute:available/Value:2' => 'Gesloten',
-	'Class:Appointment/Attribute:available/Value:2+' => '',
+	'Class:Appointment/Attribute:available/Value:2+' => 'Gesloten',
 	'Class:Appointment/Attribute:booth' => 'Loketnummer',
 	'Class:Appointment/Attribute:booth+' => '',
 	'Class:Appointment/Attribute:ip' => 'IP Adres',
@@ -349,6 +349,12 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCityHall5/Attribute:national_number+' => '',
 	'Class:AppointmentCityHall5/Attribute:comment' => 'Opmerkingen',
 	'Class:AppointmentCityHall5/Attribute:comment+' => '',
+	'Class:AppointmentCityHall5/Attribute:available/Value:0' => 'Beschikbaar',
+	'Class:AppointmentCityHall5/Attribute:available/Value:0+' => 'Beschikbaar',
+	'Class:AppointmentCityHall5/Attribute:available/Value:1' => 'Gereserveerd',
+	'Class:AppointmentCityHall5/Attribute:available/Value:1+' => 'Gereserveerd',
+	'Class:AppointmentCityHall5/Attribute:available/Value:2' => 'Gesloten',
+	'Class:AppointmentCityHall5/Attribute:available/Value:2+' => 'Gesloten',
 
 //
 // Class: AppointmentCityHall6

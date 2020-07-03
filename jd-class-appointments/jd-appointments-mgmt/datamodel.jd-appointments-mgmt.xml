@@ -412,7 +412,13 @@
 					</attributes>
 				</reconciliation>
 			</properties>
-			<fields/>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
 			<methods/>
 			<presentation>
 				<details>
@@ -435,6 +441,9 @@
 										<item id="comments">
 											<rank>30</rank>
 										</item>
+										<!-- <item id="comment">
+											<rank>40</rank>
+										</item> -->
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -472,6 +481,9 @@
 										</item>
 										<item id="ip">
 											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
 										</item>
 									</items>
 								</item>
@@ -679,8 +691,8 @@
 						<attribute id="ip"/>
 						<attribute id="code"/>
 					</attributes>
-				</reconciliation>
-			</properties>
+				</reconciliation>	
+			</properties>				
 			<fields>
 				<field id="comment" xsi:type="AttributeText">
 					<sql>comment</sql>
@@ -760,7 +772,7 @@
 											<rank>20</rank>
 										</item>
 										<item id="duration">
-											<rank>20</rank>
+											<rank>30</rank>
 										</item>
 									</items>
 								</item>
@@ -2065,9 +2077,9 @@
 										<item id="comments">
 											<rank>30</rank>
 										</item>
-										<!-- <item id="comment">
+										<item id="comment">
 											<rank>40</rank>
-										</item> -->
+										</item> 
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -2351,7 +2363,7 @@
 					</values>
 					<sql>group_type</sql>
 					<default_value/>
-					<is_null_allowed>false</is_null_allowed>				
+					<is_null_allowed>true</is_null_allowed>				
 				</field>
 				<field id="gender" xsi:type="AttributeEnum">
 					<values>
@@ -2360,7 +2372,7 @@
 					</values>
 					<sql>gender</sql>
 					<default_value/>
-					<is_null_allowed>false</is_null_allowed>				
+					<is_null_allowed>true</is_null_allowed>				
 				</field>
 				<field id="sports_branch" xsi:type="AttributeString">
 					<sql>sports_branch</sql>
@@ -3343,14 +3355,14 @@
 		</class>
 	</classes>
 	 <menus>
-		<menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="define">
+		<!-- <menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>42</rank>
 		</menu>
 		<menu id="SearchAppointmentEnergy" xsi:type="SearchMenuNode" _delta="define">
 		  <rank>20</rank>
 		  <parent>AppointmentEnergyMgmt</parent>
 		  <class>AppointmentEnergy</class>
-		</menu>
+		</menu> -->
 			<menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>45</rank>
 		</menu>
@@ -3359,14 +3371,14 @@
 		  <parent>AppointmentTourMgmt</parent>
 		  <class>AppointmentTour</class>
 		</menu>
-		<menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="define">
+		<!-- <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>46</rank>
 		</menu>
 		<menu id="SearchAppointmentTax" xsi:type="SearchMenuNode" _delta="define">
 		  <rank>20</rank>
 		  <parent>AppointmentTaxMgmt</parent>
 		  <class>AppointmentTax</class>
-		</menu>
+		</menu> -->
 		
 		
 		<menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="define">
@@ -3492,7 +3504,7 @@
 			<parent>AppointmentCityHall8Mgmt</parent>
 			<oql>SELECT AppointmentCityHall8 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
 		</menu>
-		<menu id="AppointmentCityHall9Mgmt" xsi:type="MenuGroup" _delta="define">
+		<!-- <menu id="AppointmentCityHall9Mgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>61</rank>
 		</menu>
 		<menu id="SearchAppointmentCityHall9" xsi:type="SearchMenuNode" _delta="define">
@@ -3505,7 +3517,7 @@
 		  <parent>AppointmentCityHall9Mgmt</parent>
 		  <class>AppointmentCityHall10</class>
 		</menu>
-		<menu id="ShortcutCityHall2" xsi:type="TemplateMenuNode" _delta="define">
+		<menu id="ShortcutCityHall9" xsi:type="TemplateMenuNode" _delta="define">
 			<rank>50</rank>
 			<parent>AppointmentCityHall9Mgmt</parent>
 		</menu>
@@ -3520,7 +3532,7 @@
 			<auto_reload>standard</auto_reload>
 			<parent>ShortcutCityHall2</parent>
 			<oql>SELECT AppointmentCityHall10 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
-		</menu>
+		</menu> -->
 		<menu id="AppointmentCityHall12Mgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>56</rank>
 		</menu>
@@ -3538,7 +3550,7 @@
 		
 		
 
-		<menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="define">
+		<!-- <menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>55</rank>
 		</menu>
 		<menu id="SearchAppointmentCareCenter1" xsi:type="SearchMenuNode" _delta="define">
@@ -3599,7 +3611,7 @@
 			<auto_reload>standard</auto_reload>
 			<parent>ShortcutCareCenter1</parent>
 			<oql>SELECT AppointmentCareCenter5 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
-		</menu>
+		</menu> -->
 	  </menus>
 
 </itop_design>
