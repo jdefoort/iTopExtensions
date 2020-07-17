@@ -88,26 +88,8 @@
 					<extkey_attcode>approver_id</extkey_attcode>
 					<target_attcode>email</target_attcode>
 				</field>
-				<field id="service_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT Service AS s JOIN lnkCustomerContractToService AS l1 ON l1.service_id=s.id JOIN CustomerContract AS cc ON l1.customercontract_id=cc.id WHERE cc.org_id = :this->org_id AND s.status != 'obsolete']]></filter>
-					<dependencies>
-						<attribute id="org_id"/>
-					</dependencies>
-					<sql>service_id</sql>
-					<target_class>Service</target_class>
-					<is_null_allowed>true</is_null_allowed>
-					<on_target_delete>DEL_MANUAL</on_target_delete>
-					<allow_target_creation>false</allow_target_creation>
-				</field>
-				<field id="service_name" xsi:type="AttributeExternalField">
-					<extkey_attcode>service_id</extkey_attcode>
-					<target_attcode>name</target_attcode>
-				</field>
 				<field id="servicesubcategory_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_id = :this->service_id AND status != 'obsolete']]></filter>
-					<dependencies>
-						<attribute id="service_id"/>
-					</dependencies>
+					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_name = 'Gemeenteraad helpdesk' AND status != 'obsolete']]></filter>
 					<sql>servicesubcategory_id</sql>
 					<target_class>ServiceSubcategory</target_class>
 					<is_null_allowed>true</is_null_allowed>
@@ -544,10 +526,6 @@
 							<attribute id="origin">
 								<read_only/>
 							</attribute>
-							<attribute id="service_id">
-								<mandatory/>
-								<must_prompt/>
-							</attribute>
 							<attribute id="servicesubcategory_id">
 								<must_prompt/>
 							</attribute>
@@ -555,9 +533,6 @@
 								<must_prompt/>
 							</attribute>
 							<attribute id="parent_request_id">
-								<read_only/>
-							</attribute>
-							<attribute id="service_id">
 								<read_only/>
 							</attribute>
 							<attribute id="public_log">
@@ -641,9 +616,6 @@
 								<read_only/>
 							</attribute>
 							<attribute id="contacts_list">
-								<read_only/>
-							</attribute>
-							<attribute id="service_id">
 								<read_only/>
 							</attribute>
 							<attribute id="servicesubcategory_id">
@@ -778,8 +750,7 @@
 		{
 			if ( $oRequest->Get('status') != 'resolved')
 			{
-				$oRequest->set('servicesubcategory_id',$this->Get('servicesubcategory_id'));
-				$oRequest->set('service_id',$this->Get('service_id'));		
+				$oRequest->set('servicesubcategory_id',$this->Get('servicesubcategory_id'));	
 				$oRequest->set('team_id',$this->Get('team_id'));
 				$oRequest->set('agent_id',$this->Get('agent_id'));	
 				$oRequest->ApplyStimulus('ev_autoresolve');
@@ -830,8 +801,7 @@
 	{
 		if ($this->Get('status') != 'resolved')
 		{
-			$this->Set('servicesubcategory_id', $oParentTicket->Get('servicesubcategory_id'));
-			$this->Set('service_id', $oParentTicket->Get('service_id'));		
+			$this->Set('servicesubcategory_id', $oParentTicket->Get('servicesubcategory_id'));		
 			$this->Set('team_id', $oParentTicket->Get('team_id'));
 			$this->Set('agent_id', $oParentTicket->Get('agent_id'));	
 			$sParent = '[['.get_class($oParentTicket).':'.$oParentTicket->Get('ref').']]';
@@ -980,9 +950,6 @@
 								<item id="fieldset:Ticket:moreinfo">
 									<rank>20</rank>
 									<items>
-										<item id="service_id">
-											<rank>10</rank>
-										</item>
 										<item id="servicesubcategory_id">
 											<rank>20</rank>
 										</item>
@@ -1095,9 +1062,6 @@
 						</item>
 						<item id="publishstate">
 							<rank>150</rank>
-						</item>
-						<item id="service_id">
-							<rank>160</rank>
 						</item>
 						<item id="servicesubcategory_id">
 							<rank>170</rank>

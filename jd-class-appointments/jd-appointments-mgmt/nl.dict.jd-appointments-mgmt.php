@@ -43,7 +43,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:NewAppointmentEnergy+' => '',
 	'Menu:SearchAppointmentEnergy' => 'Zoek afspraak',
 	'Menu:SearchAppointmentEnergy+' => '',
-	'Menu:AppointmentTourMgmt' => 'Afspraak - Rondleiding',
+	'Menu:AppointmentTourMgmt' => 'Afspraak - Fotoshoot',
 	'Menu:AppointmentTourMgmt+' => '',
 	'Menu:NewAppointmentTour' => 'Nieuwe afspraak',
 	'Menu:NewAppointmentTour+' => '',
@@ -286,9 +286,9 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 //
 // Class: AppointmentTour
 //
-	'Class:AppointmentTour' => 'Afspraak - Rondleiding',
-	'Class:AppointmentTour+' => '',
-	'Class:AppointmentTour/Name' => '%1$s',
+	'Class:AppointmentTour1' => 'Afspraak - Fotoshoot',
+	'Class:AppointmentTour1+' => '',
+	'Class:AppointmentTour1/Name' => '%1$s',
 	
 
 //
@@ -335,7 +335,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 //
 	'Class:AppointmentCityHall4' => 'Afspraak - Ruimtelijke ordening',
 	'Class:AppointmentCityHall4+' => '',
-	'Class:AppointmentCityHall4/Name' => '%1$s',
+	'Class:AppointmentCityHall4/Name' => 'Afspraak - Ruimtelijke ordening',
 	'Class:AppointmentCityHall4/Attribute:comment' => 'Opmerkingen',
 	'Class:AppointmentCityHall4/Attribute:comment+' => '',
 	

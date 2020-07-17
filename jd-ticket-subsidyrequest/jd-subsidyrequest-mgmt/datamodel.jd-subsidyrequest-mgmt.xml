@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
 	<classes>
-		<class id="RcxRequest" _delta="define">
+		<class id="SubsidyRequest" _delta="define">
 			<parent>Ticket</parent>
 			<properties>
 				<comment><![CDATA[/**
@@ -13,7 +13,7 @@
 				<category>bizmodel,searchable,requestmgmt</category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
-				<db_table>ticket_rcxrequest</db_table>
+				<db_table>ticket_subsidyrequest</db_table>
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
@@ -51,16 +51,18 @@
 					<default_value>new</default_value>
 					<is_null_allowed>false</is_null_allowed>
 				</field>
-				<field id="impact" xsi:type="AttributeEnum">
-					<values>
-						<value id="1">1</value>
-						<value id="2">2</value>
-						<value id="3">3</value>
-					</values>
-					<sql>impact</sql>
-					<default_value>1</default_value>
+				<field id="instance_id" xsi:type="AttributeExternalKey">
+					<sql>instance_id</sql>
+					<target_class>Organization</target_class>
 					<is_null_allowed>false</is_null_allowed>
-					<display_style>list</display_style>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="entity_id" xsi:type="AttributeExternalKey">
+					<sql>entity_id</sql>
+					<target_class>Organization</target_class>
+					<filter><![CDATA[SELECT Organization WHERE name IN ('Stadsbestuur Izegem', 'Zorg Izegem', 'AGIZ', 'Etiz', 'OCMW Izegem', 'Farys')]]></filter>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
 				</field>
 				<field id="priority" xsi:type="AttributeEnum">
 					<values>
@@ -68,22 +70,10 @@
 						<value id="2">2</value>
 						<value id="3">3</value>
 						<value id="4">4</value>
-					</values>
-					
+					</values>					
 					<sql>priority</sql>
 					<default_value>4</default_value>
 					<is_null_allowed>false</is_null_allowed>
-				</field>
-				<field id="origin" xsi:type="AttributeEnum">
-					<values>
-						<value id="mail">mail</value>
-						<value id="phone">phone</value>
-						<value id="portal">portal</value>
-						<value id="in_person">in_person</value>
-					</values>
-					<sql>origin</sql>
-					<default_value>phone</default_value>
-					<is_null_allowed>true</is_null_allowed>
 				</field>
 				<field id="approver_id" xsi:type="AttributeExternalKey">
 					<filter><![CDATA[SELECT Person WHERE org_id= :this->org_id]]></filter>
@@ -101,7 +91,7 @@
 					<target_attcode>email</target_attcode>
 				</field>
 				<field id="servicesubcategory_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_name = 'Rcx Helpdesk' AND status != 'obsolete']]></filter>
+					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_name = 'Subsidies helpdesk' AND status != 'obsolete']]></filter>
 					<sql>servicesubcategory_id</sql>
 					<target_class>ServiceSubcategory</target_class>
 					<is_null_allowed>true</is_null_allowed>
@@ -141,33 +131,13 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="solution" xsi:type="AttributeText">
-					<sql>solution</sql>
+				<field id="communicationhistory" xsi:type="AttributeCaseLog">
+					<sql>communicationhistory</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="parent_request_id" xsi:type="AttributeExternalKey">
-					<filter><![CDATA[SELECT RcxRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
-					<dependencies>
-					</dependencies>
-					<sql>parent_request_id</sql>
-					<target_class>RcxRequest</target_class>
-					<is_null_allowed>true</is_null_allowed>
-					<on_target_delete>DEL_MANUAL</on_target_delete>
-				</field>
-				<field id="parent_request_ref" xsi:type="AttributeExternalField">
-					<extkey_attcode>parent_request_id</extkey_attcode>
-					<target_attcode>ref</target_attcode>
-				</field>
-				<field id="related_request_list" xsi:type="AttributeLinkedSet">
-					<linked_class>RcxRequest</linked_class>
-					<ext_key_to_me>parent_request_id</ext_key_to_me>
-					<edit_mode>add_remove</edit_mode>
-					<count_min>0</count_min>
-					<count_max>0</count_max>
-				</field>
-				<field id="public_log" xsi:type="AttributeCaseLog">
-					<sql>public_log</sql>
+				<field id="paymentterms" xsi:type="AttributeCaseLog">
+					<sql>paymentterms</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
@@ -181,6 +151,82 @@
 				  <default_value/>
 				  <is_null_allowed>true</is_null_allowed>
 				  <display_style>list</display_style>
+				</field>
+				<field id="manager_id" xsi:type="AttributeExternalKey">
+					<filter><![CDATA[SELECT Person AS p JOIN lnkPersonToTeam AS t ON t.person_id = p.id JOIN Team AS t2 ON t.team_id=t2.id WHERE t2.name = "Clustermanagers"]]></filter>
+					<dependencies>
+						<attribute id="team_id"/>
+					</dependencies>
+					<sql>manager_id</sql>
+					<target_class>Person</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<allow_target_creation>false</allow_target_creation>
+				</field>
+				<field id="expecteddepositdate" xsi:type="AttributeDate">
+				  <sql>expecteddepositdate</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
+				<field id="depositdate" xsi:type="AttributeDate">
+				  <sql>depositdate</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
+				<field id="expectedpaymentdate" xsi:type="AttributeDate">
+				  <sql>expecteddepositdate</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
+				<field id="paymentdate" xsi:type="AttributeDate">
+				  <sql>paymentdate</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
+				<field id="deposit" xsi:type="AttributeDecimal">
+					<sql>deposit</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<digits>10</digits>
+					<decimals>2</decimals>
+				</field>
+				<field id="payment" xsi:type="AttributeDecimal">
+					<sql>payment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<digits>10</digits>
+					<decimals>2</decimals>
+				</field>
+				<field id="total" xsi:type="AttributeDecimal">
+					<sql>total</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<digits>10</digits>
+					<decimals>2</decimals>
+				</field>
+				<field id="budgetpost_account" xsi:type="AttributeString">
+					<sql>budgetpost_account</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="budgetpost_policyitem" xsi:type="AttributeString">
+					<sql>budgetpost_policyitem</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="id_agenda_item" xsi:type="AttributeInteger">
+					<sql>id_agenda_item</sql>
+					<is_null_allowed>true</is_null_allowed>
+					<default_value/>
+				</field>
+				<field id="external_ref" xsi:type="AttributeString">
+					<sql>external_ref</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
 				</field>
 			</fields>
 			<lifecycle>
@@ -261,9 +307,6 @@
 							<attribute id="time_spent">
 								<hidden/>
 							</attribute>
-							<attribute id="solution">
-								<hidden/>
-							</attribute>
 							<attribute id="user_comment">
 								<hidden/>
 							</attribute>
@@ -303,10 +346,6 @@
 											<param xsi:type="attcode">start_date</param>
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
-									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
 									</action>
 								</actions>
 							</transition>
@@ -352,10 +391,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 							<transition id="ev_reassign">
@@ -390,10 +425,6 @@
 											<param xsi:type="attcode">start_date</param>
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
-									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
 									</action>
 								</actions>
 							</transition>
@@ -454,10 +485,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 						</transitions>
@@ -504,10 +531,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 						</transitions>
@@ -519,17 +542,8 @@
 						<inherit_flags_from>assigned</inherit_flags_from>
 						<flags>
 							<attribute id="caller_id"/>
-							<attribute id="origin">
-								<read_only/>
-							</attribute>
-							<attribute id="impact">
-								<read_only/>
-							</attribute>
 							<attribute id="servicesubcategory_id">
 								<must_prompt/>
-							</attribute>
-							<attribute id="parent_request_id">
-								<read_only/>
 							</attribute>
 							<attribute id="public_log">
 								<read_only/>
@@ -549,10 +563,6 @@
 							</attribute>
 							<attribute id="time_spent">
 								<read_only/>
-							</attribute>
-							<attribute id="solution">
-								<mandatory/>
-								<must_prompt/>
 							</attribute>
 							<attribute id="reminder">
 								<read_only/>
@@ -592,10 +602,6 @@
 											<param xsi:type="string">DefaultWorkingTimeComputer</param>
 										</params>
 									</action>
-									<action>
-										<verb>ResolveChildTickets</verb>
-										<params/>
-									</action>
 								</actions>
 							</transition>
 						</transitions>
@@ -622,9 +628,6 @@
 								<read_only/>
 							</attribute>
 							<attribute id="close_date">
-								<read_only/>
-							</attribute>
-							<attribute id="solution">
 								<read_only/>
 							</attribute>
 							<attribute id="user_comment">
@@ -712,19 +715,6 @@
 		return true;
 	}]]></code>
 				</method>
-				<method id="DoCheckToWrite">
-					<static>false</static>
-					<access>public</access>
-					<type>Overload-DBObject</type>
-					<code><![CDATA[public function DoCheckToWrite()
-  {
-    parent::DoCheckToWrite();
-    if (!$this->IsNew() && ($this->Get('parent_request_id') == $this->GetKey()))
-    {
-      $this->m_aCheckIssues[] = Dict::Format('Class:RcxRequest/Error:CannotAssignParentRequestIdToSelf');
-    }
-  }]]></code>
-				</method>
 				<method id="ComputeValues">
 					<static>false</static>
 					<access>public</access>
@@ -734,67 +724,6 @@
 
 		
 		return parent::ComputeValues();
-	}]]></code>
-				</method>
-				<method id="resolveChilds">
-					<comment><![CDATA[/**
-	 * To be deprecated: use ResolveChildTickets() instead
-	 */]]></comment>
-					<static>false</static>
-					<access>public</access>
-					<type>LifecycleAction</type>
-					<code><![CDATA[	public function resolveChilds($sStimulusCode)
-	{
-				
-		$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
-		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-						array(),
-						array(
-							'ticket' => $this->GetKey(),
-							)
-						);
-		while($oRequest = $oChildRequestSet->Fetch())
-		{
-			if ( $oRequest->Get('status') != 'resolved')
-			{
-				$oRequest->set('servicesubcategory_id',$this->Get('servicesubcategory_id'));	
-				$oRequest->set('team_id',$this->Get('team_id'));
-				$oRequest->set('agent_id',$this->Get('agent_id'));	
-				$oRequest->set('solution','Automatically resolved by request:[[RcxRequest:'.$this->Get('ref').']]');
-				$oRequest->ApplyStimulus('ev_autoresolve');
-				$oRequest->DBUpdate();
-			}
-		}
-		return true;
-
-	}]]></code>
-				</method>
-				<method id="ResolveChildTickets">
-					<comment><![CDATA[/**
-	 * Cascade the resolution to child User Request
-	 * @return true (returning false would stop the ongoing transition)
-	 */]]></comment>
-					<static>false</static>
-					<access>public</access>
-					<type>LifecycleAction</type>
-					<arguments>
-					</arguments>
-					<code><![CDATA[	public function ResolveChildTickets()
-	{
-        static $aTickets = array(); // prevent infinite recursion
-    
-		// Automatically resolve child requests
-		$sOQL = "SELECT RcxRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
-		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('ticket' => $this->GetKey()));
-		while($oRequest = $oChildRequestSet->Fetch())
-		{
-            if (!array_key_exists($oRequest->GetKey(), $aTickets))
-            {
-                $aTickets[$oRequest->GetKey()] = true;
-			    $oRequest->ResolveFrom($this);
-            }
-		}
-		return true;
 	}]]></code>
 				</method>
 				<method id="ResolveFrom">
@@ -809,72 +738,13 @@
 	{
 		if ($this->Get('status') != 'resolved')
 		{
-			$this->Set('servicesubcategory_id', $oParentTicket->Get('servicesubcategory_id'));		
+			$this->Set('servicesubcategory_id', $oParentTicket->Get('servicesubcategory_id'));	
 			$this->Set('team_id', $oParentTicket->Get('team_id'));
 			$this->Set('agent_id', $oParentTicket->Get('agent_id'));	
 			$sParent = '[['.get_class($oParentTicket).':'.$oParentTicket->Get('ref').']]';
-			$this->Set('solution', Dict::Format('Tickets:ResolvedFrom', $sParent, MetaModel::GetName(get_class($oParentTicket))));
 			$this->ApplyStimulus('ev_autoresolve');
 			$this->DBUpdate();
 		}
-	}]]></code>
-				</method>
-				<method id="UpdateChildRequestLog">
-					<static>false</static>
-					<access>public</access>
-					<type>LifecycleAction</type>
-					<code><![CDATA[	public function UpdateChildRequestLog()
-	{
-		$oLog = $this->Get('public_log');
-		$sLogPublic = $oLog->GetModifiedEntry('html');
-		if ($sLogPublic != '')
-		{
-			$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
-			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-							array(),
-							array(
-								'ticket' => $this->GetKey(),
-								)
-							);
-			while($oRequest = $oChildRequestSet->Fetch())
-			{
-				$oRequest->set('public_log',$sLogPublic);
-				$oRequest->DBUpdate();
-			}
-
-		}
-		$oLog = $this->Get('private_log');
-		$sLogPrivate = $oLog->GetModifiedEntry('html');
-		if ($sLogPrivate != '')
-		{
-			$sOQL = "SELECT RcxRequest WHERE parent_request_id=:ticket";
-			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
-							array(),
-							array(
-								'ticket' => $this->GetKey(),
-								)
-							);
-			while($oRequest = $oChildRequestSet->Fetch())
-			{
-				$oRequest->set('private_log',$sLogPrivate);
-				$oRequest->DBUpdate();
-			}
-		}
-		return true;
-
-	}]]></code>
-				</method>
-				<method id="ComputeImpactedItems">
-					<static>false</static>
-					<access>public</access>
-					<type>LifecycleAction</type>
-					<code><![CDATA[
-    public function ComputeImpactedItems()
-	{
-        // This method is kept for backward compatibility
-        // in case a delta redefines it, but you may call
-        // UpdateImpactedItems directly
-		$this->UpdateImpactedItems();
 	}]]></code>
 				</method>
 				<method id="OnInsert">
@@ -884,9 +754,10 @@
 					<code><![CDATA[
     protected function OnInsert()
 	{
-		$this->ComputeImpactedItems();
 		$this->Set('last_update', time());
 		$this->Set('start_date', time());
+		    $iTotal = $this->Get('payment') + $this->Get('deposit');
+		$this->Set('total', $iTotal);
 	}]]></code>
 				</method>
 				<method id="OnUpdate">
@@ -898,26 +769,45 @@
 	{
         parent::OnUpdate();
         $aChanges = $this->ListChanges();
-        if (array_key_exists('functionalcis_list', $aChanges))
-        {
-            $this->UpdateImpactedItems();
-        }
 		$this->Set('last_update', time());
-		$this->UpdateChildRequestLog();
+				    $iTotal = $this->Get('payment') + $this->Get('deposit');
+		$this->Set('total', $iTotal);
 	}]]></code>
 				</method>
+				<method id="GetAttributeFlags">
+					  <static>false</static>
+					  <access>public</access>
+					  <type>Overload-DBObject</type>
+					  <code><![CDATA[	public function GetAttributeFlags($sAttCode, &$aReasons = Array(), $sTargetState = '')
+						{
+							if(in_array($sAttCode, array('total')))
+							{
+								return OPT_ATT_READONLY;
+							}
+							return parent::GetAttributeFlags($sAttCode);
+						}
+					]]></code>
+				</method>
+				<method id="GetInitialStateAttributeFlags">
+					  <static>false</static>
+					  <access>public</access>
+					  <type>Overload-DBObject</type>
+					  <code><![CDATA[	public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
+						{
+							if(in_array($sAttCode, array('total')))
+							{
+								return OPT_ATT_READONLY;
+							}
+							return parent::GetAttributeFlags($sAttCode);
+						}
+					]]></code>
+				</method>	
 			</methods>
 			<presentation>
 				<details>
 					<items>
-						<item id="functionalcis_list">
-							<rank>10</rank>
-						</item>
 						<item id="contacts_list">
 							<rank>20</rank>
-						</item>
-						<item id="related_request_list">
-							<rank>30</rank>
 						</item>
 						<item id="col:col1">
 							<rank>40</rank>
@@ -934,9 +824,6 @@
 										<item id="status">
 											<rank>30</rank>
 										</item>
-										<item id="origin">
-											<rank>40</rank>
-										</item>
 										<item id="title">
 											<rank>50</rank>
 										</item>
@@ -951,6 +838,9 @@
 										<item id="servicesubcategory_id">
 											<rank>20</rank>
 										</item>
+										<item id="id_agenda_item">
+											<rank>30</rank>
+										</item>
 									</items>
 								</item>
 							</items>
@@ -961,9 +851,7 @@
 								<item id="fieldset:Ticket:Type">
 									<rank>10</rank>
 									<items>
-										<item id="impact">
-											<rank>20</rank>
-										</item>
+
 									</items>
 								</item>
 								<item id="fieldset:Ticket:contact">
@@ -975,6 +863,18 @@
 										<item id="agent_id">
 											<rank>20</rank>
 										</item>
+										<item id="instance_id">
+											<rank>30</rank>
+										</item>
+										<item id="external_ref">
+											<rank>35</rank>
+										</item>
+										<item id="entity_id">
+											<rank>40</rank>
+										</item>
+										<item id="manager_id">
+											<rank>50</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Ticket:date">
@@ -985,6 +885,9 @@
 										</item>
 										<item id="last_update">
 											<rank>20</rank>
+										</item>
+										<item id="time_spent">
+											<rank>25</rank>
 										</item>
 										<item id="assignment_date">
 											<rank>30</rank>
@@ -1005,22 +908,35 @@
 						<item id="col:col3">
 							<rank>60</rank>
 							<items>
-								<item id="fieldset:Ticket:relation">
-									<rank>10</rank>
-									<items>
-										<item id="parent_request_id">
-											<rank>10</rank>
-										</item>
-									</items>
-								</item>
-								<item id="fieldset:Ticket:resolution">
+								<item id="fieldset:Ticket:financial">
 									<rank>20</rank>
 									<items>
-										<item id="solution">
+										<item id="deposit">
+											<rank>10</rank>
+										</item>
+										<item id="expecteddepositdate">
 											<rank>20</rank>
 										</item>
-										<item id="time_spent">
+										<item id="depositdate">
 											<rank>30</rank>
+										</item>
+										<item id="payment">
+											<rank>40</rank>
+										</item>
+										<item id="expectedpaymentdate">
+											<rank>50</rank>
+										</item>
+										<item id="paymentdate">
+											<rank>60</rank>
+										</item>
+										<item id="budgetpost_account">
+											<rank>70</rank>
+										</item>
+										<item id="budgetpost_policyitem">
+											<rank>80</rank>
+										</item>
+										<item id="total">
+											<rank>90</rank>
 										</item>
 									</items>
 								</item>
@@ -1028,6 +944,22 @@
 						</item>
 					</items>
 				</details>
+				<default_search>
+					<items>
+						<item id="caller_id">
+							<rank>10</rank>
+						</item>
+						<item id="manager_id">
+							<rank>20</rank>
+						</item>
+						<item id="agent_id">
+							<rank>25</rank>
+						</item>
+						<item id="servicesubcategory_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</default_search>
 				<search>
 					<items>
 						<item id="ref">
@@ -1039,38 +971,17 @@
 						<item id="title">
 							<rank>30</rank>
 						</item>
-						<item id="description">
-							<rank>40</rank>
-						</item>
 						<item id="start_date">
 							<rank>50</rank>
 						</item>
 						<item id="reminder">
 							<rank>52</rank>
 						</item>
-						<item id="resolution_date">
-							<rank>70</rank>
-						</item>
-						<item id="close_date">
-							<rank>80</rank>
-						</item>
 						<item id="status">
 							<rank>90</rank>
 						</item>
-						<item id="operational_status">
-							<rank>95</rank>
-						</item>
 						<item id="caller_id">
 							<rank>100</rank>
-						</item>
-						<item id="origin">
-							<rank>110</rank>
-						</item>
-						<item id="impact">
-							<rank>130</rank>
-						</item>
-						<item id="priority">
-							<rank>150</rank>
 						</item>
 						<item id="servicesubcategory_id">
 							<rank>170</rank>
@@ -1085,26 +996,32 @@
 				</search>
 				<list>
 					<items>
-						<item id="title">
+						<item id="start_date">
 							<rank>10</rank>
 						</item>
-						<item id="org_id">
+						<item id="title">
 							<rank>20</rank>
 						</item>
-						<item id="caller_id">
+						<item id="instance_id">
 							<rank>30</rank>
 						</item>
-						<item id="start_date">
+						<item id="entity_id">
 							<rank>40</rank>
 						</item>
-						<item id="status">
+						<item id="manager_id">
 							<rank>50</rank>
-						</item>
-						<item id="reminder">
-							<rank>52</rank>
 						</item>
 						<item id="agent_id">
 							<rank>60</rank>
+						</item>
+						<item id="total">
+							<rank>70</rank>
+						</item>
+						<item id="status">
+							<rank>80</rank>
+						</item>
+						<item id="reminder">
+							<rank>90</rank>
 						</item>
 					</items>
 				</list>
@@ -1112,16 +1029,16 @@
 		</class>
 	</classes>
 	<menus>
-		<menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>35</rank>
+		<menu id="SubsidyRequestManagement" xsi:type="MenuGroup" _delta="define">
+			<rank>50</rank>
 			<enable_stimulus/>
 		</menu>
-		<menu id="RcxRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
+		<menu id="SubsidyRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
 			<rank>0</rank>
-			<parent>RcxRequestManagement</parent>
+			<parent>SubsidyRequestManagement</parent>
 			<definition>
 				<layout>DashboardLayoutTwoCols</layout>
-				<title>Overzicht Recreatex</title>
+				<title>Overzicht Subsidies</title>
 				<cells>
 					<cell id="0">
 					  <rank>0</rank>
@@ -1134,7 +1051,7 @@
 						<dashlet id="10" xsi:type="DashletObjectList">
 						  <rank>1</rank>
 						  <title></title>
-						  <query>SELECT RcxRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
+						  <query>SELECT SubsidyRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
 						  <menu>false</menu>
 						</dashlet>
 					  </dashlets>
@@ -1150,7 +1067,7 @@
 						<dashlet id="2" xsi:type="DashletGroupByBars">
 						  <rank>1</rank>
 						  <title>UI-RequestManagementOverview-Last-14-days</title>
-						  <query>SELECT RcxRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+						  <query>SELECT SubsidyRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
 						  <group_by>start_date:day_of_month</group_by>
 						  <style>bars</style>
 						</dashlet>
@@ -1167,21 +1084,21 @@
 						<dashlet id="7" xsi:type="DashletGroupByTable">
 						  <rank>1</rank>
 						  <title>Tickets in de laatste maand</title>
-						  <query>SELECT RcxRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <query>SELECT SubsidyRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m-%d 00:00:00')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
 						</dashlet>
 						<dashlet id="8" xsi:type="DashletGroupByTable">
 						  <rank>2</rank>
 						  <title>Tickets in de laatste 6 maanden</title>
-						  <query>SELECT RcxRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <query>SELECT SubsidyRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 MONTH),'%Y-%m-%d 00:00:00')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
 						</dashlet>
 						<dashlet id="9" xsi:type="DashletGroupByTable">
 						  <rank>3</rank>
 						  <title>Tickets in het laatste jaar</title>
-						  <query>SELECT RcxRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
+						  <query>SELECT SubsidyRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
 						</dashlet>
@@ -1193,21 +1110,21 @@
 						<dashlet id="4" xsi:type="DashletGroupByTable">
 						  <rank>0</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
-						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
+						  <query>SELECT SubsidyRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>agent_id</group_by>
 						  <style>table</style>
 						</dashlet>
 						<dashlet id="3" xsi:type="DashletGroupByTable">
 						  <rank>1</rank>
 						  <title>Tickets per status</title>
-						  <query>SELECT RcxRequest WHERE status NOT IN ('rejected')</query>
+						  <query>SELECT SubsidyRequest WHERE status NOT IN ('rejected')</query>
 						  <group_by>status</group_by>
 						  <style>table</style>
 						</dashlet>
 						<dashlet id="6" xsi:type="DashletGroupByTable">
 						  <rank>2</rank>
 						  <title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
-						  <query>SELECT RcxRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
+						  <query>SELECT SubsidyRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
 						  <group_by>org_id</group_by>
 						  <style>table</style>
 						</dashlet>
@@ -1232,32 +1149,32 @@
 				</cells>
 			</definition>
 		</menu>
-		<menu id="NewRcxRequest" xsi:type="NewObjectMenuNode" _delta="define">
+		<menu id="NewSubsidyRequest" xsi:type="NewObjectMenuNode" _delta="define">
 			<rank>1</rank>
-			<parent>RcxRequestManagement</parent>
-			<class>RcxRequest</class>
+			<parent>SubsidyRequestManagement</parent>
+			<class>SubsidyRequest</class>
 		</menu>
-		<menu id="SearchRcxRequests" xsi:type="SearchMenuNode" _delta="define">
+		<menu id="SearchSubsidyRequests" xsi:type="SearchMenuNode" _delta="define">
 			<rank>2</rank>
-			<parent>RcxRequestManagement</parent>
-			<class>RcxRequest</class>
+			<parent>SubsidyRequestManagement</parent>
+			<class>SubsidyRequest</class>
 		</menu>
-		<menu id="RcxRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
+		<menu id="SubsidyRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
 			<rank>3</rank>
-			<parent>RcxRequestManagement</parent>
+			<parent>SubsidyRequestManagement</parent>
 			<template_file/>
 		</menu>
-		<menu id="RcxRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
+		<menu id="SubsidyRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>0</rank>
-			<parent>RcxRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT RcxRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
+			<parent>SubsidyRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT SubsidyRequest WHERE (agent_id = :current_contact_id OR manager_id = :current_contact_id)AND status NOT IN ("closed","resolved")]]></oql>
 			<do_search/>
 			<auto_reload>fast</auto_reload>
 		</menu>
-		<menu id="RcxRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
+		<menu id="SubsidyRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
 			<rank>2</rank>
-			<parent>RcxRequest:Shortcuts</parent>
-			<oql><![CDATA[SELECT RcxRequest WHERE status NOT IN ("closed","resolved")]]></oql>
+			<parent>SubsidyRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT SubsidyRequest WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
 		</menu>

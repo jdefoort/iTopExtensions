@@ -71,6 +71,10 @@
 						case 'CouncilRequest':
 						$sFormat = 'GR-%06d';
 						break;
+					
+						case 'SubsidyRequest':
+						$sFormat = 'SUB-%06d';
+						break;
 						
                         default:
                         $sFormat = 'T-%06d';

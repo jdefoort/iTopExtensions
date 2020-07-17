@@ -17,7 +17,7 @@
 					<filter _delta="force"><![CDATA[
 						SELECT Organization AS o WHERE 
 							( o.name = 'Personeel Izegem' AND :this->finalclass IN ('HrRequest') ) OR
-							( o.name = 'Burgers Personeel' AND :this->finalclass IN ('HrComplaint') ) OR
+							( o.name = 'Burgers Meldingen' AND :this->finalclass IN ('HrComplaint') ) OR
 							( :this->finalclass NOT IN ('HrComplaint', 'HrRequest') )
 					]]></filter>
 				</field>

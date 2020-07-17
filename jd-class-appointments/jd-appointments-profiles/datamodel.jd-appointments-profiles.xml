@@ -18,7 +18,7 @@
 			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
-			  <class id="AppointmentTour"/>
+			  <class id="AppointmentTour1"/>
 			</classes>
 		</group>
 		

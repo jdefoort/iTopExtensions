@@ -374,13 +374,13 @@
 				</list>
 			</presentation>
 		</class>
-		<class id="AppointmentTour" _delta="define">
+		<class id="AppointmentTour1" _delta="define">
 			<parent>Appointment</parent>
 			<properties>
 				<category>bizmodel,searchable</category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
-				<db_table>appointmentenergy</db_table>
+				<db_table>appointmenttour1</db_table>
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
@@ -438,12 +438,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -557,7 +557,13 @@
 					</attributes>
 				</reconciliation>
 			</properties>
-			<fields/>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
 			<methods/>
 			<presentation>
 				<details>
@@ -577,8 +583,11 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
+										</item> -->
+										<item id="comment">
+											<rank>40</rank>
 										</item>
 									</items>
 								</item>
@@ -727,12 +736,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -881,12 +890,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -1035,12 +1044,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -1180,12 +1189,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -1333,12 +1342,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -1478,12 +1487,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -1623,12 +1632,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -1768,12 +1777,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -1921,12 +1930,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -2228,12 +2237,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -2428,12 +2437,12 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -2609,12 +2618,12 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -2774,12 +2783,12 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -2939,12 +2948,12 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -3104,12 +3113,12 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -3269,12 +3278,12 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<item id="comments">
+										<!-- <item id="comments">
 											<rank>30</rank>
-										</item>
-										<!-- <item id="comment">
-											<rank>40</rank>
 										</item> -->
+										<item id="comment">
+											<rank>40</rank>
+										</item>
 									</items>
 								</item>
 								<item id="fieldset:Appointment:moreinfo">
@@ -3369,7 +3378,7 @@
 		<menu id="SearchAppointmentTour" xsi:type="SearchMenuNode" _delta="define">
 		  <rank>20</rank>
 		  <parent>AppointmentTourMgmt</parent>
-		  <class>AppointmentTour</class>
+		  <class>AppointmentTour1</class>
 		</menu>
 		<!-- <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>46</rank>

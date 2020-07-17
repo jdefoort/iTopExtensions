@@ -287,9 +287,9 @@ Dict::Add('EN US', 'English', 'English', array(
 //
 // Class: AppointmentTour
 //
-	'Class:AppointmentTour' => 'Appointment - Tour',
-	'Class:AppointmentTour+' => '',
-	'Class:AppointmentTour/Name' => 'Appointment - Tour',
+	'Class:AppointmentTour1' => 'Appointment - Tour',
+	'Class:AppointmentTour1+' => '',
+	'Class:AppointmentTour1/Name' => 'Appointment - Tour',
 	
 //
 // Class: AppointmentTax
@@ -336,7 +336,7 @@ Dict::Add('EN US', 'English', 'English', array(
 //
 	'Class:AppointmentCityHall4' => 'Appointment - Ruimtelijke ordening',
 	'Class:AppointmentCityHall4+' => '',
-	'Class:AppointmentCityHall4/Name' => '%1$s',
+	'Class:AppointmentCityHall4/Name' => 'Appointment - Ruimtelijke ordening',
 	'Class:AppointmentCityHall4/Attribute:comment' => 'Comments',
 	'Class:AppointmentCityHall4/Attribute:comment+' => '',
 	
