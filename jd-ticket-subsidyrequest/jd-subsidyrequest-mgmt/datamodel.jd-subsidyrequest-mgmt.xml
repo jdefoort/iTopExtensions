@@ -131,6 +131,11 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
+				<field id="public_log" xsi:type="AttributeCaseLog">
+					<sql>public_log</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
 				<field id="communicationhistory" xsi:type="AttributeCaseLog">
 					<sql>communicationhistory</sql>
 					<default_value/>
@@ -176,7 +181,7 @@
 				  <display_style>list</display_style>
 				</field>
 				<field id="expectedpaymentdate" xsi:type="AttributeDate">
-				  <sql>expecteddepositdate</sql>
+				  <sql>expectedpaymentdate</sql>
 				  <default_value/>
 				  <is_null_allowed>true</is_null_allowed>
 				  <display_style>list</display_style>
@@ -371,7 +376,9 @@
 								<read_only/>
 							</attribute>
 							<attribute id="caller_id"/>
-							<attribute id="public_log"/>
+							<attribute id="public_log">
+								<hidden/>
+							</attribute>
 						</flags>
 						<transitions>
 							<transition id="ev_resolve">
@@ -547,6 +554,7 @@
 							</attribute>
 							<attribute id="public_log">
 								<read_only/>
+								<hidden/>
 							</attribute>
 							<attribute id="description">
 								<read_only/>
@@ -617,6 +625,7 @@
 							</attribute>
 							<attribute id="public_log">
 								<read_only/>
+								<hidden/>
 							</attribute>
 							<attribute id="functionalcis_list">
 								<read_only/>

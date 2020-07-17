@@ -1192,7 +1192,7 @@
 		</class>
 	</classes>
 	<menus>
-		<menu id="ComRequestManagement" xsi:type="MenuGroup" _delta="define">
+		<!-- <menu id="ComRequestManagement" xsi:type="MenuGroup" _delta="define">
 			<rank>31</rank>
 			<enable_stimulus/>
 		</menu>
@@ -1321,7 +1321,7 @@
 			<oql><![CDATA[SELECT ComRequest WHERE status NOT IN ("closed","resolved")]]></oql>
 			<do_search>1</do_search>
 			<auto_reload>fast</auto_reload>
-		</menu>
+		</menu> -->
 	</menus>
 	<module_designs>
 		<module_design id="itop-portal">

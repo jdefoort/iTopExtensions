@@ -1,56 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
 <menus>
-   <menu id="ChangeManagement" xsi:type="MenuGroup" _delta="redefine">
-     <rank>50</rank>
-	 <enable_class>Change</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-   <menu id="IncidentManagement" xsi:type="MenuGroup" _delta="redefine">
-     <rank>35</rank>
-	 <enable_class>Incident</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
    <menu id="RequestManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>30</rank>
      <enable_class>UserRequest</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-   <menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>34</rank>
-     <enable_class>RcxRequest</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-    <menu id="ComRequestManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>35</rank>
-     <enable_class>ComRequest</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-    <menu id="BuildingRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+   <menu id="ParticipationManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>31</rank>
+     <enable_class>Participation</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+    <menu id="HrComplaintManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>32</rank>
+     <enable_class>HrComplaint</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+       <menu id="BuildingRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>33</rank>
      <enable_class>BuildingRequest</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
    <menu id="HrRequestManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>32</rank>
+	 <rank>34</rank>
      <enable_class>HrRequest</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-    <menu id="HrComplaintManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>33</rank>
-     <enable_class>HrComplaint</enable_class>
+   <menu id="RcxRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>35</rank>
+     <enable_class>RcxRequest</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="IncidentManagement" xsi:type="MenuGroup" _delta="redefine">
+     <rank>35.5</rank>
+	 <enable_class>Incident</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
    <menu id="TechnicalRequestManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>35</rank>
+	 <rank>36</rank>
      <enable_class>TechnicalRequest</enable_class>
      <enable_action>UR_ACTION_READ</enable_action>
      <enable_stimulus/>
@@ -85,28 +79,15 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-   <!-- <menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>43</rank>
-     <enable_class>AppointmentEnergy</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu> --> 
-   <menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>45</rank>
-     <enable_class>AppointmentTour1</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
+   <menu id="RoadworkRequestManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>41.8</rank>
+     <enable_class>RoadworkRequest</enable_class>
+     <enable_action>UR_ACTION_READ</enable_action>
      <enable_stimulus/>
    </menu>
-   <!-- <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>46</rank>
-     <enable_class>AppointmentTax</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu> -->
-   
-   <menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>47</rank>
-     <enable_class>AppointmentCityHall1</enable_class>
+   <menu id="ProblemManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>42</rank>
+     <enable_class>Problem</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
@@ -121,15 +102,51 @@
      <enable_class>ClimatePublication</enable_class>
      <enable_action>UR_ACTION_READ</enable_action>
      <enable_stimulus/>
-   </menu>   
-   <menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="redefine">
+   </menu>
+   <menu id="SubsidyRequestManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>50</rank>
+     <enable_class>SubsidyRequest</enable_class>
+     <enable_action>UR_ACTION_READ</enable_action>
+     <enable_stimulus/>
+   </menu>      
+   <menu id="ChangeManagement" xsi:type="MenuGroup" _delta="redefine">
+     <rank>50</rank>
+	 <enable_class>Change</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+     <!-- <menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>50.2</rank>
+     <enable_class>AppointmentEnergy</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu> --> 
+   <menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>50.4</rank>
+     <enable_class>AppointmentTour1</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <!-- <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>50.6</rank>
+     <enable_class>AppointmentTax</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu> -->   
+   <menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>50.8</rank>
+     <enable_class>AppointmentCityHall1</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+   <menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>51</rank>
      <enable_class>AppointmentCityHall4</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
    <menu id="AppointmentCityHall5Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>51</rank>
+	 <rank>51.5</rank>
      <enable_class>AppointmentCityHall5</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
@@ -152,9 +169,21 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
+   <!-- <menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>55</rank>
+     <enable_class>AppointmentCareCenter1</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu> -->
    <menu id="AppointmentCityHall12Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>56</rank>
      <enable_class>AppointmentCityHall12</enable_class>
+     <enable_action>UR_ACTION_MODIFY</enable_action>
+     <enable_stimulus/>
+   </menu>
+    <menu id="ServiceManagement" xsi:type="MenuGroup" _delta="redefine">
+	 <rank>60</rank>
+     <enable_class>Service</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
@@ -164,39 +193,6 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu> -->
-   
-    <!-- <menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>55</rank>
-     <enable_class>AppointmentCareCenter1</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu> -->
-   
-   
-   <menu id="SubsidyRequestManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>50</rank>
-     <enable_class>SubsidyRequest</enable_class>
-     <enable_action>UR_ACTION_READ</enable_action>
-     <enable_stimulus/>
-   </menu>   
-   <menu id="RoadworkRequestManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>42</rank>
-     <enable_class>RoadworkRequest</enable_class>
-     <enable_action>UR_ACTION_READ</enable_action>
-     <enable_stimulus/>
-   </menu>
-    <menu id="ServiceManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>60</rank>
-     <enable_class>Service</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
-   <menu id="ProblemManagement" xsi:type="MenuGroup" _delta="redefine">
-	 <rank>42</rank>
-     <enable_class>Problem</enable_class>
-     <enable_action>UR_ACTION_MODIFY</enable_action>
-     <enable_stimulus/>
-   </menu>
    <menu id="DataAdministration" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>70</rank>
 	 <enable_class>Organization</enable_class>

@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-class-participationidea/2.5.190409',
+	'jd-class-participation/2.5.190409',
 	array(
 		// Identification
 		//
@@ -15,8 +15,7 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-			'itop-request-mgmt-itil/2.5.0',
-			'jd-comrequest-mgmt/2.4.0' 			
+			'itop-request-mgmt-itil/2.5.0',		
 		),
 		'mandatory' => false,
 		'visible' => true,
@@ -24,7 +23,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'model.jd-class-participationidea.php'
+			'model.jd-class-participation.php'
 		),
 		'webservice' => array(
 			
