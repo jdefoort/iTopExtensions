@@ -242,8 +242,6 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Appointment/Attribute:start_date+' => 'Date and hour of appointment',
 	'Class:Appointment/Attribute:last_update' => 'Last update',
 	'Class:Appointment/Attribute:last_update+' => '',
-	'Class:Appointment/Attribute:comments' => 'Comments',
-	'Class:Appointment/Attribute:comments+' => '',
 	'Class:Appointment/Attribute:status' => 'Status',
 	'Class:Appointment/Attribute:status+' => '',
 	'Class:Appointment/Attribute:status/Value:0' => 'In queue',

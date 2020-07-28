@@ -74,11 +74,6 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>					
-				<field id="comments" xsi:type="AttributeText">
-					<sql>comments</sql>
-					<default_value/>
-					<is_null_allowed>true</is_null_allowed>
-				</field>
 				<field id="status" xsi:type="AttributeEnum">
 					<sql>status</sql>
 					<values>
@@ -188,7 +183,7 @@
 						<item id="duration">
 							<rank>75</rank>
 						</item>
-						<item id="comments">
+						<item id="comment">
 							<rank>80</rank>
 						</item>
 						<item id="status">
@@ -270,7 +265,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -279,7 +273,13 @@
 					</attributes>
 				</reconciliation>
 			</properties>
-			<fields/>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
 			<methods/>
 			<presentation>
 				<details>
@@ -299,7 +299,7 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<item id="comments">
+										<item id="comment">
 											<rank>30</rank>
 										</item>
 									</items>
@@ -403,7 +403,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -438,9 +437,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -548,7 +544,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -583,9 +578,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -693,7 +685,6 @@
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
 						<attribute id="duration"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -736,9 +727,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -847,7 +835,6 @@
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
 						<attribute id="duration"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -890,9 +877,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -1001,7 +985,6 @@
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
 						<attribute id="duration"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -1044,9 +1027,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -1154,7 +1134,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -1189,9 +1168,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -1299,7 +1275,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -1342,9 +1317,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -1452,7 +1424,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -1487,9 +1458,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -1597,7 +1565,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -1632,9 +1599,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -1742,7 +1706,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -1777,9 +1740,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -1887,7 +1847,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -1930,9 +1889,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -2040,7 +1996,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -2082,9 +2037,6 @@
 										</item>
 										<item id="start_date">
 											<rank>20</rank>
-										</item>
-										<item id="comments">
-											<rank>30</rank>
 										</item>
 										<item id="comment">
 											<rank>40</rank>
@@ -2194,7 +2146,6 @@
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
 						<attribute id="duration"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -2237,9 +2188,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -2348,7 +2296,6 @@
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
 						<attribute id="duration"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -2437,9 +2384,6 @@
 										<item id="start_date">
 											<rank>20</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -2566,7 +2510,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -2618,9 +2561,6 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -2731,7 +2671,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -2783,9 +2722,6 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -2896,7 +2832,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -2948,9 +2883,6 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -3061,7 +2993,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -3113,9 +3044,6 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>
@@ -3226,7 +3154,6 @@
 						<attribute id="person_id"/>
 						<attribute id="start_date"/>
 						<attribute id="last_update"/>
-						<attribute id="comments"/>
 						<attribute id="status"/>
 						<attribute id="available"/>
 						<attribute id="booth"/>
@@ -3278,9 +3205,6 @@
 										<item id="roomnumber">
 											<rank>25</rank>
 										</item>
-										<!-- <item id="comments">
-											<rank>30</rank>
-										</item> -->
 										<item id="comment">
 											<rank>40</rank>
 										</item>

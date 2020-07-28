@@ -242,8 +242,6 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Appointment/Attribute:start_date+' => 'Uur en datum van afspraak',
 	'Class:Appointment/Attribute:last_update' => 'Laatste wijziging',
 	'Class:Appointment/Attribute:last_update+' => '',
-	'Class:Appointment/Attribute:comments' => 'Opmerkingen',
-	'Class:Appointment/Attribute:comments+' => '',
 	'Class:Appointment/Attribute:status' => 'Oproepstatus',
 	'Class:Appointment/Attribute:status+' => '',	
 	'Class:Appointment/Attribute:status/Value:0' => 'In wachtrij',
