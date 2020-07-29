@@ -55,7 +55,7 @@ Dict::Add('NL NL', 'Dutch', 'Dutch', array(
 			
 	'Class:LeisureCheck' => 'Vrijetijdscheque',
 	'Class:LeisureCheck+' => 'Een vrijetijdscheque bevat info over een gebruikt bedrag van een Vrijetijdspas.',
-	'Class:LeisureCheck/Name' => '%1$s',
+	'Class:LeisureCheck/Name' => 'Vrijetijdscheque',
 	
 	
 	

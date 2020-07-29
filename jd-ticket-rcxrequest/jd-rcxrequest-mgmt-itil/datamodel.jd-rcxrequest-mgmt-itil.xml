@@ -228,9 +228,6 @@
 							<attribute id="caller_id">
 								<mandatory/>
 							</attribute>
-							<attribute id="team_id">
-								<hidden/>
-							</attribute>
 							<attribute id="agent_id">
 								<hidden/>
 							</attribute>
@@ -316,8 +313,6 @@
 						<inherit_flags_from>new</inherit_flags_from>
 						<flags>
 							<attribute id="team_id">
-								<mandatory/>
-								<must_prompt/>
 								<read_only/>
 							</attribute>
 							<attribute id="agent_id">
@@ -364,9 +359,6 @@
 									<attribute id="agent_id">
 										<must_change/>
 									</attribute>
-									<attribute id="team_id">
-										<must_prompt/>
-									</attribute>
 								</flags>
 								<actions/>
 							</transition>
@@ -405,7 +397,6 @@
 							<attribute id="approver_id">
 								<must_prompt/>
 							</attribute>
-							<attribute id="team_id"/>
 						</flags>
 						<transitions>
 							<transition id="ev_approve">
@@ -905,6 +896,34 @@
 		$this->Set('last_update', time());
 		$this->UpdateChildRequestLog();
 	}]]></code>
+				</method>
+				<method id="PrefillCreationForm" _delta="define">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<arguments>
+						<argument id="1">
+							<type>reference</type>
+							<mandatory>true</mandatory>
+						</argument>
+					</arguments>
+					<code><![CDATA[
+					
+						public function PrefillCreationForm(&$aContextParam) {
+						
+							parent::PrefillCreationForm($aContextParam);
+							
+							$sDBTestUUID = '{014E6DBF-5A19-B2FE-D047-8E0B73A19221}';
+							$sDBProdUUID = '{4EBD727C-1609-96A0-17F3-DEAE6ED9766D}';
+
+							if(DBProperty::GetProperty('database_uuid', '') == $sDBTestUUID) {
+								$this->Set('team_id', 4);
+							}
+							elseif(DBProperty::GetProperty('database_uuid', '') == $sDBProdUUID) {
+								$this->Set('team_id', 143);
+							}
+						}						
+					]]></code>
 				</method>
 			</methods>
 			<presentation>

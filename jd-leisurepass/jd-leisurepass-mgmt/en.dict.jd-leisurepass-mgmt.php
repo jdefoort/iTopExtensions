@@ -55,6 +55,7 @@ Dict::Add('EN US', 'English', 'English', array(
 			
 	'Class:LeisureCheck' => 'Leisure Check',
 	'Class:LeisureCheck+' => 'A Check determining an amount used from a Leisure Pass.',
+	'Class:LeisureCheck/Name' => 'Leisure Check',
 	
 	
 	'Class:LeisureCheck/Attribute:pass_id' => 'Pass',
