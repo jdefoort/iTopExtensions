@@ -284,9 +284,9 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:HrComplaint/Attribute:amenable' => 'Ontvankelijk',
 	'Class:HrComplaint/Attribute:amenable+' => 'Is deze klacht ontvankelijk of niet',
 	'Class:HrComplaint/Attribute:not_amenable' => 'Waarom niet',
-	'Class:HrComplaint/Attribute:impact+' => 'Waarom is deze klacht niet ontvankelijk',
+	'Class:HrComplaint/Attribute:not_amenable+' => 'Waarom is deze klacht niet ontvankelijk',
 	'Class:HrComplaint/Attribute:date_received' => 'Datum ontvangen',
-	'Class:HrComplaint/Attribute:date_received+' => 'Datum ontvangen',
+	'Class:HrComplaint/Attribute:date_received+' => '',
 	'Class:HrComplaint/Attribute:department_id' => 'Dienst',
 	'Class:HrComplaint/Attribute:department_id+' => 'Op welke dienst slaat deze klacht',
 	'Class:HrComplaint/Attribute:amenable/Value:no' => 'Nee',
@@ -302,7 +302,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:HrComplaint/Attribute:not_amenable/Value:d' => 'Externe rechtspersoon',
 	'Class:HrComplaint/Attribute:not_amenable/Value:d+' => 'Externe rechtspersoon',
 	'Class:HrComplaint/Attribute:reminder' => 'Herinnering',
-	'Class:HrComplaint/Attribute:reminder+' => 'Herinnering',	
+	'Class:HrComplaint/Attribute:reminder+' => '',	
 	
 	// Typology: Department
 	'Class:Department' => 'Dienst',

@@ -979,8 +979,16 @@
 						<item id="col:col2">
 							<rank>50</rank>
 							<items>
-								<item id="fieldset:Ticket:Type">
+								<item id="fieldset:Ticket:relation">
 									<rank>10</rank>
+									<items>
+										<item id="parent_request_id">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Ticket:Type">
+									<rank>20</rank>
 									<items>
 										<item id="publishstate">
 											<rank>20</rank>
@@ -988,7 +996,7 @@
 									</items>
 								</item>
 								<item id="fieldset:Ticket:contact">
-									<rank>20</rank>
+									<rank>30</rank>
 									<items>
 										<item id="team_id">
 											<rank>10</rank>
@@ -999,7 +1007,7 @@
 									</items>
 								</item>
 								<item id="fieldset:Ticket:date">
-									<rank>30</rank>
+									<rank>40</rank>
 									<items>
 										<item id="start_date">
 											<rank>10</rank>
@@ -1021,19 +1029,6 @@
 										</item>
 										<item id="councildate">
 											<rank>60</rank>
-										</item>
-									</items>
-								</item>
-							</items>
-						</item>
-						<item id="col:col3">
-							<rank>60</rank>
-							<items>
-								<item id="fieldset:Ticket:relation">
-									<rank>10</rank>
-									<items>
-										<item id="parent_request_id">
-											<rank>10</rank>
 										</item>
 									</items>
 								</item>

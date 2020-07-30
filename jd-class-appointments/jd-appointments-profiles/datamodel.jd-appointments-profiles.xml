@@ -3,10 +3,15 @@
   <classes/>
   <user_rights>
     <groups>
-	
+		
+		<group id="Appointment" _delta="define">
+			<classes>
+				<class id="Appointment"/>
+			</classes>
+		</group>
+		
 		<group id="AppointmentEnergy" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentEnergy"/>
@@ -15,7 +20,6 @@
 		
 		<group id="AppointmentTour" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentTour1"/>
@@ -24,7 +28,6 @@
 		
 		<group id="AppointmentTax" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentTax"/>
@@ -33,7 +36,6 @@
 		
 		<group id="AppointmentCityHall1" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall1"/>
@@ -41,7 +43,6 @@
 		</group>
 		<group id="AppointmentCityHall2" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall2"/>
@@ -49,7 +50,6 @@
 		</group>
 		<group id="AppointmentCityHall3" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall3"/>
@@ -57,7 +57,6 @@
 		</group>	
 		<group id="AppointmentCityHall4" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall4"/>
@@ -65,7 +64,6 @@
 		</group>
 		<group id="AppointmentCityHall5" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall5"/>
@@ -73,7 +71,6 @@
 		</group>
 		<group id="AppointmentCityHall6" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall6"/>
@@ -81,7 +78,6 @@
 		</group>
 		<group id="AppointmentCityHall7" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall7"/>
@@ -89,7 +85,6 @@
 		</group>
 		<group id="AppointmentCityHall8" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall8"/>
@@ -97,7 +92,6 @@
 		</group>
 		<group id="AppointmentCityHall9" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall9"/>
@@ -105,7 +99,6 @@
 		</group>
 		<group id="AppointmentCityHall10" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall10"/>
@@ -113,7 +106,6 @@
 		</group>
 		<group id="AppointmentCityHall11" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall11"/>
@@ -121,7 +113,6 @@
 		</group>
 		<group id="AppointmentCityHall12" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCityHall12"/>
@@ -131,7 +122,6 @@
 		
 		<group id="AppointmentCareCenter1" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCareCenter1"/>
@@ -139,7 +129,6 @@
 		</group>
 		<group id="AppointmentCareCenter2" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCareCenter2"/>
@@ -147,7 +136,6 @@
 		</group>
 		<group id="AppointmentCareCenter3" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCareCenter3"/>
@@ -155,7 +143,6 @@
 		</group>
 		<group id="AppointmentCareCenter4" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCareCenter4"/>
@@ -163,7 +150,6 @@
 		</group>
 		<group id="AppointmentCareCenter5" _delta="define">
 			<classes>
-			  <class id="Appointment"/>
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCareCenter5"/>
@@ -193,6 +179,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentEnergy">
 		    <actions>
               <action id="action:read">allow</action>
@@ -227,6 +219,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+				<action id="action:read">allow</action>
+				<action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentTour">
 		    <actions>
               <action id="action:read">allow</action>
@@ -261,6 +259,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentTax">
 		    <actions>
               <action id="action:read">allow</action>
@@ -295,6 +299,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall1">
 		    <actions>
               <action id="action:read">allow</action>
@@ -328,6 +338,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall2">
 		    <actions>
               <action id="action:read">allow</action>
@@ -361,6 +377,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall3">
 		    <actions>
               <action id="action:read">allow</action>
@@ -394,6 +416,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall4">
 		    <actions>
               <action id="action:read">allow</action>
@@ -427,6 +455,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall5">
 		    <actions>
               <action id="action:read">allow</action>
@@ -460,6 +494,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall6">
 		    <actions>
               <action id="action:read">allow</action>
@@ -493,6 +533,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall7">
 		    <actions>
               <action id="action:read">allow</action>
@@ -526,6 +572,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall8">
 		    <actions>
               <action id="action:read">allow</action>
@@ -559,6 +611,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall9">
 		    <actions>
               <action id="action:read">allow</action>
@@ -592,6 +650,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall10">
 		    <actions>
               <action id="action:read">allow</action>
@@ -625,6 +689,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall10">
 		    <actions>
               <action id="action:read">allow</action>
@@ -658,6 +728,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCityHall12">
 		    <actions>
               <action id="action:read">allow</action>
@@ -693,6 +769,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCareCenter1">
 		    <actions>
               <action id="action:read">allow</action>
@@ -726,6 +808,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCareCenter2">
 		    <actions>
               <action id="action:read">allow</action>
@@ -759,6 +847,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCareCenter3">
 		    <actions>
               <action id="action:read">allow</action>
@@ -792,6 +886,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCareCenter4">
 		    <actions>
               <action id="action:read">allow</action>
@@ -825,6 +925,12 @@
               <action id="action:bulk read">allow</action>
             </actions>
           </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
 		  <group id="AppointmentCareCenter5">
 		    <actions>
               <action id="action:read">allow</action>

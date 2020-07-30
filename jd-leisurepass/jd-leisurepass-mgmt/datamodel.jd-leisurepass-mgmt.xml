@@ -356,11 +356,7 @@
 				<icon>images/leisurecheck.png</icon>
 				<reconciliation>
 					<attributes> 
-						<attribute id="id"/>
-						<attribute id="org_id"/> 
-						<attribute id="person_id"/> 
 						<attribute id="pass_id"/> 
-						<attribute id="organization_name"/>
 					</attributes>
 				</reconciliation>
 			</properties>

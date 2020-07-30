@@ -183,9 +183,6 @@
 						<item id="duration">
 							<rank>75</rank>
 						</item>
-						<item id="comment">
-							<rank>80</rank>
-						</item>
 						<item id="status">
 							<rank>90</rank>
 						</item>
