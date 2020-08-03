@@ -58,6 +58,15 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:Vehicle/Attribute:nextinspection+' => 'Date of next planned inspection',
 	'Class:Vehicle/Attribute:insuredtill' => 'Insured until',
 	'Class:Vehicle/Attribute:insuredtill+' => 'Date of insurance renewal/expiration',
+	
+	'Menu:TechnicalRequestVehicle' => 'Vehicles',
+	'Menu:TechnicalRequestVehicle+' => '',
+	'Menu:VehicleOverview' => 'Overview',
+	'Menu:VehicleOverview+' => '',
+	'Menu:NewVehicle' => 'New vehicle',
+	'Menu:NewVehicle+' => 'Add new vehicle',
+	'Menu:SearchVehicle' => 'Search vehicle',
+	'Menu:SearchVehicle+' => '',
 
 ));
 

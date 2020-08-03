@@ -165,8 +165,8 @@
 	<!-- Adds a link to the ConfigManagement Overview -->
 	<menus>
 		<menu id="SearchVehicleAnnualRecord" xsi:type="SearchMenuNode" _delta="define">
-			<rank>921</rank>
-			<parent>ConfigManagement</parent>
+			<rank>50</rank>
+			<parent>TechnicalRequestVehicle</parent>
 			<class>VehicleAnnualRecord</class> 
 		</menu> 
 	</menus>

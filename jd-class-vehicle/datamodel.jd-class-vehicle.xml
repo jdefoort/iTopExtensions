@@ -447,6 +447,139 @@
 				</cells>
 			</definition>
 		</menu>
+		<menu id="TechnicalRequestVehicle" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>30</rank>
+			<parent>TechnicalRequestManagement</parent>
+			<template_file/>
+		</menu>
+		<menu id="VehicleOverview" xsi:type="DashboardMenuNode" _delta="define">
+			<rank>10</rank>
+			<parent>TechnicalRequestVehicle</parent>
+			<definition>
+				   <layout>DashboardLayoutTwoCols</layout>
+					  <title>Overzicht voertuigen</title>
+					  <auto_reload>
+						<enabled>false</enabled>
+						<interval>300</interval>
+					  </auto_reload>
+					  <cells>
+						<cell id="0">
+						  <rank>0</rank>
+						  <dashlets>
+							<dashlet id="CUSTOM_VehicleOverview_ID_row0_col0_11" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Herinnering</title>
+							  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+							</dashlet>
+							<dashlet id="CUSTOM_VehicleOverview_ID_row0_col0_10" xsi:type="DashletObjectList">
+							  <rank>1</rank>
+							  <title></title>
+							  <query>SELECT Vehicle WHERE nextinspection&lt; DATE_ADD(NOW(), INTERVAL 21 DAY) AND status NOT IN ('resolved', 'closed')</query>
+							  <menu>false</menu>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="1">
+						  <rank>1</rank>
+						  <dashlets>
+							<dashlet id="0" xsi:type="DashletEmptyCell">
+							  <rank>0</rank>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="2">
+						  <rank>2</rank>
+						  <dashlets>
+							<dashlet id="CUSTOM_VehicleOverview_ID_row2_col0_12" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Algemene info</title>
+							  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+							</dashlet>
+							<dashlet id="CUSTOM_VehicleOverview_ID_row2_col0_7" xsi:type="DashletGroupByTable">
+							  <rank>1</rank>
+							  <title>Voertuigen per merk</title>
+							  <query>SELECT Vehicle WHERE status NOT IN ('resolved', 'closed')</query>
+							  <group_by>brand_name</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_VehicleOverview_ID_row3_col0_3" xsi:type="DashletGroupByTable">
+							  <rank>2</rank>
+							  <title>Voertuigen per garage</title>
+							  <query>SELECT Vehicle WHERE status NOT IN ('resolved', 'closed')</query>
+							  <group_by>maintenanceplace</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>asc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_VehicleOverview_ID_row2_col0_8" xsi:type="DashletGroupByTable">
+							  <rank>3</rank>
+							  <title>Alle voertuigen</title>
+							  <query>SELECT Vehicle WHERE status NOT IN ('resolved', 'closed')</query>
+							  <group_by>licenseplate</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>asc</order_direction>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="3">
+						  <rank>3</rank>
+						  <dashlets>
+							<dashlet id="CUSTOM__ID_row1_col1_14" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Voertuigen in cijfers</title>
+							  <icon>jb-crab/images/crabcity.png</icon>
+							</dashlet>
+							<dashlet id="CUSTOM_VehicleOverview_ID_row2_col0_9" xsi:type="DashletGroupByTable">
+							  <rank>1</rank>
+							  <title>Jaaroverzichten van de voertuigen</title>
+							  <query>SELECT VehicleAnnualRecord</query>
+							  <group_by>yearofrecord:month</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM__ID_row4_col0_13" xsi:type="DashletGroupByPie">
+							  <rank>2</rank>
+							  <title>Wagenpark volgens brandstof</title>
+							  <query>SELECT Vehicle WHERE status NOT IN ('resolved', 'closed')</query>
+							  <group_by>vehicleenergysource_id</group_by>
+							  <style>pie</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+						  </dashlets>
+						</cell>
+					  </cells>
+			</definition>
+		</menu>
+		<menu id="NewVehicle" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>20</rank>
+			<parent>TechnicalRequestVehicle</parent>
+			<class>Vehicle</class>
+		</menu>
+		<menu id="SearchVehicle" xsi:type="SearchMenuNode" _delta="define">
+			<rank>30</rank>
+			<parent>TechnicalRequestVehicle</parent>
+			<class>Vehicle</class>
+		</menu>
 	</menus>
 
 </itop_design>

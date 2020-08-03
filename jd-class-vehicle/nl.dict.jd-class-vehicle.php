@@ -62,7 +62,17 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:Vehicle/Attribute:insuredtill' => 'Verzekering is geldig tot',
 	'Class:Vehicle/Attribute:insuredtill+' => 'Tot wanneer loopt de verzekering op dit voertuig',
 	'Class:Vehicle/Attribute:vehicleannualrecord_list' => 'Jaaroverzicht',
-	'Class:Vehicle/Attribute:vehicleannualrecord_list+' => 'Jaaroverzicht'
+	'Class:Vehicle/Attribute:vehicleannualrecord_list+' => 'Jaaroverzicht',
+	
+	'Menu:TechnicalRequestVehicle' => 'Voertuigen',
+	'Menu:TechnicalRequestVehicle+' => '',
+	'Menu:VehicleOverview' => 'Overzicht',
+	'Menu:VehicleOverview+' => '',
+	'Menu:NewVehicle' => 'Nieuw voertuig',
+	'Menu:NewVehicle+' => 'Voeg nieuw voertuig toe',
+	'Menu:SearchVehicle' => 'Zoek voertuig',
+	'Menu:SearchVehicle+' => '',
+
 
 
 ));
