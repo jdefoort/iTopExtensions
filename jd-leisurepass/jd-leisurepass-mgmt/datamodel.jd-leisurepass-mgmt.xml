@@ -620,17 +620,20 @@
 
 			</presentation>
 			<methods>
-				<method id="OnInsert">
+				<method id="AfterInsert">
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
 					<!-- Generate unique number, based on the value on the cheque (e.g. 40 EUR), the leisurepass and cheque id -->
-					<code><![CDATA[	protected function OnInsert()
+					<code><![CDATA[	protected function AfterInsert()
 	{
+		parent::AfterInsert();
 		// key + pass_id + value (fraude tegengaan of validatie van incorrecte check. Altijd overschrijven.)
 		$this->Set('code', substr( md5($this->Get('value') . $this->GetKey() . $this->Get('pass_id') ), 0, 8));
 		$this->Set('created', date('Y-m-d H:i:s'));
-		parent::OnInsert();
+		$this->DBUpdate();
+		
+		
 	}]]></code>
 				</method>
 				<method id="OnUpdate">
@@ -639,9 +642,10 @@
 					<type>Overload-DBObject</type>
 					<code><![CDATA[	protected function OnUpdate()
 	{
+		parent::OnUpdate();
 		// key + pass_id + value (fraude tegengaan of validatie van incorrecte check. Altijd overschrijven.)
 		$this->Set('code', substr( md5($this->Get('value') . $this->GetKey() . $this->Get('pass_id') ), 0, 8));
-		parent::OnUpdate();
+
 	}]]></code>
 				</method>
 				<method id="GetAttributeFlags">
@@ -664,7 +668,7 @@
 				  <type>Overload-DBObject</type>
 				  <code><![CDATA[	public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
 		{
-			if($sAttCode == 'created' || $sAttCode == 'created')
+			if($sAttCode == 'created' || $sAttCode == 'code')
 			{
 				return OPT_ATT_READONLY;
 			}

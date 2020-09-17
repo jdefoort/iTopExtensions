@@ -136,13 +136,13 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="communicationhistory" xsi:type="AttributeCaseLog">
-					<sql>communicationhistory</sql>
+				<field id="paymentterms" xsi:type="AttributeCaseLog">
+					<sql>paymentterms</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="paymentterms" xsi:type="AttributeCaseLog">
-					<sql>paymentterms</sql>
+				<field id="communicationhistory" xsi:type="AttributeCaseLog">
+					<sql>communicationhistory</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
@@ -1039,7 +1039,7 @@
 						<item id="manager_id">
 							<rank>50</rank>
 						</item>
-						<item id="agent_id">
+						<item id="servicesubcategory_id">
 							<rank>60</rank>
 						</item>
 						<item id="total">

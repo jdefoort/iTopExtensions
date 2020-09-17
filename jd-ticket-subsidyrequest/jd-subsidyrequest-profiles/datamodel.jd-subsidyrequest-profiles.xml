@@ -94,6 +94,52 @@
           </group>
         </groups>
       </profile>
+	  	  <profile id="140" _delta="define">
+        <name>Subsidy Readonly User</name>
+        <description>Person overwatching Subsidy, can read documentation, subsidy requests,...</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+       
+          <group id="Problem">
+            <actions>
+             <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="SubsidyRequest">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+		  </group>	
+		           
+		  <group id="Ticketing">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+
+		  
+		  <group id="PrecannedReplies">
+			<actions>
+			<action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+        </groups>
+      </profile>
     </profiles>
   </user_rights>
 </itop_design>
