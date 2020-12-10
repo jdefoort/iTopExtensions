@@ -1,0 +1,1883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<classes>
+		 <class id="lnkContactToTechnicalTicket" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+			  <is_link>1</is_link>
+			  <category>bizmodel</category>
+			  <abstract>false</abstract>
+			  <key_type>autoincrement</key_type>
+			  <db_table>lnkcontacttotechnicalticket</db_table>
+			  <db_key_field>id</db_key_field>
+			  <db_final_class_field/>
+			  <naming>
+				<attributes>
+				  <attribute id="ticket_id"/>
+				  <attribute id="contact_id"/>
+				</attributes>
+			  </naming>
+			  <display_template/>
+			  <icon/>
+			  <reconciliation>
+				<attributes>
+				  <attribute id="ticket_id"/>
+				  <attribute id="contact_id"/>
+				</attributes>
+			  </reconciliation>
+			</properties>
+			<fields>
+			  <field id="ticket_id" xsi:type="AttributeExternalKey">
+				<sql>ticket_id</sql>
+				<target_class>Ticket</target_class>
+				<is_null_allowed>false</is_null_allowed>
+				<on_target_delete>DEL_AUTO</on_target_delete>
+			  </field>
+			  <field id="ticket_ref" xsi:type="AttributeExternalField">
+				<extkey_attcode>ticket_id</extkey_attcode>
+				<target_attcode>ref</target_attcode>
+			  </field>
+			  <field id="contact_id" xsi:type="AttributeExternalKey">
+				<sql>contact_id</sql>
+				<target_class>Person</target_class>
+				<is_null_allowed>false</is_null_allowed>
+				<on_target_delete>DEL_AUTO</on_target_delete>
+				<filter>SELECT Person AS p JOIN lnkPersonToTeam AS t ON t.person_id = p.id JOIN Team AS t2 ON t.team_id=t2.id WHERE t2.name = "Werkplaatsen"</filter>
+			  </field>
+			  <field id="contact_email" xsi:type="AttributeExternalField">
+				<extkey_attcode>contact_id</extkey_attcode>
+				<target_attcode>email</target_attcode>
+			  </field>		  
+			  <field id="start" xsi:type="AttributeDateTime">
+				<sql>start</sql>
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed>
+			  </field>
+			  <field id="stop" xsi:type="AttributeDateTime">
+				<sql>stop</sql>
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed>
+			  </field>
+			</fields>
+			<methods/>
+			<presentation>
+			  <details>
+				<items>
+				  <item id="ticket_id">
+					<rank>10</rank>
+				  </item>
+				  <item id="contact_id">
+					<rank>20</rank>
+				  </item>
+				  <item id="start">
+					<rank>40</rank>
+				  </item>
+				  <item id="stop">
+					<rank>50</rank>
+				  </item>
+				</items>
+			  </details>
+			  <search>
+				<items>
+				  <item id="ticket_id">
+					<rank>10</rank>
+				  </item>
+				  <item id="contact_id">
+					<rank>20</rank>
+				  </item>
+				  <item id="start">
+					<rank>40</rank>
+				  </item>
+				  <item id="stop">
+					<rank>50</rank>
+				  </item>
+				</items>
+			  </search>
+			  <list>
+				<items>
+				  <item id="ticket_id">
+					<rank>10</rank>
+				  </item>
+				  <item id="contact_id">
+					<rank>20</rank>
+				  </item>
+				  <item id="start">
+					<rank>40</rank>
+				  </item>
+				  <item id="stop">
+					<rank>50</rank>
+				  </item>
+				</items>
+			  </list>
+			</presentation>
+		  </class>
+	
+	
+	
+		<class id="TechnicalRequest" _delta="define">
+			<parent>Ticket</parent>
+			<properties>
+				<comment><![CDATA[/**
+ * Persistent classes for a CMDB
+ *
+ * @copyright   Copyright (C) 2010-2012 Combodo SARL
+ * @license     http://opensource.org/licenses/AGPL-3.0
+ */]]></comment>
+				<category>bizmodel,searchable,requestmgmt</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>ticket_technicalrequest</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="ref"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon>images/user-request.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="ref"/>
+					</attributes>
+				</reconciliation>
+				<order>
+					<columns>
+						<column id="ref" ascending="false"/>
+					</columns>
+				</order>
+			</properties>
+			<fields>
+				<field id="status" xsi:type="AttributeEnum">
+					<always_load_in_tables>true</always_load_in_tables>
+					<values>
+						<value id="new">new</value>
+						<value id="waiting_for_approval">waiting_for_approval</value>
+						<value id="approved">approved</value>
+						<value id="rejected">rejected</value>
+						<value id="assigned">assigned</value>
+						<value id="pending">pending</value>
+						<value id="resolved">resolved</value>
+						<value id="closed">closed</value>
+					</values>
+					<sql>status</sql>
+					<default_value>new</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="priority" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+						<value id="3">3</value>
+						<value id="4">4</value>
+					</values>
+					<dependencies>
+						<attribute id="urgency"/>
+					</dependencies>
+					<sql>priority</sql>
+					<default_value>4</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="urgency" xsi:type="AttributeEnum">
+				  <values>
+					<value id="1">1</value>
+					<value id="2">2</value>
+					<value id="3">3</value>
+					<value id="4">4</value>
+				  </values>
+				  <sql>urgency</sql>
+				  <default_value>3</default_value>
+				  <is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="origin" xsi:type="AttributeEnum">
+					<values>
+						<value id="mail">mail</value>
+						<value id="phone">phone</value>
+						<value id="portal">portal</value>
+						<value id="in_person">in_person</value>
+						<value id="standby_duty">standby_duty</value>
+					</values>
+					<sql>origin</sql>
+					<default_value>portal</default_value>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="approver_id" xsi:type="AttributeExternalKey">
+					<filter><![CDATA[SELECT Person WHERE org_id= :this->org_id]]></filter>
+					<dependencies>
+						<attribute id="org_id"/>
+					</dependencies>
+					<sql>approver_id</sql>
+					<target_class>Person</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<allow_target_creation>false</allow_target_creation>
+				</field>
+				<field id="approver_email" xsi:type="AttributeExternalField">
+					<extkey_attcode>approver_id</extkey_attcode>
+					<target_attcode>email</target_attcode>
+				</field>
+				<field id="service_id" xsi:type="AttributeExternalKey">
+					<filter><![CDATA[SELECT Service AS s JOIN lnkCustomerContractToService AS l1 ON l1.service_id=s.id JOIN CustomerContract AS cc ON l1.customercontract_id=cc.id WHERE cc.org_id = :this->org_id AND s.status != 'obsolete']]></filter>
+					<dependencies>
+						<attribute id="org_id"/>
+					</dependencies>
+					<sql>service_id</sql>
+					<target_class>Service</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<allow_target_creation>false</allow_target_creation>
+				</field>
+				<field id="service_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>service_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="servicesubcategory_id" xsi:type="AttributeExternalKey">
+					<filter><![CDATA[SELECT ServiceSubcategory WHERE service_id = :this->service_id AND status != 'obsolete']]></filter>
+					<dependencies>
+						<attribute id="service_id"/>
+					</dependencies>
+					<sql>servicesubcategory_id</sql>
+					<target_class>ServiceSubcategory</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<allow_target_creation>false</allow_target_creation>
+					<jointype/>
+				</field>
+				<field id="servicesubcategory_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>servicesubcategory_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="assignment_date" xsi:type="AttributeDateTime">
+					<sql>assignment_date</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="resolution_date" xsi:type="AttributeDateTime">
+					<sql>resolution_date</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="last_pending_date" xsi:type="AttributeDateTime">
+					<sql>last_pending_date</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="cumulatedpending" xsi:type="AttributeStopWatch">
+					<states>
+						<state id="pending"/>
+					</states>
+					<working_time/>
+					<thresholds/>
+					<goal/>
+				</field>
+				<field id="time_spent" xsi:type="AttributeDuration">
+					<sql>time_spent</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="solution" xsi:type="AttributeText">
+					<sql>solution</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="parent_request_id" xsi:type="AttributeExternalKey">
+					<filter><![CDATA[SELECT TechnicalRequest WHERE id != :this->id AND status NOT IN ('rejected','resolved','closed')]]></filter>
+					<dependencies>
+					</dependencies>
+					<sql>parent_request_id</sql>
+					<target_class>TechnicalRequest</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="parent_request_ref" xsi:type="AttributeExternalField">
+					<extkey_attcode>parent_request_id</extkey_attcode>
+					<target_attcode>ref</target_attcode>
+				</field>
+				<field id="related_request_list" xsi:type="AttributeLinkedSet">
+					<linked_class>TechnicalRequest</linked_class>
+					<ext_key_to_me>parent_request_id</ext_key_to_me>
+					<edit_mode>add_remove</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+				</field>
+				<field id="public_log" xsi:type="AttributeCaseLog">
+					<sql>public_log</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="orders_log" xsi:type="AttributeCaseLog">
+					<sql>orders_log</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="user_comment" xsi:type="AttributeText">
+					<sql>user_commment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="reminder" xsi:type="AttributeDate">
+				  <sql>reminder</sql>
+				  <default_value/>
+				  <is_null_allowed>true</is_null_allowed>
+				  <display_style>list</display_style>
+				</field>
+				<field id="geom" xsi:type="AttributeGeometry" _delta="define">
+					<sql>geom</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<format>WKT|Point,LineString,Polygon|EPSG:3857</format>
+				</field>
+				<field id="status_detail" xsi:type="AttributeEnum">
+				  <values>
+					<value id="planned">planned</value>
+					<value id="passed">passed_for_execution</value>
+					<value id="information">additional_information_requested</value>
+					<value id="start">not_yet_started</value>
+				  </values>
+				  <sql>status_detail</sql>
+				  <default_value>not_yet_started</default_value>
+				  <is_null_allowed>false</is_null_allowed>
+				  <display_style>list</display_style> 
+				</field>
+				<field id="staff_list" xsi:type="AttributeLinkedSetIndirect">
+					<linked_class>lnkContactToTechnicalTicket</linked_class>
+					<ext_key_to_me>ticket_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>contact_id</ext_key_to_remote>
+					<duplicates>true</duplicates>
+				</field>
+				<field id="crab_address_id" xsi:type="AttributeExternalKey">
+					<sql>crab_address_id</sql>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<target_class>CrabAddress</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
+				</field>
+				<field id="crab_address_street_id_friendlyname" xsi:type="AttributeExternalField" _delta="define">
+					<extkey_attcode>crab_address_id</extkey_attcode>
+					<target_attcode>street_id</target_attcode>
+					<dependencies/>
+				</field>
+				<field id="caller_phone" xsi:type="AttributeExternalField" _delta="define">
+					<extkey_attcode>caller_id</extkey_attcode>
+					<target_attcode>phone</target_attcode>
+					<dependencies/>
+				</field>
+				 <!-- Add phone number (derived from caller_id -> Person) -->
+				<field id="caller_mobile_phone" xsi:type="AttributeExternalField" _delta="define">
+					<extkey_attcode>caller_id</extkey_attcode>
+					<target_attcode>mobile_phone</target_attcode>
+					<dependencies/>
+				</field>
+				<field id="crab_address_id_geom" xsi:type="AttributeExternalField">
+					<extkey_attcode>crab_address_id</extkey_attcode>
+					<target_attcode>geom</target_attcode>
+				</field>
+			</fields>
+			<lifecycle>
+				<highlight_scale>
+					<item id="warning">
+						<rank>1</rank>
+						<color>HIGHLIGHT_CLASS_WARNING</color>
+						<icon>images/user-request-deadline.png</icon>
+					</item>
+					<item id="critical">
+						<rank>2</rank>
+						<color>HIGHLIGHT_CLASS_CRITICAL</color>
+						<icon>images/user-request-escalated.png</icon>
+					</item>
+					<item id="closed">
+						<rank>3</rank>
+						<color>HIGHLIGHT_CLASS_NONE</color>
+						<icon>images/user-request-closed.png</icon>
+					</item>
+				</highlight_scale>
+				<attribute>status</attribute>
+				<stimuli>
+					<stimulus id="ev_assign" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_reassign" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_approve" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_reject" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_pending" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_timeout" xsi:type="StimulusInternal"/>
+					<stimulus id="ev_autoresolve" xsi:type="StimulusInternal"/>
+					<stimulus id="ev_autoclose" xsi:type="StimulusInternal"/>
+					<stimulus id="ev_resolve" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_close" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_reopen" xsi:type="StimulusUserAction"/>
+					<stimulus id="ev_wait_for_approval" xsi:type="StimulusUserAction"/>
+				</stimuli>
+				<states>
+					<state id="new">
+						<flags>
+							<attribute id="ref">
+								<read_only/>
+							</attribute>
+							<attribute id="org_id">
+								<mandatory/>
+							</attribute>
+							<attribute id="caller_id">
+								<mandatory/>
+							</attribute>
+							<attribute id="agent_id">
+								<hidden/>
+							</attribute>
+							<attribute id="priority">
+								<read_only/>
+							</attribute>
+							<attribute id="start_date">
+								<read_only/>
+							</attribute>
+							<attribute id="last_update">
+								<read_only/>
+							</attribute>
+							<attribute id="close_date">
+								<hidden/>
+							</attribute>
+							<attribute id="approver_id">
+								<hidden/>
+							</attribute>
+							<attribute id="assignment_date">
+								<hidden/>
+							</attribute>
+							<attribute id="resolution_date">
+								<hidden/>
+							</attribute>
+							<attribute id="last_pending_date">
+								<hidden/>
+							</attribute>
+							<attribute id="time_spent">
+								<hidden/>
+							</attribute>
+							<attribute id="solution">
+								<hidden/>
+							</attribute>
+							<attribute id="user_comment">
+								<hidden/>
+							</attribute>
+							<attribute id="public_log">
+								<read_only/>
+							</attribute>
+							<attribute id="orders_log">
+								<hidden/>
+							</attribute>
+						</flags>
+						<transitions>
+							<transition id="ev_assign">
+								<target>assigned</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">assignment_date</param>
+										</params>
+									</action>
+								</actions>
+							</transition>
+							<transition id="ev_wait_for_approval">
+								<target>waiting_for_approval</target>
+								<actions/>
+							</transition>
+							<transition id="ev_autoresolve">
+								<target>resolved</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">resolution_date</param>
+										</params>
+									</action>
+									<action>
+										<verb>SetElapsedTime</verb>
+										<params>
+											<param xsi:type="attcode">time_spent</param>
+											<param xsi:type="attcode">start_date</param>
+											<param xsi:type="string">DefaultWorkingTimeComputer</param>
+										</params>
+									</action>
+									<action>
+										<verb>ResolveChildTickets</verb>
+										<params/>
+									</action>
+								</actions>
+							</transition>
+						</transitions>
+					</state>
+					<state id="assigned">
+						<inherit_flags_from>new</inherit_flags_from>
+						<flags>
+							<attribute id="team_id">
+								<read_only/>
+							</attribute>
+							<attribute id="title">
+								<mandatory/>
+								<must_prompt/>
+							</attribute>
+							<attribute id="agent_id">
+								<mandatory/>
+								<must_prompt/>
+								<read_only/>
+							</attribute>
+							<attribute id="approver_id">
+								<read_only/>
+							</attribute>
+							<attribute id="assignment_date">
+								<read_only/>
+							</attribute>
+							<attribute id="caller_id"/>
+							<attribute id="public_log"/>
+							<attribute id="orders_log"/>
+						</flags>
+						<transitions>
+							<transition id="ev_resolve">
+								<target>resolved</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">resolution_date</param>
+										</params>
+									</action>
+									<action>
+										<verb>SetElapsedTime</verb>
+										<params>
+											<param xsi:type="attcode">time_spent</param>
+											<param xsi:type="attcode">start_date</param>
+											<param xsi:type="string">DefaultWorkingTimeComputer</param>
+										</params>
+									</action>
+									<action>
+										<verb>ResolveChildTickets</verb>
+										<params/>
+									</action>
+								</actions>
+							</transition>
+							<transition id="ev_reassign">
+								<target>assigned</target>
+								<flags>
+									<attribute id="agent_id">
+										<must_change/>
+									</attribute>
+								</flags>
+								<actions/>
+							</transition>
+							<transition id="ev_timeout">
+								<target>escalated_ttr</target>
+								<actions/>
+							</transition>
+							<transition id="ev_autoresolve">
+								<target>resolved</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">resolution_date</param>
+										</params>
+									</action>
+									<action>
+										<verb>SetElapsedTime</verb>
+										<params>
+											<param xsi:type="attcode">time_spent</param>
+											<param xsi:type="attcode">start_date</param>
+											<param xsi:type="string">DefaultWorkingTimeComputer</param>
+										</params>
+									</action>
+									<action>
+										<verb>ResolveChildTickets</verb>
+										<params/>
+									</action>
+								</actions>
+							</transition>
+						</transitions>
+					</state>
+					<state id="waiting_for_approval">
+						<inherit_flags_from>new</inherit_flags_from>
+						<flags>
+							<attribute id="approver_id">
+								<must_prompt/>
+							</attribute>
+						</flags>
+						<transitions>
+							<transition id="ev_approve">
+								<target>approved</target>
+								<actions/>
+							</transition>
+							<transition id="ev_reject">
+								<target>rejected</target>
+								<actions/>
+							</transition>
+						</transitions>
+					</state>
+					<state id="approved">
+						<inherit_flags_from>waiting_for_approval</inherit_flags_from>
+						<flags>
+							<attribute id="approver_id">
+								<read_only/>
+							</attribute>
+						</flags>
+						<transitions>
+							<transition id="ev_assign">
+								<target>assigned</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">assignment_date</param>
+										</params>
+									</action>
+								</actions>
+							</transition>
+							<transition id="ev_autoresolve">
+								<target>resolved</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">resolution_date</param>
+										</params>
+									</action>
+									<action>
+										<verb>SetElapsedTime</verb>
+										<params>
+											<param xsi:type="attcode">time_spent</param>
+											<param xsi:type="attcode">start_date</param>
+											<param xsi:type="string">DefaultWorkingTimeComputer</param>
+										</params>
+									</action>
+									<action>
+										<verb>ResolveChildTickets</verb>
+										<params/>
+									</action>
+								</actions>
+							</transition>
+						</transitions>
+					</state>
+					<state id="rejected">
+						<inherit_flags_from>new</inherit_flags_from>
+						<flags>
+							<attribute id="team_id"/>
+						</flags>
+						<transitions>
+							<transition id="ev_reopen">
+								<target>new</target>
+								<actions/>
+							</transition>
+						</transitions>
+					</state>
+					<state id="pending">
+						<inherit_flags_from>assigned</inherit_flags_from>
+						<flags>
+							<attribute id="last_pending_date">
+								<read_only/>
+							</attribute>
+						</flags>
+						<transitions>
+							<transition id="ev_assign">
+								<target>assigned</target>
+								<actions>
+								</actions>
+							</transition>
+							<transition id="ev_autoresolve">
+								<target>resolved</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">resolution_date</param>
+										</params>
+									</action>
+									<action>
+										<verb>SetElapsedTime</verb>
+										<params>
+											<param xsi:type="attcode">time_spent</param>
+											<param xsi:type="attcode">start_date</param>
+											<param xsi:type="string">DefaultWorkingTimeComputer</param>
+										</params>
+									</action>
+									<action>
+										<verb>ResolveChildTickets</verb>
+										<params/>
+									</action>
+								</actions>
+							</transition>
+						</transitions>
+					</state>
+					<state id="resolved">
+						<highlight>
+							<code>closed</code>
+						</highlight>
+						<inherit_flags_from>assigned</inherit_flags_from>
+						<flags>
+							<attribute id="caller_id"/>
+							<attribute id="crab_address_id"/>
+							<attribute id="origin">
+								<read_only/>
+							</attribute>
+							<attribute id="urgency">
+								<read_only/>
+							</attribute>
+							<attribute id="status_detail">
+								<read_only/>
+							</attribute>
+							<attribute id="service_id">
+								<mandatory/>
+								<must_prompt/>
+							</attribute>
+							<attribute id="servicesubcategory_id">
+								<must_prompt/>
+							</attribute>
+							<attribute id="parent_request_id">
+								<read_only/>
+							</attribute>
+							<attribute id="service_id">
+								<read_only/>
+							</attribute>
+							<attribute id="public_log">
+								<read_only/>
+							</attribute>
+							<attribute id="orders_log">
+								<read_only/>
+							</attribute>
+							<attribute id="description">
+								<read_only/>
+							</attribute>
+							<attribute id="org_id"/>
+							<attribute id="team_id">
+								<read_only/>
+							</attribute>
+							<attribute id="agent_id">
+								<read_only/>
+							</attribute>
+							<attribute id="resolution_date">
+								<read_only/>
+							</attribute>
+							<attribute id="time_spent">
+								<read_only/>
+							</attribute>
+							<attribute id="solution">
+								<must_prompt/>
+							</attribute>
+							<attribute id="reminder">
+								<read_only/>
+							</attribute>
+						</flags>
+						<transitions>
+							<transition id="ev_close">
+								<target>closed</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">close_date</param>
+										</params>
+									</action>
+								</actions>
+							</transition>
+							<transition id="ev_reopen">
+								<target>assigned</target>
+								<actions>
+								</actions>
+							</transition>
+							<transition id="ev_autoresolve">
+								<target>resolved</target>
+								<actions>
+									<action>
+										<verb>SetCurrentDate</verb>
+										<params>
+											<param xsi:type="attcode">resolution_date</param>
+										</params>
+									</action>
+									<action>
+										<verb>SetElapsedTime</verb>
+										<params>
+											<param xsi:type="attcode">time_spent</param>
+											<param xsi:type="attcode">start_date</param>
+											<param xsi:type="string">DefaultWorkingTimeComputer</param>
+										</params>
+									</action>
+									<action>
+										<verb>ResolveChildTickets</verb>
+										<params/>
+									</action>
+								</actions>
+							</transition>
+						</transitions>
+					</state>
+					<state id="closed">
+						<highlight>
+							<code>closed</code>
+						</highlight>
+						<inherit_flags_from>resolved</inherit_flags_from>
+						<flags>
+							<attribute id="private_log">
+								<read_only/>
+							</attribute>
+							<attribute id="public_log">
+								<read_only/>
+							</attribute>
+							<attribute id="orders_log">
+								<read_only/>
+							</attribute>
+							<attribute id="functionalcis_list">
+								<read_only/>
+							</attribute>
+							<attribute id="contacts_list">
+								<read_only/>
+							</attribute>
+							<attribute id="service_id">
+								<read_only/>
+							</attribute>
+							<attribute id="servicesubcategory_id">
+								<read_only/>
+							</attribute>
+							<attribute id="close_date">
+								<read_only/>
+							</attribute>
+							<attribute id="solution">
+								<read_only/>
+							</attribute>
+							<attribute id="user_comment">
+								<read_only/>
+								<must_prompt/>
+							</attribute>
+							<attribute id="reminder">
+								<read_only/>
+							</attribute>
+						</flags>
+						<transitions>
+							<transition id="ev_reopen">
+								<target>assigned</target>
+								<actions>
+								</actions>
+							</transition>
+						</transitions>	
+					</state>
+				</states>
+			</lifecycle>
+			<methods>
+				<method id="SetAssignedDate">
+					<comment><![CDATA[/**
+	 * To be deprecated: use SetCurrentDate() instead
+	 * @return void
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[	public function SetAssignedDate($sStimulusCode)
+	{
+		$this->Set('assignment_date', time());
+		return true;
+	}]]></code>
+				</method>
+				<method id="SetLastPendingDate">
+					<comment><![CDATA[/**
+	 * To be deprecated: use SetCurrentDate() instead
+	 * @return void
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[	public function SetLastPendingDate($sStimulusCode)
+	{
+		$this->Set('last_pending_date', time());
+		return true;
+	}]]></code>
+				</method>
+				<method id="SetResolveDate">
+					<comment><![CDATA[/**
+	 * To be deprecated: use SetCurrentDate() and SetElapsedTime() instead
+	 * @return void
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[	public function SetResolveDate($sStimulusCode)
+	{
+		$this->Set('resolution_date', time());
+                $iTimeSpent = time() - AttributeDateTime::GetAsUnixSeconds($this->Get('start_date'));
+		$this->Set('time_spent', $iTimeSpent);
+		return true;
+	}]]></code>
+				</method>
+				<method id="SetClosureDate">
+					<comment><![CDATA[/**
+	 * To be deprecated: use SetCurrentDate() instead
+	 * @return void
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[	public function SetClosureDate($sStimulusCode)
+	{
+		$this->Set('close_date', time());
+		return true;
+	}]]></code>
+				</method>
+				<method id="SetApprover">
+					<comment><![CDATA[/**
+	 * To be deprecated: use SetCurrentUser() instead
+	 * @return void
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[	public function SetApprover($sStimulusCode)
+	{
+		$this->Set('approver_id', UserRights::GetUserId());
+		return true;
+	}]]></code>
+				</method>
+				<method id="DoCheckToWrite">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[public function DoCheckToWrite()
+  {
+    parent::DoCheckToWrite();
+    if (!$this->IsNew() && ($this->Get('parent_request_id') == $this->GetKey()))
+    {
+      $this->m_aCheckIssues[] = Dict::Format('Class:TechnicalRequest/Error:CannotAssignParentRequestIdToSelf');
+    }
+  }]]></code>
+				</method>
+				<method id="ComputeValues">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function ComputeValues()
+	{
+
+		
+		return parent::ComputeValues();
+	}]]></code>
+				</method>
+				
+				<method id="resolveChilds">
+					<comment><![CDATA[/**
+	 * To be deprecated: use ResolveChildTickets() instead
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[	public function resolveChilds($sStimulusCode)
+	{
+				
+		$sOQL = "SELECT TechnicalRequest WHERE parent_request_id=:ticket";
+		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
+						array(),
+						array(
+							'ticket' => $this->GetKey(),
+							)
+						);
+		while($oRequest = $oChildRequestSet->Fetch())
+		{
+			if ( $oRequest->Get('status') != 'resolved')
+			{
+				$oRequest->set('servicesubcategory_id',$this->Get('servicesubcategory_id'));
+				$oRequest->set('service_id',$this->Get('service_id'));		
+				$oRequest->set('team_id',$this->Get('team_id'));
+				$oRequest->set('agent_id',$this->Get('agent_id'));	
+				$oRequest->set('solution','Automatically resolved by request:[[TechnicalRequest:'.$this->Get('ref').']]');
+				$oRequest->ApplyStimulus('ev_autoresolve');
+				$oRequest->DBUpdate();
+			}
+		}
+		return true;
+
+	}]]></code>
+				</method>
+				<method id="ResolveChildTickets">
+					<comment><![CDATA[/**
+	 * Cascade the resolution to child User Request
+	 * @return true (returning false would stop the ongoing transition)
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<arguments>
+					</arguments>
+					<code><![CDATA[	public function ResolveChildTickets()
+	{
+        static $aTickets = array(); // prevent infinite recursion
+    
+		// Automatically resolve child requests
+		$sOQL = "SELECT TechnicalRequest WHERE parent_request_id = :ticket AND status != 'resolved'";
+		$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('ticket' => $this->GetKey()));
+		while($oRequest = $oChildRequestSet->Fetch())
+		{
+            if (!array_key_exists($oRequest->GetKey(), $aTickets))
+            {
+                $aTickets[$oRequest->GetKey()] = true;
+			    $oRequest->ResolveFrom($this);
+            }
+		}
+		return true;
+	}]]></code>
+				</method>
+				<method id="ResolveFrom">
+					<comment><![CDATA[/**
+	 * Resolve the ticket from another resolved ticket
+	 * @return void
+	 */]]></comment>
+					<static>false</static>
+					<access>public</access>
+					<type>Internal</type>
+					<code><![CDATA[	public function ResolveFrom($oParentTicket)
+	{
+		if ($this->Get('status') != 'resolved')
+		{
+			$this->Set('servicesubcategory_id', $oParentTicket->Get('servicesubcategory_id'));
+			$this->Set('service_id', $oParentTicket->Get('service_id'));		
+			$this->Set('team_id', $oParentTicket->Get('team_id'));
+			$this->Set('agent_id', $oParentTicket->Get('agent_id'));	
+			$sParent = '[['.get_class($oParentTicket).':'.$oParentTicket->Get('ref').']]';
+			$this->Set('solution', Dict::Format('Tickets:ResolvedFrom', $sParent, MetaModel::GetName(get_class($oParentTicket))));
+			$this->ApplyStimulus('ev_autoresolve');
+			$this->DBUpdate();
+		}
+	}]]></code>
+				</method>
+				<method id="UpdateChildRequestLog">
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[	public function UpdateChildRequestLog()
+	{
+		$oLog = $this->Get('public_log');
+		$sLogPublic = $oLog->GetModifiedEntry('html');
+		if ($sLogPublic != '')
+		{
+			$sOQL = "SELECT TechnicalRequest WHERE parent_request_id=:ticket";
+			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
+							array(),
+							array(
+								'ticket' => $this->GetKey(),
+								)
+							);
+			while($oRequest = $oChildRequestSet->Fetch())
+			{
+				$oRequest->set('public_log',$sLogPublic);
+				$oRequest->DBUpdate();
+			}
+
+		}
+		$oLog = $this->Get('private_log');
+		$sLogPrivate = $oLog->GetModifiedEntry('html');
+		if ($sLogPrivate != '')
+		{
+			$sOQL = "SELECT TechnicalRequest WHERE parent_request_id=:ticket";
+			$oChildRequestSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
+							array(),
+							array(
+								'ticket' => $this->GetKey(),
+								)
+							);
+			while($oRequest = $oChildRequestSet->Fetch())
+			{
+				$oRequest->set('private_log',$sLogPrivate);
+				$oRequest->DBUpdate();
+			}
+		}
+		return true;
+
+	}]]></code>
+				</method>
+				<method id="ComputeImpactedItems">
+					<static>false</static>
+					<access>public</access>
+					<type>LifecycleAction</type>
+					<code><![CDATA[
+    public function ComputeImpactedItems()
+	{
+        // This method is kept for backward compatibility
+        // in case a delta redefines it, but you may call
+        // UpdateImpactedItems directly
+		$this->UpdateImpactedItems();
+	}]]></code>
+				</method>
+				<method id="OnInsert">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[
+    protected function OnInsert()
+	{
+		$this->ComputeImpactedItems();
+		$this->Set('last_update', time());
+		$this->Set('start_date', time());
+		
+		
+		// Dealing with a new TechnicalRequest, so new crab_address_id
+		// If no geometry was drawn AND a crab_address_id was selected: overwrite geometry
+		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && (Int)$this->Get('crab_address_id') > 0);
+		
+		if($bCopyGeometryFromCrabAddress == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+			
+		}
+		
+	}]]></code>
+				</method>
+				<method id="OnUpdate">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[
+    protected function OnUpdate()
+	{
+        parent::OnUpdate();
+        $aChanges = $this->ListChanges();
+        if (array_key_exists('functionalcis_list', $aChanges))
+        {
+            $this->UpdateImpactedItems();
+        }
+		$this->Set('last_update', time());
+		$this->UpdateChildRequestLog();
+		
+		// geometry is now 'empty' (was already empty or has now been reset)
+		// crab_address_id is set AND has changed?
+		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && (Int)$this->Get('crab_address_id') > 0 && array_key_exists('crab_address_id', $aChanges) == true);
+		
+		if($bCopyGeometryFromCrabAddress == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+			
+		}
+						
+						
+	}]]></code>
+				</method>
+				
+				<method id="DisplayBareRelations" _delta="define">
+						<static>false</static>
+						<access>public</access>
+						<type>Overload-cmdbAbstractObject</type>
+						<code><![CDATA[      public function DisplayBareRelations(WebPage $oPage, $bEditMode = false)
+					{
+						parent::DisplayBareRelations($oPage, $bEditMode);
+	 
+	
+						// Intention was an iframe, but it's giving security warnings and doesn't work properly (InfraGIS doesn't zoom)
+						/*
+							$sTabName = Dict::S('Tab:InfraGIS');
+							$oPage->SetCurrentTab($sTabName); 
+							
+							// It seems iTop just outputs a script as text if you set it in $oPage->add()? 
+							
+							$sAddress = $this->Get('crab_address_id_friendlyname');
+							$sAddress = trim($sAddress); // "friendlyname" adds invisible spaces at the end, because it *could* show apartment number and sub number.
+							$sAddress = urlencode($sAddress);
+							
+							$oPage->add('<iframe src="https://infragis.infrax.be/infragis/raadplegen/?LAYOUT=Library://Gemeenten/Izegem/Layouts/raadplegen.WebLayout&niscode=36008&LOCALE=nl&mapname=raadplegen&layer=adres&key=adres&value=' . $sAddress .'" height="800px" width="100%"></iframe>');
+
+							 
+							$oPage->add_ready_script('
+
+								// After display, set width and height to something
+
+							');
+								
+						*/
+						
+					}  ]]></code>
+				</method> 
+				
+				
+            <method id="PrefillSearchForm" _delta="define">
+                <static>false</static>
+                <access>public</access>
+                <type>Overload-DBObject</type>
+                <arguments>
+                    <argument id="1">
+                        <type>reference</type>
+                        <mandatory>true</mandatory>
+                    </argument>
+                </arguments>
+                <code><![CDATA[public function PrefillSearchForm(&$aContextParam)
+              {       // code of the function
+			  					
+					// We remove any criteria set by the default search
+					$aContextParam['filter']->ResetCondition();
+					
+					// We set a criteria on the 'org_id' of the searched class with the Contract provider value
+					
+					$sOQL = 'SELECT Location WHERE name = "Werkplaatsen"';			
+					$oSet_Locations = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), /* Order by */ Array('id' => /* Ascending */ false), /* Arguments */ Array(), /* Extended data spec */ null, /* Amount */ 1);
+		
+					// Only 1 location should be retrieved
+					$oLocation = $oSet_Locations->Fetch();
+					
+					$aContextParam['filter']->AddCondition('location_id', $oLocation->Get('id') );					
+					
+			  }]]>
+                </code>
+            </method>
+			<method id="PrefillCreationForm" _delta="define">
+				<static>false</static>
+				<access>public</access>
+				<type>Overload-DBObject</type>
+				<arguments>
+					<argument id="1">
+						<type>reference</type>
+						<mandatory>true</mandatory>
+					</argument>
+				</arguments>
+				<code><![CDATA[
+				
+					public function PrefillCreationForm(&$aContextParam) {
+					
+						parent::PrefillCreationForm($aContextParam);
+						
+						$sDBTestUUID = '{014E6DBF-5A19-B2FE-D047-8E0B73A19221}';
+						$sDBProdUUID = '{4EBD727C-1609-96A0-17F3-DEAE6ED9766D}';
+
+						if(DBProperty::GetProperty('database_uuid', '') == $sDBTestUUID) {
+							$this->Set('team_id', 4);
+						}
+						elseif(DBProperty::GetProperty('database_uuid', '') == $sDBProdUUID) {
+							$this->Set('team_id', 405);
+						}
+					}						
+				]]></code>
+			</method>
+			
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="functionalcis_list">
+							<rank>10</rank>
+						</item>
+						<item id="contacts_list">
+							<rank>20</rank>
+						</item>
+						<item id="staff_list">
+							<rank>25</rank>
+						</item>
+						<item id="related_request_list">
+							<rank>30</rank>
+						</item>
+						<item id="col:col1">
+							<rank>40</rank>
+							<items>
+								<item id="fieldset:Ticket:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>10</rank>
+										</item>
+										<item id="caller_id">
+											<rank>20</rank>
+										</item>
+										<item id="status">
+											<rank>30</rank>
+										</item>
+										<item id="origin">
+											<rank>40</rank>
+										</item>
+										<item id="title">
+											<rank>50</rank>
+										</item>
+										<item id="crab_address_id">
+											<rank>55</rank>
+										</item>
+										<item id="description">
+											<rank>60</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Ticket:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="service_id">
+											<rank>10</rank>
+										</item>
+										<item id="servicesubcategory_id">
+											<rank>20</rank>
+										</item>
+										<item id="geom" _delta="define">
+											<rank>50</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>50</rank>
+							<items>
+								<item id="fieldset:Ticket:Type">
+									<rank>10</rank>
+									<items>
+										<item id="urgency">
+											<rank>20</rank>
+										</item>
+										<item id="status_detail">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Ticket:contact">
+									<rank>20</rank>
+									<items>
+										<item id="team_id">
+											<rank>10</rank>
+										</item>
+										<item id="agent_id">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Ticket:date">
+									<rank>30</rank>
+									<items>
+										<item id="start_date">
+											<rank>10</rank>
+										</item>
+										<item id="last_update">
+											<rank>20</rank>
+										</item>
+										<item id="assignment_date">
+											<rank>30</rank>
+										</item>
+										<item id="resolution_date">
+											<rank>40</rank>
+										</item>
+										<item id="close_date">
+											<rank>50</rank>
+										</item>
+										<item id="reminder">
+											<rank>52</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col3">
+							<rank>60</rank>
+							<items>
+								<item id="fieldset:Ticket:relation">
+									<rank>10</rank>
+									<items>
+										<item id="parent_request_id">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Ticket:resolution">
+									<rank>20</rank>
+									<items>
+										<item id="solution">
+											<rank>20</rank>
+										</item>
+										<item id="time_spent">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="crab_address_street_id_friendlyname">
+							<rank>10</rank>
+						</item>
+						<item id="crab_address_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>50</rank>
+						</item>
+						<item id="reminder">
+							<rank>52</rank>
+						</item>
+						<item id="resolution_date">
+							<rank>70</rank>
+						</item>
+						<item id="close_date">
+							<rank>80</rank>
+						</item>
+						<item id="status">
+							<rank>90</rank>
+						</item>
+						<item id="operational_status">
+							<rank>95</rank>
+						</item>
+						<item id="caller_id">
+							<rank>100</rank>
+						</item>
+						<item id="status_detail">
+							<rank>140</rank>
+						</item>
+						<item id="service_id">
+							<rank>160</rank>
+						</item>
+						<item id="servicesubcategory_id">
+							<rank>170</rank>
+						</item>
+
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="title">
+							<rank>10</rank>
+						</item>
+						<item id="crab_address_id">
+							<rank>15</rank>
+						</item>
+						<item id="org_id">
+							<rank>20</rank>
+						</item>
+						<item id="caller_id">
+							<rank>30</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+						<item id="status_detail">
+							<rank>50</rank>
+						</item>
+						<item id="reminder">
+							<rank>52</rank>
+						</item>
+						<item id="agent_id">
+							<rank>60</rank>
+						</item>
+					</items>
+				</list>
+				<default_search>
+					<items>
+						<item id="status">
+							<rank>10</rank>
+						</item>
+						<item id="id">
+							<rank>20</rank>
+						</item>
+						<item id="title">
+							<rank>30</rank>
+						</item>
+						<item id="caller_id">
+							<rank>40</rank>
+						</item>
+						<item id="org_id">
+							<rank>50</rank>
+						</item>
+						<item id="description">
+							<rank>60</rank>
+						</item>
+						<item id="service_id">
+							<rank>70</rank>
+						</item>
+					</items>
+				</default_search>
+			</presentation>
+		</class>
+	</classes>
+	<menus>
+		<menu id="TechnicalRequestManagement" xsi:type="MenuGroup" _delta="define">
+			<rank>35</rank>
+			<enable_stimulus/>
+		</menu>
+		<menu id="TechnicalRequest:Overview" xsi:type="DashboardMenuNode" _delta="define">
+			<rank>0</rank>
+			<parent>TechnicalRequestManagement</parent>
+			<definition>
+				  <layout>DashboardLayoutOneCol</layout>
+				  <title>Overzicht Meldingen</title>
+				  <auto_reload>
+					<enabled>false</enabled>
+					<interval>300</interval>
+				  </auto_reload>
+				  <cells>
+					<cell id="0">
+					  <rank>0</rank>
+					  <dashlets>
+						<dashlet id="11" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Herinnering</title>
+						  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+						</dashlet>
+						<dashlet id="10" xsi:type="DashletObjectList">
+						  <rank>1</rank>
+						  <title></title>
+						  <query>SELECT TechnicalRequest WHERE reminder &lt; DATE_ADD(NOW(), INTERVAL 7 DAY) AND status NOT IN ('resolved', 'closed')</query>
+						  <menu>false</menu>
+						</dashlet>
+						<dashlet id="14" xsi:type="DashletMapOverview">
+						  <rank>2</rank>
+						  <title>Overzichtkaart</title>
+						  <query>SELECT TechnicalRequest WHERE  status NOT IN ('resolved', 'closed')</query>
+						  <height>500</height>
+						  <attributes>id,friendlyname,title</attributes>
+						  <feature_label>friendlyname</feature_label>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="1">
+					  <rank>1</rank>
+					  <dashlets>
+						<dashlet id="2" xsi:type="DashletGroupByBars">
+						  <rank>0</rank>
+						  <title>UI-RequestManagementOverview-Last-14-days</title>
+						  <query>SELECT TechnicalRequest WHERE DATE_SUB(NOW(), INTERVAL 14 DAY) &lt; start_date</query>
+						  <group_by>start_date:day_of_month</group_by>
+						  <style>bars</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>asc</order_direction>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="2">
+					  <rank>2</rank>
+					  <dashlets>
+						<dashlet id="13" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Meldingen in cijfers</title>
+						  <icon>jd-class-lendrecord/images/lendrecord.png</icon>
+						</dashlet>
+						<dashlet id="7" xsi:type="DashletGroupByTable">
+						  <rank>1</rank>
+						  <title>Meldingen in de laatste maand</title>
+						  <query>SELECT TechnicalRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+						<dashlet id="8" xsi:type="DashletGroupByTable">
+						  <rank>2</rank>
+						  <title>Meldingen in de laatste 6 maanden</title>
+						  <query>SELECT TechnicalRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 MONTH),'%Y-%m-%d 00:00:00')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+						<dashlet id="9" xsi:type="DashletGroupByTable">
+						  <rank>3</rank>
+						  <title>Meldingen in het laatste jaar</title>
+						  <query>SELECT TechnicalRequest WHERE   start_date &lt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')AND    start_date &gt; DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR),'%Y-%m-%d 00:00:00')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+						<dashlet id="12" xsi:type="DashletHeaderStatic">
+						  <rank>4</rank>
+						  <title>Algemene info</title>
+						  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="3">
+					  <rank>3</rank>
+					  <dashlets>
+						<dashlet id="4" xsi:type="DashletGroupByTable">
+						  <rank>0</rank>
+						  <title>UI-RequestManagementOverview-OpenRequestByAgent</title>
+						  <query>SELECT TechnicalRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
+						  <group_by>agent_id</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+						<dashlet id="3" xsi:type="DashletGroupByTable">
+						  <rank>1</rank>
+						  <title>Tickets per status</title>
+						  <query>SELECT TechnicalRequest WHERE status NOT IN ('rejected')</query>
+						  <group_by>status</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+						<dashlet id="6" xsi:type="DashletGroupByTable">
+						  <rank>2</rank>
+						  <title>UI-RequestManagementOverview-OpenRequestByCustomer</title>
+						  <query>SELECT TechnicalRequest WHERE status NOT IN ('closed','resolved','rejected')</query>
+						  <group_by>org_id</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="4">
+					  <rank>4</rank>
+					  <dashlets>
+						<dashlet id="0" xsi:type="DashletEmptyCell">
+						  <rank>0</rank>
+						</dashlet>
+					  </dashlets>
+					</cell>
+				  </cells>
+			</definition>
+		</menu>
+		<menu id="NewTechnicalRequest" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>1</rank>
+			<parent>TechnicalRequestManagement</parent>
+			<class>TechnicalRequest</class>
+		</menu>
+		<menu id="SearchTechnicalRequests" xsi:type="SearchMenuNode" _delta="define">
+			<rank>2</rank>
+			<parent>TechnicalRequestManagement</parent>
+			<class>TechnicalRequest</class>
+		</menu>
+		<menu id="TechnicalRequest:Shortcuts" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>3</rank>
+			<parent>TechnicalRequestManagement</parent>
+			<template_file/>
+		</menu>
+		<menu id="TechnicalRequest:MyRequests" xsi:type="OQLMenuNode" _delta="define">
+			<rank>0</rank>
+			<parent>TechnicalRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT TechnicalRequest WHERE agent_id = :current_contact_id AND status NOT IN ("closed","resolved")]]></oql>
+			<do_search/>
+			<auto_reload>fast</auto_reload>
+		</menu>
+		<menu id="TechnicalRequest:OpenRequests" xsi:type="OQLMenuNode" _delta="define">
+			<rank>2</rank>
+			<parent>TechnicalRequest:Shortcuts</parent>
+			<oql><![CDATA[SELECT TechnicalRequest WHERE status NOT IN ("closed","resolved")]]></oql>
+			<do_search>1</do_search>
+			<auto_reload>fast</auto_reload>
+		</menu>
+	</menus>
+	<module_designs>
+		<module_design id="itop-portal">
+			<classes>
+				<class id="ServiceSubcategory">
+					<scopes>
+						<scope id="all">
+							<oql_view _delta="redefine"><![CDATA[SELECT ServiceSubcategory WHERE status != 'obsolete']]></oql_view>
+						</scope>
+					</scopes>
+				</class>
+			</classes>
+		</module_design>
+	</module_designs>
+	<user_rights>
+    <groups>
+	
+	<group id="TechnicalRequest" _delta="define">
+		<classes>
+          <class id="TechnicalRequest"/>
+		  <class id="DocumentFileTechnical"/>
+		  <class id="ContactMethod"/>
+		  <class id="AuthenticationMethod"/>
+        </classes>
+      </group>
+	  <group id="TechnicalRequestReadOnly" _delta="define">
+		<classes>
+          <class id="TechnicalRequest"/>
+		  <class id="DocumentFileTechnical"/>
+		  <class id="ContactMethod"/>
+		  <class id="AuthenticationMethod"/>
+        </classes>
+      </group>
+	  
+	  
+		<group id="KnownErrors" _delta="define_if_not_exists">
+			<classes>
+			  <class id="FAQ"/>
+			  <class id="FAQCategory"/>
+			</classes>
+		</group>
+		
+		<group id="PrecannedReplies" _delta="define_if_not_exists">
+			<classes>
+			  <class id="PrecannedReply"/>
+			  <class id="PrecannedReplyCategory"/>
+			</classes>
+		</group>
+		
+		<group id="Crab" _delta="define_if_not_exists">
+			<classes>
+			  <class id="CrabStreet"/>
+			  <class id="CrabAddress"/>
+			</classes>
+		</group>
+
+	  
+	 
+    </groups>
+    <profiles>
+	  <profile id="107" _delta="define">
+        <name>TechnicalRequest User</name>
+        <description>Person in charge of TechnicalRequest, can write documentation, technical requests,...</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+       
+          <group id="Problem">
+            <actions>
+             <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group> 
+		  <group id="TechnicalRequest">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+			  <action id="stimulus:ev_reopen">allow</action>
+            </actions>
+		  </group>	
+		  <group id="Crab">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>		
+		           
+		  <group id="Ticketing">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+         
+		  <group id="KnownErrors">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		  
+		  <group id="PrecannedReplies">
+			<actions>
+			<action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+        </groups>
+      </profile>
+	   <profile id="111" _delta="define">
+        <name>TechnicalRequest Readonly User</name>
+        <description>Person overwatching Technical Request: can read everything.</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+       
+          <group id="Problem">
+            <actions>
+             <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="TechnicalRequestReadOnly">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+		  </group>	
+		  <group id="Crab">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>		
+		           
+		  <group id="Ticketing">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+         
+		  <group id="KnownErrors">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>
+		  
+        </groups>
+      </profile>
+    </profiles>
+  </user_rights>
+</itop_design>

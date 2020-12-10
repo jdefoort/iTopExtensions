@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.6">
+  <classes>
+      <class id="Organization" >
+      <fields>
+        <field id="vat" xsi:type="AttributeString" _delta="define">
+          <sql>vat</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="bank_account_number" xsi:type="AttributeString" _delta="define">
+			<sql>bank_account_number</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>
+		</field>
+      </fields>
+      <methods/>
+      <presentation>
+        <details>
+          <items>
+            <item id="vat" _delta="define">
+              <rank>70</rank>
+            </item>
+			<item id="bank_account_number" _delta="define">
+				<rank>75</rank>
+			</item>
+          </items>
+        </details>
+        <default_search>
+          <items>
+            <item id="vat" _delta="define">
+              <rank>70</rank>
+            </item>
+			<item id="bank_account_number" _delta="define">
+				<rank>75</rank>
+			</item>
+          </items>
+        </default_search>
+        <search>
+          <items>
+            <item id="vat" _delta="define">
+              <rank>70</rank>
+            </item>
+		    <item id="bank_account_number" _delta="define">
+              <rank>75</rank>
+            </item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="vat" _delta="define"> 
+              <rank>70</rank>
+            </item>
+			<item id="bank_account_number" _delta="define">
+              <rank>75</rank>
+            </item>
+          </items>
+        </list>
+      </presentation>
+    </class>  
+  
+    <class id="ThirdPartyContract" _delta="define">
+      <parent>cmdbAbstractObject</parent>
+      <properties>
+        <comment><![CDATA[/**
+ * Persistent classes for a CMDB
+ *
+ * @copyright   Copyright (C) 2010-2012 Combodo SARL
+ * @license     http://opensource.org/licenses/AGPL-3.0
+ */]]></comment>
+        <category>bizmodel,searchable,structure</category>
+        <abstract>true</abstract>
+        <key_type>autoincrement</key_type>
+        <db_table>thirdpartycontract</db_table>
+        <db_key_field>id</db_key_field>
+        <db_final_class_field>finalclass</db_final_class_field>
+        <naming>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </naming>
+        <display_template/>
+        <icon>images/contract.png</icon>
+        <reconciliation>
+          <attributes>
+            <attribute id="name"/>
+            <attribute id="org_id"/>
+            <attribute id="organization_name"/>
+            <attribute id="provider_id"/>
+            <attribute id="provider_name"/>
+            <attribute id="finalclass"/>
+          </attributes>
+        </reconciliation>
+      </properties>
+      <fields>
+        <field id="name" xsi:type="AttributeString">
+          <sql>name</sql>
+          <default_value/>
+          <is_null_allowed>false</is_null_allowed>
+        </field>
+        <field id="org_id" xsi:type="AttributeExternalKey">
+          <sql>org_id</sql>
+          <target_class>Organization</target_class>
+          <is_null_allowed>false</is_null_allowed>
+          <on_target_delete>DEL_MANUAL</on_target_delete>
+        </field>
+        <field id="organization_name" xsi:type="AttributeExternalField">
+          <extkey_attcode>org_id</extkey_attcode>
+          <target_attcode>name</target_attcode>
+        </field>
+        <field id="contacts_list" xsi:type="AttributeLinkedSetIndirect">
+          <linked_class>lnkContactToThirdPartyContract</linked_class>
+          <ext_key_to_me>thirdpartycontract_id</ext_key_to_me>
+          <count_min>0</count_min>
+          <count_max>0</count_max>
+          <ext_key_to_remote>contact_id</ext_key_to_remote>
+          <duplicates/>
+        </field>
+        <field id="description" xsi:type="AttributeText">
+          <sql>description</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+        <field id="start_date" xsi:type="AttributeDate">
+          <sql>start_date</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+        <field id="end_date" xsi:type="AttributeDate">
+          <sql>end_date</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="payment_date" xsi:type="AttributeDate">
+          <sql>payment_date</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+        <field id="cost" xsi:type="AttributeString">
+          <sql>cost</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="receipts" xsi:type="AttributeString">
+          <sql>receipts</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="cost_energy" xsi:type="AttributeString">
+          <sql>cost_energy</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+        <field id="contracttype_id" xsi:type="AttributeExternalKey">
+          <sql>contracttype_id</sql>
+          <target_class>ThirdPartyContractType</target_class>
+          <is_null_allowed>true</is_null_allowed>
+          <on_target_delete>DEL_MANUAL</on_target_delete>
+        </field>
+		<field id="relevant_office" xsi:type="AttributeExternalKey">
+          <sql>relevant_office</sql>
+          <target_class>ThirdPartyRelevantOffice</target_class>
+          <is_null_allowed>true</is_null_allowed>
+          <on_target_delete>DEL_MANUAL</on_target_delete>
+        </field>
+        <field id="contracttype_name" xsi:type="AttributeExternalField">
+          <extkey_attcode>contracttype_id</extkey_attcode>
+          <target_attcode>name</target_attcode>
+        </field>
+        <field id="billing_frequency" xsi:type="AttributeString">
+          <sql>billing_frequency</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+        <field id="cost_unit" xsi:type="AttributeString">
+          <sql>cost_unit</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+        <field id="provider_id" xsi:type="AttributeExternalKey">
+          <sql>provider_id</sql>
+          <target_class>Organization</target_class>
+          <is_null_allowed>false</is_null_allowed>
+          <on_target_delete>DEL_MANUAL</on_target_delete>
+        </field>
+		<field id="location_id" xsi:type="AttributeExternalKey">
+			<sql>location_id</sql>
+			<target_class>Location</target_class>
+			<filter><![CDATA[SELECT Location WHERE org_id = :this->provider_id]]></filter>
+			<is_null_allowed>true</is_null_allowed>
+			<on_target_delete>DEL_MANUAL</on_target_delete>		
+		</field>
+        <field id="provider_name" xsi:type="AttributeExternalField">
+          <extkey_attcode>provider_id</extkey_attcode>
+          <target_attcode>name</target_attcode>
+        </field>
+	  <field id="providercontact_id" xsi:type="AttributeExternalKey">
+		<filter><![CDATA[SELECT Person WHERE org_id = :this->provider_id]]></filter>
+		<dependencies>
+		  <attribute id="provider_id"/>
+		</dependencies>
+		<sql>providercontact_id</sql>
+		<target_class>Person</target_class>
+		<is_null_allowed>true</is_null_allowed>
+		<on_target_delete>DEL_AUTO</on_target_delete>
+	  </field>
+	  <field id="providercontact_name" xsi:type="AttributeExternalField">
+		<extkey_attcode>providercontact_id</extkey_attcode>
+		<target_attcode>name</target_attcode>
+	  </field>
+        <field id="status" xsi:type="AttributeEnum">
+          <values>
+            <value id="production">production</value>
+            <value id="implementation">implementation</value>
+            <value id="obsolete">obsolete</value>
+			<value id="pending_cancellation">pending_cancellation</value>
+          </values>
+          <sql>status</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+          <display_style>list</display_style>
+        </field>
+		<field id="indexed" xsi:type="AttributeEnum">
+					<values>
+					  <value id="yes">yes</value>
+					  <value id="no">no</value>
+					</values>
+					<sql>indexed</sql>
+					<default_value>no</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+		</field>
+		<field id="indexed_energy" xsi:type="AttributeEnum">
+					<values>
+					  <value id="yes">yes</value>
+					  <value id="no">no</value>
+					</values>
+					<sql>indexed_energy</sql>
+					<default_value>no</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+		</field>
+		<field id="start_index" xsi:type="AttributeDate">
+          <sql>start_index</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="decisiondate" xsi:type="AttributeDate">
+          <sql>decisiondate</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="contract_future" xsi:type="AttributeEnum">
+					<values>
+					  <value id="unchanged">unchanged</value>
+					  <value id="to_review">to_review</value>
+					  <value id="to_cancel">to_cancel</value>
+					</values>
+					<sql>contract_future</sql>
+					<default_value>unchanged</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>list</display_style>
+		</field>
+		<field id="vat" xsi:type="AttributeEnum">
+					<values>
+					  <value id="0%">0_%</value>
+					  <value id="6%">6_%</value>
+					  <value id="21%">21_%</value>
+					</values>
+					<sql>vat</sql>
+					<default_value>0_%</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>list</display_style>
+		</field>		
+        <field id="warranty_period" xsi:type="AttributeString">
+          <sql>warranty_period</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>	
+        <field id="deposit" xsi:type="AttributeString">
+          <sql>deposit</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>	
+		<field id="budget_manager" xsi:type="AttributeExternalKey">
+			<sql>budget_manager</sql>
+			<is_null_allowed>true</is_null_allowed>
+			<on_target_delete>DEL_AUTO</on_target_delete>
+			<target_class>Person</target_class>
+		</field>
+		<field id="crab_address_id" xsi:type="AttributeExternalKey">
+			<sql>crab_address_id</sql>
+			<on_target_delete>DEL_MANUAL</on_target_delete>
+			<target_class>CrabAddress</target_class>
+			<is_null_allowed>true</is_null_allowed>
+			<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
+		</field>		
+      </fields>
+      <methods>
+        <method id="PrefillSearchForm">
+        <code>
+              <![CDATA[
+public function PrefillSearchForm(&$aContextParam)
+{
+  if($aContextParam['dest_class'] == 'Service' || is_subclass_of($aContextParam['dest_class'], 'Service'))
+  {
+    if(MetaModel::IsValidAttCode($aContextParam['dest_class'],'org_id') && !empty($aContextParam['source_obj']->Get('provider_id')))
+    {
+        $aContextParam['filter']->ResetCondition();
+        $aContextParam['filter']->AddCondition('org_id', $aContextParam['source_obj']->Get('provider_id'));
+    }
+  }
+  elseif (($aContextParam['dest_class'] == 'Contact' || is_subclass_of($aContextParam['dest_class'], 'Contact'))
+          || ($aContextParam['dest_class'] == 'Document' || is_subclass_of($aContextParam['dest_class'], 'Document')))
+  {
+    if(MetaModel::IsValidAttCode($aContextParam['dest_class'],'org_id') && !empty($aContextParam['source_obj']->Get('provider_id')) && !empty($aContextParam['source_obj']->Get('org_id')))
+    {
+      $aContextParam['filter']->ResetCondition();
+      $aOrgIds = array( $aContextParam['source_obj']->Get('provider_id'),
+                        $aContextParam['source_obj']->Get('org_id'));
+      $aContextParam['filter']->AddCondition('org_id', $aOrgIds , 'IN');
+    }
+  }
+}
+]]>
+          </code>
+        </method>
+      </methods>
+      <presentation>
+        <details>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+            <item id="org_id">
+              <rank>20</rank>
+            </item>
+            <item id="contacts_list">
+              <rank>30</rank>
+            </item>
+            <item id="description">
+              <rank>50</rank>
+            </item>
+            <item id="start_date">
+              <rank>60</rank>
+            </item>
+            <item id="end_date">
+              <rank>70</rank>
+            </item>
+			<item id="payment_date">
+				<rank>75</rank>
+			</item>
+            <item id="cost">
+              <rank>80</rank>
+            </item>
+			<item id="receipts">
+				<rank>85</rank>
+			</item>
+			<item id="cost_energy">
+				<rank>87</rank>
+			</item>
+			<item id="indexed">
+				<rank>90</rank>
+			</item>
+			<item id="indexed_energy">
+				<rank>91</rank>
+			</item>
+			<item id="start_index">
+				<rank>95</rank>
+			</item>
+            <item id="billing_frequency">
+              <rank>100</rank>
+            </item>
+            <item id="cost_unit">
+              <rank>110</rank>
+            </item>
+            <item id="provider_id">
+              <rank>120</rank>
+            </item>
+			<item id="providercontact_id">
+				<rank>125</rank>
+			</item>
+            <item id="status">
+              <rank>130</rank>
+            </item>
+			<item id="contract_future">
+				<rank>135</rank>
+			</item>
+            <item id="contracttype_id">
+              <rank>140</rank>
+            </item>
+			<item id="warranty_period">
+				<rank>150</rank>
+			</item>
+			<item id="deposit">
+				<rank>160</rank>
+			</item>
+			<item id="budget_manager">
+				<rank>170</rank>
+			</item>
+			<item id="crab_address_id">
+				<rank>180</rank>
+			</item>
+          </items>
+        </details>
+        <default_search>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+            <item id="org_id">
+              <rank>20</rank>
+            </item>
+            <item id="provider_id">
+              <rank>30</rank>
+            </item>
+			<item id="providercontact_id">
+				<rank>35</rank>
+			</item>
+			<item id="budget_manager">
+				<rank>40</rank>
+			</item>
+          </items>
+        </default_search>
+        <search>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+            <item id="org_id">
+              <rank>20</rank>
+            </item>
+            <item id="start_date">
+              <rank>30</rank>
+            </item>
+            <item id="end_date">
+              <rank>40</rank>
+            </item>
+			<item id="payment_date">
+				<rank>45</rank>
+			</item>
+            <item id="cost">
+              <rank>50</rank>
+            </item>
+			<item id="receipts">
+			  <rank>55</rank>
+			</item>
+			<item id="cost_energy">
+				<rank>57</rank>
+			</item>
+            <item id="provider_id">
+              <rank>60</rank>
+            </item>
+			<item id="providercontact_id">
+				<rank>70</rank>
+			</item>
+            <item id="billing_frequency">
+              <rank>80</rank>
+            </item>
+            <item id="cost_unit">
+              <rank>90</rank>
+            </item>
+            <item id="status">
+              <rank>100</rank>
+            </item>
+			<item id="contract_future">
+				<rank>105</rank>
+			</item>
+            <item id="contracttype_id">
+              <rank>110</rank>
+            </item>
+			<item id="budget_manager">
+				<rank>120</rank>
+			</item>
+			<item id="crab_address_id">
+				<rank>130</rank>
+			</item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+	        <item id="end_date">
+              <rank>20</rank>
+            </item>
+			<item id="payment_date">
+				<rank>25</rank>
+			</item>
+	    	<item id="contract_future">
+				<rank>30</rank>
+			</item>
+		    <item id="provider_id">
+              <rank>40</rank>
+            </item>
+            <item id="org_id">
+              <rank>50</rank>
+            </item>
+            <item id="description">
+              <rank>60</rank>
+            </item>
+			<item id="budget_manager">
+				<rank>80</rank>
+			</item>
+			<item id="crab_address_id">
+				<rank>90</rank>
+			</item>
+          </items>
+        </list>
+      </presentation>
+    </class>
+    <class id="ThirdPartyContractType" _delta="define">
+      <parent>Typology</parent>
+      <properties>
+        <category>bizmodel,searchable</category>
+        <abstract>false</abstract>
+        <key_type>autoincrement</key_type>
+        <db_table>thirdpartycontracttype</db_table>
+        <db_key_field>id</db_key_field>
+        <db_final_class_field/>
+        <naming>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </naming>
+        <display_template/>
+        <icon/>
+        <reconciliation>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </reconciliation>
+      </properties>
+      <fields/>
+      <methods/>
+      <presentation>
+        <details>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </details>
+        <search>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </list>
+      </presentation>
+    </class>
+	<class id="ThirdPartyRelevantOffice" _delta="define">
+      <parent>Typology</parent>
+      <properties>
+        <category>bizmodel,searchable</category>
+        <abstract>false</abstract>
+        <key_type>autoincrement</key_type>
+        <db_table>thirdpartyrelevantoffice</db_table>
+        <db_key_field>id</db_key_field>
+        <db_final_class_field/>
+        <naming>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </naming>
+        <display_template/>
+        <icon/>
+        <reconciliation>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </reconciliation>
+      </properties>
+      <fields/>
+      <methods/>
+      <presentation>
+        <details>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </details>
+        <search>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+          </items>
+        </list>
+      </presentation>
+    </class>
+    <class id="ThirdPartyProviderContract" _delta="define">
+      <parent>ThirdPartyContract</parent>
+      <properties>
+        <category>bizmodel,searchable</category>
+        <abstract>false</abstract>
+        <key_type>autoincrement</key_type>
+        <db_table>thirdpartyprovidercontract</db_table>
+        <db_key_field>id</db_key_field>
+        <db_final_class_field/>
+        <naming>
+          <attributes>
+            <attribute id="name"/>
+          </attributes>
+        </naming>
+        <display_template/>
+        <icon>images/contract.png</icon>
+        <reconciliation>
+          <attributes>
+            <attribute id="name"/>
+            <attribute id="org_id"/>
+            <attribute id="organization_name"/>
+            <attribute id="provider_id"/>
+            <attribute id="provider_name"/>
+			<attribute id="location_id"/>
+          </attributes>
+        </reconciliation>
+      </properties>
+      <fields>
+        <field id="functionalcis_list" xsi:type="AttributeLinkedSetIndirect">
+          <linked_class>lnkFunctionalCIToProviderContract</linked_class>
+          <ext_key_to_me>providercontract_id</ext_key_to_me>
+          <count_min>0</count_min>
+          <count_max>0</count_max>
+          <ext_key_to_remote>functionalci_id</ext_key_to_remote>
+          <duplicates/>
+        </field>
+        <field id="sla" xsi:type="AttributeString">
+          <sql>sla</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="accountancy_key" xsi:type="AttributeString">
+          <sql>accountancy_key</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="cancellation_terms" xsi:type="AttributeString">
+			<sql>cancellation_terms</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>		
+		</field>
+		<field id="cancel_warning" xsi:type="AttributeDate">
+			<sql>cancel_warning</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>
+		</field>
+		<field id="comment_enddate" xsi:type="AttributeString">
+          <sql>comment_enddate</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="cancellation_conditions" xsi:type="AttributeString">
+          <sql>cancellation_conditions</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="code" xsi:type="AttributeString">
+          <sql>code</sql>
+          <default_value/>
+          <is_null_allowed>true</is_null_allowed>
+        </field>
+		<field id="initial_index" xsi:type="AttributeDecimal">
+			<sql>initial_index</sql>
+			<default_value/>
+			<is_null_allowed>true</is_null_allowed>
+			<digits>6</digits>
+			<decimals>2</decimals>
+		</field>
+		<field id="which_index" xsi:type="AttributeEnum">
+					<values>
+					  <value id="consumption">consumption</value>
+					  <value id="health">health</value>
+					</values>
+					<sql>which_index</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<display_style>list</display_style>
+		</field>
+		<field id="id_agenda_item" xsi:type="AttributeInteger">
+			<sql>id_agenda_item</sql>
+			<is_null_allowed>true</is_null_allowed>
+			<default_value/>
+		</field>
+		
+      </fields>
+      <methods/>
+      <presentation>
+        <details>
+			<items>
+				<item id="col:col1">
+					<rank>10</rank>
+					<items>
+						<item id="fieldset:Contracts:baseinfo">
+							<rank>10</rank>
+							<items>
+								<item id="code">
+									<rank>1</rank>
+								</item>
+								<item id="name">
+									<rank>10</rank>
+								</item>
+								 <item id="org_id">
+									<rank>20</rank>
+								</item>
+								<item id="relevant_office">
+									<rank>25</rank>
+								</item>
+								<item id="crab_address_id">
+									<rank>27</rank>
+								</item>
+								<item id="contacts_list">
+									<rank>30</rank>
+								</item>
+								<item id="description">
+									<rank>50</rank>
+								</item>
+								<item id="status">
+								  <rank>60</rank>
+								</item>
+								<item id="contract_future">
+									<rank>70</rank>
+								</item>
+							</items>
+						</item>
+						<item id="fieldset:Contracts:moreinfo">
+							<rank>20</rank>
+							<items>
+								<item id="contracttype_id">
+								  <rank>10</rank>
+								</item>								
+								<item id="provider_id">
+								  <rank>20</rank>
+								</item>
+								<item id="location_id">
+									<rank>25</rank>
+								</item>
+								<item id="providercontact_id">
+									<rank>30</rank>
+								</item>
+								<item id="sla">
+								  <rank>40</rank>
+								</item>
+								<item id="warranty_period">
+									<rank>50</rank>
+								</item>
+								<item id="id_agenda_item">
+									<rank>55</rank>
+								</item>
+							</items>
+						</item>
+					</items>
+				</item>
+				<item id="col:col2">
+					<rank>20</rank>
+					<items>
+						<item id="fieldset:Contracts:dates">
+							<rank>10</rank>
+							<items>
+								<item id="start_date">
+								  <rank>10</rank>
+								</item>
+								<item id="end_date">
+								  <rank>20</rank>
+								</item>
+								<item id="cancellation_terms">
+									<rank>22</rank>
+								</item>
+								<item id="cancel_warning">
+									<rank>23</rank>
+								</item>
+								<item id="comment_enddate">
+									<rank>25</rank>
+								</item>
+								<item id="payment_date">
+									<rank>30</rank>
+								</item>
+								<item id="decisiondate">
+									<rank>40</rank>
+								</item>
+							</items>
+						</item>
+						<item id="fieldset:Contracts:money">
+							<rank>20</rank>
+							<items>
+								<item id="cost">
+								  <rank>10</rank>
+								</item>
+								<item id="vat">
+									<rank>11</rank>
+								</item>
+								<item id="indexed">
+									<rank>12</rank>
+								</item>
+								<item id="cost_energy">
+									<rank>13</rank>
+								</item>
+								<item id="indexed_energy">
+									<rank>14</rank>
+								</item>
+								<item id="initial_index">
+									<rank>15</rank>
+								</item>
+								<item id="which_index">
+									<rank>16</rank>
+								</item>
+								<item id="receipts">
+									<rank>20</rank>
+								</item>
+								<item id="start_index">
+									<rank>25</rank>
+								</item>
+								<item id="billing_frequency">
+								  <rank>30</rank>
+								</item>
+								<item id="cost_unit">
+								  <rank>40</rank>
+								</item>
+								<item id="cancellation_conditions">
+									<rank>45</rank>
+								</item>
+					            <item id="accountancy_key">
+								  <rank>50</rank>
+								</item>
+								<item id="budget_manager">
+									<rank>55</rank>
+								</item>
+								<item id="deposit">
+									<rank>60</rank>
+								</item>
+							</items>
+						</item>
+					</items>
+				</item>
+			</items>
+        </details>
+        <search>
+          <items>
+			<item id="code">
+				<rank>1</rank>
+			</item>
+            <item id="name">
+              <rank>10</rank>
+            </item>
+            <item id="org_id">
+              <rank>20</rank>
+            </item>
+			<item id="relevant_office">
+			  <rank>25</rank>
+			</item>
+            <item id="start_date">
+              <rank>30</rank>
+            </item>
+            <item id="end_date">
+              <rank>40</rank>
+            </item>
+			<item id="payment_date">
+				<rank>45</rank>
+			</item>
+            <item id="provider_id">
+              <rank>50</rank>
+            </item>
+			<item id="providercontact_id">
+				<rank>55</rank>
+			</item>
+            <item id="contracttype_id">
+              <rank>60</rank>
+            </item>
+            <item id="cost">
+              <rank>70</rank>
+            </item>
+			<item id="cost_energy">
+				<rank>72</rank>
+			</item>
+			<item id="receipts">
+				<rank>75</rank>
+			</item>
+			<item id="indexed">
+				<rank>80</rank>
+			</item>
+            <item id="billing_frequency">
+              <rank>90</rank>
+            </item>
+            <item id="cost_unit">
+              <rank>100</rank>
+            </item>
+            <item id="sla">
+              <rank>110</rank>
+            </item>
+            <item id="status">
+              <rank>130</rank>
+            </item>
+			<item id="contract_future">
+				<rank>135</rank>
+			</item>
+			<item id="accountancy_key">
+				<rank>140</rank>
+			</item>
+			<item id="cancellation_conditions">
+				<rank>150</rank>
+			</item>
+			<item id="deposit">
+				<rank>160</rank>
+			</item>
+			<item id="budget_manager">
+				<rank>170</rank>
+			</item>
+			<item id="crab_address_id">
+				<rank>180</rank>
+			</item>
+          </items>
+        </search>
+        <list>
+          <items>
+			<item id="code">
+				<rank>1</rank>
+			</item>
+	        <item id="end_date">
+              <rank>20</rank>
+            </item>
+			<item id="payment_date">
+				<rank>25</rank>
+			</item>
+	    	<item id="contract_future">
+				<rank>30</rank>
+			</item>
+		    <item id="provider_id">
+              <rank>40</rank>
+            </item>
+            <item id="providercontact_id">
+              <rank>50</rank>
+            </item>
+            <item id="description">
+              <rank>60</rank>
+            </item>
+            <item id="accountancy_key">
+              <rank>70</rank>
+            </item>
+			<item id="budget_manager">
+				<rank>80</rank>
+			</item>
+          </items>
+        </list>
+      </presentation>
+    </class>
+    <class id="lnkContactToThirdPartyContract" _delta="define">
+      <parent>cmdbAbstractObject</parent>
+      <properties>
+        <is_link>1</is_link>
+        <category>bizmodel</category>
+        <abstract>false</abstract>
+        <key_type>autoincrement</key_type>
+        <db_table>lnkcontacttothirdpartycontract</db_table>
+        <db_key_field>id</db_key_field>
+        <db_final_class_field/>
+        <naming>
+          <attributes>
+            <attribute id="thirdpartycontract_id"/>
+            <attribute id="contact_id"/>
+          </attributes>
+        </naming>
+        <display_template/>
+        <icon/>
+        <reconciliation>
+          <attributes>
+            <attribute id="thirdpartycontract_id"/>
+            <attribute id="contact_id"/>
+          </attributes>
+        </reconciliation>
+      </properties>
+      <fields>
+        <field id="thirdpartycontract_id" xsi:type="AttributeExternalKey">
+          <sql>thirdpartycontract_id</sql>
+          <target_class>ThirdPartyContract</target_class>
+          <is_null_allowed>false</is_null_allowed>
+          <on_target_delete>DEL_AUTO</on_target_delete>
+        </field>
+        <field id="thirdpartycontract_name" xsi:type="AttributeExternalField">
+          <extkey_attcode>thirdpartycontract_id</extkey_attcode>
+          <target_attcode>name</target_attcode>
+        </field>
+        <field id="contact_id" xsi:type="AttributeExternalKey">
+          <sql>contact_id</sql>
+          <target_class>Contact</target_class>
+          <is_null_allowed>false</is_null_allowed>
+          <on_target_delete>DEL_AUTO</on_target_delete>
+        </field>
+        <field id="contact_name" xsi:type="AttributeExternalField">
+          <extkey_attcode>contact_id</extkey_attcode>
+          <target_attcode>name</target_attcode>
+        </field>
+      </fields>
+      <methods/>
+      <presentation>
+        <details>
+          <items>
+            <item id="thirdpartycontract_id">
+              <rank>10</rank>
+            </item>
+            <item id="contact_id">
+              <rank>20</rank>
+            </item>
+          </items>
+        </details>
+        <search>
+          <items>
+            <item id="thirdpartycontract_id">
+              <rank>10</rank>
+            </item>
+            <item id="contact_id">
+              <rank>20</rank>
+            </item>
+          </items>
+        </search>
+        <list>
+          <items>
+            <item id="thirdpartycontract_id">
+              <rank>10</rank>
+            </item>
+            <item id="contact_id">
+              <rank>20</rank>
+            </item>
+          </items>
+        </list>
+      </presentation>
+    </class>
+    
+  </classes>
+  <menus>
+    <menu id="ContractManagement" xsi:type="MenuGroup" _delta="define">
+      <rank>36</rank>
+    </menu>
+    <menu id="ContractOverview" xsi:type="DashboardMenuNode" _delta="define">
+      <rank>0</rank>
+      <parent>ContractManagement</parent>
+      <definition>
+		<layout>DashboardLayoutOneCol</layout>
+		  <title>Overzicht Contracten</title>
+		  <auto_reload>
+			<enabled>false</enabled>
+			<interval>300</interval>
+		  </auto_reload>
+		  <cells>
+			<cell id="0">
+			  <rank>0</rank>
+			  <dashlets>
+				<dashlet id="5" xsi:type="DashletHeaderStatic">
+				  <rank>0</rank>
+				  <title>Contracten die binnen 30 dagen vernieuwd moeten worden</title>
+				  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+				</dashlet>
+				<dashlet id="2" xsi:type="DashletObjectList">
+				  <rank>1</rank>
+				  <title></title>
+				  <query>SELECT ThirdPartyProviderContract AS c WHERE c.end_date &lt; DATE_ADD(NOW(), INTERVAL 30 DAY) AND status NOT IN ('obsolete')</query>
+				  <menu>false</menu>
+				</dashlet>
+				<dashlet id="8" xsi:type="DashletHeaderStatic">
+				  <rank>2</rank>
+				  <title>Contracten waarvan de betaaltermijn binnen de 30 dagen  overschreden wordt</title>
+				  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+				</dashlet>
+				<dashlet id="7" xsi:type="DashletObjectList">
+				  <rank>3</rank>
+				  <title></title>
+				  <query>SELECT ThirdPartyProviderContract AS c WHERE c.payment_date &lt; DATE_ADD(NOW(), INTERVAL 30 DAY) AND status NOT IN ('obsolete')</query>
+				  <menu>false</menu>
+				</dashlet>
+			  </dashlets>
+			</cell>
+			<cell id="1">
+			  <rank>1</rank>
+			  <dashlets>
+				<dashlet id="6" xsi:type="DashletHeaderStatic">
+				  <rank>0</rank>
+				  <title>Contracten</title>
+				  <icon>jd-class-lendrecord/images/lendrecord.png</icon>
+				</dashlet>
+				<dashlet id="3" xsi:type="DashletGroupByTable">
+				  <rank>1</rank>
+				  <title>per leverancier</title>
+				  <query>SELECT ThirdPartyProviderContract</query>
+				  <group_by>provider_id</group_by>
+				  <style>table</style>
+				  <aggregation_function>count</aggregation_function>
+				  <aggregation_attribute></aggregation_attribute>
+				  <limit></limit>
+				  <order_by>attribute</order_by>
+				  <order_direction>desc</order_direction>
+				</dashlet>
+				<dashlet id="4" xsi:type="DashletGroupByTable">
+				  <rank>2</rank>
+				  <title>per dienst</title>
+				  <query>SELECT ThirdPartyProviderContract</query>
+				  <group_by>relevant_office</group_by>
+				  <style>table</style>
+				  <aggregation_function>count</aggregation_function>
+				  <aggregation_attribute></aggregation_attribute>
+				  <limit></limit>
+				  <order_by>attribute</order_by>
+				  <order_direction>desc</order_direction>
+				</dashlet>
+				<dashlet id="9" xsi:type="DashletGroupByTable">
+				  <rank>3</rank>
+				  <title>volgens toekomstperspectief</title>
+				  <query>SELECT ThirdPartyContract</query>
+				  <group_by>contract_future</group_by>
+				  <style>table</style>
+				  <aggregation_function>count</aggregation_function>
+				  <aggregation_attribute></aggregation_attribute>
+				  <limit></limit>
+				  <order_by>attribute</order_by>
+				  <order_direction>desc</order_direction>
+				</dashlet>
+			  </dashlets>
+			</cell>
+			<cell id="2">
+			  <rank>2</rank>
+			  <dashlets>
+				<dashlet id="0" xsi:type="DashletEmptyCell">
+				  <rank>0</rank>
+				</dashlet>
+			  </dashlets>
+			</cell>
+			<cell id="3">
+			  <rank>3</rank>
+			  <dashlets>
+				<dashlet id="0" xsi:type="DashletEmptyCell">
+				  <rank>0</rank>
+				</dashlet>
+			  </dashlets>
+			</cell>
+			<cell id="4">
+			  <rank>4</rank>
+			  <dashlets>
+				<dashlet id="0" xsi:type="DashletEmptyCell">
+				  <rank>0</rank>
+				</dashlet>
+			  </dashlets>
+			</cell>
+		  </cells>
+      </definition>
+    </menu>
+    <menu id="ThirdPartyProviderContract" xsi:type="OQLMenuNode" _delta="define">
+      <rank>2</rank>
+      <parent>ContractManagement</parent>
+      <oql>SELECT ThirdPartyProviderContract</oql>
+      <do_search>1</do_search>
+    </menu>
+  </menus>
+   <user_rights>
+    <groups>
+	 <!-- name all the id's you made in your new extensions, so this profile gets read/write rights on everything from those extensions --> 
+			
+		<group id="Contracts" _delta="define">
+			<classes>
+			  <class id="ThirdPartyContract"/>
+			  <class id="ThirdPartyProviderContract"/>
+			  <class id="ThirdPartyContractType"/>
+			  <class id="ThirdPartyRelevantOffice"/>
+			  <class id="lnkContactToThirdPartyContract"/>
+			  <class id="lnkThirdPartyContractToDocument"/>
+			  <class id="Contract"/>
+			  <class id="ContractType"/>
+			  <class id="CustomerContract"/>
+			  <class id="ProviderContract"/>
+			  <class id="Attachment"/>
+			</classes>
+		</group>
+		
+		<group id="Crab" _delta="define_if_not_exists">
+			<classes>
+			  <class id="CrabStreet"/>
+			  <class id="CrabAddress"/>
+			</classes>
+		</group>
+	 
+    </groups>
+    <profiles>
+	  <profile id="106" _delta="define">
+        <name>Contracts User</name>
+        <description>Person in charge of Contracts, can add, delete or modify contracts</description>
+        <groups>
+		
+		<!-- you can not delete general, since otherwise you can't login --> 
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+         
+		  
+		  <group id="Contracts">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+		  </group>
+		  
+		  <group id="Crab">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group>	
+		  	  
+		 
+        </groups>
+      </profile>
+    </profiles>
+  </user_rights>
+</itop_design>

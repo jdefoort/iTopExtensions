@@ -121,19 +121,19 @@
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu> --> 
-   <menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="redefine">
+   <!-- <menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>50.4</rank>
      <enable_class>AppointmentTour1</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
-   </menu>
+   </menu> -->
    <!-- <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>50.6</rank>
      <enable_class>AppointmentTax</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu> -->   
-   <menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="redefine">
+   <!-- <menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>50.8</rank>
      <enable_class>AppointmentCityHall1</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
@@ -168,31 +168,31 @@
      <enable_class>AppointmentCityHall8</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
-   </menu>
-   <!-- <menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="redefine">
+   </menu> -->
+   <menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>55</rank>
      <enable_class>AppointmentCareCenter1</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
-   </menu> -->
-   <menu id="AppointmentCityHall12Mgmt" xsi:type="MenuGroup" _delta="redefine">
+   </menu>
+   <!-- <menu id="AppointmentCityHall12Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>56</rank>
      <enable_class>AppointmentCityHall12</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
-   </menu>
+   </menu> -->
     <menu id="ServiceManagement" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>60</rank>
      <enable_class>Service</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
    </menu>
-   <!-- <menu id="AppointmentCityHall9Mgmt" xsi:type="MenuGroup" _delta="redefine">
+   <menu id="AppointmentCityHall9Mgmt" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>61</rank>
      <enable_class>AppointmentCityHall9</enable_class>
      <enable_action>UR_ACTION_MODIFY</enable_action>
      <enable_stimulus/>
-   </menu> -->
+   </menu>
    <menu id="DataAdministration" xsi:type="MenuGroup" _delta="redefine">
 	 <rank>70</rank>
 	 <enable_class>Organization</enable_class>

@@ -16,6 +16,7 @@ SetupWebPage::AddModule(
 		//
 		'dependencies' => array(
 			'itop-config-mgmt/2.4.0',
+			'jd-technicalrequest/2.5.0',
 			'itop-endusers-devices/2.4.0'
 		),
 		'mandatory' => false,

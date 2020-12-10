@@ -20,10 +20,11 @@ SetupWebPage::AddModule(
                         // we are not using service-mgmt-provider, so we can't depend on it
 						// 'itop-service-mgmt-provider/2.4.0',
                         'itop-change-mgmt-itil/2.4.0',
-						'jd-rcxrequest-mgmt-itil/2.4.0',
-						'jd-hrrequest-mgmt/2.4.0',
-						'jd-hrcomplaint-mgmt/2.4.0',
-						'jd-buildingrequest-mgmt/2.4.0'
+						'jd-rcxrequest/2.4.0',
+						'jd-hrrequest/2.6.0',
+						'jd-technicalrequest/2.5.0',
+						'jd-hrcomplaint/2.6.0',
+						'jd-buildingrequest/2.6.0'
                 ),
 
                 'mandatory' => false,

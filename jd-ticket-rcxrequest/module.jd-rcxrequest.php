@@ -5,20 +5,18 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-ticket-filter/',
+        'jd-rcxrequest/2.6.0',
         array(
                 // Identification
                 //
-                'label' => 'Tickets: Change filter',
+                'label' => 'Class: RcxRequest (ITIL) - Add requestform',
                 'category' => 'business',
 
                 // Setup
                 //
                 'dependencies' => array(
                         'itop-config-mgmt/2.4.0',
-                        'itop-request-mgmt-itil/2.4.0',
-						'jd-hrrequest/2.6.0',
-						'jd-hrcomplaint/2.6.0',
+                        'itop-request-mgmt-itil/2.4.0'
                 ),
                 'mandatory' => false,
                 'visible' => true,
@@ -26,7 +24,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-ticket-filter.php'
+                        'model.jd-rcxrequest.php'
                 ),
                 'webservice' => array(
 
