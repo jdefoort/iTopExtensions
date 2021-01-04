@@ -5,20 +5,18 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-projectpublicationcare-profiles/',
+        'jd-subsidyrequest/2.6.0',
         array(
                 // Identification
                 //
-                'label' => 'Profile: add Projectpublicationcare user as profile',
+                'label' => 'Class: SubsidyRequest (ITIL) - Add requestform',
                 'category' => 'business',
 
                 // Setup
                 //
                 'dependencies' => array(
-                        'itop-config-mgmt/2.4.0',
-                        'itop-request-mgmt-itil/2.4.0',
-                        'itop-knownerror-mgmt/2.4.0',
-						'jd-projectpublicationcare-mgmt/2.4.0'
+                        'itop-config-mgmt/2.6.0',
+                        'itop-request-mgmt-itil/2.6.0'
                 ),
                 'mandatory' => false,
                 'visible' => true,
@@ -26,7 +24,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-projectpublicationcare-profiles.php'
+                        'model.jd-subsidyrequest.php'
                 ),
                 'webservice' => array(
 

@@ -150,7 +150,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 
 
 
-	'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@Jeugd',
+	'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@ISO',
 	'Menu:AppointmentCityHall10Mgmt+' => '',
 	'Menu:NewAppointmentCityHall10' => 'Nieuwe afspraak',
 	'Menu:NewAppointmentCityHall10+' => '',

@@ -2,13 +2,13 @@
 <itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
 
 	<classes>
-		<class id="ProjectPublication" _delta="define">
+		<class id="ProjectPublicationCare" _delta="define">
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<category>bizmodel,searchable</category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
-				<db_table>projectpublication</db_table>
+				<db_table>projectpublicationcare</db_table>
 				<db_key_field>id</db_key_field>
 				<db_final_class_field/>
 				<naming>
@@ -31,7 +31,6 @@
 					<target_class>Organization</target_class>
 					<is_null_allowed>false</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
-					<filter><![CDATA[SELECT Organization WHERE name = 'Burgers Meldingen']]></filter>
 				</field>	
 				<field id="department_id" xsi:type="AttributeExternalKey">
 					<sql>department_id</sql>
@@ -68,11 +67,11 @@
 					<sql>parent_project_id</sql>
 					<is_null_allowed>true</is_null_allowed>
 					<on_target_delete>DEL_AUTO</on_target_delete>
-					<target_class>ProjectPublication</target_class>
-					<filter>SELECT ProjectPublication WHERE id != :this->id</filter>
+					<target_class>ProjectPublicationCare</target_class>
+					<filter>SELECT ProjectPublicationCare WHERE id != :this->id</filter>
 				</field>
 				<field id="related_project_list" xsi:type="AttributeLinkedSet">
-					<linked_class>ProjectPublication</linked_class>
+					<linked_class>ProjectPublicationCare</linked_class>
 					<ext_key_to_me>parent_project_id</ext_key_to_me>
 					<edit_mode>add_remove</edit_mode>
 					<count_min>0</count_min>
@@ -83,7 +82,6 @@
 					<values>
 						<value id="not_started">not_started</value>
 						<value id="started">started</value>
-						<value id="operational">operational</value>
 						<value id="completed">completed</value>
 					</values>
 					<sql>project_state</sql>
@@ -143,7 +141,7 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="description" xsi:type="AttributeHTML">
+				<field id="description" xsi:type="AttributeText">
 					<sql>description</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
@@ -190,7 +188,7 @@
 						<item id="col:col1">
 							<rank>10</rank>
 							<items>
-								<item id="fieldset:ProjectPublication:baseinfo">
+								<item id="fieldset:ProjectPublicationCare:baseinfo">
 									<items>
 										<item id="title">
 											<rank>1</rank>
@@ -230,7 +228,7 @@
 										</item>
 									</items>
 								</item>
-								<item id="fieldset:ProjectPublication:description">
+								<item id="fieldset:ProjectPublicationCare:description">
 									<items>
 										<item id="short_description">
 											<rank>10</rank>
@@ -245,7 +243,7 @@
 						<item id="col:col2">
 							<rank>20</rank>
 							<items>
-								<item id="fieldset:ProjectPublication:extrainfo">
+								<item id="fieldset:ProjectPublicationCare:extrainfo">
 									<items>
 										<item id="budget_estimate">
 											<rank>10</rank>
@@ -264,7 +262,7 @@
 										</item>
 									</items>
 								</item>
-								<item id="fieldset:ProjectPublication:picture">
+								<item id="fieldset:ProjectPublicationCare:picture">
 									<items>
 										<item id="picture">
 											<rank>30</rank>
@@ -329,61 +327,110 @@
 		$this->Set('date_changed', date('Y-m-d H:i:s'));
 		parent::OnUpdate();
 	}]]></code>
-				</method>
-				<method id="GetAttributeFlags">
-				  <static>false</static>
-				  <access>public</access>
-				  <type>Overload-DBObject</type>
-				  <code><![CDATA[	public function GetAttributeFlags($sAttCode, &$aReasons = Array(), $sTargetState = '')
-		{
-			if($sAttCode == 'short_description')
-			{
-				return OPT_ATT_READONLY;
-			}
-			return parent::GetAttributeFlags($sAttCode);
-		}
-	]]></code>
-				</method>
-				<method id="GetInitialStateAttributeFlags">
-				  <static>false</static>
-				  <access>public</access>
-				  <type>Overload-DBObject</type>
-				  <code><![CDATA[	public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
-		{
-			if($sAttCode == 'short_description')
-			{
-				return OPT_ATT_READONLY;
-			}
-			return parent::GetAttributeFlags($sAttCode);
-		}
-	]]></code>
-				</method>
-
-				
+				</method>		  
 			</methods>
 
 
 		</class>
 	</classes>
 
-	<!-- Adds a link to the ProjectPublicationManagement overview -->
+	<!-- Adds a link to the ProjectPublicationCareManagement overview -->
 	<menus>	 
-		<menu id="ProjectPublicationManagement" xsi:type="MenuGroup" _delta="define">
-			<rank>40</rank>
+		<menu id="ProjectPublicationCareManagement" xsi:type="MenuGroup" _delta="define">
+			<rank>41</rank>
 			<enable_stimulus/>
 		</menu>
-		<menu id="NewProjectPublication" xsi:type="NewObjectMenuNode" _delta="define">
+		<menu id="NewProjectPublicationCare" xsi:type="NewObjectMenuNode" _delta="define">
 			<rank>10</rank>
-			<parent>ProjectPublicationManagement</parent>
-			<class>ProjectPublication</class>
+			<parent>ProjectPublicationCareManagement</parent>
+			<class>ProjectPublicationCare</class>
 		</menu>
-		<menu id="SearchProjectPublication" xsi:type="SearchMenuNode" _delta="define">
+		<menu id="SearchProjectPublicationCare" xsi:type="SearchMenuNode" _delta="define">
 			<rank>20</rank>
-			<parent>ProjectPublicationManagement</parent>
-			<class>ProjectPublication</class> 
+			<parent>ProjectPublicationCareManagement</parent>
+			<class>ProjectPublicationCare</class> 
 		</menu> 
 	</menus>
 
 	<profiles>
 	</profiles>
+	<user_rights>
+    <groups>
+	
+		<group id="ProjectPublicationCare" _delta="define">
+			<classes>
+			  <class id="ProjectPublicationCare"/>
+			  <class id="ContactMethod"/>
+			  <class id="TagSetFieldData"/>
+			  <class id="Department"/>
+		  <class id="AuthenticationMethod"/>
+			</classes>
+		</group>
+		  
+		<group id="PrecannedReplies" _delta="define_if_not_exists">
+			<classes>
+			  <class id="PrecannedReply"/>
+			  <class id="PrecannedReplyCategory"/>
+			</classes>
+		</group>
+	 
+    </groups>
+    <profiles>
+	  <profile id="113" _delta="define">
+        <name>Projectpublicationcare User</name>
+        <description>Person in charge of Projectpublicationcare, can add or modify projects</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="ProjectPublicationCare">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+		  <group id="Ticketing">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		  <group id="PrecannedReplies">
+			<actions>
+			<action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+        </groups>
+      </profile>
+    </profiles>
+  </user_rights>
 </itop_design>

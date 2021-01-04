@@ -1,0 +1,4492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.6">
+	<!-- Naming trick applied: specify attributes => forces translation. But translation does not contain the %1$s variable -->
+  <classes>
+		<class id="Appointment" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+			    <comment><![CDATA[/**
+				 * Persistent classes for a CMDB
+				 *
+				 * @copyright   Copyright (C) 2010-2012 Combodo SARL
+				 * @license     http://opensource.org/licenses/AGPL-3.0
+				 */]]></comment>
+				<category>bizmodel,searchable</category>
+				<abstract>true</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointment</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field>finalclass</db_final_class_field>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>				
+						<attribute id="finalclass"/>
+					</attributes>
+				</reconciliation>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+			</properties>
+			<fields>
+				<field id="org_id" xsi:type="AttributeExternalKey">
+					  <sql>org_id</sql>
+					  <target_class>Organization</target_class>
+					  <is_null_allowed>false</is_null_allowed>
+					  <on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="org_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>org_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="person_id" xsi:type="AttributeExternalKey">
+					<sql>person_id</sql>
+					<target_class>Person</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<filter>SELECT Person AS p WHERE p.org_id = :this->org_id</filter>
+					<dependencies>
+						<attribute id="org_id"/>
+					</dependencies>
+				</field>		
+				<field id="start_date" xsi:type="AttributeDateTime">
+					<sql>start_date</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>				
+				<field id="last_update" xsi:type="AttributeDateTime">
+					<sql>last_update</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="duration" xsi:type="AttributeDateTime">
+					<sql>duration</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>					
+				<field id="status" xsi:type="AttributeEnum">
+					<sql>status</sql>
+					<values>
+						<value id="0">0</value>
+						<value id="1">1</value>
+						<value id="2">2</value>
+						<value id="3">3</value>
+					</values>
+					<default_value>0</default_value>
+					<is_null_allowed>false</is_null_allowed>				
+				</field>
+				<field id="available" xsi:type="AttributeEnum">
+					<sql>available</sql>
+					<values>
+						<value id="0">0</value>
+						<value id="1">1</value>
+						<value id="2">2</value>
+					</values>
+					<default_value>0</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="booth" xsi:type="AttributeInteger">
+					<sql>booth</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="ip" xsi:type="AttributeIPAddress">
+					<sql>ip</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="code" xsi:type="AttributeString">
+					<sql>code</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods>
+				<method id="OnInsert">
+				  <static>false</static>
+				  <access>protected</access>
+				  <type>Overload-DBObject</type>
+				  <code><![CDATA[
+		protected function OnInsert()
+		{
+			$this->Set('last_update', time());
+		}]]></code>
+				</method>
+				<method id="OnUpdate">
+				  <static>false</static>
+				  <access>protected</access>
+				  <type>Overload-DBObject</type>
+				  <code><![CDATA[
+		protected function OnUpdate()
+		{
+			$this->Set('last_update', time());
+		}]]></code>
+				</method>
+				<method id="GetAttributeFlags">
+					  <static>false</static>
+					  <access>public</access>
+					  <type>Overload-DBObject</type>
+					  <code><![CDATA[	public function GetAttributeFlags($sAttCode, &$aReasons = Array(), $sTargetState = '')
+						{
+							if(in_array($sAttCode, array('start_date', 'last_update', 'duration')))
+							{
+								return OPT_ATT_READONLY;
+							}
+							return parent::GetAttributeFlags($sAttCode);
+						}
+					]]></code>
+				</method>
+				<method id="GetInitialStateAttributeFlags">
+					  <static>false</static>
+					  <access>public</access>
+					  <type>Overload-DBObject</type>
+					  <code><![CDATA[	public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
+						{
+							if(in_array($sAttCode, array('start_date', 'last_update', 'duration')))
+							{
+								return OPT_ATT_READONLY;
+							}
+							return parent::GetAttributeFlags($sAttCode);
+						}
+					]]></code>
+				</method>				
+			</methods>
+
+			<presentation>
+				<details>
+					<items>
+						<item id="org_id">
+							<rank>20</rank>
+						</item>
+						<item id="org_name">
+							<rank>30</rank>
+						</item>
+						<item id="person_id">
+							<rank>40</rank>
+						</item>
+						<item id="start_date">
+							<rank>60</rank>
+						</item>
+						<item id="last_update">
+							<rank>70</rank>
+						</item>
+						<item id="duration">
+							<rank>75</rank>
+						</item>
+						<item id="status">
+							<rank>90</rank>
+						</item>
+						<item id="available">
+							<rank>100</rank>
+						</item>
+						<item id="booth">
+							<rank>110</rank>
+						</item>
+						<item id="ip">
+							<rank>120</rank>
+						</item>
+						<item id="code">
+							<rank>130</rank>
+						</item>
+					</items>
+				</details>
+				<!-- default_search MOET hier verplicht iets hebben default_search/ zorgt voor een foutmelding in the compiler -->
+				<default_search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</default_search>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentEnergy" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentenergy</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentTour1" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmenttour1</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentTax" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmenttax</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		
+		
+		<class id="AppointmentCityHall1" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall1</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="duration"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>	
+			</properties>				
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall2" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall2</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="duration"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall3" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall3</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="duration"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall4" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall4</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall5" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall5</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items> 
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall6" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall6</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>		
+		<class id="AppointmentCityHall7" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall7</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall8" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall8</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall9" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall9</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall10" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall10</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item> 
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall11" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall11</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="duration"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="national_number" xsi:type="AttributeString">
+					<sql>national_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="national_number">
+											<rank>15</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCityHall12" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcityhall12</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="duration"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="group_type" xsi:type="AttributeEnum">
+					<values>
+						<value id="0">0</value>
+						<value id="1">1</value>
+						<value id="2">2</value>
+						<value id="3">3</value>
+					</values>
+					<sql>group_type</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>				
+				</field>
+				<field id="gender" xsi:type="AttributeEnum">
+					<values>
+						<value id="0">0</value>
+						<value id="1">1</value>
+					</values>
+					<sql>gender</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>				
+				</field>
+				<field id="sports_branch" xsi:type="AttributeString">
+					<sql>sports_branch</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="sports_branch2" xsi:type="AttributeString">
+					<sql>sports_branch2</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="club" xsi:type="AttributeString">
+					<sql>club</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="first_name" xsi:type="AttributeString">
+					<sql>first_name</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="last_name" xsi:type="AttributeString">
+					<sql>last_name</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="gender">
+											<rank>12</rank>
+										</item>
+										<item id="sports_branch">
+											<rank>14</rank>
+										</item>
+										<item id="group_type">
+											<rank>18</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="club">
+											<rank>10</rank>
+										</item>
+										<item id="last_update">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:person2">
+									<rank>30</rank>
+									<items>
+										<item id="first_name">
+											<rank>10</rank>
+										</item>
+										<item id="last_name">
+											<rank>20</rank>
+										</item>
+										<item id="sports_branch2">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="booth">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		
+		
+		<class id="AppointmentCareCenter1" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcarecenter1</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="roomnumber" xsi:type="AttributeEncryptedString">
+					<sql>roomnumber</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="location" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+					</values>
+					<sql>location</sql>
+					<default_value>1</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>	
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="roomnumber">
+											<rank>25</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+										<item id="location">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="available">
+							<rank>30</rank>
+						</item>
+						<item id="roomnumber">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCareCenter2" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcarecenter2</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="roomnumber" xsi:type="AttributeEncryptedString">
+					<sql>roomnumber</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="location" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+					</values>
+					<sql>location</sql>
+					<default_value>1</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="roomnumber">
+											<rank>25</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+										<item id="location">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="available">
+							<rank>30</rank>
+						</item>
+						<item id="roomnumber">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCareCenter3" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcarecenter3</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="roomnumber" xsi:type="AttributeEncryptedString">
+					<sql>roomnumber</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="location" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+					</values>
+					<sql>location</sql>
+					<default_value>1</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="roomnumber">
+											<rank>25</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+										<item id="location">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="available">
+							<rank>30</rank>
+						</item>
+						<item id="roomnumber">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCareCenter4" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcarecenter4</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="roomnumber" xsi:type="AttributeEncryptedString">
+					<sql>roomnumber</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="location" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+					</values>
+					<sql>location</sql>
+					<default_value>1</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="roomnumber">
+											<rank>25</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+										<item id="location">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="available">
+							<rank>30</rank>
+						</item>
+						<item id="roomnumber">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="AppointmentCareCenter5" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcarecenter5</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="roomnumber" xsi:type="AttributeEncryptedString">
+					<sql>roomnumber</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="location" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+					</values>
+					<sql>location</sql>
+					<default_value>1</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="roomnumber">
+											<rank>25</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+										<item id="location">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="available">
+							<rank>30</rank>
+						</item>
+						<item id="roomnumber">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+	</classes>
+	 <menus>
+		<!-- <menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>42</rank>
+		</menu>
+		<menu id="SearchAppointmentEnergy" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentEnergyMgmt</parent>
+		  <class>AppointmentEnergy</class>
+		</menu> -->
+		<!--	<menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>45</rank>
+		</menu>
+		<menu id="SearchAppointmentTour" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentTourMgmt</parent>
+		  <class>AppointmentTour1</class>
+		</menu> -->
+		<!-- <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>46</rank>
+		</menu>
+		<menu id="SearchAppointmentTax" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentTaxMgmt</parent>
+		  <class>AppointmentTax</class>
+		</menu> -->
+		
+		
+		<!-- <menu id="AppointmentCityHall1Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>47</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall1" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>10</rank>
+		  <parent>AppointmentCityHall1Mgmt</parent>
+		  <class>AppointmentCityHall1</class>
+		</menu>
+		<menu id="SearchAppointmentCityHall2" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>15</rank>
+		  <parent>AppointmentCityHall1Mgmt</parent>
+		  <class>AppointmentCityHall2</class>
+		</menu>
+		<menu id="SearchAppointmentCityHall11" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall1Mgmt</parent>
+		  <class>AppointmentCityHall11</class>
+		</menu>
+		<menu id="SearchAppointmentCityHall3" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>25</rank>
+		  <parent>AppointmentCityHall1Mgmt</parent>
+		  <class>AppointmentCityHall3</class>
+		</menu>	-->
+		
+		<!-- <menu id="ShortcutCityHall1" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>50</rank>
+			<parent>AppointmentCityHall1Mgmt</parent>
+		</menu>
+		<menu id="SearchNowAppointmentCityHall1" xsi:type="OQLMenuNode" _delta="define">
+			<rank>11</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCityHall1</parent>
+			<oql>SELECT AppointmentCityHall1 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="SearchNowAppointmentCityHall2" xsi:type="OQLMenuNode" _delta="define">
+			<rank>16</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCityHall1</parent>
+			<oql>SELECT AppointmentCityHall2 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="SearchNowAppointmentCityHall11" xsi:type="OQLMenuNode" _delta="define">
+			<rank>21</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCityHall1</parent>
+			<oql>SELECT AppointmentCityHall11 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="SearchNowAppointmentCityHall3" xsi:type="OQLMenuNode" _delta="define">
+			<rank>26</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCityHall1</parent>
+			<oql>SELECT AppointmentCityHall3 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		
+		<menu id="AppointmentCityHall4Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>50</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall4" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall4Mgmt</parent>
+		  <class>AppointmentCityHall4</class>
+		</menu>
+		<menu id="SearchNowAppointmentCityHall4" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall4Mgmt</parent>
+			<oql>SELECT AppointmentCityHall4 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="AppointmentCityHall5Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>51</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall5" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall5Mgmt</parent>
+		  <class>AppointmentCityHall5</class>
+		</menu>	
+		<menu id="SearchNowAppointmentCityHall5" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall5Mgmt</parent>
+			<oql>SELECT AppointmentCityHall5 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="AppointmentCityHall6Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>52</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall6" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall6Mgmt</parent>
+		  <class>AppointmentCityHall6</class>
+		</menu>	
+		<menu id="SearchNowAppointmentCityHall6" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall6Mgmt</parent>
+			<oql>SELECT AppointmentCityHall6 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="AppointmentCityHall7Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>53</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall7" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall7Mgmt</parent>
+		  <class>AppointmentCityHall7</class>
+		</menu>
+		<menu id="SearchNowAppointmentCityHall7" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall7Mgmt</parent>
+			<oql>SELECT AppointmentCityHall7 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>		
+		<menu id="AppointmentCityHall8Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>54</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall8" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall8Mgmt</parent>
+		  <class>AppointmentCityHall8</class>
+		</menu>
+		<menu id="SearchNowAppointmentCityHall8" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall8Mgmt</parent>
+			<oql>SELECT AppointmentCityHall8 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>-->
+		<menu id="AppointmentCityHall9Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>61</rank>
+		</menu>
+		<!-- <menu id="SearchAppointmentCityHall9" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>10</rank>
+		  <parent>AppointmentCityHall9Mgmt</parent>
+		  <class>AppointmentCityHall9</class>
+		</menu> -->
+		<menu id="SearchAppointmentCityHall10" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall9Mgmt</parent>
+		  <class>AppointmentCityHall10</class>
+		</menu>
+		<!-- <menu id="ShortcutCityHall9" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>50</rank>
+			<parent>AppointmentCityHall9Mgmt</parent>
+		</menu>
+		<menu id="SearchNowAppointmentCityHall9" xsi:type="OQLMenuNode" _delta="define">
+			<rank>11</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall9Mgmt</parent>
+			<oql>SELECT AppointmentCityHall9 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu> -->
+		<menu id="SearchNowAppointmentCityHall10" xsi:type="OQLMenuNode" _delta="define">
+			<rank>11</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall9Mgmt</parent>
+			<oql>SELECT AppointmentCityHall10 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<!-- <menu id="AppointmentCityHall12Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>56</rank>
+		</menu>
+		<menu id="SearchAppointmentCityHall12" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCityHall12Mgmt</parent>
+		  <class>AppointmentCityHall12</class>
+		</menu>	
+		<menu id="SearchNowAppointmentCityHall12" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>AppointmentCityHall12Mgmt</parent>
+			<oql>SELECT AppointmentCityHall12 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu> -->
+		
+		
+
+		<menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="define">
+		  <rank>55</rank>
+		</menu>
+		<menu id="SearchAppointmentCareCenter1" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>10</rank>
+		  <parent>AppointmentCareCenter1Mgmt</parent>
+		  <class>AppointmentCareCenter1</class>
+		</menu>
+		<menu id="SearchAppointmentCareCenter2" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>20</rank>
+		  <parent>AppointmentCareCenter1Mgmt</parent>
+		  <class>AppointmentCareCenter2</class>
+		</menu>
+		<menu id="SearchAppointmentCareCenter3" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>30</rank>
+		  <parent>AppointmentCareCenter1Mgmt</parent>
+		  <class>AppointmentCareCenter3</class>
+		</menu>
+		<menu id="SearchAppointmentCareCenter4" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>40</rank>
+		  <parent>AppointmentCareCenter1Mgmt</parent>
+		  <class>AppointmentCareCenter4</class>
+		</menu>
+		<menu id="SearchAppointmentCareCenter5" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>50</rank>
+		  <parent>AppointmentCareCenter1Mgmt</parent>
+		  <class>AppointmentCareCenter5</class>
+		</menu>
+		<menu id="ShortcutCareCenter1" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>50</rank>
+			<parent>AppointmentCareCenter1Mgmt</parent>
+		</menu>
+		<menu id="SearchNowCareCenter1" xsi:type="OQLMenuNode" _delta="define">
+			<rank>11</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCareCenter1</parent>
+			<oql>SELECT AppointmentCareCenter1 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="SearchNowCareCenter2" xsi:type="OQLMenuNode" _delta="define">
+			<rank>16</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCareCenter1</parent>
+			<oql>SELECT AppointmentCareCenter2 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="SearchNowCareCenter3" xsi:type="OQLMenuNode" _delta="define">
+			<rank>21</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCareCenter1</parent>
+			<oql>SELECT AppointmentCareCenter3 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="SearchNowCareCenter4" xsi:type="OQLMenuNode" _delta="define">
+			<rank>26</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCareCenter1</parent>
+			<oql>SELECT AppointmentCareCenter4 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+		<menu id="SearchNowCareCenter5" xsi:type="OQLMenuNode" _delta="define">
+			<rank>31</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCareCenter1</parent>
+			<oql>SELECT AppointmentCareCenter5 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>
+	  </menus>
+<user_rights>
+    <groups>
+		
+		<group id="Appointment" _delta="define">
+			<classes>
+				<class id="Appointment"/>
+			</classes>
+		</group>
+		
+		<group id="AppointmentEnergy" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentEnergy"/>
+			</classes>
+		</group>
+		
+		<group id="AppointmentTour" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentTour1"/>
+			</classes>
+		</group>
+		
+		<group id="AppointmentTax" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentTax"/>
+			</classes>
+		</group>
+		
+		<group id="AppointmentCityHall1" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall1"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall2" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall2"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall3" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall3"/>
+			</classes>
+		</group>	
+		<group id="AppointmentCityHall4" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall4"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall5" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall5"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall6" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall6"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall7" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall7"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall8" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall8"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall9" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall9"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall10" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall10"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall11" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall11"/>
+			</classes>
+		</group>
+		<group id="AppointmentCityHall12" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCityHall12"/>
+			</classes>
+		</group>
+		
+		
+		<group id="AppointmentCareCenter1" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter1"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter2" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter2"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter3" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter3"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter4" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter4"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter5" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter5"/>
+			</classes>
+		</group>
+		
+	 
+    </groups>
+    <profiles>
+	  <profile id="114" _delta="define">
+        <name>Appointment Energy User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentEnergy">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  
+	  <profile id="117" _delta="define">
+        <name>Appointment Tour User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+				<action id="action:read">allow</action>
+				<action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentTour">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  
+	   <profile id="118" _delta="define">
+        <name>Appointment Tax User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentTax">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  
+	  <profile id="119" _delta="define">
+        <name>Appointment CityHall1 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall1">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  <profile id="120" _delta="define">
+        <name>Appointment CityHall2 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall2">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  <profile id="121" _delta="define">
+        <name>Appointment CityHall3 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall3">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  <profile id="122" _delta="define">
+        <name>Appointment CityHall4 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall4">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  	  <profile id="123" _delta="define">
+        <name>Appointment CityHall5 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall5">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+        </groups>
+      </profile>
+	  	  <profile id="124" _delta="define">
+        <name>Appointment CityHall6 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall6">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+		 </groups>
+		 </profile>
+		   <profile id="125" _delta="define">
+        <name>Appointment CityHall7 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall7">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>
+			</groups>
+			</profile>
+	 <profile id="126" _delta="define">
+        <name>Appointment CityHall8 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall8">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="132" _delta="define">
+        <name>Appointment CityHall9 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall9">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="133" _delta="define">
+        <name>Appointment CityHall10 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall10">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="134" _delta="define">
+        <name>Appointment CityHall11 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall10">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="138" _delta="define">
+        <name>Appointment CityHall12 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCityHall12">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  
+	  
+	  <profile id="127" _delta="define">
+        <name>Appointment CareCenter1 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCareCenter1">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="128" _delta="define">
+        <name>Appointment CareCenter2 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCareCenter2">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="129" _delta="define">
+        <name>Appointment CareCenter3 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCareCenter3">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="130" _delta="define">
+        <name>Appointment CareCenter4 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCareCenter4">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  <profile id="131" _delta="define">
+        <name>Appointment CareCenter5 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCareCenter5">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	  
+    </profiles>
+  </user_rights>
+</itop_design>

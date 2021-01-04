@@ -15,7 +15,8 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-			'itop-request-mgmt-itil/2.5.0' 
+			'itop-request-mgmt-itil/2.5.0',
+			'jd-technicalrequest/2.5.0'
 		),
 		'mandatory' => false,
 		'visible' => true,

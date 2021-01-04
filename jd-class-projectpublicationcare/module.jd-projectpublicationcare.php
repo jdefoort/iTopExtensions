@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-projectpublication-mgmt/2.5.0',
+	'jd-projectpublicationcare/2.6.0',
 	array(
 		// Identification
 		//
-		'label' => 'Class: Projectpublication, a system to publish projects to the council and public',
+		'label' => 'Class: ProjectPublicationCare, a system to publish projects to the council and public',
 		'category' => 'business',
 
 		// Setup
@@ -24,7 +24,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'model.jd-projectpublication-mgmt.php'
+			'model.jd-projectpublicationcare.php'
 		),
 		'webservice' => array(
 			

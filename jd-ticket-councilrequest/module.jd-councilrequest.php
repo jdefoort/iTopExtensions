@@ -5,11 +5,11 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-subsidyrequest-mgmt/2.6.0',
+        'jd-councilrequest/2.6.0',
         array(
                 // Identification
                 //
-                'label' => 'Class: SubsidyRequest (ITIL) - Add requestform',
+                'label' => 'Class: CouncilRequest - Add requestform',
                 'category' => 'business',
 
                 // Setup
@@ -24,7 +24,7 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-subsidyrequest-mgmt.php'
+                        'model.jd-councilrequest.php'
                 ),
                 'webservice' => array(
 

@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-leisurepass-mgmt/2.6.190822',
+	'jd-leisurepass/2.6.190822',
 	array(
 		// Identification
 		//
@@ -23,8 +23,8 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'model.jd-leisurepass-mgmt.php',
-			'main.jd-leisurepass-mgmt.php'
+			'model.jd-leisurepass.php',
+			'main.jd-leisurepass.php'
 		),
 		'webservice' => array(
 			

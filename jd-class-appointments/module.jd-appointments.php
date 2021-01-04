@@ -5,28 +5,28 @@
 
 SetupWebPage::AddModule(
         __FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-        'jd-projectpublication-profiles/',
+        'jd-appointments/2.6.0',
         array(
                 // Identification
                 //
-                'label' => 'Profile: add Projectpublication user as profile',
+                'label' => 'Class: Appointments, Adds the abstract class appointments, with subclasses',
                 'category' => 'business',
 
                 // Setup
                 //
                 'dependencies' => array(
                         'itop-config-mgmt/2.4.0',
-                        'itop-request-mgmt-itil/2.4.0',
-                        'itop-knownerror-mgmt/2.4.0',
-						'jd-projectpublication-mgmt/2.4.0'
+                        'itop-service-mgmt/2.4.0'
+						
                 ),
+
                 'mandatory' => false,
                 'visible' => true,
 
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-projectpublication-profiles.php'
+                        'model.jd-appointments.php'
                 ),
                 'webservice' => array(
 
