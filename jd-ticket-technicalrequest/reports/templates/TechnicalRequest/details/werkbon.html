@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+	<script src="{{ itop.root_url }}/env-production/jb-report-generator/vendor/components/jquery/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="{{ itop.root_url }}/env-production/jb-report-generator/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+	<script src="{{ itop.root_url }}/env-production/jb-report-generator/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.5.0/css/ol.css" type="text/css">
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.5.0/build/ol.js"></script>
+	
+    <style>
+	
+        .map {
+            height: 400px;
+            width: 522px;
+        }
+		
+		.container {
+			margin: 0;
+		}
+		
+		@media print {
+		  .page-break {page-break-after: always;}
+		}
+		
+		@page {
+			/*size: 21cm 29.7cm;*/
+			size: A4 landscape;
+			margin: 10mm 10mm 10mm 10mm;
+			 /* change the margins as you want them to be. */
+		}
+
+		body {
+			background: gray;
+		}
+		
+		.row {
+			background: white;
+			word-break: break-word;
+			font-size: 0.9rem;
+			margin: 3px;
+		}
+		
+		hr {
+			display: block;
+			width: 100%;
+		}
+		
+		hr.write-line {
+			border-top: solid 1px black;
+			margin-top: 30px;
+			width: 100%;
+			display: block;
+		}
+		
+		#content pre {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+		}
+		
+		table {
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		td, th {
+		  border: 1px solid #000000;
+		  text-align: left;
+		  padding: 2px;
+		  height: 25px;
+		}
+		
+		h1 {
+			font-size: 2rem;
+			font-weight: bold;
+		}
+		
+		h2 {
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+		
+		p, li {
+			font-size: 0.9rem;
+		}
+		
+		#attachments img {
+			max-width: 100%;
+		
+		}
+		
+    </style>
+	
+	
+    <title>Werkbon</title>
+	
+	
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<div class="row">
+			<div class="{% if item.fields.geom == '' %}col-12{% else %}col-6{% endif %}" id="content">
+				
+				<h1>Melding {{ item.fields.ref }}</h1><br>
+				<h2>{{ item.fields.title }}</h2>
+				
+				{# Currently already includes all details and pre tags #}
+				{{ item.fields.description|trim }}
+				<hr>
+				
+			</div>
+
+				<div class="col-6">
+					<b>Adres: {{ item.fields.crab_address_id_friendlyname }}</b>
+					{# Only include map if geom is set #}
+					{% if item.fields.geom != '' %}
+							<div id="map" class="map"></div>
+					{% endif %}		
+							<br>
+							<p>
+								Aanvrager: {{ item.fields.caller_id_friendlyname }}<br>
+								Tel/GSM: 
+								{% if item.fields.caller_mobile_phone != '' %} 
+									{{ item.fields.caller_mobile_phone }} 
+								{% elseif item.fields.caller_phone != '' %} 
+									{{ item.fields.caller_phone }} 
+								{% else %}
+									-
+								{% endif %}<br>
+								Teamleider: {{ item.fields.agent_id_friendlyname }}<br>
+							</p>
+
+				</div>		
+		</div>
+		
+
+	{# Only include map if geom is set #}
+	{% if item.fields.geom != '' %}
+		<script type="text/javascript">
+		
+			var geom = {}
+			geom.oFormatWKT = new ol.format.WKT();
+			geom.oFeature = ( '{{ item.fields.geom }}' == '' ? null : geom.oFormatWKT.readFeature('{{ item.fields.geom }}') );
+			
+			geom.oSharedStyle = new ol.style.Style({
+				fill: new ol.style.Fill({
+					color: "rgb(6,80,140, 0.25)"
+				}),
+				stroke: new ol.style.Stroke({
+					color: "rgb(6,80,140)",
+					width: 2
+				}),
+				image: new ol.style.Circle({
+					radius: 7,
+					fill: new ol.style.Fill({
+						color: "rgb(139,196,88)"
+					}),
+					stroke: new ol.style.Stroke({
+						color: "rgb(0,0,0)",
+						width: 1.1
+					})
+				})
+			});
+			
+			geom.oVectorSource = new ol.source.Vector({ 
+				features: ( geom.oFeature ? [ geom.oFeature ] : [] )
+			});
+			 
+			geom.oVector = new ol.layer.Vector({
+				source: geom.oVectorSource,
+				style: geom.oSharedStyle
+			});
+			
+			geom.aLayers = {
+				osm: new ol.layer.Tile({
+					source: new ol.source.OSM()
+				}),
+				vector: geom.oVector
+			}
+
+			aExtent = geom.aLayers.vector.getSource().getExtent();
+			geom.oCenter = [ 
+				( aExtent[0] + aExtent[2] ) / 2,
+				( aExtent[1] + aExtent[3] ) / 2,
+			];
+			
+			geom.oMap = new ol.Map({
+				target: 'map',
+				layers: [
+					geom.aLayers.osm,
+					geom.aLayers.vector
+				],
+				view: new ol.View({
+					center: geom.oCenter,
+					zoom: 17,
+					projection: 'EPSG:3857'
+				})
+			});
+			
+			
+			// Workaround to keep zoom
+			geom.oResolution = geom.oMap.getView().getResolution();
+			geom.oMap.getView().fit( aExtent, geom.oMap.getSize() );
+			geom.oMap.getView().setResolution(geom.oResolution);
+			
+			 
+			
+		</script>
+	{% endif %}
+	
+
+		<div class="page-break"></div>
+	
+	
+		
+		<div class="row">
+			<div class="col-6">
+				<div class="row">
+					<div class="col-4">
+						{{ item.fields.ref|qr }}
+					</div>
+					<div class="col-8">
+						<br>
+						<h2>Uitleg</h2>
+					</div>
+						{% for log in item.fields.orders_log.entries %}
+						
+							
+							<div class="row">
+								<hr>
+								{{ log.message }}
+							</div>
+							
+						{% else %}
+							<div class="row">
+								Nog geen werkinstructies.
+							</div>
+						{% endfor %}
+				</div>
+			</div>			
+			<div class="col-6">
+				Uitvoerders: 
+					<ul>
+						{% if item.fields.staff_list is not empty %}
+							<div class="row">
+								<div class="col-6">
+								</div>
+								<div class="col-6">
+									<table>
+									  <tr>
+										<th>Datum</th>
+										<th>Start</th>
+										<th>Einde</th>
+									  </tr>
+									</table>
+								</div>
+							</div>
+							{% for staff in item.fields.staff_list %}
+								<li>
+									<div class="row">
+										<div class="col-6">
+											{{ staff.contact_id_friendlyname }} 
+										</div>
+										<div class="col-6">
+											<table>
+											  <tr>
+												<td></td>
+												<td></td>
+												<td></td>
+											  </tr>
+											</table>
+										</div>
+									</div>
+								</li>
+							{% endfor %}						
+						{% else %}
+							<li>
+								 Nog geen uitvoerders.
+							</li>
+						{% endif %}					
+					</ul>
+				<br>	
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+				<hr class="write-line">
+			
+			</div>
+		</div>
+		
+		{% if item.attachments|length > 0 %}
+			
+			<div class="page-break"></div>
+			<div class="row" id="attachments">
+				{% for attachment in item.attachments %}
+					<div class="col-12">	
+						<hr>
+						<img src="data:{{ attachment.fields.contents.mimetype }};base64, {{ attachment.fields.contents.data }}" alt="Bijlage" />
+					</div>		
+				{% endfor %}				
+				
+			</div>		
+		{% endif %}	
+	</div>
+
+
+</body>
+
+</html>

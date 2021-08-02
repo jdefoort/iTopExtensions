@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" data-report-trigger="button">
+<head>
+
+	<link rel="stylesheet" href="{{ lib.bootstrap.css }}">
+
+	<script src="{{ lib.jquery.js }}"></script>
+	<script src="{{ lib.bootstrap.js }}"></script>
+	
+	<style>
+	
+		.container {
+			margin: 0;
+		}
+		
+		@media print {
+			.page-break {page-break-after: always;}
+		}
+		
+		@page {
+			size: 29.7cm 21cm;
+			/*size: A4 portrait;*/
+			margin: 10mm 10mm 10mm 10mm;
+			 /* change the margins as you want them to be. */
+		}
+		
+		.row {
+			background: white;
+			word-break: break-word;
+			font-size: 0.9rem;
+
+			/* Fix wkhtmltopdf lack of flexbox */
+			display: -webkit-box;
+			width: 100%;
+		}
+
+		#pas {
+			/* De pas moet een beetje kleiner zijn, anders past hij niet in het lamineerhoesje */ 
+			width: 19cm;
+			height: 6cm;
+		}
+		
+		hr {
+			display: block;
+			width: 100%;
+		}
+		
+		hr.write-line {
+			border-top: solid 1px black;
+			margin-top: 30px;
+			width: 100%;
+			display: block;
+		}
+		
+		#content pre {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+		}
+		
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td, th {
+			border: 1px solid #000000;
+			text-align: left;
+			padding: 0px;
+			height: 25px;
+		}
+		
+		.ch1 {
+			font-size: 2rem;
+			font-weight: bold;
+			word-wrap: break-word;
+		}
+		
+		.ch2 {
+			font-size: 1.5rem;
+			font-weight: bold;
+			word-wrap: break-word;
+		}
+		
+		p, li {
+			font-size: 1.1rem;
+			word-wrap: break-word;
+		}
+		
+		#attachments.img {
+			max-width: 100%;
+		
+		}
+		
+		#foto {
+			border: 2px solid;
+			margin-left: 0;
+			padding-left: 0;
+		
+		}
+		
+		#inhoud {
+			border: 2px solid;
+			margin-left: 0;
+			padding-top: 5px;
+		}
+		
+		#foto {
+			padding: 10px;
+		}
+		
+		#gegevens {
+			text-align:right;
+			padding: 10px;
+			font-size: 1rem;
+		}
+		
+		.witruimte {
+			height: 400px;
+		}
+		
+	</style>
+	
+	<title>Vrijetijdspas</title>	
+	
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<div class="row" id="pas">
+			<div class="col-6" id="foto">
+				<img src="{{ itop.root_url }}/env-production/jd-leisurepass/reports/templates/LeisurePass/details/vrijetijdspas.jpg" alt="Vrijetijdspas afbeelding" width="269px;" height="188.5px;" align="center;">
+			</div>
+
+			<div class="col-6" id="inhoud">
+				<div class="row">
+					<div class="col-5" id="pasfoto">
+				
+						<img src="data:{{ item.fields.picture.mimetype }};base64, {{ item.fields.picture.data }}" width="100px;" alt="Pasfoto" />
+					
+					</div>
+					
+					<div class="col-7" id="gegevens">
+					
+						{{ item.fields.person_id_friendlyname }}<br>
+						{{ item.fields.crab_address_friendlyname }}<br>
+						8870 Izegem<br>
+						
+						<hr class="w-100">
+						
+						Deze kaart is geldig <br>
+						tot 31 januari {{ item.fields.created|date_modify("+1 year")|date("Y") }}
+
+					</div>					
+				</div>
+
+			</div>		
+		</div>
+		<br>
+		<div  class="witruimte">
+		
+		</div>
+				
+		<div class="row" id="breedte">
+			<div class="col-12">
+			
+			<div class="ch1">Proficiat, je bent nu eigenaar van een vrijetijdspas!</div>
+			<p>
+				Met deze pas krijg je een reeks voordelen bij allerlei activiteiten georganiseerd door de stedelijke diensten 
+				en meewerkende verenigingen.
+			</p>
+			
+			<br>
+			
+			<p>
+				Op vertoon van deze pas heb je recht op <b>50% korting</b> wanneer je aan bepaalde activiteiten deelneemt. <br>
+				De deelnemende organisaties herken je doordat ze het logo gebruiken van de vrijetijdspas.
+			</p>
+
+			<div class="ch2">Te onthouden</div>
+			
+				<ul>
+					<li>Deze pas is <b>persoonlijk</b>.</li>
+					<li>Deze pas is <b>beperkt geldig</b>. Je moet elk kalenderjaar een nieuwe vrijetijdspas aanvragen.</li>
+					<li>Verenigingen die meewerken, maken dit duidelijk in hun communicatie via boekjes, affiches,...</li>
+					<li>Meer info? <b>www.izegem.be</b> . Je kan hiervoor ook langsgaan bij het Sociaal Huis en het OCMW.</li>
+				</ul>
+				
+			</div>
+
+		</div>
+
+	</div>
+
+
+</body>
+
+</html>

@@ -5,17 +5,17 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'jd-leisurepass/2.6.190822',
+	'jd-livingwage/2.7.210720',
 	array(
 		// Identification
 		//
-		'label' => 'Module: Leisure Pass',
+		'label' => 'Module: Livingwage',
 		'category' => 'business',
 
 		// Setup
 		//
 		'dependencies' => array(
-			'itop-config-mgmt/2.6.0' // Class Person
+			'itop-knownerror-mgmt/2.6.0' // Class FAQ
 		),
 		'mandatory' => false,
 		'visible' => true,
@@ -23,9 +23,7 @@ SetupWebPage::AddModule(
 		// Components
 		//
 		'datamodel' => array(
-			'model.jd-leisurepass.php',
-			'main.jd-leisurepass.php',
-			'reports/LeisurePass.php'
+			'model.jd-livingwage.php'
 		),
 		'webservice' => array(
 			

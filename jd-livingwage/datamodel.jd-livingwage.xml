@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.7">
+	<classes>
+		<class id="LivingWage" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable,knownerrormgmt</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>livingwage</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="title"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon>images/livingwage.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="title"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="title" xsi:type="AttributeString">
+					<sql>title</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="summary" xsi:type="AttributeText">
+					<sql>summary</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="description" xsi:type="AttributeHTML">
+					<sql>description</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="category_id" xsi:type="AttributeExternalKey">
+					<sql>category_id</sql>
+					<target_class>LivingWageCategory</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="category_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>category_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="law_code" xsi:type="AttributeString">
+					<sql>law_code</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="key_words" xsi:type="AttributeString">
+					<sql>key_words</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="target_audience" xsi:type="AttributeTagSet">
+					<sql>target_audience</sql>
+					<is_null_allowed>true</is_null_allowed>
+					<tracking_level>all</tracking_level>
+					<max_items>12</max_items>
+				</field>
+				<field id="startdate" xsi:type="AttributeDate">
+					<sql>startdate</sql>
+					<default_value></default_value>
+					<is_null_allowed>true</is_null_allowed>				
+				</field>
+				<field id="obsolete_since" xsi:type="AttributeDate">
+					<sql>obsoletesince</sql>
+					<default_value></default_value>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="category_id">
+							<rank>10</rank>
+						</item>
+						<item id="title">
+							<rank>20</rank>
+						</item>
+						<item id="law_code">
+							<rank>30</rank>
+						</item>
+						<item id="key_words">
+							<rank>40</rank>
+						</item>
+						<item id="target_audience">
+							<rank>50</rank>
+						</item>
+						<item id="startdate">
+							<rank>60</rank>
+						</item>
+						<item id="obsolete_since">
+							<rank>70</rank>
+						</item>
+						<item id="summary">
+							<rank>80</rank>
+						</item>
+						<item id="description">
+							<rank>90</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="category_id">
+							<rank>10</rank>
+						</item>
+						<item id="title">
+							<rank>20</rank>
+						</item>
+						<item id="summary">
+							<rank>30</rank>
+						</item>
+						<item id="law_code">
+							<rank>40</rank>
+						</item>
+						<item id="target_audience">
+							<rank>50</rank>
+						</item>
+					</items>
+				</search>
+				<default_search>
+					<items>
+						<item id="title">
+							<rank>10</rank>
+						</item>
+						<item id="summary">
+							<rank>20</rank>
+						</item>
+						<item id="category_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</default_search>
+				<list>
+					<items>
+						<item id="category_id">
+							<rank>10</rank>
+						</item>
+						<item id="law_code">
+							<rank>20</rank>
+						</item>
+						<item id="target_audience">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<class id="LivingWageCategory" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable,knownerrormgmt</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>livingwagecategory</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="name" xsi:type="AttributeString">
+					<sql>nam</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="livingwage_list" xsi:type="AttributeLinkedSet">
+					<linked_class>LivingWage</linked_class>
+					<ext_key_to_me>category_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="livingwage_list">
+							<rank>20</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</search>
+				<default_search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</default_search>
+			</presentation>
+		</class>
+	</classes>
+	<menus>
+		<menu id="LivingWage:Overview" xsi:type="DashboardMenuNode" _delta="define">
+			<rank>1</rank>
+			<parent>LivingWageMgmt</parent>
+			<definition>
+				<layout>DashboardLayoutTwoCols</layout>
+				<title>Overzicht Leefloon</title>
+				<auto_reload>
+					<enabled>false</enabled>
+					<interval>300</interval>
+				</auto_reload>
+				<cells>
+					<cell id="0">
+					  <rank>0</rank>
+					  <dashlets>
+						<dashlet id="CUSTOM__ID_row1_col0_6" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title>Overzichtspagina</title>
+						  <icon>itop-config-mgmt/images/location.png</icon>
+						</dashlet>
+						<dashlet id="CUSTOM__ID_row2_col0_5" xsi:type="DashletGroupByTable">
+						  <rank>1</rank>
+						  <title>Actieve data per categorie</title>
+						  <query>SELECT LivingWage WHERE ISNULL(obsolete_since)</query>
+						  <group_by>category_id</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="1">
+					  <rank>1</rank>
+					  <dashlets>
+						<dashlet id="CUSTOM__ID_row0_col1_9" xsi:type="DashletHeaderStatic">
+						  <rank>0</rank>
+						  <title></title>
+						  <icon>jd-class-climatepublication/images/project.png</icon>
+						</dashlet>
+						<dashlet id="CUSTOM__ID_row2_col0_7" xsi:type="DashletGroupByPie">
+						  <rank>1</rank>
+						  <title>Actieve data volgens categorie</title>
+						  <query>SELECT LivingWage WHERE ISNULL(obsolete_since)</query>
+						  <group_by>category_id</group_by>
+						  <style>pie</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>asc</order_direction>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="2">
+					  <rank>2</rank>
+					  <dashlets>
+						<dashlet id="CUSTOM__ID_row1_col0_3" xsi:type="DashletGroupByTable">
+						  <rank>0</rank>
+						  <title>Actieve data per doelpubliek</title>
+						  <query>SELECT LivingWage WHERE ISNULL(obsolete_since)</query>
+						  <group_by>target_audience</group_by>
+						  <style>table</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+					  </dashlets>
+					</cell>
+					<cell id="3">
+					  <rank>3</rank>
+					  <dashlets>
+						<dashlet id="CUSTOM__ID_row2_col0_8" xsi:type="DashletGroupByBars">
+						  <rank>0</rank>
+						  <title>Actieve data per doelpubliek</title>
+						  <query>SELECT LivingWage WHERE ISNULL(obsolete_since)</query>
+						  <group_by>target_audience</group_by>
+						  <style>bars</style>
+						  <aggregation_function>count</aggregation_function>
+						  <aggregation_attribute></aggregation_attribute>
+						  <limit></limit>
+						  <order_by>attribute</order_by>
+						  <order_direction>desc</order_direction>
+						</dashlet>
+					  </dashlets>
+					</cell>
+				  </cells>
+			</definition>
+		</menu>
+		<menu id="NewLivingWage" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>10</rank>
+			<parent>LivingWageMgmt</parent>
+			<class>LivingWage</class>
+		</menu>
+		<menu id="SearchLivingWage" xsi:type="OQLMenuNode" _delta="define">
+			<rank>20</rank>
+			<parent>LivingWageMgmt</parent>
+			<oql>SELECT LivingWage</oql>
+			<do_search>1</do_search>
+		</menu>
+	</menus>	
+	<profiles/>
+	<user_rights>
+		<groups>
+
+			<group id="LivingWage" _delta="define">
+				<classes>
+					<class id="LivingWage"/>
+					<class id="LivingWageCategory"/>
+					<class id="ContactMethod"/>
+					<class id="AuthenticationMethod"/>
+				</classes>
+			</group>
+
+			<group id="LivingWage_Readonly" _delta="define_if_not_exists">
+				<classes>
+					<class id="LivingWage"/>
+					<class id="LivingWageCategory"/>
+					<class id="ContactMethod"/>
+					<class id="AuthenticationMethod"/>
+				</classes>
+			</group> 
+
+
+		</groups>
+		<profiles>
+			<profile id="142" _delta="define">
+				<name>LivingWage User</name>
+				<description>For people working with the Living Wage instance</description>
+				<groups>
+					<group id="General">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+							<action id="action:write">allow</action>
+							<action id="action:bulk write">allow</action>
+							<action id="action:delete">allow</action>
+							<action id="action:bulk delete">allow</action>
+						</actions>
+					</group>
+
+					<group id="Problem">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+							<action id="action:write">allow</action>
+							<action id="action:bulk write">allow</action>
+							<action id="action:delete">allow</action>
+							<action id="action:bulk delete">allow</action>
+						</actions>
+					</group>
+					<group id="Service">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+							<action id="action:write">allow</action>
+							<action id="action:bulk write">allow</action>
+							<action id="action:delete">allow</action>
+							<action id="action:bulk delete">allow</action>
+						</actions>
+					</group> 
+					<group id="LivingWage">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+							<action id="action:write">allow</action>
+							<action id="action:bulk write">allow</action>
+							<action id="action:delete">allow</action>
+							<action id="action:bulk delete">allow</action>
+						</actions>
+					</group>
+				</groups>
+			</profile>
+			<profile id="143" _delta="define">
+				<name>LivingWage_Readonly User</name>
+				<description>For people working with the Living Wage instance</description>
+				<groups>
+					<group id="General">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+							<action id="action:write">allow</action>
+							<action id="action:bulk write">allow</action>
+							<action id="action:delete">allow</action>
+							<action id="action:bulk delete">allow</action>
+						</actions>
+					</group>
+
+					<group id="Problem">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+							<action id="action:write">allow</action>
+							<action id="action:bulk write">allow</action>
+							<action id="action:delete">allow</action>
+							<action id="action:bulk delete">allow</action>
+						</actions>
+					</group>
+					<group id="Service">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+							<action id="action:write">allow</action>
+							<action id="action:bulk write">allow</action>
+							<action id="action:delete">allow</action>
+							<action id="action:bulk delete">allow</action>
+						</actions>
+					</group> 
+					<group id="LivingWage">
+						<actions>
+							<action id="action:read">allow</action>
+							<action id="action:bulk read">allow</action>
+						</actions>
+					</group>
+				</groups>
+			</profile>
+		</profiles>
+	</user_rights>
+</itop_design>

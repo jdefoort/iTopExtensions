@@ -26,7 +26,8 @@ SetupWebPage::AddModule(
                 // Components
                 //
                 'datamodel' => array(
-                        'model.jd-technicalrequest.php'
+                        'model.jd-technicalrequest.php',
+						'reports/TechnicalRequest.php'
                 ),
                 'webservice' => array(
 

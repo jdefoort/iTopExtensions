@@ -122,6 +122,9 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Menu:NewLeisureCheck+' => 'Create a new leisure check',
 	'Menu:LeisurePass' => 'Leisure Pass',
 
+	'Report:LeisurePass:Print' => 'Print pas',
+	'Report:LeisureCheck:Print' => 'Print cheque',
+	'Report:LeisureCheck:ExportNewHorizon' => 'Export NH',
 	
 ));
 

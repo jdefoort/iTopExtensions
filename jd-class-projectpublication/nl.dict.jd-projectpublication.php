@@ -50,6 +50,8 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:ProjectPublication/Attribute:project_state/Value:started+' => '',
 	'Class:ProjectPublication/Attribute:project_state/Value:operational' => 'Operationeel',
 	'Class:ProjectPublication/Attribute:project_state/Value:operational+' => '',
+	'Class:ProjectPublication/Attribute:project_state/Value:cancelled' => 'Geschrapt',
+	'Class:ProjectPublication/Attribute:project_state/Value:cancelled+' => '',
 	
 	'Class:ProjectPublication/Attribute:parent_project_id' => 'Actieplan',
 	'Class:ProjectPublication/Attribute:parent_project_id+' => '',

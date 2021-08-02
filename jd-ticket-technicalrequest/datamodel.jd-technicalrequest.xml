@@ -370,10 +370,10 @@
 					<target_attcode>mobile_phone</target_attcode>
 					<dependencies/>
 				</field>
-				<field id="crab_address_id_geom" xsi:type="AttributeExternalField">
+				<!--<field id="crab_address_id_geom" xsi:type="AttributeExternalField">
 					<extkey_attcode>crab_address_id</extkey_attcode>
 					<target_attcode>geom</target_attcode>
-				</field>
+				</field> -->
 			</fields>
 			<lifecycle>
 				<highlight_scale>
@@ -1115,7 +1115,7 @@
 		if($bCopyGeometryFromCrabAddress == true) {
 			
 			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
-			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+			$oSet_CrabAddresses = new CMDBObjectSet(DBObjectSearch::FromOQL($sQuery));
 			
 			while($oAddress = $oSet_CrabAddresses->Fetch()) {
 				$this->Set('geom', $oAddress->Get('geom'));
@@ -1143,12 +1143,12 @@
 		
 		// geometry is now 'empty' (was already empty or has now been reset)
 		// crab_address_id is set AND has changed?
-		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && (Int)$this->Get('crab_address_id') > 0 && array_key_exists('crab_address_id', $aChanges) == true);
+		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && array_key_exists('crab_address_id', $aChanges) == true && (Int)$this->Get('crab_address_id') > 0);
 		
 		if($bCopyGeometryFromCrabAddress == true) {
 			
 			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
-			$oSet_CrabAddresses = new \CMDBObjectSet(\DBObjectSearch::FromOQL($sQuery));
+			$oSet_CrabAddresses = new CMDBObjectSet(DBObjectSearch::FromOQL($sQuery));
 			
 			while($oAddress = $oSet_CrabAddresses->Fetch()) {
 				$this->Set('geom', $oAddress->Get('geom'));

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+	<link rel="stylesheet" href="{{ lib.bootstrap.css }}">
+
+	<script src="{{ lib.jquery.js }}"></script>
+	<script src="{{ lib.bootstrap.js }}"></script>
+	
+    <style>
+	
+		.container {
+			margin: 0;
+		}
+		
+		@media print {
+		  .page-break {page-break-after: always;}
+		}
+		
+		@page {
+			size: 29.7cm 21cm;
+			/*size: A4 portrait;*/
+			margin: 10mm 10mm 10mm 10mm;
+			 /* change the margins as you want them to be. */
+		}
+
+		
+		.row {
+			background: white;
+			word-break: break-word;
+			font-size: 0.9rem;
+
+			/* Fix wkhtmltopdf lack of flexbox */
+			display: -webkit-box;
+			width: 100%;									   
+		}
+		
+
+
+		#pas {
+			/* Niet doen, is toch al PDF: width: 18cm;*/		
+		}
+		hr {
+			display: block;
+			width: 100%;
+		}
+		
+		hr.write-line {
+			border-top: solid 1px black;
+			margin-top: 30px;
+			width: 100%;
+			display: block;
+		}
+		
+		#content pre {
+			white-space: pre-wrap;
+			word-wrap: break-word;
+		}
+		
+		table {
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		td, th {
+		  border: 1px solid #000000;
+		  text-align: left;
+		  padding: 0px;
+		  height: 25px;
+		}
+		
+		.ch1 {
+			font-size: 2rem;
+			font-weight: bold;
+			word-wrap: break-word;
+		}
+		
+		.ch2 {
+			font-size: 1.5rem;
+			font-weight: bold;
+			word-wrap: break-word;
+		}
+
+		p, li {
+			font-size: 1.1rem;
+			word-wrap: break-word;
+		}
+				
+		#foto {
+			border: 2px solid;			
+			margin-left: 0;
+			padding-left: 0;
+		
+		}
+		#inhoud {
+			border: 2px solid;
+			margin-left: 0;
+			padding-top: 5px;	 
+		}
+		
+		#foto, #gegevens {
+			padding: 10px;
+		}
+		
+    </style>
+	
+	
+    <title>Vrijetijdscheque</title>
+	
+	
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<div class="row" id="pas">
+			<div class="col-6" id="foto">
+				<img src="{{ itop.root_url }}/env-production/jd-leisurepass/reports/templates/LeisureCheck/details/vrijetijdspas.jpg" alt="Vrijetijdscheque afbeelding" width="248px" height="174px" align="center">
+				
+				
+			</div>
+
+			<div class="col-6" id="inhoud">
+				<div class="ch1"><br>Vrijetijdscheque</div>
+
+			</div>		
+		</div>
+		<br>
+
+				
+		<div class="row" id="breedte">
+			<div class="col-12">
+			<div class="ch2">
+				Info
+			</div>
+			<ul>
+				<li>Persoon: <b>{{ item.fields.cascade_first_name }} {{ item.fields.cascade_name }}</b></li>
+				<li>Bedrag: <b>{{ item.fields.value }} EUR</b> </li>
+				<li>Organisatie: <b>{{ item.fields.customer_org_id_friendlyname }} </b></li>
+				{% if item.fields.department_id_friendlyname != '' %} 
+					<li>Dienst: <b>{{ item.fields.department_id_friendlyname }} </b></li>
+				{% endif %}<br>
+				<li>Categorie:  {{ ("Class:LeisureCheck/Attribute:objective/Value:" ~ item.fields.objective)|dict_s }}</li>
+				<li>Reden: {{ item.fields.reason }}</li>
+				<li>Uitgegeven op: {{ item.fields.created|date("d-m-Y") }}</li>
+			</ul>
+			
+			<div class="ch2">
+				Problemen?
+			</div>
+			
+			<ul>
+				<li>Met de cheque: <b>sociaalhuis@izegem.be</b></li>
+				<li>Met de uitbetaling: <b>uitgaven@izegem.be</b></li>
+				<li>Let op: via de website zal je uitbetaling altijd sneller verlopen</li>
+			</ul>
+			
+			
+			<div class="ch2">
+				Aan de ontvanger van deze cheque
+			</div>
+			
+			<div class="row">
+				<div class="col-12">
+					<ul>
+						<li>Surf naar <b>vrijetijdscheque.izegem.be</b></li>
+						<li>Geef daar het nummer en de code in</li>
+						<li>Klik op 'cheque innen'</li>
+					</ul>
+				</div>
+			</div>
+			
+			<hr>
+			
+			<div class="row">
+				<div class="col-3">
+				</div>
+				<div class="col-3">
+					<p>Nummer: </p><div class="ch2">{{ item.key }}</div><br>
+					<p>Code:</p><div class="ch2">{{ item.fields.code }}</div>
+				</div>
+				<div class="col-3">	
+					<p>Of scan en bevestig</p>
+					{{ ("https://vrijetijdscheque.izegem.be/?key=" ~ item.key ~ "&code=" ~ item.fields.code)|qr }}
+				</div>
+				<div class="col-3">
+				</div>
+			</div>
+
+		</div>
+		
+		
+		
+	</div>
+
+
+</body>
+
+</html>

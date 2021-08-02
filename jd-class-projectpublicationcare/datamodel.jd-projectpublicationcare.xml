@@ -82,7 +82,9 @@
 					<values>
 						<value id="not_started">not_started</value>
 						<value id="started">started</value>
+						<value id="operational">operational</value>
 						<value id="completed">completed</value>
+						<value id="cancelled">cancelled</value>
 					</values>
 					<sql>project_state</sql>
 					<default_value>not_started</default_value>
@@ -141,7 +143,7 @@
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>
 				</field>
-				<field id="description" xsi:type="AttributeText">
+				<field id="description" xsi:type="AttributeHTML">
 					<sql>description</sql>
 					<default_value/>
 					<is_null_allowed>true</is_null_allowed>

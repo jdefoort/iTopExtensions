@@ -46,6 +46,10 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublicationCare/Attribute:project_state/Value:completed+' => '',
 	'Class:ProjectPublicationCare/Attribute:project_state/Value:started' => 'Started',
 	'Class:ProjectPublicationCare/Attribute:project_state/Value:started+' => '',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:operational' => 'Operational',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:operational+' => '',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:cancelled' => 'Cancelled',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:cancelled+' => '',
 	
 	'Class:ProjectPublicationCare/Attribute:parent_project_id' => 'Parent project',
 	'Class:ProjectPublicationCare/Attribute:parent_project_id+' => '',

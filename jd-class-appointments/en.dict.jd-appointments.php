@@ -147,10 +147,10 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Menu:ShortcutCityHall2+' => '',
 	'Menu:SearchNowAppointmentCityHall9' => 'Skatepark',
 	'Menu:SearchNowAppointmentCityHall9+' => '',
-	'Menu:SearchNowAppointmentCityHall10' => 'Blok@ISO',
+	'Menu:SearchNowAppointmentCityHall10' => 'Blok@Izegem',
 	'Menu:SearchNowAppointmentCityHall10+' => '',
 
-	'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@Jeugd',
+	'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@Izegem',
 	'Menu:AppointmentCityHall10Mgmt+' => '',
 	'Menu:NewAppointmentCityHall10' => 'New appointment',
 	'Menu:NewAppointmentCityHall10+' => '',
@@ -193,6 +193,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Menu:SearchNowCareCenter4+' => '',
 	'Menu:SearchNowCareCenter5' => 'Villa Van Gogh',
 	'Menu:SearchNowCareCenter5+' => '',
+	'Menu:SearchNowCareCenter6' => 'Kerstdag',
+	'Menu:SearchNowCareCenter6+' => 'Kerstdag (alle afdelingen, behalve VVG)',
 
 
 
@@ -223,6 +225,13 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Menu:NewAppointmentCareCenter5+' => '',
 	'Menu:SearchAppointmentCareCenter5' => 'Search appointment',
 	'Menu:SearchAppointmentCareCenter5+' => '',
+	
+	'Menu:AppointmentCareCenter6Mgmt' => 'Afspraak - Kerstdag',
+	'Menu:AppointmentCareCenter6Mgmt+' => '',
+	'Menu:NewAppointmentCareCenter6' => 'New appointment',
+	'Menu:NewAppointmentCareCenter6+' => '',
+	'Menu:SearchAppointmentCareCenter6' => 'Search appointment',
+	'Menu:SearchAppointmentCareCenter6+' => '',
 
 //
 // Class: Appointment
@@ -390,9 +399,9 @@ Dict::Add('EN US', 'English', 'English', array(
 //
 // Class: AppointmentCityHall10
 //
-	'Class:AppointmentCityHall10' => 'Appointment - Blok@Jeugd',
+	'Class:AppointmentCityHall10' => 'Appointment - Blok@Izegem',
 	'Class:AppointmentCityHall10+' => '',
-	'Class:AppointmentCityHall10/Name' => 'Appointment - Blok@Jeugd',
+	'Class:AppointmentCityHall10/Name' => 'Appointment - Blok@Izegem',
 	'Class:AppointmentCityHall10/Attribute:comment' => 'Comments',
 	'Class:AppointmentCityHall10/Attribute:comment+' => '',
 	'Class:AppointmentCityHall10/Attribute:national_number' => 'National number',
@@ -535,5 +544,34 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:AppointmentCareCenter5/Attribute:location/Value:1+' => '',
 	'Class:AppointmentCareCenter5/Attribute:location/Value:2' => 'Cafetaria',
 	'Class:AppointmentCareCenter5/Attribute:location/Value:2+' => '',
+	
+	
+//
+// Class: AppointmentCareCenter6
+//
+	'Class:AppointmentCareCenter6' => 'Appointment - Kerstdag',
+	'Class:AppointmentCareCenter6+' => '',
+	'Class:AppointmentCareCenter6/Name' => 'Appointment - Kerstdag',
+	'Class:AppointmentCareCenter6/Attribute:roomnumber' => 'Room number',
+	'Class:AppointmentCareCenter6/Attribute:roomnumber+' => '',
+	'Class:AppointmentCareCenter6/Attribute:comment' => 'Comments',
+	'Class:AppointmentCareCenter6/Attribute:comment+' => '',
+	'Class:AppointmentCareCenter6/Attribute:location' => 'Location',
+	'Class:AppointmentCareCenter6/Attribute:location+' => '',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:1' => 'Atrium',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:1+' => '',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:2' => 'Cafetaria',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:2+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt' => 'Department',
+	'Class:AppointmentCareCenter6/Attribute:dpt+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:1' => 'Matisse',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:1+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:2' => 'Ensor',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:2+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:3' => 'Delvaux',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:3+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:4' => 'Picasso',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:4+' => '',
+	
 	
 ));

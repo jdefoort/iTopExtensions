@@ -48,6 +48,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:ProjectPublication/Attribute:project_state/Value:started+' => '',
 	'Class:ProjectPublication/Attribute:project_state/Value:operational' => 'Operational',
 	'Class:ProjectPublication/Attribute:project_state/Value:operational+' => '',
+	'Class:ProjectPublication/Attribute:project_state/Value:cancelled' => 'Cancelled',
+	'Class:ProjectPublication/Attribute:project_state/Value:cancelled+' => '',
 	
 	'Class:ProjectPublication/Attribute:parent_project_id' => 'Parent project',
 	'Class:ProjectPublication/Attribute:parent_project_id+' => '',

@@ -48,6 +48,10 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:ProjectPublicationCare/Attribute:project_state/Value:completed+' => '',
 	'Class:ProjectPublicationCare/Attribute:project_state/Value:started' => 'Opgestart',
 	'Class:ProjectPublicationCare/Attribute:project_state/Value:started+' => '',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:operational' => 'Operationeel',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:operational+' => '',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:cancelled' => 'Geschrapt',
+	'Class:ProjectPublicationCare/Attribute:project_state/Value:cancelled+' => '',
 	
 	'Class:ProjectPublicationCare/Attribute:parent_project_id' => 'Actieplan',
 	'Class:ProjectPublicationCare/Attribute:parent_project_id+' => '',

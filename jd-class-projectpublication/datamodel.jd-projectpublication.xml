@@ -85,6 +85,7 @@
 						<value id="started">started</value>
 						<value id="operational">operational</value>
 						<value id="completed">completed</value>
+						<value id="cancelled">cancelled</value>
 					</values>
 					<sql>project_state</sql>
 					<default_value>not_started</default_value>

@@ -145,16 +145,16 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:ShortcutCityHall2+' => '',
 	'Menu:SearchNowAppointmentCityHall9' => 'Skatepark',
 	'Menu:SearchNowAppointmentCityHall9+' => '',
-	'Menu:SearchNowAppointmentCityHall10' => 'Blok@ISO',
+	'Menu:SearchNowAppointmentCityHall10' => 'Blok@Izegem',
 	'Menu:SearchNowAppointmentCityHall10+' => '',
 
 
 
-	'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@ISO',
+	'Menu:AppointmentCityHall10Mgmt' => 'Afspraak - Blok@Izegem',
 	'Menu:AppointmentCityHall10Mgmt+' => '',
 	'Menu:NewAppointmentCityHall10' => 'Nieuwe afspraak',
 	'Menu:NewAppointmentCityHall10+' => '',
-	'Menu:SearchAppointmentCityHall10' => 'Zoek Blok@ISO',
+	'Menu:SearchAppointmentCityHall10' => 'Zoek Blok@Izegem',
 	'Menu:SearchAppointmentCityHall10+' => '',
 
 	'Menu:AppointmentCityHall11Mgmt' => 'Afspraak - Rijbewijzen',
@@ -221,6 +221,14 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Menu:NewAppointmentCareCenter5+' => '',
 	'Menu:SearchAppointmentCareCenter5' => 'Zoek Villa Van Gogh',
 	'Menu:SearchAppointmentCareCenter5+' => '',
+	
+	'Menu:AppointmentCareCenter6Mgmt' => 'Afspraak - Kerstdag',
+	'Menu:AppointmentCareCenter6Mgmt+' => 'Afspraak - Kerstdag (alle afdelingen behalve VVG)',
+	'Menu:NewAppointmentCareCenter6' => 'Nieuwe afspraak',
+	'Menu:NewAppointmentCareCenter6+' => '',
+	'Menu:SearchAppointmentCareCenter6' => 'Zoek Kerstdag',
+	'Menu:SearchAppointmentCareCenter6+' => '',
+	
 
 
 
@@ -395,7 +403,7 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 //
 // Class: AppointmentCityHall10
 //
-	'Class:AppointmentCityHall10' => 'Afspraak - Blok@ISO',
+	'Class:AppointmentCityHall10' => 'Afspraak - Blok@Izegem',
 	'Class:AppointmentCityHall10+' => '',
 	'Class:AppointmentCityHall10/Name' => '%1$s',
 	'Class:AppointmentCityHall10/Attribute:comment' => 'Opmerkingen',
@@ -540,5 +548,32 @@ Dict::Add('NL NL', 'Dutch', 'Nederlands', array(
 	'Class:AppointmentCareCenter5/Attribute:location/Value:1+' => '',
 	'Class:AppointmentCareCenter5/Attribute:location/Value:2' => 'Cafetaria',
 	'Class:AppointmentCareCenter5/Attribute:location/Value:2+' => '',
+		
+//
+// Class: AppointmentCareCenter6
+//
+	'Class:AppointmentCareCenter6' => 'Appointment - Kerstdag',
+	'Class:AppointmentCareCenter6+' => '',
+	'Class:AppointmentCareCenter6/Name' => 'Appointment - Kerstdag',
+	'Class:AppointmentCareCenter6/Attribute:roomnumber' => 'Kamernummer',
+	'Class:AppointmentCareCenter6/Attribute:roomnumber+' => '',
+	'Class:AppointmentCareCenter6/Attribute:comment' => 'Opmerkingen',
+	'Class:AppointmentCareCenter6/Attribute:comment+' => '',
+	'Class:AppointmentCareCenter6/Attribute:location' => 'Babbelbox',
+	'Class:AppointmentCareCenter6/Attribute:location+' => '',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:1' => 'Atrium',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:1+' => '',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:2' => 'Cafetaria',
+	'Class:AppointmentCareCenter6/Attribute:location/Value:2+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt' => 'Afdeling',
+	'Class:AppointmentCareCenter6/Attribute:dpt+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:1' => 'Matisse',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:1+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:2' => 'Ensor',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:2+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:3' => 'Delvaux',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:3+' => '',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:4' => 'Picasso',
+	'Class:AppointmentCareCenter6/Attribute:dpt/Value:4+' => '',
 	
 ));

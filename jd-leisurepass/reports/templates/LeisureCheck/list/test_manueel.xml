@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<facturatieRun>
+	<!--
+		Sommige zaken moeten berekend worden.
+	-->
+	<!-- 
+		Verplicht. Alfanumeriek. Max 15 karakters.
+		Verplicht. Deze benaming van de interface wordt gekozen door Logins/Cevi. 
+		Deze benaming dient door Logins/Cevi voorafgaandelijk geparametreerd te worden binnen de BBC-NH-facturatie toepassing
+	-->
+	<interface>VERGUNNINGEN</interface>
+	<!--
+		Verplicht. Alfanumeriek. Max 15 karakters.
+		Uniek per facturatieRun -> Via de combinatie 'Interface en identificatie facturatierun', 
+		kan op moment van opladen worden nagegaan of het aangeleverde bestand reeds werd opgeladen
+		=> dit zou één keer per jaar zijn. Om identificatie uniek te houden: date(<created>)X<key>
+	-->
+	<identificatie>20200203X1</identificatie>
+	<!--
+		Verplicht. Alfanumeriek.
+		Slechts 1 mogelijkheid: Facturen
+	-->
+	<soortBestand>Facturen</soortBestand>
+	<!--
+		Verplicht. Datum (JJJJ-MM-DD)
+		Creatiedatum bestand
+	-->
+	<datumCreatie>2020-02-03</datumCreatie>
+	<!--
+		Verplicht. Numeriek.
+		Aantal facturen in XML
+	-->
+	<aantalFacturen>1</aantalFacturen>
+	<!--
+		Verplicht. Decimale waarde (punt)
+		Totaalbedrag (inclusief BTW)
+	-->
+	<totaalBedragFacturen>0</totaalBedragFacturen>
+		<factuur>
+			<!--
+				Verplicht? Zou een verplicht veld zijn in volgens documentatie, maar ontbreekt ook bij Vergunningen.NET
+				Alfanumeriek, enkel hoofdletters. Door klant gedefinieerde facturatiecode.
+				<facturatieCode></facturatieCode>
+			-->
+			<!--
+				Verplicht. Jaar. JJJJ
+				Zal ook geboekt worden in dit boekjaar.
+			-->
+			<factuurJaar>2020</factuurJaar>
+			<!--
+				Verplicht. Numerisch max. 2147483647 (=2^31-1)
+				Indien meer dan 6 karakters: 'strucMed' verplicht.
+				Zoniet wordt er geen gestructureerde mededeling gegenereerd.
+			-->
+			<factuurNummer>{{ item.key }}</factuurNummer>
+			<!--
+				Verplicht. Datum (JJJJ-MM-DD)
+				Hebben we niet in iTop. Datum generatie.
+				=> onrechtstreeks staat dit in iTop bij 'history' als we de betaalstatus veranderen.
+			-->
+			<facturatieDatum>2020-02-03</facturatieDatum>
+			<!--
+				Optioneel. 'C' (creatie) of 'U' (update)
+				Creatie van nieuwe factuur of update. Standaard = 'c'.
+			-->
+			<facturatieActie>C</facturatieActie>
+			<!--
+				Optioneel. Datum. JJJJ-MM-DD
+				Indien niet meegestuurd, wordt de vervaldatum berekend: 
+				facturatiedatum +  de vervaltermijn gedefinieerd in de facturatiecode van de NGB-NH-facturatie toepassing. 
+				Indien meegestuurd moet datum ingevuld zijn.
+			-->
+			<vervalDatum>2020-03-02</vervalDatum>
+			<!--
+				Optioneel. Alfanumeriek. 24 tekens. xxx/xxxx/xxxxx
+				Indien meegestuurd, dan moet de combinatie strucMed & reknrBegunstigde uniek zijn
+				Indien niet meegestuurd, en er ook geen vrije mededeling meegestuurd werd, 
+				dan wordt strucMed door de NGB-NH-Facturatie toepassing berekend op basis van:
+				facturatiecode, jaar en nummer factuur (max. 6 kar.)
+			-->
+			<!-- <strucMed></strucMed> -->
+			<!--
+				Optioneel. Alfanumeriek. Max. 106 tekens.
+				Vrije mededeling.
+			-->
+			<extraMededeling>Vrijetijdscheque 2020 / nr. 1 (test)</extraMededeling>
+			<vrijeMededeling>Vrije mededeling</vrijeMededeling>
+			<!--
+				Optioneel. Tekst.
+				Voor BBC: maximum 30 karakters!
+				Indien niet gespecifiëerd, wordt als omschrijving 'de omschrijving van de door de klant gedefinieerde facturatiecode' overgenomen"
+				<omschrijvingFactuur></omschrijvingFactuur>
+			-->
+			<!--
+				Verplicht. Ja/Nee.
+				Is er een domicilie actief?
+			-->
+			<isGedomicilieerd>False</isGedomicilieerd>
+			<!--
+				Verplicht. Decimale waarde (punt)
+				Totaalbedrag factuur
+				=> Voorlopig per cheque 1 factuur. Later misschien ooit eens groeperen?
+				=> waarde van de vrijetijdscheque
+			-->
+			<totaalBedragFactuur>0</totaalBedragFactuur>
+			<debiteur>
+				<!--
+					Verplicht. Vrij nummer.
+					Lijkt bij Vergunningen.NET rijksregister te zijn. Eventueel KBO-nr of derdennummer in New Horizon?
+					Te bekijken!
+				-->
+				<nummerDeb>1</nummerDeb>
+				<!--
+					Verplicht. Alfanumeriek. Max. 62 karakters.
+					In Vergunningen.NET is dit de volledige naam, ondanks dat er ook een <voornaamDeb> bestaat.
+				-->
+				<naamDeb>Jeffrey Bostoen</naamDeb>
+				<!--
+					Verplicht. Alfanumeriek. Max. 40 karakters.
+					Te bekijken: adres organisatie of vestiging?
+				-->
+				<straatDeb>Neptunusstraat 18</straatDeb>
+				<!--
+					Verplicht. Alfanumeriek. Max. 7 karakters.
+					Te bekijken: adres organisatie of vestiging?
+				-->
+				<alphaNummerDeb></alphaNummerDeb>
+				<!--
+					Verplicht. Alfanumeriek. Max. 7 karakters.
+					Bestaat ook niet bij Vergunningen.NET?
+					<busNummerDeb></busNummerDeb>
+				-->
+				<!--
+					Verplicht. Alfanumeriek. Max 7 karakters.
+					Te bekijken: adres organisatie of vestiging?
+				-->
+				<postCodeDeb>8870</postCodeDeb>
+				<!--
+					Verplicht. Alfanumeriek. Max 40 karakters.
+					Te bekijken: adres organisatie of vestiging?
+				-->
+				<woonplaatsDeb>Izegem</woonplaatsDeb>
+				<!--
+					Verplicht. Alfanumeriek. Max 40 karakters.
+					Te bekijken: adres organisatie of vestiging?
+				-->
+				<kboNummerDeb>89042536110</kboNummerDeb>
+				<!--
+					Verplicht. 
+					1 = natuurlijk persoon
+					2 = rechtspersoon
+					3 = CRM-id
+				-->
+				<typePersoonDeb>1</typePersoonDeb>
+				<!--
+					Optioneel. Alfanumeriek. 14 karakters. xxx-xxxxxxx-xx
+					Te bekijken: adres organisatie of vestiging?
+				-->
+				<rekeningNummerDeb></rekeningNummerDeb>
+				<!--
+					rekeningNummerDeb volstaat voor BE.
+					Anders:
+					<IBANnrDeb> & <BICnrDeb>
+				-->
+			</debiteur>
+			<factuurLijn>
+				<!--
+					Verplicht. Alfanumeriek. Max 15 karakters.
+					In de definitie van de rubriek wordt ondermeer bepaald op welk ontvangstartikel de ontvangst geboekt dient te worden. 
+					Enkel hoofdletters zijn toegelaten.
+					=> te bepalen, hardcoded
+				-->
+				<rubriek>???</rubriek>
+				<!--
+					Optioneel. Alfanumeriek.
+					Indien niet gespecifiëerd wordt als omschrijving 'de omschrijving van de door de klant gedefinieerde rubriek' 
+					overgenomen (voor BBC: maximum 200 karakters)
+				-->
+				<omschrijvingRubriek>???</omschrijvingRubriek>
+				<!--
+					Verplicht. Decimale waarde.
+				-->
+				<aantal>1.00</aantal>
+				<!--
+					Verplicht. Decimale waarde. Volgens Cevi's documentatie: 4 decimalen. Vergunningen.NET: 2 decimalen.
+				-->
+				<eenheidsprijs>0</eenheidsprijs>
+				<!--
+					Verplicht. Decimale waarde. Volgens Cevi's documentatie: 4 decimalen. Vergunningen.NET: 2 decimalen.
+				-->
+				<bedragExclBTW>0</bedragExclBTW>
+				<!--
+					Optioneel. Decimale waarde. Volgens Cevi's documentatie: 4 decimalen. Vergunningen.NET: 2 decimalen.
+				-->
+				<bedragBTW>0</bedragBTW>
+				<!--
+					Verplicht. Decimale waarde. Volgens Cevi's documentatie: 4 decimalen. Vergunningen.NET: 2 decimalen.
+				-->
+				<bedragInclBTW>0</bedragInclBTW>
+				<!--
+					Optioneel. Datum. JJJJ-MM-DD
+					Belangrijk igv prestaties betrekking hebben op volgend dienstjaar. 
+					Indien ingevuld en jaar leveringsdatum > jaar factuur zal ipv boeking recht, boeking op overlopende rekening plaats vinden.
+					<leveringsDatum></leveringsDatum>
+				-->
+			</factuurLijn>
+		</factuur>
+</facturatieRun>

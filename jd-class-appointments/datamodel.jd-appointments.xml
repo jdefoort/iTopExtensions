@@ -3283,6 +3283,185 @@
 				</list>
 			</presentation>
 		</class>
+		<class id="AppointmentCareCenter6" _delta="define">
+			<parent>Appointment</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>appointmentcarecenter6</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="finalclass"/>
+					</attributes>
+				</naming>
+				<order>
+					<columns>
+						<column id="start_date" ascending="true">
+						</column>
+					</columns>				
+				</order>
+				<display_template/>
+				<icon>images/appointment.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="org_id"/>
+						<attribute id="org_name"/>
+						<attribute id="person_id"/>
+						<attribute id="start_date"/>
+						<attribute id="last_update"/>
+						<attribute id="status"/>
+						<attribute id="available"/>
+						<attribute id="booth"/>
+						<attribute id="ip"/>
+						<attribute id="code"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="roomnumber" xsi:type="AttributeEncryptedString">
+					<sql>roomnumber</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="location" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+					</values>
+					<sql>location</sql>
+					<default_value>1</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="dpt" xsi:type="AttributeEnum">
+					<values>
+						<value id="1">1</value>
+						<value id="2">2</value>
+						<value id="3">3</value>
+						<value id="4">4</value>	
+						<value id="-">-</value>
+					</values>
+					<sql>dpt</sql>
+					<default_value>-</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:Appointment:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="org_id">
+											<rank>1</rank>
+										</item>
+										<item id="person_id">
+											<rank>10</rank>
+										</item>
+										<item id="start_date">
+											<rank>20</rank>
+										</item>
+										<item id="roomnumber">
+											<rank>25</rank>
+										</item>
+										<item id="dpt">
+											<rank>30</rank>
+										</item>
+										<item id="comment">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="last_update">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:Appointment:status">
+									<rank>10</rank>
+									<items>
+										<item id="status">
+											<rank>10</rank>
+										</item>
+										<item id="booth">
+											<rank>20</rank>
+										</item>
+										<item id="code">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Appointment:details">
+									<rank>20</rank>
+									<items>
+										<item id="available">
+											<rank>10</rank>
+										</item>
+										<item id="ip">
+											<rank>20</rank>
+										</item>
+										<item id="duration">
+											<rank>30</rank>
+										</item>
+										<item id="location">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="person_id">
+							<rank>20</rank>
+						</item>
+						<item id="start_date">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="person_id">
+							<rank>10</rank>
+						</item>
+						<item id="start_date">
+							<rank>20</rank>
+						</item>
+						<item id="available">
+							<rank>30</rank>
+						</item>
+						<item id="roomnumber">
+							<rank>40</rank>
+						</item>
+						<item id="dpt">
+							<rank>50</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
 	</classes>
 	 <menus>
 		<!-- <menu id="AppointmentEnergyMgmt" xsi:type="MenuGroup" _delta="define">
@@ -3293,14 +3472,14 @@
 		  <parent>AppointmentEnergyMgmt</parent>
 		  <class>AppointmentEnergy</class>
 		</menu> -->
-		<!--	<menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="define">
+		<menu id="AppointmentTourMgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>45</rank>
 		</menu>
 		<menu id="SearchAppointmentTour" xsi:type="SearchMenuNode" _delta="define">
 		  <rank>20</rank>
 		  <parent>AppointmentTourMgmt</parent>
 		  <class>AppointmentTour1</class>
-		</menu> -->
+		</menu>
 		<!-- <menu id="AppointmentTaxMgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>46</rank>
 		</menu>
@@ -3480,7 +3659,7 @@
 		
 		
 
-		<menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="define">
+		<!--<menu id="AppointmentCareCenter1Mgmt" xsi:type="MenuGroup" _delta="define">
 		  <rank>55</rank>
 		</menu>
 		<menu id="SearchAppointmentCareCenter1" xsi:type="SearchMenuNode" _delta="define">
@@ -3507,6 +3686,11 @@
 		  <rank>50</rank>
 		  <parent>AppointmentCareCenter1Mgmt</parent>
 		  <class>AppointmentCareCenter5</class>
+		</menu>
+		<menu id="SearchAppointmentCareCenter6" xsi:type="SearchMenuNode" _delta="define">
+		  <rank>50</rank>
+		  <parent>AppointmentCareCenter1Mgmt</parent>
+		  <class>AppointmentCareCenter6</class>
 		</menu>
 		<menu id="ShortcutCareCenter1" xsi:type="TemplateMenuNode" _delta="define">
 			<rank>50</rank>
@@ -3542,6 +3726,12 @@
 			<parent>ShortcutCareCenter1</parent>
 			<oql>SELECT AppointmentCareCenter5 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
 		</menu>
+		<menu id="SearchNowCareCenter6" xsi:type="OQLMenuNode" _delta="define">
+			<rank>31</rank>
+			<auto_reload>standard</auto_reload>
+			<parent>ShortcutCareCenter1</parent>
+			<oql>SELECT AppointmentCareCenter6 WHERE start_date >= DATE_ADD(NOW(), INTERVAL -1 HOUR)</oql>		
+		</menu>-->
 	  </menus>
 <user_rights>
     <groups>
@@ -3695,6 +3885,13 @@
 			  <class id="ContactMethod"/>
 			  <class id="AuthenticationMethod"/>
 			  <class id="AppointmentCareCenter5"/>
+			</classes>
+		</group>
+		<group id="AppointmentCareCenter6" _delta="define">
+			<classes>
+			  <class id="ContactMethod"/>
+			  <class id="AuthenticationMethod"/>
+			  <class id="AppointmentCareCenter6"/>
 			</classes>
 		</group>
 		
@@ -4474,6 +4671,45 @@
 			</actions>
 		  </group>
 		  <group id="AppointmentCareCenter5">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	
+        </groups>
+      </profile>
+	   <profile id="141" _delta="define">
+        <name>Appointment CareCenter6 User</name>
+        <description>Person in charge of Appointments, can add or modify appointments</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="Appointment">
+			<actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			</actions>
+		  </group>
+		  <group id="AppointmentCareCenter6">
 		    <actions>
               <action id="action:read">allow</action>
               <action id="action:bulk read">allow</action>

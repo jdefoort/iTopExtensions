@@ -145,7 +145,12 @@
 					<is_null_allowed>true</is_null_allowed>
 					<!-- No filter on 'in use'. Tickets could be historical, associated with addresses no longer in use -->
 				</field>
-
+				<field id="geom" xsi:type="AttributeGeometry" _delta="define">
+					<sql>geom</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<format>WKT|Point,LineString,Polygon|EPSG:3857</format>
+				</field>
 				<field id="approver_id" xsi:type="AttributeExternalKey">
 					<filter><![CDATA[SELECT Person WHERE org_id= :this->org_id]]></filter>
 					<dependencies>
@@ -991,6 +996,20 @@
 		$this->ComputeImpactedItems();
 		$this->Set('last_update', time());
 		$this->Set('start_date', time());
+			// Dealing with a new TechnicalRequest, so new crab_address_id
+		// If no geometry was drawn AND a crab_address_id was selected: overwrite geometry
+		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && (Int)$this->Get('crab_address_id') > 0);
+		
+		if($bCopyGeometryFromCrabAddress == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new CMDBObjectSet(DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+		}	
+		
 	}]]></code>
 					</method>
 					<method id="OnUpdate">
@@ -1008,6 +1027,23 @@
         }
 		$this->Set('last_update', time());
 		$this->UpdateChildRequestLog();
+		
+		// geometry is now 'empty' (was already empty or has now been reset)
+		// crab_address_id is set AND has changed?
+		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && array_key_exists('crab_address_id', $aChanges) == true && (Int)$this->Get('crab_address_id') > 0);
+		
+		if($bCopyGeometryFromCrabAddress == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new CMDBObjectSet(DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+			
+		}
+					
+		
 	}]]></code>
 					</method>
 
@@ -1126,6 +1162,9 @@
 										<items>
 											<item id="servicesubcategory_id">
 												<rank>20</rank>
+											</item>
+											<item id="geom" _delta="define">
+												<rank>50</rank>
 											</item>
 										</items>
 									</item>
@@ -1504,7 +1543,12 @@
 						<sql>compulsary_fix</sql>
 						<is_null_allowed>true</is_null_allowed>
 					</field>
-
+					<field id="geom" xsi:type="AttributeGeometry" _delta="define">
+						<sql>geom</sql>
+						<default_value/>
+						<is_null_allowed>true</is_null_allowed>
+						<format>WKT|Point,LineString,Polygon|EPSG:3857</format>
+					</field>
 					<field id="crab_address_id" xsi:type="AttributeExternalKey">
 						<sql>crab_address_id</sql>
 						<on_target_delete>DEL_MANUAL</on_target_delete>
@@ -2438,6 +2482,22 @@
 		$this->ComputeImpactedItems();
 		$this->Set('last_update', time());
 		$this->Set('start_date', time());
+				
+		
+		// Dealing with a new TechnicalRequest, so new crab_address_id
+		// If no geometry was drawn AND a crab_address_id was selected: overwrite geometry
+		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && (Int)$this->Get('crab_address_id') > 0);
+		
+		if($bCopyGeometryFromCrabAddress == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new CMDBObjectSet(DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+			
+		}
 	}]]></code>
 					</method>
 					<method id="OnUpdate">
@@ -2455,6 +2515,23 @@
         }
 		$this->Set('last_update', time());
 		$this->UpdateChildRequestLog();
+		
+		
+		// geometry is now 'empty' (was already empty or has now been reset)
+		// crab_address_id is set AND has changed?
+		$bCopyGeometryFromCrabAddress = ($this->Get('geom') == '' && array_key_exists('crab_address_id', $aChanges) == true && (Int)$this->Get('crab_address_id') > 0);
+		
+		if($bCopyGeometryFromCrabAddress == true) {
+			
+			$sQuery = 'SELECT CrabAddress WHERE id = '.$this->Get('crab_address_id');
+			$oSet_CrabAddresses = new CMDBObjectSet(DBObjectSearch::FromOQL($sQuery));
+			
+			while($oAddress = $oSet_CrabAddresses->Fetch()) {
+				$this->Set('geom', $oAddress->Get('geom'));
+			}
+			
+		}
+					
 	}]]></code>
 					</method>
 					<method id="PrefillCreationForm" _delta="define">
@@ -2546,6 +2623,9 @@
 											<item id="cevi_number">
 												<rank>23</rank>
 											</item> 
+											<item id="geom" _delta="define">
+												<rank>50</rank>
+											</item>
 										</items>
 									</item>
 								</items>

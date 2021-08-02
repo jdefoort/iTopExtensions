@@ -17,6 +17,13 @@
 			  <class id="Vehicle"/>
 			  <class id="VehicleDriversLicense"/>
 			  <class id="VehicleEnergySource"/>
+			<!-- bike -->
+				<class id="Model"/>
+				<class id="BikeType"/>
+				<class id="BatteryType"/>
+				<class id="MaintenancePlace"/>
+				<class id="BikeMonthRecord"/>
+				<class id="Bike"/>	
 			<!-- general --> 
 			  <class id="PhysicalDevice"/>
 			  <class id="Brand"/>

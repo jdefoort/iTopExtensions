@@ -125,6 +125,10 @@ Dict::Add('NL NL', 'Dutch', 'Dutch', array(
 	'Menu:NewLeisureCheck+' => 'Nieuwe vrijetijdscheque',
 	'Menu:LeisurePass' => 'Vrijetijdspas',
 	
+	'Report:LeisurePass:Print' => 'Print pas',
+	'Report:LeisureCheck:Print' => 'Print cheque',
+	'Report:LeisureCheck:ExportNewHorizon' => 'Export NH',
+	
 ));
 
  

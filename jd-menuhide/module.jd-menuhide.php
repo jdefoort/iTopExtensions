@@ -15,7 +15,8 @@ SetupWebPage::AddModule(
                 // Setup
                 //
                 'dependencies' => array(
-                        'itop-config-mgmt/2.4.0',
+                        'itop-knownerror-mgmt/2.4.0',
+						'itop-config-mgmt/2.4.0',
                         'itop-service-mgmt/2.4.0',
                         // we are not using service-mgmt-provider, so we can't depend on it
 						// 'itop-service-mgmt-provider/2.4.0',
