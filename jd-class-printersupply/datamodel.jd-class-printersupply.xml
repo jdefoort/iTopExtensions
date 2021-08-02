@@ -375,11 +375,27 @@
 			<parent>ConfigManagement</parent>
 			<class>PrinterSupply</class>
 		</menu>
-		<menu id="SearchPrinterSupply" xsi:type="SearchMenuNode" _delta="define">
+		<menu id="SearchPrinterSupply" xsi:type="OQLMenuNode" _delta="define">
 			<rank>907</rank>
 			<parent>ConfigManagement</parent>
+			<oql>SELECT PrinterSupply WHERE ISNULL(date_out)</oql>
+			 <do_search>1</do_search> 
 			<class>PrinterSupply</class> 
 		</menu> 	
+		<menu id="Typology">
+		  <definition>
+			<cells>
+			  <cell id="0">
+				<dashlets>
+				  <dashlet id="PrinterSupplyType" xsi:type="DashletBadge" _delta="define">
+					<rank>100</rank>
+					<class>PrinterSupplyType</class>
+				  </dashlet>
+				</dashlets>
+			  </cell>
+			</cells>
+		  </definition>
+		</menu>
 	</menus>
 
 </itop_design>

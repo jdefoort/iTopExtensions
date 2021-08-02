@@ -40,7 +40,7 @@ Dict::Add('NL NL', 'Dutch', 'Dutch', array(
 	'PrinterSupply:out' => 'Uit',
 	
 	'Menu:SearchPrinterSupply' => 'Zoek printerbenodigdheden',
-	'Menu:SearchPrinterSupply+' => 'Zoek printerbenodigdheden',
+	'Menu:SearchPrinterSupply+' => 'Zoek beschikbare printerbenodigdheden',
 	'Menu:NewPrinterSupply' => 'Nieuwe printerbenodigdheid',
 	'Menu:NewPrinterSupply+' => 'Nieuwe printerbenodigdheid',
 	

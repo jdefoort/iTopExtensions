@@ -39,8 +39,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'PrinterSupply:in' => 'In',
 	'PrinterSupply:out' => 'Out',
 	
-	'Menu:SearchPrinterSupply' => 'Search for printer supplies',
-	'Menu:SearchPrinterSupply+' => 'Search for printer supplies',
+	'Menu:SearchPrinterSupply' => 'Search available printer supplies',
+	'Menu:SearchPrinterSupply+' => 'Search for available printer supplies',
 	'Menu:NewPrinterSupply' => 'New printer supply',
 	'Menu:NewPrinterSupply+' => 'Register new printer supply',
 	
