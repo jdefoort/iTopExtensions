@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-class-climatepublication</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Class: Climatepublication]]></label>
+	<description><![CDATA[A system to publish projects about the climate to the council and public]]></description>
+	<version>2.6.20200612</version>
+	<release_date>2020-06-12</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.6.0</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+
+
+	<classes>
+		<!-- Adds a metertype (electric, gas,..). In the end, this could give easy access to an overview. -->
+		<!-- Based on the original 'Brand' class -->
+		<class id="MeterType" _delta="define">
+			<parent>Typology</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>metertype</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="meters_list" xsi:type="AttributeLinkedSet">
+					<linked_class>Meter</linked_class>
+					<ext_key_to_me>metertype_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="meters_list">
+							<rank>20</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+
+		<!-- Adds MeterRecord. Will allow users to keep track of the readings of each meter individually. -->
+		<class id="MeterRecord" _delta="define">
+		<parent>cmdbAbstractObject</parent>
+		<properties>
+			<category>bizmodel,searchable</category>
+			<abstract>false</abstract>
+			<key_type>autoincrement</key_type>
+			<db_table>meterrecord</db_table>
+			<db_key_field>id</db_key_field>
+			<db_final_class_field/>
+			<naming>
+				<attributes/>
+			</naming>
+
+			<display_template/>
+			<icon>images/record.png</icon>
+			<reconciliation>
+				<attributes>
+					<attribute id="org_id"/>
+				</attributes>
+			</reconciliation>
+		</properties>
+
+
+		<fields>
+			<field id="org_id" xsi:type="AttributeExternalKey">
+				<sql>org_id</sql>
+				<target_class>Organization</target_class>
+				<is_null_allowed>false</is_null_allowed>
+				<on_target_delete>DEL_AUTO</on_target_delete>
+			</field>		
+			<field id="date_of_recording" xsi:type="AttributeDate">
+				<sql>date_of_recording</sql>
+				<is_null_allowed>true</is_null_allowed>  
+			</field>	 
+			<field id="remarks" xsi:type="AttributeText"> 
+				<sql>remarks</sql>  
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed> 
+			</field>		
+			<field id="value" xsi:type="AttributeDecimal"> 
+				<sql>value</sql>  
+				<default_value/>
+				<digits>8</digits>
+				<decimals>2</decimals>
+				<is_null_allowed>true</is_null_allowed> 
+			</field>		
+			<field id="meter_id" xsi:type="AttributeExternalKey">
+				<sql>meter_id</sql>
+				<is_null_allowed>false</is_null_allowed>
+				<on_target_delete>DEL_AUTO</on_target_delete>
+				<target_class>Meter</target_class>
+			</field>			
+		</fields> 
+		<presentation>
+			<details>
+				<items>
+					<item id="col:col1">
+						<rank>10</rank>
+						<items>
+							<item id="fieldset:MeterRecord:baseinfo">
+								<items>
+									<item id="meter_id">
+										<rank>10</rank>
+									</item>
+									<item id="org_id">
+										<rank>20</rank>
+									</item>
+									<item id="date_of_recording">
+										<rank>30</rank>
+									</item>
+									<item id="value">
+										<rank>40</rank>
+									</item>
+									<item id="remarks">
+										<rank>60</rank>
+									</item>
+								</items>
+							</item>
+						</items>
+					</item>			 
+				</items>
+			</details>
+			<search>
+				<items>
+					<item id="meter_id">
+						<rank>10</rank>
+					</item>
+					<item id="org_id">
+						<rank>20</rank>
+					</item>
+					<item id="meterrecord">
+						<rank>30</rank>
+					</item>             
+				</items>
+			</search>
+			<list>
+				<items>
+					<item id="meter_id">
+						<rank>10</rank>
+					</item>
+					<item id="org_id">
+						<rank>20</rank>
+					</item>
+					<item id="date_of_recording">
+						<rank>30</rank>
+					</item>
+					<item id="value">
+						<rank>40</rank>
+					</item>
+					<item id="remarks">
+						<rank>60</rank>
+					</item>
+				</items>
+			</list>
+		</presentation>
+		<methods/>
+
+		</class>
+		
+
+		<!-- Adds meter -->
+		<class id="Meter" _delta="define">
+			<parent>PhysicalDevice</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>meter</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<format>%1$s</format>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon>images/meter.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="org_id"/>
+						<attribute id="organization_name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="metertype_id" xsi:type="AttributeExternalKey">
+					<sql>metertype_id</sql>
+					<target_class>MeterType</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="meterpicture" xsi:type="AttributeImage">
+					<display_max_width>460</display_max_width>
+					<display_max_height>460</display_max_height>
+					<storage_max_width>520</storage_max_width>
+					<storage_max_height>520</storage_max_height>
+					<default_image>images/silhouette.png</default_image>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="more_info" xsi:type="AttributeText"> 
+					<sql>more_info</sql>  
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed> 
+				</field>	
+				<field id="meterrecord_list" xsi:type="AttributeLinkedSet">
+					<linked_class>MeterRecord</linked_class>
+					<ext_key_to_me>meter_id</ext_key_to_me>
+					<edit_mode>actions</edit_mode>
+				</field>
+				<field id="geom" xsi:type="AttributeGeometry" _delta="define">
+					<sql>geom</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<format>WKT|Point,LineString,Polygon|EPSG:3857</format>
+				</field>
+				<field id="meter_dashboard" xsi:type="AttributeDashboard" _delta="define">
+					<is_user_editable>true</is_user_editable>
+					      <definition>
+						<layout>DashboardLayoutOneCol</layout>
+						<title/>
+						<cells>
+						      <cell id="0">
+							  <rank>0</rank>
+							  <dashlets>
+								<dashlet id="CUSTOM_Meter__meter_dashboard_ID_row1_col0_2" xsi:type="DashletGroupByBars">
+								  <rank>0</rank>
+								  <title/>
+								  <query><![CDATA[
+											SELECT MeterRecord AS mr 
+											WHERE mr.meter_id = :this->id
+									]]></query>
+								  <group_by>date_of_recording</group_by>
+								  <style>bars</style>
+								  <aggregation_function>sum</aggregation_function>
+								  <aggregation_attribute>value</aggregation_attribute>
+								  <limit></limit>
+								  <order_by>attribute</order_by>
+								  <order_direction>asc</order_direction>
+								</dashlet>
+							  </dashlets>
+							</cell>
+						</cells>
+					  </definition>
+				</field>
+				<field id="state_of_connection" xsi:type="AttributeEnum">
+					<values>
+						<value id="perfect">perfect</value>
+						<value id="deteriorating">deteriorating</value>
+						<value id="needs_fixing">needs_fixing</value>
+						<value id="defect">defect</value>
+					</values>
+					<sql>state_of_connection</sql>
+					<default_value>Perfect</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>80</rank>
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="name">
+											<rank>10</rank>
+										</item>
+										<item id="org_id">
+											<rank>20</rank>
+										</item>
+										<item id="status">
+											<rank>30</rank>
+										</item>
+										<item id="state_of_connection">
+											<rank>40</rank>
+										</item>
+										<item id="business_criticity">
+											<rank>50</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="metertype_id">
+											<rank>10</rank>
+										</item>
+										<item id="more_info">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>90</rank>
+							<items>
+								<item id="fieldset:Server:otherinfo">
+									<rank>20</rank>
+									<items>
+										<item id="meterpicture">
+											<rank>10</rank>
+										</item>
+										<item id="geom" _delta="define">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="contacts_list">
+							<rank>170</rank>
+						</item>
+						<item id="meter_dashboard">
+							<rank>180</rank>
+						</item>
+						<item id="meterrecord_list">
+							<rank>190</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="org_id">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="metertype_id">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="org_id">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="metertype_id">
+							<rank>40</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+	</classes>
+
+
+
+	<profiles/>
+
+
+	<!-- Add typology --> 
+	<menus>
+		<menu id="MeterRecordMenu" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>30</rank>
+			<parent>TechnicalRequestManagement</parent>
+			<template_file/>
+		</menu>
+		<menu id="MeterOverview" xsi:type="DashboardMenuNode" _delta="define">
+			<rank>10</rank>
+			<parent>MeterRecordMenu</parent>
+			<definition>
+				    <layout>DashboardLayoutOneCol</layout>
+					  <title>Overzicht meters</title>
+					  <auto_reload>
+						<enabled>false</enabled>
+						<interval>300</interval>
+					  </auto_reload>
+					  <cells>
+						<cell id="0">
+						  <rank>0</rank>
+						  <dashlets>
+							<dashlet id="CUSTOM_BikeOverview_ID_row2_col0_12" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Dringend te bekijken</title>
+							  <icon>itop-incident-mgmt-itil/images/incident-red.png</icon>
+							</dashlet>
+							<dashlet id="CUSTOM_BikeOverview_ID_row2_col0_8" xsi:type="DashletGroupByTable">
+							  <rank>1</rank>
+							  <title>Defecte meters</title>
+							  <query>SELECT Meter WHERE state_of_connection = "defect"</query>
+							  <group_by>name</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="1">
+						  <rank>1</rank>
+						  <dashlets>
+							<dashlet id="CUSTOM__ID_row1_col1_14" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Algemene info</title>
+							  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+							</dashlet>
+							<dashlet id="CUSTOM__ID_row4_col0_13" xsi:type="DashletGroupByTable">
+							  <rank>1</rank>
+							  <title>Meters volgens type</title>
+							  <query>SELECT Meter WHERE status NOT IN ('obsolete')</query>
+							  <group_by>metertype_id</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_BikeOverview_ID_row0_col1_16" xsi:type="DashletGroupByTable">
+							  <rank>2</rank>
+							  <title>Metingen per teller</title>
+							  <query>SELECT MeterRecord</query>
+							  <group_by>meter_id</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_BikeOverview_ID_row2_col0_7" xsi:type="DashletGroupByTable">
+							  <rank>3</rank>
+							  <title>Meters volgens organisatie</title>
+							  <query>SELECT Meter WHERE status NOT IN ('obsolete')</query>
+							  <group_by>org_id</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_MeterOverview_ID_row0_col0_17" xsi:type="DashletMapOverview">
+							  <rank>4</rank>
+							  <title>Meters op kaart</title>
+							  <query>SELECT Meter</query>
+							  <height>500</height>
+							  <attributes>metertype_id_friendlyname</attributes>
+							  <feature_label>friendlyname</feature_label>
+							  <cluster_distance>50</cluster_distance>
+							  <new_feature_on_click>true</new_feature_on_click>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="2">
+						  <rank>2</rank>
+						  <dashlets>
+							<dashlet id="0" xsi:type="DashletEmptyCell">
+							  <rank>0</rank>
+							</dashlet>
+						  </dashlets>
+						</cell>
+					</cells>
+			</definition>
+		</menu>
+		<menu id="NewMeter" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>20</rank>
+			<parent>MeterRecordMenu</parent>
+			<class>Meter</class>
+		</menu>
+		<menu id="SearchMeter" xsi:type="OQLMenuNode" _delta="define">
+			<rank>30</rank>
+			<parent>MeterRecordMenu</parent>
+			<oql>SELECT Meter</oql>
+			<do_search>1</do_search>
+			<class>Meter</class>
+		</menu>
+		<menu id="SearchMeterRecord" xsi:type="OQLMenuNode" _delta="define">
+			<rank>50</rank>
+			<parent>MeterRecordMenu</parent>
+			<oql>SELECT MeterRecord</oql>
+			<do_search>1</do_search>
+			<class>MeterRecord</class> 
+		</menu> 
+	</menus>
+
+</itop_design>

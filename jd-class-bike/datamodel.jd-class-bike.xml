@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+
+
+	<classes>
+
+		<!-- Adds bike as a model type. Will allow users to define lots of bike models. -->
+		<class id="Model"> 
+			<fields>
+				<field id="type" xsi:type="AttributeEnum">
+					<values>
+						<value id="Bike" _delta="define">Bike</value> 
+					</values>
+				</field>
+			</fields>
+		</class>
+
+
+		<!-- Adds a biketype (electric, normal,..). In the end, this could give easy access to an overview. -->
+		<!-- Based on the original 'Brand' class -->
+		<class id="BikeType" _delta="define">
+			<parent>Typology</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>biketype</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="bikes_list" xsi:type="AttributeLinkedSet">
+					<linked_class>Bike</linked_class>
+					<ext_key_to_me>biketype_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="bikes_list">
+							<rank>20</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+
+		<!-- Adds a batterytype In the end, this could give easy access to an overview. -->
+		<!-- Based on the original 'Brand' class -->
+		<class id="BatteryType" _delta="define">
+			<parent>Typology</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>batterytype</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="battery_list" xsi:type="AttributeLinkedSet">
+					<linked_class>Bike</linked_class>
+					<ext_key_to_me>batterytype_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="battery_list">
+							<rank>20</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		
+		<!-- Adds a maintenanceplace. In the end, this could give easy access to an overview. -->
+		<!-- Based on the original 'Brand' class -->
+		<class id="MaintenancePlace" _delta="define">
+			<parent>Typology</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>maintenanceplace</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="maintenanceplace_list" xsi:type="AttributeLinkedSet">
+					<linked_class>Bike</linked_class>
+					<ext_key_to_me>maintenanceplace_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="maintenanceplace_list">
+							<rank>20</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		
+
+		<!-- Adds BikeMonthRecord. Will allow users to keep track of the usage of each bike. -->
+		<class id="BikeMonthRecord" _delta="define">
+		<parent>cmdbAbstractObject</parent>
+		<properties>
+			<category>bizmodel,searchable</category>
+			<abstract>false</abstract>
+			<key_type>autoincrement</key_type>
+			<db_table>bikemonthrecord</db_table>
+			<db_key_field>id</db_key_field>
+			<db_final_class_field/>
+			<naming>
+				<attributes/>
+			</naming>
+
+			<display_template/>
+			<icon>images/record.png</icon>
+			<reconciliation>
+				<attributes>
+					<attribute id="org_id"/>
+				</attributes>
+			</reconciliation>
+		</properties>
+
+
+		<fields>
+			<field id="org_id" xsi:type="AttributeExternalKey">
+				<sql>org_id</sql>
+				<target_class>Organization</target_class>
+				<is_null_allowed>false</is_null_allowed>
+				<on_target_delete>DEL_AUTO</on_target_delete>
+			</field>		
+			<field id="monthofrecord" xsi:type="AttributeDate">
+				<sql>monthofrecord</sql>
+				<is_null_allowed>true</is_null_allowed>  
+			</field>	 
+			<field id="remarks" xsi:type="AttributeText"> 
+				<sql>remarks</sql>  
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed> 
+			</field>		
+			<field id="mileage" xsi:type="AttributeInteger"> 
+				<sql>mileage</sql>  
+				<default_value/>
+				<is_null_allowed>true</is_null_allowed> 
+			</field>		
+			<field id="bike_id" xsi:type="AttributeExternalKey">
+				<sql>bike_id</sql>
+				<is_null_allowed>false</is_null_allowed>
+				<on_target_delete>DEL_AUTO</on_target_delete>
+				<target_class>Bike</target_class>
+			</field>		
+		</fields> 
+		<presentation>
+			<details>
+				<items>
+					<item id="col:col1">
+						<rank>10</rank>
+						<items>
+							<item id="fieldset:BikeMonthRecord:baseinfo">
+								<items>
+									<item id="bike_id">
+										<rank>10</rank>
+									</item>
+									<item id="org_id">
+										<rank>20</rank>
+									</item>
+									<item id="monthofrecord">
+										<rank>30</rank>
+									</item>
+									<item id="mileage">
+										<rank>40</rank>
+									</item>
+									<item id="remarks">
+										<rank>50</rank>
+									</item>
+								</items>
+							</item>
+						</items>
+					</item>			 
+				</items>
+			</details>
+			<search>
+				<items>
+					<item id="bike_id">
+						<rank>10</rank>
+					</item>
+					<item id="org_id">
+						<rank>20</rank>
+					</item>
+					<item id="monthofrecord">
+						<rank>30</rank>
+					</item>             
+				</items>
+			</search>
+			<list>
+				<items>
+					<item id="bike_id">
+						<rank>10</rank>
+					</item>
+					<item id="org_id">
+						<rank>20</rank>
+					</item>
+					<item id="monthofrecord">
+						<rank>30</rank>
+					</item>
+					<item id="mileage">
+						<rank>40</rank>
+					</item>
+					<item id="remarks">
+						<rank>50</rank>
+					</item>
+				</items>
+			</list>
+		</presentation>
+		<methods/>
+
+		</class>
+		
+
+		<!-- Adds bike -->
+		<class id="Bike" _delta="define">
+			<parent>PhysicalDevice</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>bike</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<format>%1$s</format>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon>images/bike.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="org_id"/>
+						<attribute id="organization_name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="biketype_id" xsi:type="AttributeExternalKey">
+					<sql>biketype_id</sql>
+					<target_class>BikeType</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="batterytype_id" xsi:type="AttributeExternalKey">
+					<sql>batterytype_id</sql>
+					<target_class>BatteryType</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="chassisnumber" xsi:type="AttributeString">
+					<sql>chassisnumber</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<display_style>list</display_style>
+				</field>
+				<field id="maintenanceplace_id" xsi:type="AttributeExternalKey">
+					<sql>maintenanceplace_id</sql>
+					<target_class>MaintenancePlace</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="lastmaintenance" xsi:type="AttributeDate">
+					<sql>lastmaintenance</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<display_style>list</display_style>
+				</field>
+				<field id="bikepicture" xsi:type="AttributeImage">
+					<display_max_width>460</display_max_width>
+					<display_max_height>460</display_max_height>
+					<storage_max_width>520</storage_max_width>
+					<storage_max_height>520</storage_max_height>
+					<default_image>images/silhouette.png</default_image>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="lock" xsi:type="AttributeString">
+					<sql>lock</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+					<display_style>list</display_style>
+				</field>
+				<field id="logouptodate" xsi:type="AttributeEnum">
+					<values>
+						<value id="yes">yes</value>
+						<value id="no">no</value>
+					</values>
+					<sql>logouptodate</sql>
+					<default_value>no</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+				</field>
+				<field id="bags" xsi:type="AttributeEnum">
+					<values>
+						<value id="yes">yes</value>
+						<value id="no">no</value>
+					</values>
+					<sql>bags</sql>
+					<default_value>no</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+				</field>
+				<field id="odometer" xsi:type="AttributeEnum">
+					<values>
+						<value id="yes">yes</value>
+						<value id="no">no</value>
+					</values>
+					<sql>odometer</sql>
+					<default_value>no</default_value>
+					<is_null_allowed>false</is_null_allowed>
+					<display_style>radio_horizontal</display_style>
+				</field>
+				<field id="bikemonthrecord_list" xsi:type="AttributeLinkedSet">
+					<linked_class>BikeMonthRecord</linked_class>
+					<ext_key_to_me>bike_id</ext_key_to_me>
+					<edit_mode>actions</edit_mode>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="col:col1">
+							<rank>80</rank>
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="name">
+											<rank>10</rank>
+										</item>
+										<item id="org_id">
+											<rank>20</rank>
+										</item>
+										<item id="status">
+											<rank>30</rank>
+										</item>
+										<item id="business_criticity">
+											<rank>40</rank>
+										</item>
+										<item id="location_id">
+											<rank>50</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="brand_id">
+											<rank>60</rank>
+										</item>
+										<item id="model_id">
+											<rank>70</rank>
+										</item>
+										<item id="biketype_id">
+											<rank>80</rank>
+										</item>
+										<item id="chassisnumber">
+											<rank>90</rank>
+										</item>
+										<item id="logouptodate">
+											<rank>100</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>90</rank>
+							<items>
+								<item id="fieldset:Server:Date">
+									<rank>10</rank>
+									<items>
+										<item id="purchase_date">
+											<rank>10</rank>
+										</item>
+										<item id="lastmaintenance">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:otherinfo">
+									<rank>20</rank>
+									<items>
+										<item id="maintenanceplace_id">
+											<rank>30</rank>
+										</item>
+										<item id="lock">
+											<rank>40</rank>
+										</item>
+										<item id="bags">
+											<rank>50</rank>
+										</item>
+										<item id="odometer">
+											<rank>60</rank>
+										</item>
+										<item id="description">
+											<rank>70</rank>
+										</item>
+										<item id="bikepicture">
+											<rank>80</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="contacts_list">
+							<rank>170</rank>
+						</item>
+						<item id="documents_list">
+							<rank>180</rank>
+						</item>
+						<item id="bikemonthrecord_list">
+							<rank>190</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="org_id">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="location_id">
+							<rank>50</rank>
+						</item>
+						<item id="brand_id">
+							<rank>60</rank>
+						</item>
+						<item id="model_id">
+							<rank>70</rank>
+						</item>
+						<item id="biketype_id">
+							<rank>75</rank>
+						</item>
+						<item id="chassisnumber">
+							<rank>77</rank>
+						</item>
+						<item id="purchase_date">
+							<rank>110</rank>
+						</item>
+						<item id="lastmaintenance">
+							<rank>122</rank>
+						</item>
+						<item id="maintenanceplace_id">
+							<rank>158</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="status">
+							<rank>20</rank>
+						</item>
+						<item id="location_id">
+							<rank>30</rank>
+						</item>
+						<item id="brand_id">
+							<rank>40</rank>
+						</item>
+						<item id="model_id">
+							<rank>50</rank>
+						</item> 
+						<item id="chassisnumber">
+							<rank>60</rank>
+						</item>
+						<item id="lastmaintenance">
+							<rank>70</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+	</classes>
+
+
+
+	<profiles/>
+
+
+	<!-- Add typology --> 
+	<menus>
+		<menu id="TechnicalRequestBike" xsi:type="TemplateMenuNode" _delta="define">
+			<rank>30</rank>
+			<parent>TechnicalRequestManagement</parent>
+			<template_file/>
+		</menu>
+		<menu id="BikeOverview" xsi:type="DashboardMenuNode" _delta="define">
+			<rank>10</rank>
+			<parent>TechnicalRequestBike</parent>
+			<definition>
+				   <layout>DashboardLayoutTwoCols</layout>
+					  <title>Overzicht fietsen</title>
+					  <auto_reload>
+						<enabled>false</enabled>
+						<interval>300</interval>
+					  </auto_reload>
+					  <cells>
+						<cell id="0">
+						  <rank>0</rank>
+						  <dashlets>
+							<dashlet id="CUSTOM_BikeOverview_ID_row2_col0_12" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Algemene info</title>
+							  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+							</dashlet>
+							<dashlet id="CUSTOM_BikeOverview_ID_row2_col0_7" xsi:type="DashletGroupByTable">
+							  <rank>1</rank>
+							  <title>Fietsen per merk</title>
+							  <query>SELECT Bike WHERE status NOT IN ('obsolete') OR ISNULL(status)</query>
+							  <group_by>brand_name</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_BikeOverview_ID_row2_col0_8" xsi:type="DashletGroupByTable">
+							  <rank>2</rank>
+							  <title>Fietsen per locatie</title>
+							  <query>SELECT Bike WHERE status NOT IN ('obsolete') OR ISNULL(status)</query>
+							  <group_by>location_id</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_BikeOverview_ID_row1_col1_15" xsi:type="DashletGroupByTable">
+							  <rank>3</rank>
+							  <title>Fietsen per fietswinkel</title>
+							  <query>SELECT Bike WHERE status NOT IN ('obsolete') OR ISNULL(status)</query>
+							  <group_by>maintenanceplace_id</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="1">
+						  <rank>1</rank>
+						  <dashlets>
+							<dashlet id="CUSTOM__ID_row1_col1_14" xsi:type="DashletHeaderStatic">
+							  <rank>0</rank>
+							  <title>Algemene info</title>
+							  <icon>itop-knownerror-mgmt/images/faq.png</icon>
+							</dashlet>
+							<dashlet id="CUSTOM__ID_row4_col0_13" xsi:type="DashletGroupByPie">
+							  <rank>1</rank>
+							  <title>Fietsen volgens type</title>
+							  <query>SELECT Bike WHERE status NOT IN ('obsolete') OR ISNULL(status)</query>
+							  <group_by>biketype_id</group_by>
+							  <style>pie</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+							<dashlet id="CUSTOM_BikeOverview_ID_row0_col1_16" xsi:type="DashletGroupByTable">
+							  <rank>2</rank>
+							  <title>Maandoverzichten</title>
+							  <query>SELECT BikeMonthRecord</query>
+							  <group_by>monthofrecord</group_by>
+							  <style>table</style>
+							  <aggregation_function>count</aggregation_function>
+							  <aggregation_attribute></aggregation_attribute>
+							  <limit></limit>
+							  <order_by>attribute</order_by>
+							  <order_direction>desc</order_direction>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="2">
+						  <rank>2</rank>
+						  <dashlets>
+							<dashlet id="0" xsi:type="DashletEmptyCell">
+							  <rank>0</rank>
+							</dashlet>
+						  </dashlets>
+						</cell>
+						<cell id="3">
+						  <rank>3</rank>
+						  <dashlets>
+							<dashlet id="0" xsi:type="DashletEmptyCell">
+							  <rank>0</rank>
+							</dashlet>
+						  </dashlets>
+						</cell>
+					</cells>
+			</definition>
+		</menu>
+		<menu id="NewBike" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>20</rank>
+			<parent>TechnicalRequestBike</parent>
+			<class>Bike</class>
+		</menu>
+		<menu id="SearchBike" xsi:type="SearchMenuNode" _delta="define">
+			<rank>30</rank>
+			<parent>TechnicalRequestBike</parent>
+			<class>Bike</class>
+		</menu>
+		<menu id="SearchBikeMonthRecord" xsi:type="SearchMenuNode" _delta="define">
+			<rank>50</rank>
+			<parent>TechnicalRequestBike</parent>
+			<class>BikeMonthRecord</class> 
+		</menu> 
+	</menus>
+
+</itop_design>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+
+	<classes>
+		<class id="ClimatePublication" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>climatepublication</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="title"></attribute>
+					</attributes>
+				</naming>
+
+				<display_template/>
+				<icon>images/project.png</icon>
+				<reconciliation>
+					<attributes/>
+				</reconciliation>
+			</properties>
+
+
+			<fields>
+				<field id="org_id" xsi:type="AttributeExternalKey">
+					<sql>org_id</sql>
+					<target_class>Organization</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>	
+				<field id="department_id" xsi:type="AttributeExternalKey">
+					<sql>department_id</sql>
+					<target_class>Department</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>				
+				<field id="date_created" xsi:type="AttributeDate">
+					<sql>date_created</sql>
+					<is_null_allowed>true</is_null_allowed>  
+				</field>	 
+				<field id="date_changed" xsi:type="AttributeDateTime">
+					<sql>date_changed</sql>
+					<is_null_allowed>true</is_null_allowed>  
+				</field>	 
+				<field id="contact_id" xsi:type="AttributeExternalKey">
+					<sql>contact_id</sql>
+					<target_class>Person</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>	
+				<field id="state_published" xsi:type="AttributeEnum">
+					<always_load_in_tables>true</always_load_in_tables>
+					<values>
+						<value id="not_published">not_published</value>
+						<value id="published">published</value>
+						<value id="rejected">rejected</value>
+					</values>
+					<sql>state_published</sql>
+					<default_value>not_published</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="parent_project_id" xsi:type="AttributeExternalKey">
+					<sql>parent_project_id</sql>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<target_class>ClimatePublication</target_class>
+					<filter>SELECT ClimatePublication WHERE id != :this->id</filter>
+				</field>
+				<field id="related_project_list" xsi:type="AttributeLinkedSet">
+					<linked_class>ClimatePublication</linked_class>
+					<ext_key_to_me>parent_project_id</ext_key_to_me>
+					<edit_mode>add_remove</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+				</field>
+				<field id="project_state" xsi:type="AttributeEnum">
+					<always_load_in_tables>true</always_load_in_tables>
+					<values>
+						<value id="not_started">not_started</value>
+						<value id="started">started</value>
+						<value id="operational">operational</value>
+						<value id="completed">completed</value>
+					</values>
+					<sql>project_state</sql>
+					<default_value>not_started</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="start" xsi:type="AttributeEnum">
+					<always_load_in_tables>true</always_load_in_tables>
+					<values>
+						<value id="2020">2020</value>
+						<value id="2021">2021</value>
+						<value id="2022">2022</value>
+						<value id="2023">2023</value>
+						<value id="2024">2024</value>
+						<value id="2025">2025</value>
+					</values>
+					<sql>start</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="stop" xsi:type="AttributeEnum">
+					<always_load_in_tables>true</always_load_in_tables>
+					<values>
+						<value id="2020">2020</value>
+						<value id="2021">2021</value>
+						<value id="2022">2022</value>
+						<value id="2023">2023</value>
+						<value id="2024">2024</value>
+						<value id="2025">2025</value>
+					</values>
+					<sql>stop</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="title" xsi:type="AttributeString">
+					<sql>title</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="budget_estimate" xsi:type="AttributeString">
+					<sql>budget_estimate</sql>
+					<default_value>Geen budget voorzien</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="budget_settlement" xsi:type="AttributeString">
+					<sql>budget_settlement</sql>
+					<default_value>Nog niet geweten</default_value>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="budget_key" xsi:type="AttributeString">
+					<sql>budget_key</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="action_number" xsi:type="AttributeString">
+					<sql>action_number</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="description" xsi:type="AttributeHTML">
+					<sql>description</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>		
+				<field id="short_description" xsi:type="AttributeText">
+					<sql>short_description</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="picture" xsi:type="AttributeImage">
+					<display_max_width>460</display_max_width>
+					<display_max_height>460</display_max_height>
+					<storage_max_width>520</storage_max_width>
+					<storage_max_height>520</storage_max_height>
+					<default_image>images/silhouette.png</default_image>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="theme_tag" xsi:type="AttributeTagSet">
+					<sql>theme_tag</sql>
+					<is_null_allowed>true</is_null_allowed>
+					<tag_code_max_len>10</tag_code_max_len>
+					<tracking_level>all</tracking_level>			
+				</field>
+				<field id="keyword_tag" xsi:type="AttributeTagSet">
+					<sql>keyword_tag</sql>
+					<is_null_allowed>true</is_null_allowed>
+					<tag_code_max_len>10</tag_code_max_len>
+					<tracking_level>all</tracking_level>			
+				</field>
+				<field id="company_id" xsi:type="AttributeExternalKey">
+					<sql>company_id</sql>
+					<target_class>Organization</target_class>
+					<filter><![CDATA[SELECT Organization WHERE name IN ('Stadsbestuur Izegem', 'Zorg Izegem', 'AGIZ', 'Etiz', 'OCMW Izegem', 'Farys')]]></filter>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+			</fields> 
+			<presentation>
+				<details>
+					<items>
+						<item id="related_project_list">
+							<rank>8</rank>
+						</item>
+						<item id="col:col1">
+							<rank>10</rank>
+							<items>
+								<item id="fieldset:ClimatePublication:baseinfo">
+									<items>
+										<item id="title">
+											<rank>1</rank>
+										</item>
+										<item id="org_id">
+											<rank>10</rank>
+										</item>
+										<item id="contact_id">
+											<rank>20</rank>
+										</item>
+										<item id="date_created">
+											<rank>30</rank>
+										</item>
+										<item id="state_published">
+											<rank>40</rank>
+										</item>
+										<item id="project_state">
+											<rank>45</rank>
+										</item>
+										<item id="start">
+											<rank>47</rank>
+										</item>
+										<item id="stop">
+											<rank>48</rank>
+										</item>
+										<item id="parent_project_id">
+											<rank>50</rank>
+										</item>
+										<item id="action_number">
+											<rank>60</rank>
+										</item>
+										<item id="department_id">
+											<rank>65</rank>
+										</item>
+										<item id="company_id">
+											<rank>70</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:ClimatePublication:description">
+									<items>
+										<item id="short_description">
+											<rank>10</rank>
+										</item>
+										<item id="description">
+											<rank>20</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>20</rank>
+							<items>
+								<item id="fieldset:ClimatePublication:extrainfo">
+									<items>
+										<item id="budget_estimate">
+											<rank>10</rank>
+										</item>
+										<item id="budget_settlement">
+											<rank>20</rank>
+										</item>
+										<item id="budget_key">
+											<rank>25</rank>
+										</item>
+										<item id="theme_tag">
+											<rank>30</rank>
+										</item>
+										<item id="keyword_tag">
+											<rank>40</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:ClimatePublication:picture">
+									<items>
+										<item id="picture">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>	
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="action_number">
+							<rank>10</rank>
+						</item>
+						<item id="date_created">
+							<rank>30</rank>
+						</item>
+						<item id="state_published">
+							<rank>40</rank>
+						</item>
+						<item id="project_state">
+							<rank>50</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="action_number">
+							<rank>10</rank>
+						</item>
+						<item id="date_created">
+							<rank>30</rank>
+						</item>
+						<item id="state_published">
+							<rank>40</rank>
+						</item>
+						<item id="project_state">
+							<rank>50</rank>
+						</item>	
+					</items>
+				</list>
+			</presentation>
+
+			<methods>
+				<method id="OnInsert">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnInsert()
+	{
+		$this->Set('date_changed', date('Y-m-d H:i:s'));
+		parent::OnInsert();
+	}]]></code>
+				</method>
+				<method id="OnUpdate">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnUpdate()
+	{
+		$this->Set('date_changed', date('Y-m-d H:i:s'));
+		parent::OnUpdate();
+	}]]></code>
+				</method>
+				<!-- <method id="GetAttributeFlags">
+				  <static>false</static>
+				  <access>public</access>
+				  <type>Overload-DBObject</type>
+				  <code><![CDATA[	public function GetAttributeFlags($sAttCode, &$aReasons = Array(), $sTargetState = '')
+		{
+			if($sAttCode == 'short_description')
+			{
+				return OPT_ATT_READONLY;
+			}
+			return parent::GetAttributeFlags($sAttCode);
+		}
+	]]></code>
+				</method>
+				<method id="GetInitialStateAttributeFlags">
+				  <static>false</static>
+				  <access>public</access>
+				  <type>Overload-DBObject</type>
+				  <code><![CDATA[	public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
+		{
+			if($sAttCode == 'short_description')
+			{
+				return OPT_ATT_READONLY;
+			}
+			return parent::GetAttributeFlags($sAttCode);
+		}
+	]]></code>
+				</method> -->
+
+				
+			</methods>
+
+
+		</class>
+	</classes>
+
+	<!-- Adds a link to the ClimatePublicationManagement overview -->
+	<menus>	 
+		<menu id="ClimatePublicationManagement" xsi:type="MenuGroup" _delta="define">
+			<rank>49</rank>
+			<enable_stimulus/>
+		</menu>
+		<menu id="NewClimatePublication" xsi:type="NewObjectMenuNode" _delta="define">
+			<rank>10</rank>
+			<parent>ClimatePublicationManagement</parent>
+			<class>ClimatePublication</class>
+		</menu>
+		<menu id="SearchClimatePublication" xsi:type="SearchMenuNode" _delta="define">
+			<rank>20</rank>
+			<parent>ClimatePublicationManagement</parent>
+			<class>ClimatePublication</class> 
+		</menu> 
+	</menus>
+
+	<profiles>
+	</profiles>
+	<user_rights>
+    <groups>
+	
+		<group id="ClimatePublication" _delta="define">
+			<classes>
+			  <class id="ClimatePublication"/>
+			  <class id="ContactMethod"/>
+			  <class id="TagSetFieldData"/>
+			  <class id="Department"/>
+			  <class id="AuthenticationMethod"/>
+			</classes>
+		</group>
+		  
+		<group id="PrecannedReplies" _delta="define_if_not_exists">
+			<classes>
+			  <class id="PrecannedReply"/>
+			  <class id="PrecannedReplyCategory"/>
+			</classes>
+		</group>
+	 
+    </groups>
+    <profiles>
+	  <profile id="137" _delta="define">
+        <name>Climatepublication User</name>
+        <description>Person in charge of Climatepublication, can add or modify projects</description>
+        <groups>
+          <group id="General">
+            <actions>
+			  <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		   <group id="Service">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+            </actions>
+          </group> 
+		  <group id="ClimatePublication">
+		    <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+			  <action id="stimulus:ev_assign">allow</action>
+			  <action id="stimulus:ev_resolve">allow</action>
+			  <action id="stimulus:ev_reassign">allow</action>
+            </actions>
+		  </group>	    
+		  <group id="Ticketing">
+            <actions>
+              <action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+		  <group id="PrecannedReplies">
+			<actions>
+			<action id="action:read">allow</action>
+              <action id="action:bulk read">allow</action>
+			  <action id="action:write">allow</action>
+              <action id="action:bulk write">allow</action>
+			  <action id="action:delete">allow</action>
+              <action id="action:bulk delete">allow</action>
+            </actions>
+          </group>
+        </groups>
+      </profile>
+    </profiles>
+  </user_rights>
+</itop_design>

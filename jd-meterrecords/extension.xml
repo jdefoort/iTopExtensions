@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>jd-meterrecords</extension_code>
+	<company>none</company>
+	<author><![CDATA[jdefoort]]></author>
+	<label><![CDATA[Class: MeterRecords]]></label>
+	<description><![CDATA[Adds meterrecords.]]></description>
+	<version>2.7.210803</version>
+	<release_date>2021-08-03</release_date>
+	<version_description><![CDATA[ ]]></version_description>
+	<itop_version_min>2.7.4</itop_version_min>
+	<status>stable</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/jdefoort/iTopExtensions</more_info_url>
+</extension>
