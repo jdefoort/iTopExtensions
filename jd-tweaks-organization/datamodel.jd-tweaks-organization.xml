@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+	<classes>
+		<class id="Organization">
+			<parent>cmdbAbstractObject</parent>
+			<fields>
+				<field id="comment" xsi:type="AttributeText" _delta="define">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="comment">
+						  <rank>60</rank>
+						</item>
+					</items>
+				</details>
+			<list>
+			  <items>
+				<item id="comment">
+				  <rank>60</rank>
+				</item>
+			  </items>
+			</list>					
+			</presentation>
+		</class>
+	</classes>
+	
+</itop_design>
